@@ -4,49 +4,95 @@
              x:Class="DAYLY.Views.AboutPage"
              xmlns:vm="clr-namespace:DAYLY.ViewModels"
              Title="{Binding Title}">
-    
-    <ContentPage.BindingContext>
-        <vm:AboutViewModel />
-    </ContentPage.BindingContext>
-    
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Color x:Key="Accent">#96d1ff</Color>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
         </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
-                    <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />
-                </ContentView>
-            </StackLayout>
-        </StackLayout>
-        <ScrollView Grid.Row="1">
-            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Label Text="Start developing now" FontSize="Title"/>
-                <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="0,0,0,0"/>
-                <Label FontSize="16" Padding="0,24,0,0">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="Learn more at "/>
-                                <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Button Margin="0,10,0,0" Text="Learn more"
-                        Command="{Binding OpenWebCommand}"
-                        BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" />
-            </StackLayout>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Text="DAYLY" FontFamily="Rift Soft" FontSize="15" FontAttributes="Bold" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="4" Margin="20"></Label>
+        <Label Text="DAYLY" Grid.Column="2" Grid.Row="2"  FontFamily="Rift Soft" FontSize="15" Grid.ColumnSpan="4"></Label>
+        <Label Text="WEEKLY" Grid.Column="4" FontSize="15" Grid.Row="2" Grid.ColumnSpan="2"></Label>
+        <Label Text="MONTHLY" Grid.Column="6" FontSize="15" Grid.Row="2" Grid.ColumnSpan="4" ></Label>
+        <Label Text="Wednesday, Septemeber 3 2020" TextColor="Orange"  Grid.Column="2" Margin="10, 30" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="7"></Label>
+        <Label Text="S" Grid.Column="2" Grid.Row="3" Margin="10, 1"  Grid.RowSpan="5"></Label>
+        <Label Text="M" Grid.Column="3" Grid.Row="3" Margin="10, 1"  Grid.RowSpan="5"></Label>
+        <Label Text="T" Grid.Column="4" Grid.Row="3" Margin="10, 1"  Grid.RowSpan="5"></Label>
+        <Label Text="W" Grid.Column="5" Grid.Row="3" Margin="10, 1"  Grid.RowSpan="5"></Label>
+        <Label Text="T" Grid.Column="6" Grid.Row="3" Margin="10, 1"  Grid.RowSpan="5"></Label>
+        <Label Text="F" Grid.Column="7" Grid.Row="3" Margin="10, 1"  Grid.RowSpan="5"></Label>
+        <Label Text="S" Grid.Column="8" Grid.Row="3" Margin="10, 1"  Grid.RowSpan="5"></Label>
+        <Label Text="31" Grid.Column="2" Grid.Row="3" Margin="30, 1"  Grid.RowSpan="5"></Label>
+        <Label Text="1" Grid.Column="3" Grid.Row="3" Margin="30, 1"  Grid.RowSpan="5"></Label>
+        <Label Text="2" Grid.Column="4" Grid.Row="3" Margin="30, 1"  Grid.RowSpan="5"></Label>
+        <Label Text="3" Grid.Column="5" Grid.Row="3" Margin="30, 1"  Grid.RowSpan="5"></Label>
+        <Label Text="4" Grid.Column="6" Grid.Row="3" Margin="30, 1"  Grid.RowSpan="5"></Label>
+        <Label Text="5" Grid.Column="7" Grid.Row="3" Margin="30, 1"  Grid.RowSpan="5"></Label>
+        <Label Text="6" Grid.Column="8" Grid.Row="3" Margin="30, 1"  Grid.RowSpan="5"></Label>
+
+        <ScrollView Grid.Row="2" Grid.ColumnSpan="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+                <Label Text="7am" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"></Label>
+                <Label Text="8am" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2"></Label>
+                <Label Text="9am" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2"></Label>
+                <Label Text="10am" Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="2"></Label>
+                <Label Text="12pm" Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="2"></Label>
+                <Label Text="1pm" Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="2"></Label>
+                <Label Text="2pm" Grid.Column="1" Grid.Row="16" Grid.ColumnSpan="2"></Label>
+                <Label Text="3pm" Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="2"></Label>
+                <Label Text="4pm" Grid.Column="1" Grid.Row="20" Grid.ColumnSpan="2"></Label>
+                <Label Text="5pm" Grid.Column="1" Grid.Row="22" Grid.ColumnSpan="2"></Label>
+                <Label Text="6pm" Grid.Column="1" Grid.Row="24" Grid.ColumnSpan="2"></Label>
+                <Label Text="7pm" Grid.Column="1" Grid.Row="26" Grid.ColumnSpan="2"></Label>
+                <Label Text="8pm" Grid.Column="1" Grid.Row="28" Grid.ColumnSpan="2"></Label>
+                <Label Text="9pm" Grid.Column="1" Grid.Row="30" Grid.ColumnSpan="2"></Label>
+                <Label Text="10pm" Grid.Column="1" Grid.Row="32" Grid.ColumnSpan="2"></Label>
+            </Grid>
+
+            <!-- Put all the content here -->
+
         </ScrollView>
+
+
     </Grid>
 
 </ContentPage>
