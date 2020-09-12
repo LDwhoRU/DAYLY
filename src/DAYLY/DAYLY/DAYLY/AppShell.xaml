@@ -14,24 +14,30 @@
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.BackgroundColor" Value="#FFFFFF" />
                 <Setter Property="Shell.ForegroundColor" Value="White" />
-                <Setter Property="Shell.TitleColor" Value="White" />
-                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
-                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+                <Setter Property="Shell.TitleColor" Value="#1B1C20" />
+                <Setter Property="Shell.DisabledColor" Value="#C3CBCE" />
+                <Setter Property="Shell.UnselectedColor" Value="#C3CBCE" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="#FFFFFF" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="#D97D54"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#C3CBCE"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="#D97D54"/>
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" Value="#ECEFF0" />
+            </Style>
         </ResourceDictionary>
     </Shell.Resources>
-
+    <!--All routes set to items page until the views are created-->
     <TabBar>
-        <ShellContent Title="About" Icon="tab_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
-        <ShellContent Title="Browse" Icon="tab_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
+        <ShellContent Title="Home" Icon="home.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+        <ShellContent Title="Schedule" Icon="calendar.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}"/>
+        <ShellContent Icon="add.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}"/>
+        <ShellContent Title="Profile" Icon="profile.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}"/>
+        <ShellContent Title="Settings" Icon="settings.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}"/>
     </TabBar>
 
     <!--
