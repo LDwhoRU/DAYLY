@@ -3,67 +3,99 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DAYLY.Views.Page1">
     <ContentPage.Content>
-    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+            <Label Text="DAYLY" Grid.Column="3" Grid.Row="1"  FontFamily="Rift Soft" FontSize="15" Grid.ColumnSpan="4"></Label>
+            <Label Text="WEEKLY" Grid.Column="6" FontSize="15" Grid.Row="1" Grid.ColumnSpan="3" TextColor="Orange"></Label>
+            <Label Text="MONTHLY" Grid.Column="9" FontSize="15" Grid.Row="1" Grid.ColumnSpan="4" ></Label>
+            <Label Text="Wednesday, Septemeber 3 2020" TextColor="Orange" Margin="20, -20" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="13"></Label>
 
-                </Grid.ColumnDefinitions>
-                <Label Text="DAYLY" FontFamily="Rift Soft" FontSize="15" FontAttributes="Bold" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4" Margin="20"></Label>
-                <Label Text="DAYLY" Grid.Column="2" Grid.Row="1"  FontFamily="Rift Soft" FontSize="15" Grid.ColumnSpan="4"></Label>
-                <Label Text="WEEKLY" Grid.Column="5" FontSize="15" Grid.Row="1" Grid.ColumnSpan="3"></Label>
-                <Label Text="MONTHLY" Grid.Column="8" FontSize="15" Grid.Row="1" Grid.ColumnSpan="4" ></Label>
-                <Label Text="Wednesday, Septemeber 3 2020" TextColor="Orange" Margin="20, -20" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="13"></Label>
-                <Label Text="S" Grid.Column="3" Grid.Row="2" Margin="-25, -45" Grid.RowSpan="5"></Label>
-                <Label Text="M" Grid.Column="5" Grid.Row="2" Margin="-25,-45" Grid.RowSpan="5"></Label>
-                <Label Text="T" Grid.Column="7" Grid.Row="2" Margin="-25, -45" Grid.RowSpan="5"></Label>
-                <Label Text="W" Grid.Column="9" Grid.Row="2" Margin="-25, -45" Grid.RowSpan="5"></Label>
-                <Label Text="T" Grid.Column="11" Grid.Row="2" Margin="-25, -45" Grid.RowSpan="5"></Label>
-                <Label Text="F" Grid.Column="13" Grid.Row="2" Margin="-25, -45" Grid.RowSpan="5"></Label>
-                <Label Text="S" Grid.Column="15" Grid.Row="2" Margin="-25, -45" Grid.RowSpan="5"></Label>
-                <Label Text="7 AM" Grid.Column="2" Grid.Row="3" Margin="-49,1" Grid.RowSpan="5"></Label>
-                <Label Text="8 AM" Grid.Column="2" Grid.Row="4" Margin="-49, 1" Grid.RowSpan="5"></Label>
-                <Label Text="9 AM" Grid.Column="2" Grid.Row="5" Margin="-49, 1" Grid.RowSpan="5"></Label>
-                <Label Text="10 AM" Grid.Column="2" Grid.Row="6" Margin="-49, 1" Grid.RowSpan="5"></Label>
-                <Label Text="11 AM" Grid.Column="2" Grid.Row="7" Margin="-49, 1" Grid.RowSpan="5"></Label>
-                <Label Text="12 PM" Grid.Column="2" Grid.Row="8" Margin="-49, 1" Grid.RowSpan="5"></Label>
-                <Label Text="1 PM" Grid.Column="2" Grid.Row="9" Margin="-49, 1" Grid.RowSpan="5"></Label>
-                <Label Text="2 PM" Grid.Column="2" Grid.Row="10" Margin="-49, 1" Grid.RowSpan="5"></Label>
-                <Label Text="3 PM" Grid.Column="2" Grid.Row="11" Margin="-49, 1" Grid.RowSpan="5"></Label>
-                <Label Text="4 PM" Grid.Column="2" Grid.Row="11" Margin="-49, 1" Grid.RowSpan="5"></Label>
-                <Label Text="5 PM" Grid.Column="2" Grid.Row="11" Margin="-49, 1" Grid.RowSpan="5"></Label>
-                <Label Text="6 PM" Grid.Column="2" Grid.Row="11" Margin="-49, 1" Grid.RowSpan="5"></Label>
-                <Label Text="7 PM" Grid.Column="2" Grid.Row="11" Margin="-49, 1" Grid.RowSpan="5"></Label>
-                <Label Text="8 PM" Grid.Column="2" Grid.Row="11" Margin="-49, 1" Grid.RowSpan="5"></Label>
-                <Label Text="9 PM" Grid.Column="2" Grid.Row="11" Margin="-49, 1" Grid.RowSpan="5"></Label>
-                <Label Text="10 PM" Grid.Column="2" Grid.Row="11" Margin="-49, -1" Grid.RowSpan="5"></Label>
-                <Label Text="IAB330" Grid.Column="2" Grid.Row="3" Grid.RowSpan="1" Grid.ColumnSpan="0" BackgroundColor="Red"></Label>
-                <Label Text="IAB330" Grid.Column="4" Grid.Row="3"  Grid.RowSpan="1" Grid.ColumnSpan="0" BackgroundColor="Red"></Label>
+            <Label Text="S" Grid.Column="3" Grid.Row="2" Margin="0,30" Grid.RowSpan="5"></Label>
+            <Label Text="M" Grid.Column="5" Grid.Row="2" Margin= "0,30" Grid.RowSpan="5" TextColor="Orange"></Label>
+            <Label Text="T" Grid.Column="7" Grid.Row="2" Margin="0, 30" Grid.RowSpan="5"></Label>
+            <Label Text="W" Grid.Column="9" Grid.Row="2" Margin="0, 30" Grid.RowSpan="5"></Label>
+            <Label Text="T" Grid.Column="11" Grid.Row="2" Margin="0, 30" Grid.RowSpan="5"></Label>
+            <Label Text="F" Grid.Column="13" Grid.Row="2" Margin="0, 30" Grid.RowSpan="5"></Label>
+            <Label Text="S" Grid.Column="15" Grid.Row="2" Margin="0, 30" Grid.RowSpan="5"></Label>
+            <Label Text="13" Grid.Column="3" Grid.Row="3" Grid.RowSpan="5"></Label>
+            <Label Text="14" Grid.Column="5" Grid.Row="3" Grid.RowSpan="5" TextColor="Orange"></Label>
+            <Label Text="15" Grid.Column="7" Grid.Row="3" Grid.RowSpan="5"></Label>
+            <Label Text="16" Grid.Column="9" Grid.Row="3" Grid.RowSpan="5"></Label>
+            <Label Text="17" Grid.Column="11" Grid.Row="3" Grid.RowSpan="5"></Label>
+            <Label Text="19" Grid.Column="13" Grid.Row="3" Grid.RowSpan="5"></Label>
+            <Label Text="20" Grid.Column="15" Grid.Row="3" Grid.RowSpan="5"></Label>
+            <ScrollView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="15" Grid.RowSpan="10" Margin="0,-80">
 
-            </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
 
-        </ScrollView>
-    </ContentPage.Content>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="7 AM" Grid.Column="2" Grid.Row="3" Margin="-62,1" Grid.RowSpan="5"></Label>
+                    <Label Text="8 AM" Grid.Column="2" Grid.Row="5" Margin="-62, 1" Grid.RowSpan="5"></Label>
+                    <Label Text="9 AM" Grid.Column="2" Grid.Row="7" Margin="-62, 1" Grid.RowSpan="5"></Label>
+                    <Label Text="10 AM" Grid.Column="2" Grid.Row="9" Margin="-62, 1" Grid.RowSpan="5"></Label>
+                    <Label Text="11 AM" Grid.Column="2" Grid.Row="11" Margin="-62, 1" Grid.RowSpan="5"></Label>
+                    <Label Text="12 PM" Grid.Column="2" Grid.Row="13" Margin="-62, 1" Grid.RowSpan="5"></Label>
+                    <Label Text="1 PM" Grid.Column="2" Grid.Row="15" Margin="-62, 1" Grid.RowSpan="5"></Label>
+                    <Label Text="2 PM" Grid.Column="2" Grid.Row="17" Margin="-62, 1" Grid.RowSpan="5"></Label>
+                    <Label Text="3 PM" Grid.Column="2" Grid.Row="19" Margin="-62, 1" Grid.RowSpan="5"></Label>
+                    <Label Text="4 PM" Grid.Column="2" Grid.Row="21" Margin="-62, 1" Grid.RowSpan="5"></Label>
+                    <Label Text="5 PM" Grid.Column="2" Grid.Row="23" Margin="-62, 1" Grid.RowSpan="5"></Label>
+                    <Label Text="6 PM" Grid.Column="2" Grid.Row="25" Margin="-62, 1" Grid.RowSpan="5"></Label>
+                    <Label Text="7 PM" Grid.Column="2" Grid.Row="27" Margin="-62, 1" Grid.RowSpan="5"></Label>
+                    <Label Text="8 PM" Grid.Column="2" Grid.Row="29" Margin="-62, 1" Grid.RowSpan="5"></Label>
+                    <Label Text="9 PM" Grid.Column="2" Grid.Row="31" Margin="-62, 1" Grid.RowSpan="5"></Label>
+                    <Label Text="10 PM" Grid.Column="2" Grid.Row="33" Margin="-62, -1" Grid.RowSpan="5"></Label>
+                    <Label Text="IAB330" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="1" BackgroundColor="Red"></Label>
+                    <Label Text="IAB330" Grid.Column="3" Grid.Row="3"  Grid.RowSpan="1" Grid.ColumnSpan="1" BackgroundColor="Red"></Label>
+
+                </Grid>
+
+            </ScrollView>
+        </Grid>
+
+
+       </ContentPage.Content>
 </ContentPage>
