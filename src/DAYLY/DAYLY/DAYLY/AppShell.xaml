@@ -15,7 +15,7 @@
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="#FFFFFF" />
-                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.ForegroundColor" Value="#1B1C20" />
                 <Setter Property="Shell.TitleColor" Value="#1B1C20" />
                 <Setter Property="Shell.DisabledColor" Value="#C3CBCE" />
                 <Setter Property="Shell.UnselectedColor" Value="#C3CBCE" />
