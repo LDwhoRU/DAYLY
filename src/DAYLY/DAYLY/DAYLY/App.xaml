@@ -8,6 +8,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="AppBackgroundColour">#ECEFF0</Color>
             <Color x:Key="Sage">#87BCBF</Color>
             <Color x:Key="Rust">#D97D54</Color>
             <Color x:Key="Drab">#324755</Color>
