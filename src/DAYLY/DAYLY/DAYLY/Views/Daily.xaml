@@ -18,7 +18,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Text="Daily"
-                        ImageSource="daily_symbol_active"
+                        ImageSource="daily_symbol_active.png"
                         Grid.Column="0"
                         FontSize="Small"
                         TextColor="#D97D54"
@@ -26,7 +26,7 @@
                         HorizontalOptions="End"/>
 
                 <Button Text="Weekly"
-                        ImageSource="weekly_symbol_inactive"
+                        ImageSource="weekly_symbol_inactive.png"
                         Grid.Column="1"
                         FontSize="Small"
                         TextColor="##6E8CA0"
@@ -34,7 +34,7 @@
                         HorizontalOptions="Center"/>
 
                 <Button Text="Monthly"
-                        ImageSource="monthly_symbol_inactive"
+                        ImageSource="monthly_symbol_inactive.png"
                         Grid.Column="2"
                         FontSize="Small"
                         TextColor="##6E8CA0"
