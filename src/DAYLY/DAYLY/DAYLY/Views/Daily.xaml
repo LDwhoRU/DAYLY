@@ -21,7 +21,7 @@
                         ImageSource="daily_symbol_active.png"
                         Grid.Column="0"
                         FontSize="Small"
-                        TextColor="#D97D54"
+                        TextColor="{StaticResource Rust}"
                         BackgroundColor="Transparent"
                         HorizontalOptions="End"/>
 
@@ -29,7 +29,7 @@
                         ImageSource="weekly_symbol_inactive.png"
                         Grid.Column="1"
                         FontSize="Small"
-                        TextColor="##6E8CA0"
+                        TextColor="{StaticResource Slate}"
                         BackgroundColor="Transparent"
                         HorizontalOptions="Center"/>
 
@@ -37,18 +37,18 @@
                         ImageSource="monthly_symbol_inactive.png"
                         Grid.Column="2"
                         FontSize="Small"
-                        TextColor="##6E8CA0"
+                        TextColor="{StaticResource Slate}"
                         BackgroundColor="Transparent"
                         HorizontalOptions="Start"/>
 
                 <Label Text="Monday, September 1, 2020"
-                       TextColor="#6E8CA0"
+                       TextColor="{StaticResource Slate}"
                        FontSize="16"
                        Grid.Row="1"
                        Grid.ColumnSpan="3"
                        HorizontalOptions="Center"/>
 
-                <BoxView Grid.Row="2" Grid.ColumnSpan="3" BackgroundColor="#6E8CA0"/>
+                <BoxView Grid.Row="2" Grid.ColumnSpan="3" BackgroundColor="{StaticResource Slate}"/>
             </Grid>
 
             <ScrollView Margin="15,20,25,20">
@@ -74,18 +74,18 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Text="10 AM" TextColor="#6E8CA0" FontAttributes="Bold" Grid.Row="0"/>
-                    <Label Text="11 AM" TextColor="#6E8CA0" FontAttributes="Bold" Grid.Row="1"/>
-                    <Label Text="12 PM" TextColor="#6E8CA0" FontAttributes="Bold" Grid.Row="2"/>
-                    <Label Text="1 PM" TextColor="#6E8CA0" FontAttributes="Bold" Grid.Row="3"/>
-                    <Label Text="2 PM" TextColor="#6E8CA0" FontAttributes="Bold" Grid.Row="4"/>
-                    <Label Text="3 PM" TextColor="#6E8CA0" FontAttributes="Bold" Grid.Row="5"/>
-                    <Label Text="4 PM" TextColor="#6E8CA0" FontAttributes="Bold" Grid.Row="6"/>
-                    <Label Text="5 PM" TextColor="#6E8CA0" FontAttributes="Bold" Grid.Row="7"/>
-                    <Label Text="6 PM" TextColor="#6E8CA0" FontAttributes="Bold" Grid.Row="8"/>
-                    <Label Text="7 PM" TextColor="#6E8CA0" FontAttributes="Bold" Grid.Row="9"/>
-                    <Label Text="8 PM" TextColor="#6E8CA0" FontAttributes="Bold" Grid.Row="10"/>
-                    <Label Text="9 PM" TextColor="#6E8CA0" FontAttributes="Bold" Grid.Row="11"/>
+                    <Label Text="10 AM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="0"/>
+                    <Label Text="11 AM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="1"/>
+                    <Label Text="12 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="2"/>
+                    <Label Text="1 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="3"/>
+                    <Label Text="2 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="4"/>
+                    <Label Text="3 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="5"/>
+                    <Label Text="4 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="6"/>
+                    <Label Text="5 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="7"/>
+                    <Label Text="6 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="8"/>
+                    <Label Text="7 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="9"/>
+                    <Label Text="8 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="10"/>
+                    <Label Text="9 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="11"/>
 
                     <Image Source="circle_darkgreen.png" Grid.Row="0" Grid.Column="1"/>
                     <Image Source="circle_darkgreen.png" Grid.Row="1" Grid.Column="1"/>
