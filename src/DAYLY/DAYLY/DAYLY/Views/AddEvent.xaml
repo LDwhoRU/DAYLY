@@ -4,26 +4,27 @@
              x:Class="DAYLY.Views.Page1"
              BackgroundColor="#ECEFF0">
     <ContentPage.Content>
-        <StackLayout Spacing="0">
+        
+            <StackLayout Spacing="0">
 
-            <Grid RowSpacing="0" ColumnSpacing="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="3"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
+                <Grid RowSpacing="0" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="3"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
 
-                <Button Text="Event"
+                    <Button Text="Event"
                     VerticalOptions="Start"
                     HorizontalOptions="Fill"
                     BackgroundColor="White"
                     TextColor="#334856"
                     Clicked="OnButtonClicked" />
 
-                <Button Text="Reminder"
+                    <Button Text="Reminder"
                 Grid.Column="1"
                 VerticalOptions="Start"
                 HorizontalOptions="Fill"
@@ -31,45 +32,45 @@
                 TextColor="DarkSlateGray"
                 Clicked="OnButtonClicked" />
 
-                <BoxView WidthRequest="3" BackgroundColor="#D97D54" Grid.Row="1"/>
-                <BoxView WidthRequest="3" BackgroundColor="LightSlateGray" Grid.Row="1" Grid.Column="1"/>
+                    <BoxView WidthRequest="3" BackgroundColor="#D97D54" Grid.Row="1"/>
+                    <BoxView WidthRequest="3" BackgroundColor="LightSlateGray" Grid.Row="1" Grid.Column="1"/>
 
-            </Grid>
-
-            <Frame BackgroundColor="#87BCBF" HorizontalOptions="Fill" HeightRequest="100">
-                <Grid RowSpacing="3" ColumnSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="2*" />
-                        <RowDefinition Height="3"/>
-                        <RowDefinition Height="2*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Label WidthRequest="80" Text="Create Event" TextColor="White" FontSize="Title" FontAttributes="Bold"></Label>
-                    <BoxView WidthRequest="300" HorizontalOptions="Start" BackgroundColor="White" Grid.Row="1"/>
-                    <Label WidthRequest="80" Text="Add an Event to your schedule." TextColor="White" FontSize="Subtitle" Grid.Row="2"></Label>
                 </Grid>
-            </Frame>
 
-            <Frame BackgroundColor="White" Margin="-25" HeightRequest="55" WidthRequest="320" VerticalOptions="Start" Padding="0" HorizontalOptions="Center" CornerRadius="10" HasShadow="True">
-                <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="55" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="50"/>
-                    </Grid.ColumnDefinitions>
+                <Frame BackgroundColor="#87BCBF" HorizontalOptions="Fill" HeightRequest="100">
+                    <Grid RowSpacing="3" ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="3"/>
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <StackLayout Spacing="0">
-                        <BoxView Grid.Row="0" Margin="0" HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="5" WidthRequest="10" BackgroundColor="White"/>
-                        <Entry Grid.Row="0" Margin="0 10" Placeholder="Event Name" PlaceholderColor="#334856" BackgroundColor="White"/>
-                        <BoxView Grid.Row="0" Margin="-13" HorizontalOptions="Fill" VerticalOptions="Start" HeightRequest="5" BackgroundColor="White"/>
-                    </StackLayout>
+                        <Label WidthRequest="80" Text="Create Event" TextColor="White" FontSize="Title" FontAttributes="Bold"></Label>
+                        <BoxView WidthRequest="300" HorizontalOptions="Start" BackgroundColor="White" Grid.Row="1"/>
+                        <Label WidthRequest="80" Text="Add an Event to your schedule." TextColor="White" FontSize="Subtitle" Grid.Row="2"></Label>
+                    </Grid>
+                </Frame>
 
-                    <Button Text=""
+                <Frame BackgroundColor="White" Margin="-25" HeightRequest="55" WidthRequest="320" VerticalOptions="Start" Padding="0" HorizontalOptions="Center" CornerRadius="10" HasShadow="True">
+                    <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="55" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Spacing="0">
+                            <BoxView Grid.Row="0" Margin="0" HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="5" WidthRequest="10" BackgroundColor="White"/>
+                            <Entry Grid.Row="0" Margin="0 10" Placeholder="Event Name" PlaceholderColor="#334856" BackgroundColor="White"/>
+                            <BoxView Grid.Row="0" Margin="-13" HorizontalOptions="Fill" VerticalOptions="Start" HeightRequest="5" BackgroundColor="White"/>
+                        </StackLayout>
+
+                        <Button Text=""
                 Grid.Column="1"
                 Grid.RowSpan="2"
                 HorizontalOptions="Start"
@@ -79,12 +80,57 @@
                 BackgroundColor="#D97D54"
                 TextColor="DarkSlateGray"
                 Clicked="OnButtonClicked" />
-                </Grid>
-            </Frame>
+                    </Grid>
+                </Frame>
 
-            <Frame BackgroundColor="White" Margin="50 0" HeightRequest="55" WidthRequest="320" VerticalOptions="Start" Padding="5" HorizontalOptions="Center" CornerRadius="12" HasShadow="True">
-            </Frame>
+            <ScrollView>
+
+                <StackLayout Spacing="0">
+                
+                <Frame BackgroundColor="White" Margin="50 0 0 0" HeightRequest="155" WidthRequest="320" VerticalOptions="Start" Padding="10 5" HorizontalOptions="Center" CornerRadius="12" HasShadow="True">
+                    <StackLayout Spacing="0">
+                        <Button Text="Date                                                  18 Aug 2020"
+                VerticalOptions="Start"
+                HorizontalOptions="Fill"
+                BackgroundColor="White"
+                TextColor="DarkSlateGray"
+                Clicked="OnButtonClicked" />
+                        <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
+                        <Button Text="Start                                                         9:00AM"
+                VerticalOptions="Start"
+                HorizontalOptions="Fill"
+                BackgroundColor="White"
+                TextColor="DarkSlateGray"
+                Clicked="OnButtonClicked" />
+                        <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
+                        <Button Text="End                                                           11:00AM"
+                VerticalOptions="Start"
+                HorizontalOptions="Fill"
+                BackgroundColor="White"
+                TextColor="DarkSlateGray"
+                Clicked="OnButtonClicked" />
+                    </StackLayout>
+                </Frame>
+
+                <Grid Margin="0" RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start" HorizontalOptions="Fill">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="30*"/>
+                        </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="1" Text="Calendar" TextColor="#1B1C20" FontSize="Title" FontAttributes="Bold"/>
+                    <Label Grid.Column="2" Text="View Calendars" TextColor="#1B1C20" FontSize="Caption"/>
+                </Grid>
+
+                </StackLayout>
+
+            </ScrollView>
 
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>
