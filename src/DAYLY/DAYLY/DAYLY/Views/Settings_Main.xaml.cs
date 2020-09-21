@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace DAYLY.Views
 {
-    public partial class Settings_General : ContentPage
+    public partial class Settings_Main : ContentPage
     {
-        public Settings_General()
+        public Settings_Main()
         {
             InitializeComponent();
         }

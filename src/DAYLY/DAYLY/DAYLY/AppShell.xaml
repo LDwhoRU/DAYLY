@@ -37,7 +37,7 @@
         <ShellContent Title="Schedule" Icon="calendar.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}"/>
         <ShellContent Icon="add.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}"/>
         <ShellContent Title="Profile" Icon="profile.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}"/>
-        <ShellContent Title="Settings" Icon="settings.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:Settings_General}"/>
+        <ShellContent Title="Settings" Icon="settings.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:Settings_Main}"/>
     </TabBar>
 
     <!--
