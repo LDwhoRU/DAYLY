@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DAYLY.Views.alert">
+    
+        <StackLayout>
+        <Label Text="Alert" BackgroundColor="#ECEFF0" ></Label>
+        <ImageButton Source="Group.png"  BorderColor="#ECEFF0"></ImageButton>
+        <ImageButton Source="m5.png"  BorderColor="#ECEFF0"></ImageButton>
+        <ImageButton Source="m10.png"  BorderColor="#ECEFF0"></ImageButton>
+        <ImageButton Source="m15.png"  BorderColor="#ECEFF0"></ImageButton>
+        <ImageButton Source="m20.png"  BorderColor="#ECEFF0"></ImageButton>
+        <ImageButton Source="m30.png"  BorderColor="#ECEFF0"></ImageButton>
+        <ImageButton Source="m45.png"  BorderColor="#ECEFF0"></ImageButton>
+        <ImageButton Source="m1hr.png"  BorderColor="#ECEFF0"></ImageButton>
+        <ImageButton Source="m3hr.png"  BorderColor="#ECEFF0"></ImageButton>
+        <ImageButton Source="m1d.png"  BorderColor="#ECEFF0"></ImageButton>
+    </StackLayout>
+
+</ContentPage>
