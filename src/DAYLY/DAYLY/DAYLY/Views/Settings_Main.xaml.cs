@@ -16,22 +16,22 @@ namespace DAYLY.Views
 
         async void OnGeneralSettingClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//Settings_General");
+            await Navigation.PushAsync(new Settings_General());
         }
 
         async void OnRemindersSettingClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//Settings_Reminders");
+            await Navigation.PushAsync(new Settings_Reminders());
         }
 
         async void OnAutomationSettingClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//Settings_Automation");
+            await Navigation.PushAsync(new Settings_Automation());
         }
 
         async void OnBreaksSettingClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//Settings_Breaks");
+            await Navigation.PushAsync(new Settings_Breaks());
         }
     }
 
