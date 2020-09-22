@@ -64,10 +64,10 @@
                             <ColumnDefinition Width="50"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackLayout Spacing="0">
-                            <BoxView Grid.Row="0" Margin="0" HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="5" WidthRequest="10" BackgroundColor="White"/>
-                            <Entry Grid.Row="0" Margin="0 10" Placeholder="Event Name" PlaceholderColor="#334856" BackgroundColor="White"/>
-                            <BoxView Grid.Row="0" Margin="-13" HorizontalOptions="Fill" VerticalOptions="Start" HeightRequest="5" BackgroundColor="White"/>
+                    <StackLayout Spacing="0" Grid.Row="0">
+                            <BoxView  Margin="0" HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="5" WidthRequest="10" BackgroundColor="White"/>
+                            <Entry Margin="0 10" Placeholder="Event Name" PlaceholderColor="#334856" BackgroundColor="White"/>
+                            <BoxView Margin="-13" HorizontalOptions="Fill" VerticalOptions="Start" HeightRequest="5" BackgroundColor="White"/>
                         </StackLayout>
 
                         <Button Text=""
@@ -83,7 +83,7 @@
                     </Grid>
                 </Frame>
 
-            <ScrollView>
+            <ScrollView Orientation="Vertical">
 
                 <StackLayout Spacing="0">
                 
@@ -114,6 +114,7 @@
 
                 <Grid Margin="0" RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start" HorizontalOptions="Fill">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
                         <RowDefinition Height="55" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -122,10 +123,71 @@
                         <ColumnDefinition Width="30*"/>
                         </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="1" Text="Calendar" TextColor="#1B1C20" FontSize="Title" FontAttributes="Bold"/>
-                    <Label Grid.Column="2" Text="View Calendars" TextColor="#1B1C20" FontSize="Caption"/>
+                        <Label Grid.Column="1" Grid.Row="1" Text="Calendar" TextColor="#1B1C20" FontSize="Title" FontAttributes="Bold"/>
+                        <Label Grid.Column="2" Grid.Row="1" Text="View Calendars" TextColor="#1B1C20" FontSize="Caption"/>
                 </Grid>
 
+                    <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                        <StackLayout Orientation="Horizontal" Margin="0 0 0 30" Spacing="20">
+                            <Frame BackgroundColor="#87BCBF" Padding="0" HeightRequest="155" WidthRequest="130" VerticalOptions="Start" HorizontalOptions="Start" CornerRadius="12" HasShadow="True">
+                                <StackLayout Spacing="0">
+                                    <Frame Margin="90 0 0 0" Padding="0" HeightRequest="65" WidthRequest="130" HorizontalOptions="End" VerticalOptions="End" CornerRadius="12" BackgroundColor="White">
+                                        <Label Text="Create" TextColor="#1B1C20" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                                    </Frame>
+                                    <Frame Padding="0" Margin="-90 0 0 0" BackgroundColor="White" HeightRequest="40" WidthRequest="40" CornerRadius="20" HorizontalOptions="Center" VerticalOptions="End">
+                                        <Image Source="Create_logo.png" HeightRequest="34" WidthRequest="34" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    </Frame>
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame BackgroundColor="#D97D54" Padding="0" HeightRequest="155" WidthRequest="130" VerticalOptions="Start" HorizontalOptions="Center" CornerRadius="12" HasShadow="True">
+                                <StackLayout Spacing="0">
+                                    <Frame Margin="90 0 0 0" Padding="0" HeightRequest="65" WidthRequest="130" HorizontalOptions="End" VerticalOptions="End" CornerRadius="12" BackgroundColor="White">
+                                        <Label Text="Work" TextColor="#1B1C20" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                                    </Frame>
+                                    <Frame Padding="0" Margin="-90 0 0 0" BackgroundColor="White" HeightRequest="40" WidthRequest="40" CornerRadius="20" HorizontalOptions="Center" VerticalOptions="End">
+                                        <Image Source="hike_calendar.png" HeightRequest="34" WidthRequest="34" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    </Frame>
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame BackgroundColor="#324755" Padding="0" HeightRequest="155" WidthRequest="130" VerticalOptions="Start" HorizontalOptions="Center" CornerRadius="12" HasShadow="True">
+                                <StackLayout Spacing="0">
+                                    <Frame Margin="90 0 0 0" Padding="0" HeightRequest="65" WidthRequest="130" HorizontalOptions="End" VerticalOptions="End" CornerRadius="12" BackgroundColor="White">
+                                        <Label Text="Study" TextColor="#1B1C20" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                                    </Frame>
+                                    <Frame Padding="0" Margin="-90 0 0 0" BackgroundColor="White" HeightRequest="40" WidthRequest="40" CornerRadius="20" HorizontalOptions="Center" VerticalOptions="End">
+                                        <Image Source="weight_calendar.png" HeightRequest="34" WidthRequest="34" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    </Frame>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </ScrollView>
+
+                    <Frame BackgroundColor="White" Margin="40 0 0 0" HeightRequest="155" WidthRequest="320" VerticalOptions="Start" Padding="10 5" HorizontalOptions="Center" CornerRadius="12" HasShadow="True">
+                        <StackLayout Spacing="0">
+                            <Button Text="Date                                                  18 Aug 2020"
+                VerticalOptions="Start"
+                HorizontalOptions="Fill"
+                BackgroundColor="White"
+                TextColor="DarkSlateGray"
+                Clicked="OnButtonClicked" />
+                            <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
+                            <Button Text="Start                                                         9:00AM"
+                VerticalOptions="Start"
+                HorizontalOptions="Fill"
+                BackgroundColor="White"
+                TextColor="DarkSlateGray"
+                Clicked="OnButtonClicked" />
+                            <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
+                            <Button Text="End                                                           11:00AM"
+                VerticalOptions="Start"
+                HorizontalOptions="Fill"
+                BackgroundColor="White"
+                TextColor="DarkSlateGray"
+                Clicked="OnButtonClicked" />
+                        </StackLayout>
+                    </Frame>
                 </StackLayout>
 
             </ScrollView>
