@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DAYLY.Views.notification">
+    <ContentPage.Content>
+        <StackLayout Spacing="0" BackgroundColor="#ECEFF0">
+            <Label Text="Notification" Padding="15,15" BackgroundColor="#ECEFF0" ></Label>
+            <ImageButton Source="notif1.png"  BorderColor="#ECEFF0"></ImageButton>
+            <ImageButton Source="notfi2.png"  BorderColor="#ECEFF0"></ImageButton>
+            <ImageButton Source="notfi3.png"  BorderColor="#ECEFF0"></ImageButton>
+            <ImageButton Source="notfi4.png"  BorderColor="#ECEFF0"></ImageButton>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
