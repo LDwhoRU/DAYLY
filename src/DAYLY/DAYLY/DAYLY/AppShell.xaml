@@ -47,6 +47,8 @@
     <ShellContent Route="LoginPage" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:LoginPage}" />
     <ShellContent Route="Settings_General" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_General}" />
     <ShellContent Route="Settings_Reminders" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_Reminders}" />
+    <ShellContent Route="Settings_Automation" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_Automation}" />
+    <ShellContent Route="Settings_Breaks" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_Breaks}" />
 
 
 </Shell>
