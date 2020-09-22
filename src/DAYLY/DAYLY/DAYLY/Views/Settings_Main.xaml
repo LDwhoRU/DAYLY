@@ -90,7 +90,7 @@
 
                             <Button Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" HeightRequest="20" BackgroundColor="Transparent" Clicked="OnGeneralSettingClicked"/>
                             <Button Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="2" HeightRequest="20" BackgroundColor="Transparent"/>
-                            <Button Grid.Row="4" Grid.ColumnSpan="3" Grid.RowSpan="2" HeightRequest="20" BackgroundColor="Transparent"/>
+                            <Button Grid.Row="4" Grid.ColumnSpan="3" Grid.RowSpan="2" HeightRequest="20" BackgroundColor="Transparent" Clicked="OnRemindersSettingClicked"/>
                             <Button Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="2" HeightRequest="20" BackgroundColor="Transparent"/>
                             <Button Grid.Row="8" Grid.ColumnSpan="3" Grid.RowSpan="2" HeightRequest="20" BackgroundColor="Transparent"/>
                             <Button Grid.Row="10" Grid.ColumnSpan="3" Grid.RowSpan="2" HeightRequest="20" BackgroundColor="Transparent"/>

@@ -18,6 +18,11 @@ namespace DAYLY.Views
         {
             await Shell.Current.GoToAsync("//Settings_General");
         }
+
+        async void OnRemindersSettingClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//Settings_Reminders");
+        }
     }
 
     
