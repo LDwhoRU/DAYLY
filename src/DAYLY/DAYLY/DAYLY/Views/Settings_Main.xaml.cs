@@ -33,6 +33,11 @@ namespace DAYLY.Views
         {
             await Navigation.PushAsync(new Settings_Breaks());
         }
+
+        async void OnSyncDataSettingClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Settings_SyncData());
+        }
     }
 
     

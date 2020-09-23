@@ -93,14 +93,14 @@
                             <Button Grid.Row="4" Grid.ColumnSpan="3" Grid.RowSpan="2" HeightRequest="20" BackgroundColor="Transparent" Clicked="OnRemindersSettingClicked"/>
                             <Button Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="2" HeightRequest="20" BackgroundColor="Transparent" Clicked="OnAutomationSettingClicked"/>
                             <Button Grid.Row="8" Grid.ColumnSpan="3" Grid.RowSpan="2" HeightRequest="20" BackgroundColor="Transparent" Clicked="OnBreaksSettingClicked"/>
-                            <Button Grid.Row="10" Grid.ColumnSpan="3" Grid.RowSpan="2" HeightRequest="20" BackgroundColor="Transparent"/>
+                            <Button Grid.Row="10" Grid.ColumnSpan="3" Grid.RowSpan="2" HeightRequest="20" BackgroundColor="Transparent" Clicked="OnSyncDataSettingClicked"/>
                         
                         </Grid>
                     </StackLayout>
                 </Frame>
 
                 <Frame WidthRequest="120"
-                       HeightRequest="20"
+                       HeightRequest="10"
                        CornerRadius="30"
                        BackgroundColor="Transparent"
                        BorderColor="#C8D1D3"
