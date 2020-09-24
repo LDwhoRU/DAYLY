@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DAYLY.Views.Notes">
+    <ContentPage.Content>
+     
+
+            <StackLayout Spacing="0" BackgroundColor="#ECEFF0">
+                <Label Text="Notes" Padding="4,15" BackgroundColor="#ECEFF0" ></Label>
+                <Entry Text="URL" BackgroundColor="White"></Entry>
+                <Editor Text="More Info..." BackgroundColor="White" AutoSize="TextChanges"></Editor>
+                <Label BackgroundColor="White"></Label>
+                <Label BackgroundColor="White"></Label>
+                <Label BackgroundColor="White"></Label>
+                <Label BackgroundColor="White"></Label>
+                <Label BackgroundColor="White"></Label>
+                <Label BackgroundColor="White"></Label>
+                <Label BackgroundColor="White"></Label>
+                <Label BackgroundColor="White"></Label>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
