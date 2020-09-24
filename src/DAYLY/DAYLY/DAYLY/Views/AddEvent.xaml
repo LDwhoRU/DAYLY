@@ -3,6 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DAYLY.Views.AddEvent"
              BackgroundColor="#ECEFF0">
+
+    <Shell.TitleView>
+        <Image Source="logo_title.png" VerticalOptions="Center" HeightRequest="60" Scale=".8"/>
+    </Shell.TitleView>
     <ContentPage.Content>
         
             <StackLayout Spacing="0">
