@@ -10362,22 +10362,37 @@ namespace DAYLY.Droid
 			public const int profile = 2131165320;
 			
 			// aapt resource value: 0x7F070089
-			public const int settings = 2131165321;
+			public const int repeat1 = 2131165321;
 			
 			// aapt resource value: 0x7F07008A
-			public const int tab_about = 2131165322;
+			public const int repeat2 = 2131165322;
 			
 			// aapt resource value: 0x7F07008B
-			public const int tab_feed = 2131165323;
+			public const int repeat3 = 2131165323;
 			
 			// aapt resource value: 0x7F07008C
-			public const int tooltip_frame_dark = 2131165324;
+			public const int repeat4 = 2131165324;
 			
 			// aapt resource value: 0x7F07008D
-			public const int tooltip_frame_light = 2131165325;
+			public const int repeat5 = 2131165325;
 			
 			// aapt resource value: 0x7F07008E
-			public const int xamarin_logo = 2131165326;
+			public const int settings = 2131165326;
+			
+			// aapt resource value: 0x7F07008F
+			public const int tab_about = 2131165327;
+			
+			// aapt resource value: 0x7F070090
+			public const int tab_feed = 2131165328;
+			
+			// aapt resource value: 0x7F070091
+			public const int tooltip_frame_dark = 2131165329;
+			
+			// aapt resource value: 0x7F070092
+			public const int tooltip_frame_light = 2131165330;
+			
+			// aapt resource value: 0x7F070093
+			public const int xamarin_logo = 2131165331;
 			
 			static Drawable()
 			{
