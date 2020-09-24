@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DAYLY.Views.ReminderType"
+             BackgroundColor="#ECEFF0">
+    <ContentPage.Content>
+        <StackLayout Spacing="-1">
+            <Label Text="Notification" Padding="17,15"/>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="Lecture" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="Tutorial" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="Appointment" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="Meeting" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="Other" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
