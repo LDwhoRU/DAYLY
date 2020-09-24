@@ -1,22 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DAYLY.Views.Notes">
+             x:Class="DAYLY.Views.Notes"
+             BackgroundColor="#ECEFF0">
     <ContentPage.Content>
-     
-
-            <StackLayout Spacing="0" BackgroundColor="#ECEFF0">
-                <Label Text="Notes" Padding="4,15" BackgroundColor="#ECEFF0" ></Label>
-                <Entry Text="URL" BackgroundColor="White"></Entry>
-                <Editor Text="More Info..." BackgroundColor="White" AutoSize="TextChanges"></Editor>
-                <Label BackgroundColor="White"></Label>
-                <Label BackgroundColor="White"></Label>
-                <Label BackgroundColor="White"></Label>
-                <Label BackgroundColor="White"></Label>
-                <Label BackgroundColor="White"></Label>
-                <Label BackgroundColor="White"></Label>
-                <Label BackgroundColor="White"></Label>
-                <Label BackgroundColor="White"></Label>
-            </StackLayout>
+        <StackLayout Spacing="-1">
+            <Label Text="Notes" Padding="17,15"/>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
+                <StackLayout Spacing="0">
+                    <Entry Placeholder="URL" VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="42"/>
+                    <BoxView Margin="-9" BackgroundColor="White" HeightRequest="2" HorizontalOptions="Fill"/>
+                </StackLayout>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="192" HorizontalOptions="Fill">
+                <StackLayout Spacing="0">
+                    <Editor Placeholder="More Info..." HeightRequest="192" VerticalOptions="Start"/>
+                    <BoxView Margin="-9" BackgroundColor="White" HeightRequest="5" HorizontalOptions="Fill"/>
+                </StackLayout>
+            </Frame>
+            <Frame BackgroundColor="White" Margin="0, 20" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="Annually" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

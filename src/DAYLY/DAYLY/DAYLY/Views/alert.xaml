@@ -1,20 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DAYLY.Views.alert">
-    
-        <StackLayout>
-        <Label Text="Alert" BackgroundColor="#ECEFF0" ></Label>
-        <ImageButton Source="Group.png"  BorderColor="#ECEFF0"></ImageButton>
-        <ImageButton Source="m5.png"  BorderColor="#ECEFF0"></ImageButton>
-        <ImageButton Source="m10.png"  BorderColor="#ECEFF0"></ImageButton>
-        <ImageButton Source="m15.png"  BorderColor="#ECEFF0"></ImageButton>
-        <ImageButton Source="m20.png"  BorderColor="#ECEFF0"></ImageButton>
-        <ImageButton Source="m30.png"  BorderColor="#ECEFF0"></ImageButton>
-        <ImageButton Source="m45.png"  BorderColor="#ECEFF0"></ImageButton>
-        <ImageButton Source="m1hr.png"  BorderColor="#ECEFF0"></ImageButton>
-        <ImageButton Source="m3hr.png"  BorderColor="#ECEFF0"></ImageButton>
-        <ImageButton Source="m1d.png"  BorderColor="#ECEFF0"></ImageButton>
-    </StackLayout>
-
+             x:Class="DAYLY.Views.Alert"
+             BackgroundColor="#ECEFF0">
+    <ContentPage.Content>
+        <StackLayout Spacing="-1">
+            <Label Text="Alert" Padding="17,15"/>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="5 Minutes" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="15 Minutes" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="30 Minutes" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="45 Minutes" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="1 Hour" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="3 Hours" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="6 Hours" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="1 Day" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="3 Days" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="1 Week" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

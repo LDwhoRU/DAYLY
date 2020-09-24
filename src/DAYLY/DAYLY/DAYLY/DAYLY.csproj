@@ -12,19 +12,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\alert.xaml.cs">
+      <DependentUpon>Alert.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\reminderType.xaml.cs">
+      <DependentUpon>ReminderType.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Repeat.xaml.cs">
+      <DependentUpon>Repeat.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Weekly.xaml.cs">
       <DependentUpon>Weekly.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\alert.xaml">
+    <EmbeddedResource Update="Views\Alert.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Notes.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\notification.xaml">
+    <EmbeddedResource Update="Views\ReminderType.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Repeat.xaml">

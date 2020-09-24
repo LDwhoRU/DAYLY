@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace DAYLY.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class alert : ContentPage
+    public partial class Alert : ContentPage
     {
-        public alert()
+        public Alert()
         {
             InitializeComponent();
         }
