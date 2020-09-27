@@ -19,7 +19,7 @@
                 </StackLayout>
             </Frame>
             <Frame BackgroundColor="White" Margin="0, 20" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
-                <Label Text="Annually" VerticalOptions="Center" FontSize="16"/>
+                <Label Text="Attachment" VerticalOptions="Center" FontSize="16"/>
             </Frame>
         </StackLayout>
     </ContentPage.Content>
