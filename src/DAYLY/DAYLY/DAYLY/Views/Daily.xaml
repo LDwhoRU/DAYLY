@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DAYLY.Views.Daily">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="0.2"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Text="Daily"
+                        ImageSource="daily_symbol_active.png"
+                        Grid.Column="0"
+                        FontSize="Small"
+                        TextColor="{StaticResource Rust}"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="End"/>
+
+                <Button Text="Weekly"
+                        ImageSource="weekly_symbol_inactive.png"
+                        Grid.Column="1"
+                        FontSize="Small"
+                        TextColor="{StaticResource Slate}"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="Center"/>
+
+                <Button Text="Monthly"
+                        ImageSource="monthly_symbol_inactive.png"
+                        Grid.Column="2"
+                        FontSize="Small"
+                        TextColor="{StaticResource Slate}"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="Start"/>
+
+                <Label Text="Monday, September 1, 2020"
+                       TextColor="{StaticResource Slate}"
+                       FontSize="16"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="3"
+                       HorizontalOptions="Center"/>
+
+                <BoxView Grid.Row="2" Grid.ColumnSpan="3" BackgroundColor="{StaticResource Slate}"/>
+            </Grid>
+
+            <ScrollView Margin="15,20,25,20">
+                <Grid RowSpacing="60" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions> 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="0.04*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="10 AM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="0"/>
+                    <Label Text="11 AM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="1"/>
+                    <Label Text="12 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="2"/>
+                    <Label Text="1 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="3"/>
+                    <Label Text="2 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="4"/>
+                    <Label Text="3 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="5"/>
+                    <Label Text="4 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="6"/>
+                    <Label Text="5 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="7"/>
+                    <Label Text="6 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="8"/>
+                    <Label Text="7 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="9"/>
+                    <Label Text="8 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="10"/>
+                    <Label Text="9 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="11"/>
+
+                    <Image Source="circle_darkgreen.png" Grid.Row="0" Grid.Column="1"/>
+                    <Image Source="circle_darkgreen.png" Grid.Row="1" Grid.Column="1"/>
+                    <Image Source="circle_orange.png" Grid.Row="2" Grid.Column="1"/>
+                    <Image Source="circle_orange.png" Grid.Row="3" Grid.Column="1"/>
+                    <Image Source="circle_orange.png" Grid.Row="4" Grid.Column="1"/>
+                    <Image Source="circle_blue.png" Grid.Row="5" Grid.Column="1"/>
+                    <Image Source="circle_blue.png" Grid.Row="6" Grid.Column="1"/>
+                    <Image Source="circle_blue.png" Grid.Row="7" Grid.Column="1"/>
+                    <Image Source="circle_blue.png" Grid.Row="8" Grid.Column="1"/>
+                    <Image Source="circle_darkblue.png" Grid.Row="9" Grid.Column="1"/>
+                    <Image Source="circle_darkblue.png" Grid.Row="10" Grid.Column="1"/>
+                    <Image Source="circle_darkblue.png" Grid.Row="11" Grid.Column="1"/>
+
+                    <Frame CornerRadius="5" BackgroundColor="#EB2929" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Padding="15">
+                        <StackLayout>
+                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="location_pin.png"/>
+                                <Label Text="Online Zoom" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+                            </Grid>
+
+                            <Label Text="Developing medium fidelity prototypes. Low fidelity protoype due." TextColor="White" FontSize="14"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame CornerRadius="5" BackgroundColor="#2990EB" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" Grid.RowSpan="3" Padding="15">
+                        <StackLayout>
+                            <Label Text="IAB330 Lecture" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="location_pin.png"/>
+                                <Label Text="GP Z-401" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+
+                            </Grid>
+
+                            <Label Text="Lecture 4" TextColor="White" FontSize="14"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame CornerRadius="5" BackgroundColor="#44E300" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1" Grid.RowSpan="2" Padding="15">
+                        <StackLayout>
+                            <Label Text="IAB401 Assignment" FontSize="14" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="IAB401 Assignment 1 Due 11:59PM." TextColor="White" FontSize="12"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame CornerRadius="5" BackgroundColor="#CCB926" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Padding="15">
+                        <StackLayout>
+                            <Label Text="IFB295 Lecture" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="location_pin.png"/>
+                                <Label Text="GP Z-406" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+
+                            </Grid>
+
+                            <Label Text="Lecture 4" TextColor="White" FontSize="14"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame CornerRadius="5" BackgroundColor="#CCB926" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Padding="15">
+                        <StackLayout>
+                            <Label Text="IFB295 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="location_pin.png"/>
+                                <Label Text="GP S-520" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+
+                            </Grid>
+
+                            <Label Text="Work on report and DSDM analysis." TextColor="White" FontSize="14"/>
+                        </StackLayout>
+                    </Frame>
+                
+            </Grid>
+            </ScrollView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
