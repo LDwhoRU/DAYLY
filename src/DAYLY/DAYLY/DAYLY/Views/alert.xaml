@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DAYLY.Views.Alert"
+             BackgroundColor="#ECEFF0">
+    <ContentPage.Content>
+        <StackLayout Spacing="-1">
+            <Label Text="Alert" Padding="17,15"/>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="5 Minutes" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="15 Minutes" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="30 Minutes" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="45 Minutes" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="1 Hour" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="3 Hours" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="6 Hours" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="1 Day" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="3 Days" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="1 Week" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
