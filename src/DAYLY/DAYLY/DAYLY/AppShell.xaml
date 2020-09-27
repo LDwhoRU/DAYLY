@@ -36,7 +36,7 @@
         <ShellContent Title="Home" Icon="home.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
         <ShellContent Title="Schedule" Icon="calendar.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}"/>
         <ShellContent Icon="add.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}"/>
-        <ShellContent Title="Profile" Icon="profile.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}"/>
+        <ShellContent Title="Profile" Icon="profile.png" Route="Profile" ContentTemplate="{DataTemplate local:Profile}"/>
         <ShellContent Title="Settings" Icon="settings.png" Route="Settings_Main" ContentTemplate="{DataTemplate local:Settings_Main}"/>
     </TabBar>
 
@@ -46,6 +46,7 @@
     -->
     <ShellContent Route="LoginPage" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:LoginPage}" />
     <ShellContent Route="Settings_General" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_General}" />
+    <ShellContent Route="Profile" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Profile}" />
     <ShellContent Route="Settings_Reminders" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_Reminders}" />
     <ShellContent Route="Settings_Automation" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_Automation}" />
     <ShellContent Route="Settings_Breaks" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_Breaks}" />

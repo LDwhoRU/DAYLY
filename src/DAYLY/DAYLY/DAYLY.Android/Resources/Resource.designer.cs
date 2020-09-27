@@ -8415,43 +8415,46 @@ namespace DAYLY.Droid
 			public const int profile = 2131165319;
 			
 			// aapt resource value: 0x7F070088
-			public const int profile_edit_icon = 2131165320;
+			public const int profile_background_image = 2131165320;
 			
 			// aapt resource value: 0x7F070089
-			public const int profile_icon = 2131165321;
+			public const int profile_edit_icon = 2131165321;
 			
 			// aapt resource value: 0x7F07008A
-			public const int profile_pic = 2131165322;
+			public const int profile_icon = 2131165322;
 			
 			// aapt resource value: 0x7F07008B
-			public const int reminders_icon = 2131165323;
+			public const int profile_pic = 2131165323;
 			
 			// aapt resource value: 0x7F07008C
-			public const int settings = 2131165324;
+			public const int reminders_icon = 2131165324;
 			
 			// aapt resource value: 0x7F07008D
-			public const int settings_icon = 2131165325;
+			public const int settings = 2131165325;
 			
 			// aapt resource value: 0x7F07008E
-			public const int sync_and_data_icon = 2131165326;
+			public const int settings_icon = 2131165326;
 			
 			// aapt resource value: 0x7F07008F
-			public const int tab_about = 2131165327;
+			public const int sync_and_data_icon = 2131165327;
 			
 			// aapt resource value: 0x7F070090
-			public const int tab_feed = 2131165328;
+			public const int tab_about = 2131165328;
 			
 			// aapt resource value: 0x7F070091
-			public const int tooltip_frame_dark = 2131165329;
+			public const int tab_feed = 2131165329;
 			
 			// aapt resource value: 0x7F070092
-			public const int tooltip_frame_light = 2131165330;
+			public const int tooltip_frame_dark = 2131165330;
 			
 			// aapt resource value: 0x7F070093
-			public const int weekly_symbol_inactive = 2131165331;
+			public const int tooltip_frame_light = 2131165331;
 			
 			// aapt resource value: 0x7F070094
-			public const int xamarin_logo = 2131165332;
+			public const int weekly_symbol_inactive = 2131165332;
+			
+			// aapt resource value: 0x7F070095
+			public const int xamarin_logo = 2131165333;
 			
 			static Drawable()
 			{

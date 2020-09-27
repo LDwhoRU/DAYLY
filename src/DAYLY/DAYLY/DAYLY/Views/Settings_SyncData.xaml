@@ -5,7 +5,8 @@
              BackgroundColor="{StaticResource AppBackgroundColour}"
              Title="Sync &amp; Data">
     <ContentPage.Content>
-        <StackLayout>
+        <ScrollView>
+            <StackLayout>
             <Frame Margin="40,50,40,40" CornerRadius="10">
                 <Grid Padding="0,-10,0,0">
                     <Grid.RowDefinitions>
@@ -27,19 +28,22 @@
                     <Label Text="Sync interval" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="3" Grid.Column="0" Margin="7,0,0,0"/>
                     <Label Text="Every hour" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="4" Grid.Column="0" Margin="7,0,0,0"/>
                     <Image Source="arrow_icon" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Margin="14"/>
+
+                    <Button Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>
                 </Grid>
             </Frame>
 
             <Label Text="All data will be synced to your DAYLY account."
                    TextColor="#5B788B"
                    FontSize="13"
-                   Margin="50,-40,45,25"/>
+                   Margin="50,-40,45,350"/>
 
             <Frame WidthRequest="250"
                    HeightRequest="10"
                    CornerRadius="30"
                    BackgroundColor="Transparent"
                    BorderColor="{StaticResource Sage}"
+                   HasShadow="False"
                    HorizontalOptions="Center">
                 <Button Text="IMPORT DATA" TextColor="{StaticResource Drab}" FontSize="16" BackgroundColor="Transparent" Margin="-20"/>
             </Frame>
@@ -49,10 +53,12 @@
                    CornerRadius="30"
                    BackgroundColor="Transparent"
                    BorderColor="{StaticResource Sage}"
+                   HasShadow="False"
                    HorizontalOptions="Center"
                    Margin="0,15,0,0">
                 <Button Text="EXPORT DATA" TextColor="{StaticResource Drab}" FontSize="16" BackgroundColor="Transparent" Margin="-20"/>
             </Frame>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
