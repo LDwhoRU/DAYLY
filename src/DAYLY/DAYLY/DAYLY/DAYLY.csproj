@@ -15,8 +15,8 @@
     <Compile Update="Views\alert.xaml.cs">
       <DependentUpon>Alert.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\reminderType.xaml.cs">
-      <DependentUpon>ReminderType.xaml</DependentUpon>
+    <Compile Update="Views\TypeReminder.xaml.cs">
+      <DependentUpon>TypeReminder.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Repeat.xaml.cs">
       <DependentUpon>Repeat.xaml</DependentUpon>
@@ -33,7 +33,7 @@
     <EmbeddedResource Update="Views\Notes.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ReminderType.xaml">
+    <EmbeddedResource Update="Views\TypeReminder.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Repeat.xaml">

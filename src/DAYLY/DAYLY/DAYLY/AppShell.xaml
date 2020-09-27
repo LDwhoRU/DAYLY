@@ -33,7 +33,7 @@
     </Shell.Resources>
     <!--All routes set to items page until the views are created-->
     <TabBar>
-        <ShellContent Title="Home" Icon="home.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+        <ShellContent Title="Home" Icon="home.png" Route="AboutPage" ContentTemplate="{DataTemplate local:Notes}" />
         <ShellContent Title="Schedule" Icon="calendar.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}"/>
         <ShellContent Icon="add.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}"/>
         <ShellContent Title="Profile" Icon="profile.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}"/>
