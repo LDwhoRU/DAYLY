@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DAYLY.Views.Settings_Automation"
+             BackgroundColor="{StaticResource AppBackgroundColour}"
+             Title="Automation">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Frame Margin="40,50,40,40" CornerRadius="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Auto event shifting" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <Switch Grid.Row="0" Grid.Column="1" OnColor="#BDE3E5" ThumbColor="{StaticResource Sage}"/>
+                </Grid>
+            </Frame>
+
+            <Label Text="Automatically re-arrange timetable when new events are added to an occupied time slot."
+                   TextColor="#5B788B"
+                   FontSize="13"
+                   Margin="50,-40,45,25"/>
+
+            <Frame Margin="40,0,40,40" CornerRadius="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Missed classes rescheduling" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <Switch Grid.Row="0" Grid.Column="1" OnColor="#BDE3E5" ThumbColor="{StaticResource Sage}"/>
+                </Grid>
+            </Frame>
+
+            <Label Text="Automatically reschedule missed classes to another open time slot."
+                   TextColor="#5B788B"
+                   FontSize="13"
+                   Margin="50,-40,45,25"/>
+
+            <Frame Margin="40,0,40,40" CornerRadius="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Prioritise closer due dates" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <Switch Grid.Row="0" Grid.Column="1" OnColor="#BDE3E5" ThumbColor="{StaticResource Sage}"/>
+                </Grid>
+            </Frame>
+
+            <Label Text="Shift more focus on tasks like assignments and exams that are close to the due dates."
+                   TextColor="#5B788B"
+                   FontSize="13"
+                   Margin="50,-40,45,25"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
