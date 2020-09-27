@@ -5,7 +5,7 @@
     <ContentPage.Content>
 
         <StackLayout Spacing="0">
-            <Grid>
+            <Grid HorizontalOptions="Start" HeightRequest="100" Margin="15, 12, 0, 0" ColumnSpacing="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
@@ -15,26 +15,48 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-
-                <Label Text="DAYLY" Grid.Column="3" Grid.Row="1"  FontFamily="Rift Soft" FontSize="15" Grid.RowSpan="4"  Grid.ColumnSpan="4"></Label>
-                <Label Text="WEEKLY" Grid.Column="6" FontSize="15" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="4" TextColor="Orange"></Label>
-                <Label Text="MONTHLY" Grid.Column="9" FontSize="15" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="4"></Label>
-                <Label Text="Wednesday, Septemeber 3 2020" TextColor="Orange" Margin="30,10" Grid.Column="2" Grid.Row="5" Grid.RowSpan="10" Grid.ColumnSpan="13"></Label>
-
-                <Label Text="S" Grid.Column="3" Grid.Row="14" Margin="-20,0" Grid.RowSpan="5"></Label>
-                <Label Text="M" Grid.Column="5" Grid.Row="14" Margin= "-20,0" Grid.RowSpan="5" TextColor="Orange"></Label>
-                <Label Text="T" Grid.Column="7" Grid.Row="14" Margin="-20,0" Grid.RowSpan="5"></Label>
-                <Label Text="W" Grid.Column="9" Grid.Row="14" Margin="-20,0" Grid.RowSpan="5"></Label>
-                <Label Text="T" Grid.Column="11" Grid.Row="14" Margin="-20,0" Grid.RowSpan="5"></Label>
-                <Label Text="F" Grid.Column="13" Grid.Row="14" Margin="-20,0" Grid.RowSpan="5"></Label>
-                <Label Text="S" Grid.Column="15" Grid.Row="14" Margin="-20,0" Grid.RowSpan="5"></Label>
-                <Label Text="13" Grid.Column="3" Grid.Row="10" Grid.RowSpan="5" Margin="-20,0"></Label>
-                <Label Text="14" Grid.Column="5" Grid.Row="10" Grid.RowSpan="5" Margin="-20,0" TextColor="Orange"></Label>
-                <Label Text="15" Grid.Column="7" Grid.Row="10" Grid.RowSpan="5" Margin="-20,0"></Label>
-                <Label Text="16" Grid.Column="9" Grid.Row="10" Grid.RowSpan="5" Margin="-20,0"></Label>
-                <Label Text="17" Grid.Column="11" Grid.Row="10" Grid.RowSpan="5" Margin="-20,0"></Label>
-                <Label Text="19" Grid.Column="13" Grid.Row="10" Grid.RowSpan="5" Margin="-20,0"></Label>
-                <Label Text="20" Grid.Column="15" Grid.Row="10" Grid.RowSpan="5" Margin="-20,0"></Label>
+                <StackLayout Grid.Column="0" Orientation="Horizontal">
+                    <Image Source="daily_inactive.png" />
+                    <Label Text="DAILY" FontSize="15" TextColor="#6D8CA0" VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Grid.Column="1" Orientation="Horizontal">
+                    <Image Source="weekly_active.png" />
+                    <Label Text="WEEKLY" FontSize="15" TextColor="#D97D54" VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Grid.Column="2" Orientation="Horizontal">
+                    <Image Source="monthly_inactive.png" />
+                    <Label Text="MONTHLY" Grid.Column="2" FontSize="15" TextColor="#6D8CA0" VerticalOptions="Center"/>
+                </StackLayout>
+            </Grid>
+            <Label Text="Wednesday, September 3 2020" HorizontalOptions="Center" TextColor="#D97D54"/>
+            <Grid Margin="50, 5, 0, 0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="100" ColumnSpacing="38">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Text="S" Grid.Column="0" Grid.Row="1" TextColor="#6D8CA0" HorizontalOptions="Center"/>
+                <Label Text="M" Grid.Column="1" Grid.Row="1" TextColor="#D97D54" HorizontalOptions="Center"/>
+                <Label Text="T" Grid.Column="2" Grid.Row="1" TextColor="#6D8CA0" HorizontalOptions="Center"/>
+                <Label Text="W" Grid.Column="3" Grid.Row="1" TextColor="#6D8CA0" HorizontalOptions="Center"/>
+                <Label Text="T" Grid.Column="4" Grid.Row="1" TextColor="#6D8CA0" HorizontalOptions="Center"/>
+                <Label Text="F" Grid.Column="5" Grid.Row="1" TextColor="#6D8CA0" HorizontalOptions="Center"/>
+                <Label Text="S" Grid.Column="6" Grid.Row="1" TextColor="#6D8CA0" HorizontalOptions="Center"/>
+                <Label Text="13" Grid.Column="0" Grid.Row="0" TextColor="#6D8CA0" HorizontalOptions="Center"/>
+                <Label Text="14" Grid.Column="1" Grid.Row="0" TextColor="#D97D54" HorizontalOptions="Center"/>
+                <Label Text="15" Grid.Column="2" Grid.Row="0" TextColor="#6D8CA0" HorizontalOptions="Center"/>
+                <Label Text="16" Grid.Column="3" Grid.Row="0" TextColor="#6D8CA0" HorizontalOptions="Center"/>
+                <Label Text="17" Grid.Column="4" Grid.Row="0" TextColor="#6D8CA0" HorizontalOptions="Center"/>
+                <Label Text="19" Grid.Column="5" Grid.Row="0" TextColor="#6D8CA0" HorizontalOptions="Center"/>
+                <Label Text="20" Grid.Column="6" Grid.Row="0" TextColor="#6D8CA0" HorizontalOptions="Center"/>
             </Grid>
             <ScrollView Padding="0,-90">
 
