@@ -70,7 +70,7 @@
                             <ColumnDefinition Width="50"/>
                         </Grid.ColumnDefinitions>
 
-                    <Entry Margin="10, 0, 10, 0" Placeholder="Event Name" PlaceholderColor="#334856" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Start"/>
+                    <Entry Margin="10, 0, 10, 0" Placeholder="Event Name" PlaceholderColor="#334856" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Fill"/>
 
                     <Button Text=""
                 Grid.Column="1"
