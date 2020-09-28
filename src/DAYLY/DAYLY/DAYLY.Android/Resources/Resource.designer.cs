@@ -10266,10 +10266,10 @@ namespace DAYLY.Droid
 			public const int Create_logo = 2131165288;
 			
 			// aapt resource value: 0x7F070069
-			public const int daily_inactive = 2131165289;
+			public const int daily_active = 2131165289;
 			
 			// aapt resource value: 0x7F07006A
-			public const int daily_symbol_active = 2131165290;
+			public const int daily_inactive = 2131165290;
 			
 			// aapt resource value: 0x7F07006B
 			public const int DAYLY = 2131165291;
@@ -10329,10 +10329,10 @@ namespace DAYLY.Droid
 			public const int logo_title = 2131165309;
 			
 			// aapt resource value: 0x7F07007E
-			public const int monthly_inactive = 2131165310;
+			public const int monthly_active = 2131165310;
 			
 			// aapt resource value: 0x7F07007F
-			public const int monthly_symbol_inactive = 2131165311;
+			public const int monthly_inactive = 2131165311;
 			
 			// aapt resource value: 0x7F070080
 			public const int mtrl_snackbar_background = 2131165312;
@@ -10425,7 +10425,7 @@ namespace DAYLY.Droid
 			public const int weekly_active = 2131165341;
 			
 			// aapt resource value: 0x7F07009E
-			public const int weekly_symbol_inactive = 2131165342;
+			public const int weekly_inactive = 2131165342;
 			
 			// aapt resource value: 0x7F07009F
 			public const int weight_calendar = 2131165343;
