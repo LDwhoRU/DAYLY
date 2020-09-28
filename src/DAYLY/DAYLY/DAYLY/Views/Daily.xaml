@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DAYLY.Views.Daily">
+             x:Class="DAYLY.Views.Daily"
+             BackgroundColor="White">
+    
     <ContentPage.Content>
         <StackLayout>
             <!--Timeline Select Bar-->
@@ -15,19 +17,29 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <StackLayout Grid.Column="0" Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnDailyTapped"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
                     <Image Source="daily_active.png" />
                     <Label Text="DAILY" FontSize="15" TextColor="#D97D54" VerticalOptions="Center"/>
                 </StackLayout>
                 <StackLayout Grid.Column="1" Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnWeeklyTapped"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
                     <Image Source="weekly_inactive.png" />
                     <Label Text="WEEKLY" FontSize="15" TextColor="#6D8CA0" VerticalOptions="Center"/>
                 </StackLayout>
                 <StackLayout Grid.Column="2" Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMonthlyTapped"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
                     <Image Source="monthly_inactive.png" />
                     <Label Text="MONTHLY" Grid.Column="2" FontSize="15" TextColor="#6D8CA0" VerticalOptions="Center"/>
                 </StackLayout>
             </Grid>
 
+            
             <!--Current Datetime-->
             <Label Text="Wednesday, September 3 2020" VerticalOptions="Start" HorizontalOptions="Center" TextColor="#D97D54" Margin="0"/>
 

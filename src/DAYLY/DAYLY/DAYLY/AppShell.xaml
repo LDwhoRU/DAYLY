@@ -52,5 +52,7 @@
     <ShellContent Route="Settings_Breaks" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_Breaks}" />
     <ShellContent Route="Settings_SyncData" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_SyncData}" />
 
-
+    <ShellContent Route="Daily" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Daily}"/>
+    <ShellContent Route="Monthly" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Monthly}"/>
+    <ShellContent Route="Weekly" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Weekly}"/>
 </Shell>
