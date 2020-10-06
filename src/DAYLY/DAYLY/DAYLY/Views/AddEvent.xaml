@@ -5,7 +5,17 @@
              BackgroundColor="#ECEFF0">
 
     <Shell.TitleView>
-        <Image Source="logo_title.png" VerticalOptions="Center" HeightRequest="60" Scale=".8"/>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="1" Source="logo_title.png" VerticalOptions="Center" HeightRequest="60" Scale=".8"/>
+        </Grid>
     </Shell.TitleView>
     <ContentPage.Content>
         
@@ -302,6 +312,8 @@
                             </Frame>
                         </StackLayout>
                     </Frame>
+
+                    <Button Text="Create Event" Margin="0, 0, 0, 25" HorizontalOptions="Center" WidthRequest="340" BackgroundColor="#D97D54" CornerRadius="30"/>
 
                 </StackLayout>
 
