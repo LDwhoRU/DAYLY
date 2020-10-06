@@ -27,6 +27,7 @@
                     Padding="0"
                     BackgroundColor="LightSlateGray"
                     TextColor="#334856"
+                            Clicked="OnButtonClick"
                     />
 
                     <Button Text="Reminder"

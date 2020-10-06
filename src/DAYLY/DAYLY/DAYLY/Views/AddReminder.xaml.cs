@@ -16,5 +16,9 @@ namespace DAYLY.Views
         {
             InitializeComponent();
         }
+        async void OnButtonClick(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddEvent());
+        }
     }
 }

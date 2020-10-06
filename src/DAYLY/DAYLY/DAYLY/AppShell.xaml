@@ -55,4 +55,6 @@
     <ShellContent Route="Daily" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Daily}"/>
     <ShellContent Route="Monthly" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Monthly}"/>
     <ShellContent Route="Weekly" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Weekly}"/>
+    <ShellContent Route="AddReminder" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:AddReminder}"></ShellContent>
+    <ShellContent Route="AddEvent" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:AddEvent}"/>
 </Shell>

@@ -36,6 +36,7 @@
                 HorizontalOptions="Fill"
                 BackgroundColor="LightSlateGray"
                 TextColor="DarkSlateGray"
+                       Clicked="OnButtonClick"
                  />
 
                     <BoxView WidthRequest="3" BackgroundColor="#D97D54" Grid.Row="1"/>
