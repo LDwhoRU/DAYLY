@@ -99,7 +99,10 @@
                 <Frame BackgroundColor="White" Margin="0" HeightRequest="150" WidthRequest="320" VerticalOptions="Start" Padding="10, 5" HorizontalOptions="Center" CornerRadius="12" HasShadow="True">
                     <StackLayout Spacing="0">
                         <Frame VerticalOptions="Start" HorizontalOptions="Fill" BackgroundColor="White" Padding="0">
-                            <Grid Margin="5, 0" Padding="10, 15" RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer x:Name="EventDateBtn" Tapped="EventDateBtn_Tapped" NumberOfTapsRequired="1"/>
+                                </Frame.GestureRecognizers>
+                                <Grid Margin="5, 0" Padding="10, 15" RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="1*"/>
                                 </Grid.RowDefinitions>
@@ -108,7 +111,7 @@
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Text="Date" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                <Label Grid.Column="1" Text="19 Aug 2020" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                <Label x:Name="EventDateLabel" Grid.Column="1" Text="19 Aug 2020" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                             </Grid>
                         </Frame>
                         <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
@@ -324,6 +327,8 @@
                     <TimePicker x:Name="StartTimePicker" PropertyChanged="StartTimePicker_PropertyChanged" IsVisible="False"/>
 
                     <TimePicker x:Name="EndTimePicker" PropertyChanged="EndTimePicker_PropertyChanged" IsVisible="False"/>
+
+                    <DatePicker x:Name="EventDatePicker" PropertyChanged="EventDatePicker_PropertyChanged" IsVisible="False"/>
 
                     <!--<ListView x:Name="myListView" HasUnevenRows="True" Margin="0, 0, 0, 25" HeightRequest="40">
                         <ListView.ItemTemplate>

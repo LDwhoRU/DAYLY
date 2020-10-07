@@ -26,6 +26,7 @@ namespace DAYLY.Views
 
             StartTimePicker.Time = DateTime.Now.TimeOfDay;
             EndTimePicker.Time = DateTime.Now.TimeOfDay.Add(new TimeSpan(2, 0, 0));
+            EventDatePicker.Date = DateTime.Now;
 
             conn = DependencyService.Get<Isqlite>().GetConnection();
             try
@@ -91,6 +92,17 @@ namespace DAYLY.Views
                 timeSuffix = "PM";
             }
             EndTimeLabel.Text = endTime.ToString().Substring(0, 5) + timeSuffix;
+        }
+
+        private void EventDatePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            EventDateLabel.Text = EventDatePicker.Date.Day.ToString() + "/" + EventDatePicker.Date.Month.ToString() + "/" + EventDatePicker.Date.Year.ToString();
+            //EventDateLabel.Text = EventDateLabel.Text.Substring(0, EventDateLabel.Text.Length - 12);
+        }
+
+        private void EventDateBtn_Tapped(object sender, EventArgs e)
+        {
+            EventDatePicker.Focus();
         }
     }
 }
