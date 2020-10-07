@@ -70,7 +70,7 @@
                     </Grid>
                 </Frame>
 
-                <Frame BackgroundColor="White" Margin="0, -20, 0, 20" HeightRequest="125" WidthRequest="320" VerticalOptions="Start" Padding="0" HorizontalOptions="Center" CornerRadius="10" HasShadow="True">
+                <Frame BackgroundColor="White" Margin="0, -20, 0, 0" HeightRequest="125" WidthRequest="320" VerticalOptions="Start" Padding="0" HorizontalOptions="Center" CornerRadius="10" HasShadow="True">
                     <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start">
                         <Grid.RowDefinitions>
                         <RowDefinition Height="125" />
@@ -80,7 +80,7 @@
                             <ColumnDefinition Width="50"/>
                         </Grid.ColumnDefinitions>
 
-                    <Entry Margin="10, 0, 10, 0" Placeholder="Event Name" PlaceholderColor="#334856" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Fill"/>
+                    <Entry Placeholder="Event Name" x:Name="FirstEntry" Margin="10, 0, 10, 0" PlaceholderColor="#334856" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Fill"/>
 
                     <Button Text=""
                 Grid.Column="1"
@@ -94,7 +94,7 @@
 
             <ScrollView Orientation="Vertical">
 
-                <StackLayout Spacing="0">
+                <StackLayout Spacing="0" Padding="0, 20">
                 
                 <Frame BackgroundColor="White" Margin="0" HeightRequest="150" WidthRequest="320" VerticalOptions="Start" Padding="10, 5" HorizontalOptions="Center" CornerRadius="12" HasShadow="True">
                     <StackLayout Spacing="0">
@@ -113,6 +113,9 @@
                         </Frame>
                         <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
                         <Frame VerticalOptions="Start" HorizontalOptions="Fill" BackgroundColor="White" Padding="0">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="StartTimeBtn" Tapped="StartTimeBtn_Tapped" NumberOfTapsRequired="1"/>
+                            </Frame.GestureRecognizers>
                             <Grid Margin="5, 0" Padding="10, 15" RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="1*"/>
@@ -122,11 +125,14 @@
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Text="Start" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                <Label Grid.Column="1" Text="9:00AM" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                <Label x:Name="StartTimeLabel" Grid.Column="1" Text="9:00AM" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                             </Grid>
                         </Frame>
                         <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
                         <Frame VerticalOptions="Start" HorizontalOptions="Fill" BackgroundColor="White" Padding="0">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="EndTimeBtn" Tapped="EndTimeBtn_Tapped" NumberOfTapsRequired="1"/>
+                            </Frame.GestureRecognizers>
                             <Grid Margin="5, 0" Padding="10, 15" RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="1*"/>
@@ -136,7 +142,7 @@
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Text="End" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                <Label Grid.Column="1" Text="11:00AM" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                <Label x:Name="EndTimeLabel" Grid.Column="1" Text="11:00AM" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                             </Grid>
                         </Frame>
                     </StackLayout>
@@ -313,7 +319,19 @@
                         </StackLayout>
                     </Frame>
 
-                    <Button Text="Create Event" Margin="0, 0, 0, 25" HorizontalOptions="Center" WidthRequest="340" BackgroundColor="#D97D54" CornerRadius="30"/>
+                    <Button Text="Create Event" Margin="0, 0, 0, 25" x:Name="AddEventBtn" Clicked="AddEventBtn_Clicked" HorizontalOptions="Center" WidthRequest="340" BackgroundColor="#D97D54" CornerRadius="30"/>
+
+                    <TimePicker x:Name="StartTimePicker" PropertyChanged="StartTimePicker_PropertyChanged" IsVisible="False"/>
+
+                    <TimePicker x:Name="EndTimePicker" PropertyChanged="EndTimePicker_PropertyChanged" IsVisible="False"/>
+
+                    <!--<ListView x:Name="myListView" HasUnevenRows="True" Margin="0, 0, 0, 25" HeightRequest="40">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextCell Text="{Binding FirstEntry}" Detail="{Binding FirstEntry}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>-->
 
                 </StackLayout>
 
