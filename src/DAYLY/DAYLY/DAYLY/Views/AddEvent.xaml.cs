@@ -97,7 +97,6 @@ namespace DAYLY.Views
         private void EventDatePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             EventDateLabel.Text = EventDatePicker.Date.Day.ToString() + "/" + EventDatePicker.Date.Month.ToString() + "/" + EventDatePicker.Date.Year.ToString();
-            //EventDateLabel.Text = EventDateLabel.Text.Substring(0, EventDateLabel.Text.Length - 12);
         }
 
         private void EventDateBtn_Tapped(object sender, EventArgs e)
