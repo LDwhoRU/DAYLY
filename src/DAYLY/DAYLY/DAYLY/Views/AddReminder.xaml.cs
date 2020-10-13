@@ -10,15 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace DAYLY.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Monthly : ContentPage
+    public partial class AddReminder : ContentPage
     {
-        public Monthly()
+        public AddReminder()
         {
             InitializeComponent();
-        }
-           async void OnGeneralSettingClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Settings_General());
         }
     }
 }

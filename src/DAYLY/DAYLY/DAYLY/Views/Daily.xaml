@@ -1,55 +1,50 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DAYLY.Views.Daily">
+             x:Class="DAYLY.Views.Daily"
+             BackgroundColor="White">
+    
     <ContentPage.Content>
         <StackLayout>
-
-            <Grid>
+            <!--Timeline Select Bar-->
+            <Grid HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="60" Margin="15, 12, 0, 10" ColumnSpacing="5">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="0.2"/>
+                    <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-
-                <Button Text="Daily"
-                        ImageSource="daily_symbol_active.png"
-                        Grid.Column="0"
-                        FontSize="Small"
-                        TextColor="{StaticResource Rust}"
-                        BackgroundColor="Transparent"
-                        HorizontalOptions="End"/>
-
-                <Button Text="Weekly"
-                        ImageSource="weekly_symbol_inactive.png"
-                        Grid.Column="1"
-                        FontSize="Small"
-                        TextColor="{StaticResource Slate}"
-                        BackgroundColor="Transparent"
-                        HorizontalOptions="Center"/>
-
-                <Button Text="Monthly"
-                        ImageSource="monthly_symbol_inactive.png"
-                        Grid.Column="2"
-                        FontSize="Small"
-                        TextColor="{StaticResource Slate}"
-                        BackgroundColor="Transparent"
-                        HorizontalOptions="Start"/>
-
-                <Label Text="Monday, September 1, 2020"
-                       TextColor="{StaticResource Slate}"
-                       FontSize="16"
-                       Grid.Row="1"
-                       Grid.ColumnSpan="3"
-                       HorizontalOptions="Center"/>
-
-                <BoxView Grid.Row="2" Grid.ColumnSpan="3" BackgroundColor="{StaticResource Slate}"/>
+                <StackLayout Grid.Column="0" Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnDailyTapped"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                    <Image Source="daily_active.png" />
+                    <Label Text="DAILY" FontSize="15" TextColor="#D97D54" VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Grid.Column="1" Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnWeeklyTapped"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                    <Image Source="weekly_inactive.png" />
+                    <Label Text="WEEKLY" FontSize="15" TextColor="#6D8CA0" VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Grid.Column="2" Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMonthlyTapped"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                    <Image Source="monthly_inactive.png" />
+                    <Label Text="MONTHLY" Grid.Column="2" FontSize="15" TextColor="#6D8CA0" VerticalOptions="Center"/>
+                </StackLayout>
             </Grid>
+
+            
+            <!--Current Datetime-->
+            <Label Text="Wednesday, September 3 2020" VerticalOptions="Start" HorizontalOptions="Center" TextColor="#D97D54" Margin="0"/>
+
+            <!--Section Divider-->
+            <BoxView BackgroundColor="#ECEFF0" HorizontalOptions="Fill" HeightRequest="3" Margin="0, 0, 0, 0"/>
 
             <ScrollView Margin="15,20,25,20">
                 <Grid RowSpacing="60" >

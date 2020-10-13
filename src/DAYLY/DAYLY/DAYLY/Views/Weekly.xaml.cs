@@ -16,5 +16,13 @@ namespace DAYLY.Views
         {
             InitializeComponent();
         }
+        async void OnDailyTapped(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Daily());
+        }
+        async void OnMonthlyTapped(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Monthly());
+        }
     }
 }
