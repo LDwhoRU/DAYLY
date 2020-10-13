@@ -5,8 +5,7 @@
              BackgroundColor="{StaticResource AppBackgroundColour}"
              Title="Add new address">
     <ContentPage.Content>
-        <ScrollView>
-                <StackLayout Spacing="-1">
+        <StackLayout Spacing="-1">
                 <Label Text="Add new address" Padding="17,15"/>
                 <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
                     <Entry Placeholder="Location name" TextColor="{StaticResource Onyx}" FontSize="16"/>
@@ -34,6 +33,5 @@
                     <Button Text="CONFIRM" TextColor="White" FontSize="16" BackgroundColor="Transparent" Margin="-20"/>
                 </Frame>
             </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
