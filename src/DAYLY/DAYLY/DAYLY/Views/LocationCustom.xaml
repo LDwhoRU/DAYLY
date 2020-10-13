@@ -6,38 +6,34 @@
              Title="Add new address">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Margin="0,20,0,0">
-
-            <Label Text="Location name" Padding="17,0,0,0"/>
-            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill" Margin="0,0,0,15">
-                <Editor TextColor="{StaticResource Onyx}" FontSize="16" Margin="-10" Keyboard="Default"/>
-            </Frame>
-            <Label Text="Street address" Padding="17,0,0,0"/>
-            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill" Margin="0,0,0,15">
-                <Editor TextColor="{StaticResource Onyx}" FontSize="16" Margin="-10" Keyboard="Default"/>
-            </Frame>
-            <Label Text="City or Suburb" Padding="17,0,0,0"/>
-            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill" Margin="0,0,0,15">
-                <Editor TextColor="{StaticResource Onyx}" FontSize="16" Margin="-10" Keyboard="Default"/>
-            </Frame>
-            <Label Text="State or Province" Padding="17,0,0,0"/>
-            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill" Margin="0,0,0,15">
-                <Editor TextColor="{StaticResource Onyx}" FontSize="16" Margin="-10" Keyboard="Default"/>
-            </Frame>
-            <Label Text="Postcode" Padding="17,0,0,0"/>
-            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill" Margin="0,0,0,50">
-                <Editor TextColor="{StaticResource Onyx}" FontSize="16" Margin="-10" Keyboard="Numeric"/>
-            </Frame>
-            <Frame WidthRequest="250"
-                   HeightRequest="10"
-                   CornerRadius="30"
-                   BackgroundColor="{StaticResource Drab}"
-                   BorderColor="{StaticResource Drab}"
-                   HasShadow="True"
-                   HorizontalOptions="Center">
-                <Button Text="CONFIRM" TextColor="White" FontSize="16" BackgroundColor="Transparent" Margin="-20"/>
-            </Frame>
-        </StackLayout>
+                <StackLayout Spacing="-1">
+                <Label Text="Add new address" Padding="17,15"/>
+                <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
+                    <Entry Placeholder="Location name" TextColor="{StaticResource Onyx}" FontSize="16"/>
+                </Frame>
+                <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="84" HorizontalOptions="Fill">
+                    <Editor Placeholder="Street address" TextColor="{StaticResource Onyx}" FontSize="16"/>
+                </Frame>
+                <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
+                    <Entry Placeholder="Suburb" TextColor="{StaticResource Onyx}" FontSize="16"/>
+                </Frame>
+                <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
+                    <Entry Placeholder="State" TextColor="{StaticResource Onyx}" FontSize="16"/>
+                </Frame>
+                <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
+                    <Entry Placeholder="Postcode" TextColor="{StaticResource Onyx}" FontSize="16" Keyboard="Numeric"/>
+                </Frame>
+                <Frame WidthRequest="250"
+                       HeightRequest="10"
+                       CornerRadius="30"
+                       BackgroundColor="{StaticResource Drab}"
+                       BorderColor="{StaticResource Drab}"
+                       HasShadow="True"
+                       HorizontalOptions="Center"
+                       Margin="0,20">
+                    <Button Text="CONFIRM" TextColor="White" FontSize="16" BackgroundColor="Transparent" Margin="-20"/>
+                </Frame>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
