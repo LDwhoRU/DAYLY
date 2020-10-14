@@ -15,6 +15,8 @@ namespace DAYLY.Models
         public DateTime Date { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
+        public bool IsOnline { get; set; }
+        public bool AllDay { get; set; }
 
     }
 }

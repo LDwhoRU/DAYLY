@@ -51,6 +51,10 @@ namespace DAYLY.Views
             TestEvent test = new TestEvent();
             test.Name = Name.Text;
             test.Date = EventDatePicker.Date;
+            test.StartTime = StartTimePicker.Time;
+            test.EndTime = EndTimePicker.Time;
+            test.AllDay = AllDaySwitch.IsToggled;
+            test.IsOnline = OnlineSwitch.IsToggled;
             int isSuccess = 0;
             try
             {

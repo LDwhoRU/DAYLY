@@ -6,8 +6,7 @@
                NavigationPage.HasBackButton="False">
 
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior  IconOverride="transparent.png" 
-                             ></BackButtonBehavior>
+        <BackButtonBehavior  IconOverride="transparent.png"></BackButtonBehavior>
     </Shell.BackButtonBehavior>
     <Shell.TitleView>
         <Grid RowSpacing="0" ColumnSpacing="0">
@@ -253,7 +252,7 @@
                                         <ColumnDefinition Width="2*"/>
                                     </Grid.ColumnDefinitions>
                                     <Label Text="Online" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                    <Switch Grid.Column="1" Scale="1.7" IsToggled="False" HorizontalOptions="End" VerticalOptions="Center" ThumbColor="#f0f0f0" OnColor="#87BCBF"/>
+                                    <Switch x:Name="OnlineSwitch" Grid.Column="1" Scale="1.7" IsToggled="False" HorizontalOptions="End" VerticalOptions="Center" ThumbColor="#f0f0f0" OnColor="#87BCBF"/>
                                 </Grid>
                             </Frame>
                         </StackLayout>
@@ -288,7 +287,7 @@
                                         <ColumnDefinition Width="2*"/>
                                     </Grid.ColumnDefinitions>
                                     <Label Text="All-Day" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                    <Switch Grid.Column="1" Scale="1.7" IsToggled="False" HorizontalOptions="End" VerticalOptions="Center" ThumbColor="#f0f0f0" OnColor="#87BCBF"/>
+                                    <Switch x:Name="AllDaySwitch" Grid.Column="1" Scale="1.7" IsToggled="False" HorizontalOptions="End" VerticalOptions="Center" ThumbColor="#f0f0f0" OnColor="#87BCBF"/>
                                 </Grid>
                             </Frame>
                             <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
@@ -339,7 +338,7 @@
                     <ListView x:Name="myListView" HasUnevenRows="True" Margin="0, 0, 0, 25" HeightRequest="40">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <TextCell Text="{Binding Name}" Detail="{Binding Date}"/>
+                                <TextCell Text="{Binding IsOnline}" Detail="{Binding AllDay}"/>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
