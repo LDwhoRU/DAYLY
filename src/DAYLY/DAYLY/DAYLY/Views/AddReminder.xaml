@@ -33,7 +33,7 @@
                     Padding="0"
                     BackgroundColor="LightSlateGray"
                     TextColor="#334856"
-                            Clicked="OnButtonClick"
+                            Clicked="OnEventClick"
                     />
 
                     <Button Text="Reminder"

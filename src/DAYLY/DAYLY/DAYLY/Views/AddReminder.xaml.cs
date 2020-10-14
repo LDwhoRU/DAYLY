@@ -16,9 +16,8 @@ namespace DAYLY.Views
         {
            
             InitializeComponent();
-            NavigationPage.SetHasBackButton(this, false);
         }
-        async void OnButtonClick(object sender, EventArgs e)
+        async void OnEventClick(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddEvent());
         }

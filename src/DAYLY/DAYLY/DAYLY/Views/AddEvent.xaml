@@ -41,7 +41,7 @@
                 HorizontalOptions="Fill"
                 BackgroundColor="LightSlateGray"
                 TextColor="DarkSlateGray"
-                       Clicked="OnButtonClick"
+                       Clicked="OnReminderClick"
                  />
 
                     <BoxView WidthRequest="3" BackgroundColor="#D97D54" Grid.Row="1"/>
