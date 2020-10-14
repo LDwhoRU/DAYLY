@@ -14,7 +14,12 @@ namespace DAYLY.Views
     {
         public AddReminder()
         {
+           
             InitializeComponent();
+        }
+        async void OnEventClick(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddEvent());
         }
     }
 }

@@ -20,5 +20,13 @@ namespace DAYLY.Views
         {
             await Navigation.PushAsync(new Settings_General());
         }
+        async void OnDailyTapped(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Daily());
+        }
+        async void OnWeeklyTapped(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Weekly());
+        }
     }
 }

@@ -2,29 +2,47 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:controls="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
-             x:Class="DAYLY.Views.Monthly">
-   
-        <StackLayout Spacing="0">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-
-                <Label Text="DAYLY" Grid.Column="2" Grid.Row="1"  FontFamily="Rift Soft" FontSize="15" Grid.RowSpan="4"  Grid.ColumnSpan="4"></Label>
-                <Label Text="WEEKLY" Grid.Column="5" FontSize="15" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="4" ></Label>
-                <Label Text="MONTHLY" Grid.Column="8" FontSize="15" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="4" TextColor="Orange"></Label>
-                <Button ImageSource="icn_month_view_active.png" Margin="-12" Grid.ColumnSpan="1" Grid.RowSpan="1" BackgroundColor="Transparent" Grid.Column="7" Grid.Row="1" AnchorX="0.5"></Button>
-                <Button ImageSource="icn_week_view_inactive.png" Margin="-12" Grid.ColumnSpan="1" Grid.RowSpan="1" BackgroundColor="Transparent" Grid.Column="4" Grid.Row="1" AnchorX="0.5"></Button>
-                <Button ImageSource="path.png" Margin="-12" Grid.ColumnSpan="1" Grid.RowSpan="1" BackgroundColor="Transparent" Grid.Column="1" Grid.Row="1" AnchorX="0.5"></Button>
-            </Grid>
-            <controls:Calendar
-            Events="{Binding Events}" Padding="10,-100">
+             x:Class="DAYLY.Views.Monthly"
+               BackgroundColor="White">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior  IconOverride="transparent.png" 
+                             ></BackButtonBehavior>
+    </Shell.BackButtonBehavior>
+    <StackLayout Spacing="0">
+        <Grid HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="60" Margin="15, 0, 0, 10" ColumnSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="0">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnDailyTapped"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+                <Image Source="daily_inactive.png" />
+                <Label Text="DAILY" FontSize="15" TextColor="#6D8CA0" VerticalOptions="Center"/>
+            </StackLayout>
+            <StackLayout Grid.Column="1" Orientation="Horizontal">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnWeeklyTapped"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+                <Image Source="weekly_inactive.png" />
+                <Label Text="WEEKLY" FontSize="15" TextColor="#6D8CA0" VerticalOptions="Center"/>
+            </StackLayout>
+            <StackLayout Grid.Column="2" Orientation="Horizontal">
+                <Image Source="monthly_active.png" />
+                <Label Text="MONTHLY" Grid.Column="2" FontSize="15" TextColor="#D97D54" VerticalOptions="Center"/>
+            </StackLayout>
+        </Grid>
+        <controls:Calendar
+            
+                YearLabelColor="Orange"
+                MonthLabelColor="Orange"
+                SelectedDateColor="Orange"
+            Events="{Binding Events}">
                 <controls:Calendar.EventTemplate>
                     <DataTemplate>
                         <StackLayout

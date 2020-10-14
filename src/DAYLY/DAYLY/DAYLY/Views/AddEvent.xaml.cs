@@ -17,11 +17,13 @@ namespace DAYLY.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddEvent : ContentPage
+
     {
         public SQLiteConnection conn;
         public TestEvent testmodel;
         public AddEvent()
         {
+           
             InitializeComponent();
 
             StartTimePicker.Time = DateTime.Now.TimeOfDay;
@@ -40,7 +42,10 @@ namespace DAYLY.Views
             conn.CreateTable<TestEvent>();
             BindingContext = new NewEventViewModel();
         }
-
+        async void OnReminderClick(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddReminder());
+        }
         private void AddEventBtn_Clicked(object sender, EventArgs e)
         {
             TestEvent test = new TestEvent();
