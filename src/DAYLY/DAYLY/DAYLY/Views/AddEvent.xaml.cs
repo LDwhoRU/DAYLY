@@ -44,7 +44,8 @@ namespace DAYLY.Views
         private void AddEventBtn_Clicked(object sender, EventArgs e)
         {
             TestEvent test = new TestEvent();
-            test.FirstEntry = FirstEntry.Text;
+            test.Name = Name.Text;
+            test.Date = EventDatePicker.Date;
             int isSuccess = 0;
             try
             {
@@ -55,7 +56,7 @@ namespace DAYLY.Views
                 throw ex;
             }
             var details = (from x in conn.Table<TestEvent>() select x).ToList();
-            //myListView.ItemsSource = details;
+            myListView.ItemsSource = details;
         }
 
         private void StartTimeBtn_Tapped(object sender, EventArgs e)

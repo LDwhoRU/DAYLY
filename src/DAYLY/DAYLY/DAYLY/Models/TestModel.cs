@@ -11,7 +11,10 @@ namespace DAYLY.Models
     {
         [PrimaryKey, AutoIncrement]
         public int id { get; set; }
-        public string FirstEntry { get; set; }
+        public string Name { get; set; }
+        public DateTime Date { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
 
     }
 }
