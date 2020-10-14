@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DAYLY.Views.LocationCustom"
+             BackgroundColor="{StaticResource AppBackgroundColour}"
+             Title="Add new address">
+    <ContentPage.Content>
+        <StackLayout Spacing="-1">
+                <Label Text="Add new address" Padding="17,15"/>
+                <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
+                    <Entry Placeholder="Location name" TextColor="{StaticResource Onyx}" FontSize="16"/>
+                </Frame>
+                <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="84" HorizontalOptions="Fill">
+                    <Editor Placeholder="Street address" TextColor="{StaticResource Onyx}" FontSize="16"/>
+                </Frame>
+                <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
+                    <Entry Placeholder="Suburb" TextColor="{StaticResource Onyx}" FontSize="16"/>
+                </Frame>
+                <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
+                    <Entry Placeholder="State" TextColor="{StaticResource Onyx}" FontSize="16"/>
+                </Frame>
+                <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
+                    <Entry Placeholder="Postcode" TextColor="{StaticResource Onyx}" FontSize="16" Keyboard="Numeric"/>
+                </Frame>
+                <Frame WidthRequest="250"
+                       HeightRequest="10"
+                       CornerRadius="30"
+                       BackgroundColor="{StaticResource Drab}"
+                       BorderColor="{StaticResource Drab}"
+                       HasShadow="True"
+                       HorizontalOptions="Center"
+                       Margin="0,20">
+                    <Button Text="CONFIRM" TextColor="White" FontSize="16" BackgroundColor="Transparent" Margin="-20"/>
+                </Frame>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
