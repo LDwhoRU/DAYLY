@@ -4,8 +4,11 @@
                 xmlns:controls="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
              x:Class="DAYLY.Views.Monthly"
                BackgroundColor="White">
-   
-        <StackLayout Spacing="0">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior  IconOverride="transparent.png" 
+                             ></BackButtonBehavior>
+    </Shell.BackButtonBehavior>
+    <StackLayout Spacing="0">
         <Grid HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="60" Margin="15, 0, 0, 10" ColumnSpacing="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>

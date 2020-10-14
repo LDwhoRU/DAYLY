@@ -2,7 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DAYLY.Views.AddReminder"
-             BackgroundColor="#ECEFF0">
+             BackgroundColor="#ECEFF0"
+             NavigationPage.HasNavigationBar="False"
+            >
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior  IconOverride="transparent.png" 
+                             ></BackButtonBehavior>
+    </Shell.BackButtonBehavior>
 
     <Shell.TitleView>
         <Image Source="logo_title.png" VerticalOptions="Center" HeightRequest="60" Scale=".8"/>

@@ -14,7 +14,9 @@ namespace DAYLY.Views
     {
         public AddReminder()
         {
+           
             InitializeComponent();
+            NavigationPage.SetHasBackButton(this, false);
         }
         async void OnButtonClick(object sender, EventArgs e)
         {

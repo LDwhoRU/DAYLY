@@ -11,10 +11,13 @@ namespace DAYLY.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddEvent : ContentPage
+
     {
         public AddEvent()
         {
+           
             InitializeComponent();
+            
         }
         async void OnButtonClick(object sender, EventArgs e)
         {
