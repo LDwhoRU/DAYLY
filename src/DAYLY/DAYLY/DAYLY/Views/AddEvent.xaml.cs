@@ -19,35 +19,16 @@ namespace DAYLY.Views
     public partial class AddEvent : ContentPage
 
     {
-        public SQLiteConnection conn;
-        public TestEvent testmodel;
-        public Event eventmodel;
-        public Note notemodel;
-        public Programme programmemodel;
+        public NewEventViewModel eventOperations = new NewEventViewModel();
         public AddEvent()
         {
-           
             InitializeComponent();
+
+            // Set default values for pickers
             DateTime currentTime = DateTime.Now;
             StartTimePicker.Time = currentTime.TimeOfDay;
             EndTimePicker.Time = currentTime.AddHours(2).TimeOfDay;
             EventDatePicker.Date = currentTime;
-
-            conn = DependencyService.Get<Isqlite>().GetConnection();
-            try
-            {
-                conn.DropTable<Event>();
-                conn.DropTable<Note>();
-                conn.DropTable<Programme>();
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            conn.CreateTable<Note>();
-            conn.CreateTable<Programme>();
-            conn.CreateTable<Event>();
-            BindingContext = new NewEventViewModel();
         }
         async void OnReminderClick(object sender, EventArgs e)
         {
@@ -55,62 +36,10 @@ namespace DAYLY.Views
         }
         private void AddEventBtn_Clicked(object sender, EventArgs e)
         {
-            int isSuccess;
+            eventOperations.SaveEvent(Name.Text, EventDatePicker.Date, StartTimePicker.Time, EndTimePicker.Time, OnlineSwitch.IsToggled, AllDaySwitch.IsToggled);
 
-            // Add Test Note
-            Note newNote = new Note
-            {
-                Description = "Testing",
-                URL = "www.url.com"
-            };
-            isSuccess = 0;
-            try
-            {
-                isSuccess = conn.Insert(newNote);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            // Add Programme
-            Programme newProgramme = new Programme
-            {
-                Name = "Cal",
-                HexColour = "FFFFFF"
-            };
-            isSuccess = 0;
-            try
-            {
-                isSuccess = conn.Insert(newProgramme);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            // Add Event
-            Event newEvent = new Event
-            {
-                Name = Name.Text,
-                Type = "Event",
-                Date = EventDatePicker.Date,
-                StartTime = StartTimePicker.Time,
-                EndTime = EndTimePicker.Time,
-                AllDay = AllDaySwitch.IsToggled,
-                IsOnline = OnlineSwitch.IsToggled,
-                NoteId = newNote.Id,
-                ProgrammeId = newProgramme.Id,
-            };
-            isSuccess = 0;
-            try
-            {
-                isSuccess = conn.Insert(newEvent);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            // For debugging
+            SQLiteConnection conn = DependencyService.Get<Isqlite>().GetConnection();
             var details = (from x in conn.Table<Note>() select x).ToList();
             myListView.ItemsSource = details;
         }
@@ -122,15 +51,7 @@ namespace DAYLY.Views
 
         private void StartTimePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            TimeSpan startTime = StartTimePicker.Time;
-            String timeSuffix = "AM";
-            if (startTime.Hours > 12)
-            {
-                TimeSpan twelveHour = new TimeSpan(12, 0, 0);
-                startTime = startTime.Subtract(twelveHour);
-                timeSuffix = "PM";
-            }
-            StartTimeLabel.Text = startTime.ToString().Substring(0, 5) + timeSuffix;
+            StartTimeLabel.Text = eventOperations.TimeConvert(StartTimePicker.Time);
         }
 
         private void EndTimeBtn_Tapped(object sender, EventArgs e)
@@ -140,20 +61,12 @@ namespace DAYLY.Views
 
         private void EndTimePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            TimeSpan endTime = EndTimePicker.Time;
-            String timeSuffix = "AM";
-            if (endTime.Hours > 12)
-            {
-                TimeSpan twelveHour = new TimeSpan(12, 0, 0);
-                endTime = endTime.Subtract(twelveHour);
-                timeSuffix = "PM";
-            }
-            EndTimeLabel.Text = endTime.ToString().Substring(0, 5) + timeSuffix;
+            EndTimeLabel.Text = eventOperations.TimeConvert(EndTimePicker.Time);
         }
 
         private void EventDatePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            EventDateLabel.Text = EventDatePicker.Date.Day.ToString() + "/" + EventDatePicker.Date.Month.ToString() + "/" + EventDatePicker.Date.Year.ToString();
+            EventDateLabel.Text = eventOperations.AUDateConvert(EventDatePicker.Date);
         }
 
         private void EventDateBtn_Tapped(object sender, EventArgs e)
