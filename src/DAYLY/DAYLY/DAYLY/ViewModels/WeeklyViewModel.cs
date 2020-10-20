@@ -46,7 +46,7 @@ namespace DAYLY.ViewModels
             ThurTime();
             FriTime();
             SatTime();
-           SunTime();
+            SunTime();
           //  Console.WriteLine(mon12);
            // Console.WriteLine(monday);
           //  Console.WriteLine(mon8);
@@ -84,13 +84,13 @@ namespace DAYLY.ViewModels
             IsBusy = true;
             try
             {
-               var Monday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+               var Sun = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Sunday);
+                var Monday = Sun.AddDays(1);
                 var Tues = Monday.AddDays(1);
                 var Wed = Tues.AddDays(1);
                 var Thurs = Wed.AddDays(1);
                 var Fri = Thurs.AddDays(1);
                 var Sat = Fri.AddDays(1);
-                var Sun = Sat.AddDays(1);
                 
                 monday = Monday.Day.ToString();
                 tuesday = Tues.Day.ToString();
@@ -99,6 +99,63 @@ namespace DAYLY.ViewModels
                 friday = Fri.Day.ToString();
                 saturday = Sat.Day.ToString();
                 sunday = Sun.Day.ToString();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+        public void SunTime()
+        {
+
+            IsBusy = true;
+
+            //   Console.WriteLine(time8);
+
+            for (int i = 1; i < TimerArray.Length; i++)
+            {
+                TimerArray[i] = TimerArray[i - 1].Add(time1);
+                Console.WriteLine(TimerArray[i - 1]);
+            }
+            //   Console.WriteLine(time8);
+            try
+            {
+                for (int i = 0; i < sun.Length; i++)
+                {
+                    sun[i] = false;
+                }
+                foreach (var even in Events)
+                {
+
+                    if ((int)even.Date.DayOfWeek == 0 && even.Date.Day.ToString() == sunday)
+                    {
+                        Console.WriteLine("I made it");
+                        for (int i = 0; i < TimerArray.Length; i++)
+                        {
+
+                            if (even.StartTime == TimerArray[i])
+                            {
+                                sun[i] = true;
+                                TimeSpan duration = even.EndTime.Subtract(even.StartTime);
+                                int hours = duration.Hours;
+                                for (int j = 1; j <= hours; j++) {
+                                sun[j]=true;
+                                }
+                                Console.WriteLine(hours);
+                            }
+
+                        }
+
+
+                    }
+
+
+
+                }
             }
             catch (Exception ex)
             {
@@ -138,7 +195,16 @@ namespace DAYLY.ViewModels
                             if (even.StartTime == TimerArray[i])
                             {
                                 mon[i] = true;
-                                Console.WriteLine(even.StartTime);
+                                TimeSpan duration = even.EndTime.Subtract(even.StartTime);
+                                int hours = duration.Hours;
+                                Console.WriteLine("debugging");
+                                int z = 1;
+                                for (int j = i; z <= hours; j++)
+                                {
+                                    mon[j] = true;
+                                    z++;
+                                    Console.WriteLine(j);
+                                }
                             }
                            
                         }
@@ -419,58 +485,7 @@ namespace DAYLY.ViewModels
                 IsBusy = false;
             }
         }
-        public void SunTime()
-        {
-
-            IsBusy = true;
-
-            //   Console.WriteLine(time8);
-
-            for (int i = 1; i < TimerArray.Length; i++)
-            {
-                TimerArray[i] = TimerArray[i - 1].Add(time1);
-                Console.WriteLine(TimerArray[i - 1]);
-            }
-            //   Console.WriteLine(time8);
-            try
-            {
-                for (int i = 0; i < sun.Length; i++)
-                {
-                    sun[i] = false;
-                }
-                foreach (var even in Events)
-                {
-
-                    if ((int)even.Date.DayOfWeek == 0 && even.Date.Day.ToString() == sunday)
-                    {
-                        Console.WriteLine("I made it");
-                        for (int i = 0; i < TimerArray.Length; i++)
-                        {
-
-                            if (even.StartTime == TimerArray[i])
-                            {
-                                sun[i] = true;
-                                Console.WriteLine(even.StartTime);
-                            }
-
-                        }
-
-
-                    }
-
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
+  
         public string Monday
         {
             get
