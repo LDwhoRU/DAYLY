@@ -12,6 +12,7 @@ using DAYLY.ViewModels;
 using DAYLY;
 using SQLite;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace DAYLY.Views
 {
@@ -29,6 +30,13 @@ namespace DAYLY.Views
             StartTimePicker.Time = currentTime.TimeOfDay;
             EndTimePicker.Time = currentTime.AddHours(2).TimeOfDay;
             EventDatePicker.Date = currentTime;
+
+            colourPicker.Items.Add("Green");
+            colourPicker.Items.Add("Blue");
+            colourPicker.Items.Add("Red");
+            colourPicker.Items.Add("Orange");
+            colourPicker.Items.Add("Yellow");
+            colourPicker.Items.Add("Purple");
         }
         async void OnReminderClick(object sender, EventArgs e)
         {
@@ -72,6 +80,30 @@ namespace DAYLY.Views
         private void EventDateBtn_Tapped(object sender, EventArgs e)
         {
             EventDatePicker.Focus();
+        }
+
+        private void ProgrammeNameEntry_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void CreateProgrammeBtn_Tapped(object sender, EventArgs e)
+        {
+            popupLoginView.IsVisible = true;
+            bodyContentsView.IsVisible = false;
+        }
+
+        private void AddCalendarBtn_Clicked(object sender, EventArgs e)
+        {
+            eventOperations.SaveCalendar(CalendarName.Text, colourPicker.SelectedItem.ToString());
+            popupLoginView.IsVisible = false;
+            bodyContentsView.IsVisible = true;
+
+            SQLiteConnection conn = DependencyService.Get<Isqlite>().GetConnection();
+            var details = (from x in conn.Table<Programme>() select x).ToList();
+            CalendarOptions.ItemsSource = details;
+            CalendarName.Text = "";
+            colourPicker.SelectedIndex = -1;
         }
     }
 }
