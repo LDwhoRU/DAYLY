@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using DAYLY.Views;
 using Xamarin.Forms;
 
@@ -23,6 +24,11 @@ namespace DAYLY.Views
         async void OnFirstDayOfWeekClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new Settings_FirstDayOfWeek());
+        }
+
+        async void OnDayStartTimeClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Settings_DayStartTime());
         }
 
         protected override void OnAppearing()

@@ -53,7 +53,7 @@
                             <BoxView Grid.Row="5" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
 
                             <Label Text="Day start time" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="6" Grid.Column="0" Margin="7,0,0,0"/>
-                            <Label Text="8:00 AM" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="7" Grid.Column="0" Margin="7,0,0,0"/>
+                            <Label Text="{Binding DayStartTimeStr}" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="7" Grid.Column="0" Margin="7,0,0,0"/>
                             <BoxView Grid.Row="8" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
 
                             <Label Text="Default event duration" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="9" Grid.Column="0" Margin="7,0,0,0"/>
@@ -91,7 +91,7 @@
 
                             <Button Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Clicked="OnAppThemeClicked"/>
                             <Button Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Clicked="OnFirstDayOfWeekClicked"/>
-                            <Button Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>
+                            <Button Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Clicked="OnDayStartTimeClicked"/>
                             <Button Grid.Row="9" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>
                             <Button Grid.Row="12" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>
                             <Button Grid.Row="15" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>
