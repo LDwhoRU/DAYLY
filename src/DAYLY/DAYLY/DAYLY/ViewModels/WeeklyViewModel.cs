@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,8 @@ namespace DAYLY.ViewModels
         bool[] fri = new bool[15];
         bool[] sat = new bool[15];
         bool[] sun = new bool[15];
-    
+        string[] week = new string[7];
+        
         string nmon8, nmon9, nmon10, nmon11, nmon12, nmon13, nmon14, nmon15, nmon16, nmon17, nmon18, nmon19, nmon20, nmon21, nmon22;
         string today;
         double tmon8;
@@ -40,13 +42,13 @@ namespace DAYLY.ViewModels
             Today = dt.DayOfWeek.ToString() + " " + dt.Day.ToString() + "/" + dt.Month.ToString() + "/" + dt.Year.ToString();
             Task.Run(async () => await ExecuteLoadItemsCommand());
              GetWeek();
-             MonTime();
-            TueTime();
-            WedTime();
-            ThurTime();
-            FriTime();
-            SatTime();
-            SunTime();
+           //  MonTime();
+          //  TueTime();
+           // WedTime();
+           // ThurTime();
+           // FriTime();
+            //SatTime();
+            WeekTime();
           //  Console.WriteLine(mon12);
            // Console.WriteLine(monday);
           //  Console.WriteLine(mon8);
@@ -109,208 +111,58 @@ namespace DAYLY.ViewModels
                 IsBusy = false;
             }
         }
-        public void SunTime()
+        public void WeekTime()
         {
-
+            bool[][] bweek = new bool[][] {sun,mon,tue,wed,thur,fri,sat };
             IsBusy = true;
-
+            week[0] = sunday;
+            week[1] = monday;
+            week[2] = tuesday;
+                week[3] = wednesday;
+            week[4] = thursday;
+            week[5] = friday;
+            week[6] = saturday;
             //   Console.WriteLine(time8);
-
+            
             for (int i = 1; i < TimerArray.Length; i++)
             {
                 TimerArray[i] = TimerArray[i - 1].Add(time1);
                 Console.WriteLine(TimerArray[i - 1]);
             }
-            //   Console.WriteLine(time8);
+          
             try
             {
+                int dayy = 0;
+                foreach (var day in week) { 
                 for (int i = 0; i < sun.Length; i++)
                 {
-                    sun[i] = false;
+                    bweek[dayy][i] = false;
                 }
                 foreach (var even in Events)
                 {
 
-                    if ((int)even.Date.DayOfWeek == 0 && even.Date.Day.ToString() == sunday)
+                    if ((int)even.Date.DayOfWeek == dayy && even.Date.Day.ToString() == day)
                     {
                         Console.WriteLine("I made it");
                         for (int i = 0; i < TimerArray.Length; i++)
                         {
-
-                            if (even.StartTime == TimerArray[i])
-                            {
-                                sun[i] = true;
-                                TimeSpan duration = even.EndTime.Subtract(even.StartTime);
-                                int hours = duration.Hours;
-                                for (int j = 1; j <= hours; j++) {
-                                sun[j]=true;
-                                }
-                                Console.WriteLine(hours);
-                            }
-
-                        }
-
-
-                    }
-
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-        public void MonTime()
-        {
-            Console.WriteLine("pog");
-            IsBusy = true;
-        
-      
-            for(int i= 1; i < TimerArray.Length; i++){
-                TimerArray[i] = TimerArray[i-1].Add(time1);
-                Console.WriteLine(TimerArray[i-1]);
-            }
-            //   Console.WriteLine(time8);
-            try
-            {
-                for(int i = 0; i < mon.Length; i++)
-                {
-                    mon[i] = false;
-                }
-                foreach(var even in Events)
-                {
-                   
-                    if ((int)even.Date.DayOfWeek==1&&even.Date.Day.ToString()==monday)
-                    {
-                        Console.WriteLine("I made it");
-                    for(int i=0;i<TimerArray.Length;i++)
-                        {
-                           
-                            if (even.StartTime == TimerArray[i])
-                            {
-                                mon[i] = true;
-                                TimeSpan duration = even.EndTime.Subtract(even.StartTime);
-                                int hours = duration.Hours;
-                                Console.WriteLine("debugging");
-                                int z = 1;
-                                for (int j = i; z <= hours; j++)
-                                {
-                                    mon[j] = true;
-                                    z++;
-                                    Console.WriteLine(j);
-                                }
-                            }
-                           
-                        }
-
-
-                    }
-                  
-                        
-                    
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-        public void TueTime()
-        {
-       
-            IsBusy = true;
-       
-            //   Console.WriteLine(time8);
-           
-                for (int i = 1; i < TimerArray.Length; i++)
-                {
-                    TimerArray[i] = TimerArray[i - 1].Add(time1);
-                    Console.WriteLine(TimerArray[i - 1]);
-                }
-                //   Console.WriteLine(time8);
-                try
-                {
-                    for (int i = 0; i < tue.Length; i++)
-                    {
-                        tue[i] = false;
-                    }
-                    foreach (var even in Events)
-                    {
-
-                        if ((int)even.Date.DayOfWeek == 2 && even.Date.Day.ToString() == tuesday)
-                        {
-                            Console.WriteLine("I made it");
-                            for (int i = 0; i < TimerArray.Length; i++)
-                            {
-
+                                
                                 if (even.StartTime == TimerArray[i])
-                                {
-                                    tue[i] = true;
-                                    Console.WriteLine(even.StartTime);
+                            {
+                                bweek[dayy][i] = true;
+                                TimeSpan duration = even.EndTime.Subtract(even.StartTime);
+                                int hours = duration.Hours;
+
+                                    int z = 1;
+                                    for (int j = i; z <= hours; j++)
+                                    {
+                                        bweek[dayy][j] = true;
+                                        z++;
+                                        Console.WriteLine(j);
+                                    }
+                                    // Console.WriteLine(hours);
                                 }
 
-                            }
-
-
-                        }
-
-
-
-                    }
-                }
-                catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-        public void WedTime()
-        {
-
-            IsBusy = true;
-
-            //   Console.WriteLine(time8);
-
-            for (int i = 1; i < TimerArray.Length; i++)
-            {
-                TimerArray[i] = TimerArray[i - 1].Add(time1);
-                Console.WriteLine(TimerArray[i - 1]);
-            }
-            //   Console.WriteLine(time8);
-            try
-            {
-                for (int i = 0; i < wed.Length; i++)
-                {
-                    wed[i] = false;
-                }
-                foreach (var even in Events)
-                {
-
-                    if ((int)even.Date.DayOfWeek == 3 && even.Date.Day.ToString() == wednesday)
-                    {
-                        Console.WriteLine("I made it");
-                        for (int i = 0; i < TimerArray.Length; i++)
-                        {
-
-                            if (even.StartTime == TimerArray[i])
-                            {
-                                wed[i] = true;
-                                Console.WriteLine(even.StartTime);
-                            }
-
                         }
 
 
@@ -319,6 +171,8 @@ namespace DAYLY.ViewModels
 
 
                 }
+                    dayy++;
+            }
             }
             catch (Exception ex)
             {
@@ -329,162 +183,7 @@ namespace DAYLY.ViewModels
                 IsBusy = false;
             }
         }
-        public void ThurTime()
-        {
-
-            IsBusy = true;
-
-            //   Console.WriteLine(time8);
-
-            for (int i = 1; i < TimerArray.Length; i++)
-            {
-                TimerArray[i] = TimerArray[i - 1].Add(time1);
-                Console.WriteLine(TimerArray[i - 1]);
-            }
-            //   Console.WriteLine(time8);
-            try
-            {
-                for (int i = 0; i < thur.Length; i++)
-                {
-                    thur[i] = false;
-                }
-                foreach (var even in Events)
-                {
-
-                    if ((int)even.Date.DayOfWeek == 4 && even.Date.Day.ToString() == thursday)
-                    {
-                        Console.WriteLine("I made it");
-                        for (int i = 0; i < TimerArray.Length; i++)
-                        {
-
-                            if (even.StartTime == TimerArray[i])
-                            {
-                                thur[i] = true;
-                                Console.WriteLine(even.StartTime);
-                            }
-
-                        }
-
-
-                    }
-
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-        public void FriTime()
-        {
-
-            IsBusy = true;
-
-            //   Console.WriteLine(time8);
-
-            for (int i = 1; i < TimerArray.Length; i++)
-            {
-                TimerArray[i] = TimerArray[i - 1].Add(time1);
-                Console.WriteLine(TimerArray[i - 1]);
-            }
-            //   Console.WriteLine(time8);
-            try
-            {
-                for (int i = 0; i < fri.Length; i++)
-                {
-                    fri[i] = false;
-                }
-                foreach (var even in Events)
-                {
-
-                    if ((int)even.Date.DayOfWeek == 5 && even.Date.Day.ToString() == friday)
-                    {
-                        Console.WriteLine("I made it");
-                        for (int i = 0; i < TimerArray.Length; i++)
-                        {
-
-                            if (even.StartTime == TimerArray[i])
-                            {
-                                fri[i] = true;
-                                Console.WriteLine(even.StartTime);
-                            }
-
-                        }
-
-
-                    }
-
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-        public void SatTime()
-        {
-
-            IsBusy = true;
-
-            //   Console.WriteLine(time8);
-
-            for (int i = 1; i < TimerArray.Length; i++)
-            {
-                TimerArray[i] = TimerArray[i - 1].Add(time1);
-                Console.WriteLine(TimerArray[i - 1]);
-            }
-            //   Console.WriteLine(time8);
-            try
-            {
-                for (int i = 0; i < sat.Length; i++)
-                {
-                    sat[i] = false;
-                }
-                foreach (var even in Events)
-                {
-
-                    if ((int)even.Date.DayOfWeek == 6 && even.Date.Day.ToString() == saturday)
-                    {
-                        Console.WriteLine("I made it");
-                        for (int i = 0; i < TimerArray.Length; i++)
-                        {
-
-                            if (even.StartTime == TimerArray[i])
-                            {
-                                sat[i] = true;
-                                Console.WriteLine(even.StartTime);
-                            }
-
-                        }
-
-
-                    }
-
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
+      
   
         public string Monday
         {
