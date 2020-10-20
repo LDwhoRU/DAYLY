@@ -51,6 +51,7 @@
     <ShellContent Route="Settings_Automation" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_Automation}" />
     <ShellContent Route="Settings_Breaks" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_Breaks}" />
     <ShellContent Route="Settings_SyncData" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_SyncData}" />
+    <ShellContent Route="Settings_AppTheme" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_AppTheme}" />
 
     <ShellContent Route="Daily" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Daily}"/>
     <ShellContent Route="Monthly" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Monthly}"/>

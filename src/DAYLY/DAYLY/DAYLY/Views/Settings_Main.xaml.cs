@@ -12,6 +12,7 @@ namespace DAYLY.Views
         public Settings_Main()
         {
             InitializeComponent();
+            Settings_General.settingsDefault.SetDefaults();
         }
 
         async void OnGeneralSettingClicked(object sender, EventArgs e)
