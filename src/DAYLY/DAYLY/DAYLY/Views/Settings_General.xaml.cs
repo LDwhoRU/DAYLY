@@ -20,6 +20,11 @@ namespace DAYLY.Views
             await Navigation.PushAsync(new Settings_AppTheme());
         }
 
+        async void OnFirstDayOfWeekClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Settings_FirstDayOfWeek());
+        }
+
         protected override void OnAppearing()
         {
             InitializeComponent();
