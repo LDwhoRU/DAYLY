@@ -21,16 +21,18 @@ namespace DAYLY.Services
             TimeSpan span2 = new TimeSpan(15, 0, 0);
             TimeSpan span4 = new TimeSpan(11, 0, 0);
             TimeSpan span5 = new TimeSpan(16, 0, 0);
+            TimeSpan span6 = new TimeSpan(18, 0, 0);
+
 
 
             events = new List<Event>()
 
             {
-                new Event { Id = "1", Name = "CAB303", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=null,AllDay=false,StartTime=span, Length=span,Location="P5" },
-                 new Event { Id = "3", Name = "CAB303", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=null,AllDay=false,StartTime=span2, Length=span,Location="P5" },
-                new Event { Id = "2", Name = "CAB303", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=null,AllDay=false,StartTime=span3, Length=span,Location="P5" },
-                 new Event { Id = "4", Name = "CAB303", Type = "tute", Date = datetime2, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=null,AllDay=false,StartTime=span4, Length=span,Location="P5" },
-                  new Event { Id = "5", Name = "CAB303", Type = "tute", Date = datetime3, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=null,AllDay=false,StartTime=span5, Length=span,Location="P5" },
+                new Event { Id = "1", Name = "CAB303", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=null,AllDay=false,StartTime=span, EndTime=span3,Location="P5" },
+                 new Event { Id = "3", Name = "CAB303", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=null,AllDay=false,StartTime=span2, EndTime=span5,Location="P5" },
+                new Event { Id = "2", Name = "CAB303", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=null,AllDay=false,StartTime=span3, EndTime=span2,Location="P5" },
+                 new Event { Id = "4", Name = "CAB303", Type = "tute", Date = datetime2, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=null,AllDay=false,StartTime=span4, EndTime=span3,Location="P5" },
+                 new Event { Id = "5", Name = "CAB303", Type = "tute", Date = datetime3, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=null,AllDay=false,StartTime=span5, EndTime=span6,Location="P5" },
      };
         }
         public async Task<bool> AddItemAsync(Event item)

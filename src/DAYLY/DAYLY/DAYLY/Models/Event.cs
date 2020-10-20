@@ -8,8 +8,8 @@ namespace DAYLY.Models
         public bool IsOnline { get; set; }
         public bool AllDay { get; set; }
         public TimeSpan StartTime { get; set; }
-        public TimeSpan Length { get; set; }
-        //public TimeSpan EndTime { get; set; }
+       
+        public TimeSpan EndTime { get; set; }
         public string Location { get; set; }
     }
 }

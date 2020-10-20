@@ -13,21 +13,27 @@ namespace DAYLY.ViewModels
 {
     class WeeklyViewModel : BaseViewModel
     {
-        bool mon8, mon9, mon10, mon11, mon12, mon13, mon14, mon15, mon16, mon17, mon18, mon19,mon20,mon21,mon22;
-        bool tue8, tue9, tue10, tue11, tue12, tue13, tue14, tue15, tue16, tue17, tue18, tue19, tue20, tue21, tue22;
-        bool wed8, wed9, wed10, wed11, wed12, wed13, wed14, wed15, wed16, wed17, wed18, wed19, wed20, wed21, wed22;
-        bool thur8, thur9, thur10, thur11, thur12, thur13, thur14, thur15, thur16, thur17, thur18, thur19, thur20, thur21, thur22;
-        bool fri8, fri9, fri10, fri11, fri12, fri13, fri14, fri15, fri16, fri17, fri18, fri19, fri20, fri21, fri22;
-        bool sat8, sat9, sat10, sat11, sat12, sat13, sat14, sat15, sat16, sat17, sat18, sat19, sat20, sat21, sat22;
-        bool sun8, sun9, sun10, sun11, sun12, sun13, sun14, sun15, sun16, sun17, sun18, sun19, sun20, sun21, sun22;
+        bool[] mon = new bool[15];
+        bool[] tue = new bool[15];
+        bool[] wed = new bool[15];
+        bool[] thur = new bool[15];
+        bool[] fri = new bool[15];
+        bool[] sat = new bool[15];
+        bool[] sun = new bool[15];
+    
         string nmon8, nmon9, nmon10, nmon11, nmon12, nmon13, nmon14, nmon15, nmon16, nmon17, nmon18, nmon19, nmon20, nmon21, nmon22;
         string today;
+        double tmon8;
          string monday, tuesday, wednesday, thursday,friday,saturday,sunday;
+        TimeSpan[] TimerArray = new TimeSpan[15];
+        TimeSpan time8 = new TimeSpan(8, 0, 0);
+        TimeSpan time1 = TimeSpan.FromHours(1);
+        
         public ObservableCollection<Event> Events { get; }
      
         public WeeklyViewModel()
         {
-
+            TimerArray[0] = time8;
             Title = "Weekly";
             DateTime dt = DateTime.Today;
             Events = new ObservableCollection<Event>();
@@ -40,8 +46,8 @@ namespace DAYLY.ViewModels
             ThurTime();
             FriTime();
             SatTime();
-            SunTime();
-            Console.WriteLine(mon12);
+           SunTime();
+          //  Console.WriteLine(mon12);
            // Console.WriteLine(monday);
           //  Console.WriteLine(mon8);
            
@@ -107,102 +113,34 @@ namespace DAYLY.ViewModels
         {
             Console.WriteLine("pog");
             IsBusy = true;
-          TimeSpan  time8 = new TimeSpan(8, 0, 0);
-            TimeSpan time9 = new TimeSpan(9, 0, 0);
-            TimeSpan time10 = new TimeSpan(10, 0, 0);
-            TimeSpan time11 = new TimeSpan(11, 0, 0);
-            TimeSpan time12 = new TimeSpan(12, 0, 0);
-            TimeSpan time13 = new TimeSpan(13, 0, 0);
-            TimeSpan time14 = new TimeSpan(14, 0, 0);
-            TimeSpan time15 = new TimeSpan(15, 0, 0);
-            TimeSpan time16 = new TimeSpan(16, 0, 0);
-            TimeSpan time17 = new TimeSpan(17, 0, 0);
-            TimeSpan time18 = new TimeSpan(18, 0, 0);
-            TimeSpan time22 = new TimeSpan(22, 0, 0);
-            TimeSpan time19 = new TimeSpan(19, 0, 0);
-            TimeSpan time20 = new TimeSpan(20, 0, 0);
-            TimeSpan time21 = new TimeSpan(21, 0, 0);
+        
+      
+            for(int i= 1; i < TimerArray.Length; i++){
+                TimerArray[i] = TimerArray[i-1].Add(time1);
+                Console.WriteLine(TimerArray[i-1]);
+            }
             //   Console.WriteLine(time8);
             try
             {
+                for(int i = 0; i < mon.Length; i++)
+                {
+                    mon[i] = false;
+                }
                 foreach(var even in Events)
                 {
                    
                     if ((int)even.Date.DayOfWeek==1&&even.Date.Day.ToString()==monday)
                     {
                         Console.WriteLine("I made it");
-                        if (even.StartTime == time8) {
-                            mon8 = true;
-                        }
-                        else if (even.StartTime == time9)
+                    for(int i=0;i<TimerArray.Length;i++)
                         {
                            
-                            mon9 = true;
-                        }
-                        else if (even.StartTime == time10)
-                        {
-
-                            mon10 = true;
-                        }
-                        else if (even.StartTime == time11)
-                        {
-
-                            mon11 = true;
-                        }
-                        else if (even.StartTime == time12)
-                        {
-
-                            mon12 = true;
-                        }
-                        else if (even.StartTime == time13)
-                        {
-
-                            mon13 = true;
-                        }
-                        else if (even.StartTime == time14)
-                        {
-
-                            mon14 = true;
-                        }
-                        else if (even.StartTime == time15)
-                        {
-
-                            mon15 = true;
-                        }
-                        else if (even.StartTime == time16)
-                        {
-
-                            mon16 = true;
-                        }
-                        else if (even.StartTime == time17)
-                        {
-
-                            mon17 = true;
-                        }
-                        else if (even.StartTime == time18)
-                        {
-
-                            mon18 = true;
-                        }
-                        else if (even.StartTime == time19)
-                        {
-
-                            mon19 = true;
-                        }
-                        else if (even.StartTime == time20)
-                        {
-
-                            mon20 = true;
-                        }
-                        else if (even.StartTime == time21)
-                        {
-
-                            mon21 = true;
-                        }
-                        else if (even.StartTime == time22)
-                        {
-
-                            mon22 = true;
+                            if (even.StartTime == TimerArray[i])
+                            {
+                                mon[i] = true;
+                                Console.WriteLine(even.StartTime);
+                            }
+                           
                         }
 
 
@@ -223,114 +161,48 @@ namespace DAYLY.ViewModels
         }
         public void TueTime()
         {
-            Console.WriteLine("pog");
+       
             IsBusy = true;
-            TimeSpan time8 = new TimeSpan(8, 0, 0);
-            TimeSpan time9 = new TimeSpan(9, 0, 0);
-            TimeSpan time10 = new TimeSpan(10, 0, 0);
-            TimeSpan time11 = new TimeSpan(11, 0, 0);
-            TimeSpan time12 = new TimeSpan(12, 0, 0);
-            TimeSpan time13 = new TimeSpan(13, 0, 0);
-            TimeSpan time14 = new TimeSpan(14, 0, 0);
-            TimeSpan time15 = new TimeSpan(15, 0, 0);
-            TimeSpan time16 = new TimeSpan(16, 0, 0);
-            TimeSpan time17 = new TimeSpan(17, 0, 0);
-            TimeSpan time18 = new TimeSpan(18, 0, 0);
-            TimeSpan time22 = new TimeSpan(22, 0, 0);
-            TimeSpan time19 = new TimeSpan(19, 0, 0);
-            TimeSpan time20 = new TimeSpan(20, 0, 0);
-            TimeSpan time21 = new TimeSpan(21, 0, 0);
+       
             //   Console.WriteLine(time8);
-            try
-            {
-                foreach (var even in Events)
+           
+                for (int i = 1; i < TimerArray.Length; i++)
                 {
-
-                    if ((int)even.Date.DayOfWeek == 2 && even.Date.Day.ToString() == tuesday)
+                    TimerArray[i] = TimerArray[i - 1].Add(time1);
+                    Console.WriteLine(TimerArray[i - 1]);
+                }
+                //   Console.WriteLine(time8);
+                try
+                {
+                    for (int i = 0; i < tue.Length; i++)
                     {
-                        Console.WriteLine("I made it");
-                        if (even.StartTime == time8)
-                        {
-                            tue8 = true;
-                        }
-                        else if (even.StartTime == time9)
-                        {
+                        tue[i] = false;
+                    }
+                    foreach (var even in Events)
+                    {
 
-                            tue9 = true;
-                        }
-                        else if (even.StartTime == time10)
+                        if ((int)even.Date.DayOfWeek == 2 && even.Date.Day.ToString() == tuesday)
                         {
+                            Console.WriteLine("I made it");
+                            for (int i = 0; i < TimerArray.Length; i++)
+                            {
 
-                            tue10 = true;
-                        }
-                        else if (even.StartTime == time11)
-                        {
+                                if (even.StartTime == TimerArray[i])
+                                {
+                                    tue[i] = true;
+                                    Console.WriteLine(even.StartTime);
+                                }
 
-                            tue11 = true;
-                        }
-                        else if (even.StartTime == time12)
-                        {
+                            }
 
-                            tue12 = true;
-                        }
-                        else if (even.StartTime == time13)
-                        {
 
-                            tue13 = true;
                         }
-                        else if (even.StartTime == time14)
-                        {
 
-                            tue14 = true;
-                        }
-                        else if (even.StartTime == time15)
-                        {
-
-                            tue15 = true;
-                        }
-                        else if (even.StartTime == time16)
-                        {
-
-                            tue16 = true;
-                        }
-                        else if (even.StartTime == time17)
-                        {
-
-                            tue17 = true;
-                        }
-                        else if (even.StartTime == time18)
-                        {
-
-                            tue18 = true;
-                        }
-                        else if (even.StartTime == time19)
-                        {
-
-                            tue19 = true;
-                        }
-                        else if (even.StartTime == time20)
-                        {
-
-                            tue20 = true;
-                        }
-                        else if (even.StartTime == time21)
-                        {
-
-                            tue21 = true;
-                        }
-                        else if (even.StartTime == time22)
-                        {
-                            tue22 = true;
-                        }
 
 
                     }
-
-
-
                 }
-            }
-            catch (Exception ex)
+                catch (Exception ex)
             {
                 Debug.WriteLine(ex);
             }
@@ -341,104 +213,38 @@ namespace DAYLY.ViewModels
         }
         public void WedTime()
         {
-            Console.WriteLine("pog");
+
             IsBusy = true;
-            TimeSpan time8 = new TimeSpan(8, 0, 0);
-            TimeSpan time9 = new TimeSpan(9, 0, 0);
-            TimeSpan time10 = new TimeSpan(10, 0, 0);
-            TimeSpan time11 = new TimeSpan(11, 0, 0);
-            TimeSpan time12 = new TimeSpan(12, 0, 0);
-            TimeSpan time13 = new TimeSpan(13, 0, 0);
-            TimeSpan time14 = new TimeSpan(14, 0, 0);
-            TimeSpan time15 = new TimeSpan(15, 0, 0);
-            TimeSpan time16 = new TimeSpan(16, 0, 0);
-            TimeSpan time17 = new TimeSpan(17, 0, 0);
-            TimeSpan time18 = new TimeSpan(18, 0, 0);
-            TimeSpan time22 = new TimeSpan(22, 0, 0);
-            TimeSpan time19 = new TimeSpan(19, 0, 0);
-            TimeSpan time20 = new TimeSpan(20, 0, 0);
-            TimeSpan time21 = new TimeSpan(21, 0, 0);
+
+            //   Console.WriteLine(time8);
+
+            for (int i = 1; i < TimerArray.Length; i++)
+            {
+                TimerArray[i] = TimerArray[i - 1].Add(time1);
+                Console.WriteLine(TimerArray[i - 1]);
+            }
             //   Console.WriteLine(time8);
             try
             {
+                for (int i = 0; i < wed.Length; i++)
+                {
+                    wed[i] = false;
+                }
                 foreach (var even in Events)
                 {
 
                     if ((int)even.Date.DayOfWeek == 3 && even.Date.Day.ToString() == wednesday)
                     {
                         Console.WriteLine("I made it");
-                        if (even.StartTime == time8)
-                        {
-                            wed8 = true;
-                        }
-                        else if (even.StartTime == time9)
-                        {
-                            wed9 = true;
-                        }
-                        else if (even.StartTime == time10)
+                        for (int i = 0; i < TimerArray.Length; i++)
                         {
 
-                            wed10 = true;
-                        }
-                        else if (even.StartTime == time11)
-                        {
+                            if (even.StartTime == TimerArray[i])
+                            {
+                                wed[i] = true;
+                                Console.WriteLine(even.StartTime);
+                            }
 
-                            wed11 = true;
-                        }
-                        else if (even.StartTime == time12)
-                        {
-
-                            wed12 = true;
-                        }
-                        else if (even.StartTime == time13)
-                        {
-
-                            wed13 = true;
-                        }
-                        else if (even.StartTime == time14)
-                        {
-
-                            wed14 = true;
-                        }
-                        else if (even.StartTime == time15)
-                        {
-
-                            wed15 = true;
-                        }
-                        else if (even.StartTime == time16)
-                        {
-
-                            wed16 = true;
-                        }
-                        else if (even.StartTime == time17)
-                        {
-
-                            wed17 = true;
-                        }
-                        else if (even.StartTime == time18)
-                        {
-
-                            wed18 = true;
-                        }
-                        else if (even.StartTime == time19)
-                        {
-
-                            wed19 = true;
-                        }
-                        else if (even.StartTime == time20)
-                        {
-
-                            wed20 = true;
-                        }
-                        else if (even.StartTime == time21)
-                        {
-
-                            wed21 = true;
-                        }
-                        else if (even.StartTime == time22)
-                        {
-
-                            wed22 = true;
                         }
 
 
@@ -459,105 +265,38 @@ namespace DAYLY.ViewModels
         }
         public void ThurTime()
         {
-            Console.WriteLine("pog");
+
             IsBusy = true;
-            TimeSpan time8 = new TimeSpan(8, 0, 0);
-            TimeSpan time9 = new TimeSpan(9, 0, 0);
-            TimeSpan time10 = new TimeSpan(10, 0, 0);
-            TimeSpan time11 = new TimeSpan(11, 0, 0);
-            TimeSpan time12 = new TimeSpan(12, 0, 0);
-            TimeSpan time13 = new TimeSpan(13, 0, 0);
-            TimeSpan time14 = new TimeSpan(14, 0, 0);
-            TimeSpan time15 = new TimeSpan(15, 0, 0);
-            TimeSpan time16 = new TimeSpan(16, 0, 0);
-            TimeSpan time17 = new TimeSpan(17, 0, 0);
-            TimeSpan time18 = new TimeSpan(18, 0, 0);
-            TimeSpan time22 = new TimeSpan(22, 0, 0);
-            TimeSpan time19 = new TimeSpan(19, 0, 0);
-            TimeSpan time20 = new TimeSpan(20, 0, 0);
-            TimeSpan time21 = new TimeSpan(21, 0, 0);
+
+            //   Console.WriteLine(time8);
+
+            for (int i = 1; i < TimerArray.Length; i++)
+            {
+                TimerArray[i] = TimerArray[i - 1].Add(time1);
+                Console.WriteLine(TimerArray[i - 1]);
+            }
             //   Console.WriteLine(time8);
             try
             {
+                for (int i = 0; i < thur.Length; i++)
+                {
+                    thur[i] = false;
+                }
                 foreach (var even in Events)
                 {
 
                     if ((int)even.Date.DayOfWeek == 4 && even.Date.Day.ToString() == thursday)
                     {
                         Console.WriteLine("I made it");
-                        if (even.StartTime == time8)
-                        {
-                            thur8 = true;
-                        }
-                        else if (even.StartTime == time9)
+                        for (int i = 0; i < TimerArray.Length; i++)
                         {
 
-                            thur9 = true;
-                        }
-                        else if (even.StartTime == time10)
-                        {
+                            if (even.StartTime == TimerArray[i])
+                            {
+                                thur[i] = true;
+                                Console.WriteLine(even.StartTime);
+                            }
 
-                            thur10 = true;
-                        }
-                        else if (even.StartTime == time11)
-                        {
-
-                            thur11 = true;
-                        }
-                        else if (even.StartTime == time12)
-                        {
-
-                            thur12 = true;
-                        }
-                        else if (even.StartTime == time13)
-                        {
-
-                            thur13 = true;
-                        }
-                        else if (even.StartTime == time14)
-                        {
-
-                            thur14 = true;
-                        }
-                        else if (even.StartTime == time15)
-                        {
-
-                            thur15 = true;
-                        }
-                        else if (even.StartTime == time16)
-                        {
-
-                            thur16 = true;
-                        }
-                        else if (even.StartTime == time17)
-                        {
-
-                            thur17 = true;
-                        }
-                        else if (even.StartTime == time18)
-                        {
-
-                            thur18 = true;
-                        }
-                        else if (even.StartTime == time19)
-                        {
-
-                            thur19 = true;
-                        }
-                        else if (even.StartTime == time20)
-                        {
-
-                            thur20 = true;
-                        }
-                        else if (even.StartTime == time21)
-                        {
-
-                            thur21 = true;
-                        }
-                        else if (even.StartTime == time22)
-                        {
-
-                            thur22 = true;
                         }
 
 
@@ -578,105 +317,38 @@ namespace DAYLY.ViewModels
         }
         public void FriTime()
         {
-            Console.WriteLine("pog");
+
             IsBusy = true;
-            TimeSpan time8 = new TimeSpan(8, 0, 0);
-            TimeSpan time9 = new TimeSpan(9, 0, 0);
-            TimeSpan time10 = new TimeSpan(10, 0, 0);
-            TimeSpan time11 = new TimeSpan(11, 0, 0);
-            TimeSpan time12 = new TimeSpan(12, 0, 0);
-            TimeSpan time13 = new TimeSpan(13, 0, 0);
-            TimeSpan time14 = new TimeSpan(14, 0, 0);
-            TimeSpan time15 = new TimeSpan(15, 0, 0);
-            TimeSpan time16 = new TimeSpan(16, 0, 0);
-            TimeSpan time17 = new TimeSpan(17, 0, 0);
-            TimeSpan time18 = new TimeSpan(18, 0, 0);
-            TimeSpan time22 = new TimeSpan(22, 0, 0);
-            TimeSpan time19 = new TimeSpan(19, 0, 0);
-            TimeSpan time20 = new TimeSpan(20, 0, 0);
-            TimeSpan time21 = new TimeSpan(21, 0, 0);
+
+            //   Console.WriteLine(time8);
+
+            for (int i = 1; i < TimerArray.Length; i++)
+            {
+                TimerArray[i] = TimerArray[i - 1].Add(time1);
+                Console.WriteLine(TimerArray[i - 1]);
+            }
             //   Console.WriteLine(time8);
             try
             {
+                for (int i = 0; i < fri.Length; i++)
+                {
+                    fri[i] = false;
+                }
                 foreach (var even in Events)
                 {
 
                     if ((int)even.Date.DayOfWeek == 5 && even.Date.Day.ToString() == friday)
                     {
                         Console.WriteLine("I made it");
-                        if (even.StartTime == time8)
-                        {
-                            fri8 = true;
-                        }
-                        else if (even.StartTime == time9)
+                        for (int i = 0; i < TimerArray.Length; i++)
                         {
 
-                            fri9 = true;
-                        }
-                        else if (even.StartTime == time10)
-                        {
+                            if (even.StartTime == TimerArray[i])
+                            {
+                                fri[i] = true;
+                                Console.WriteLine(even.StartTime);
+                            }
 
-                            fri10 = true;
-                        }
-                        else if (even.StartTime == time11)
-                        {
-
-                            fri11 = true;
-                        }
-                        else if (even.StartTime == time12)
-                        {
-
-                            fri12 = true;
-                        }
-                        else if (even.StartTime == time13)
-                        {
-
-                            fri13 = true;
-                        }
-                        else if (even.StartTime == time14)
-                        {
-
-                            fri14 = true;
-                        }
-                        else if (even.StartTime == time15)
-                        {
-
-                            fri15 = true;
-                        }
-                        else if (even.StartTime == time16)
-                        {
-
-                            fri16 = true;
-                        }
-                        else if (even.StartTime == time17)
-                        {
-
-                            fri17 = true;
-                        }
-                        else if (even.StartTime == time18)
-                        {
-
-                            fri18 = true;
-                        }
-                        else if (even.StartTime == time19)
-                        {
-
-                            fri19 = true;
-                        }
-                        else if (even.StartTime == time20)
-                        {
-
-                            fri20 = true;
-                        }
-                        else if (even.StartTime == time21)
-                        {
-
-                            fri21 = true;
-                        }
-                        else if (even.StartTime == time22)
-                        {
-
-                            fri22 = true;
                         }
 
 
@@ -697,105 +369,38 @@ namespace DAYLY.ViewModels
         }
         public void SatTime()
         {
-            Console.WriteLine("pog");
+
             IsBusy = true;
-            TimeSpan time8 = new TimeSpan(8, 0, 0);
-            TimeSpan time9 = new TimeSpan(9, 0, 0);
-            TimeSpan time10 = new TimeSpan(10, 0, 0);
-            TimeSpan time11 = new TimeSpan(11, 0, 0);
-            TimeSpan time12 = new TimeSpan(12, 0, 0);
-            TimeSpan time13 = new TimeSpan(13, 0, 0);
-            TimeSpan time14 = new TimeSpan(14, 0, 0);
-            TimeSpan time15 = new TimeSpan(15, 0, 0);
-            TimeSpan time16 = new TimeSpan(16, 0, 0);
-            TimeSpan time17 = new TimeSpan(17, 0, 0);
-            TimeSpan time18 = new TimeSpan(18, 0, 0);
-            TimeSpan time22 = new TimeSpan(22, 0, 0);
-            TimeSpan time19 = new TimeSpan(19, 0, 0);
-            TimeSpan time20 = new TimeSpan(20, 0, 0);
-            TimeSpan time21 = new TimeSpan(21, 0, 0);
+
+            //   Console.WriteLine(time8);
+
+            for (int i = 1; i < TimerArray.Length; i++)
+            {
+                TimerArray[i] = TimerArray[i - 1].Add(time1);
+                Console.WriteLine(TimerArray[i - 1]);
+            }
             //   Console.WriteLine(time8);
             try
             {
+                for (int i = 0; i < sat.Length; i++)
+                {
+                    sat[i] = false;
+                }
                 foreach (var even in Events)
                 {
 
                     if ((int)even.Date.DayOfWeek == 6 && even.Date.Day.ToString() == saturday)
                     {
                         Console.WriteLine("I made it");
-                        if (even.StartTime == time8)
-                        {
-                            sat8 = true;
-                        }
-                        else if (even.StartTime == time9)
+                        for (int i = 0; i < TimerArray.Length; i++)
                         {
 
-                            sat9 = true;
-                        }
-                        else if (even.StartTime == time10)
-                        {
+                            if (even.StartTime == TimerArray[i])
+                            {
+                                sat[i] = true;
+                                Console.WriteLine(even.StartTime);
+                            }
 
-                            sat10 = true;
-                        }
-                        else if (even.StartTime == time11)
-                        {
-
-                            sat11 = true;
-                        }
-                        else if (even.StartTime == time12)
-                        {
-
-                            sat12 = true;
-                        }
-                        else if (even.StartTime == time13)
-                        {
-
-                            sat13 = true;
-                        }
-                        else if (even.StartTime == time14)
-                        {
-
-                            sat14 = true;
-                        }
-                        else if (even.StartTime == time15)
-                        {
-
-                            sat15 = true;
-                        }
-                        else if (even.StartTime == time16)
-                        {
-
-                            sat16 = true;
-                        }
-                        else if (even.StartTime == time17)
-                        {
-
-                            sat17 = true;
-                        }
-                        else if (even.StartTime == time18)
-                        {
-
-                            sat18 = true;
-                        }
-                        else if (even.StartTime == time19)
-                        {
-
-                            sat19 = true;
-                        }
-                        else if (even.StartTime == time20)
-                        {
-
-                            sat20 = true;
-                        }
-                        else if (even.StartTime == time21)
-                        {
-
-                            sat21 = true;
-                        }
-                        else if (even.StartTime == time22)
-                        {
-
-                            sat22 = true;
                         }
 
 
@@ -816,105 +421,38 @@ namespace DAYLY.ViewModels
         }
         public void SunTime()
         {
-            Console.WriteLine("pog");
+
             IsBusy = true;
-            TimeSpan time8 = new TimeSpan(8, 0, 0);
-            TimeSpan time9 = new TimeSpan(9, 0, 0);
-            TimeSpan time10 = new TimeSpan(10, 0, 0);
-            TimeSpan time11 = new TimeSpan(11, 0, 0);
-            TimeSpan time12 = new TimeSpan(12, 0, 0);
-            TimeSpan time13 = new TimeSpan(13, 0, 0);
-            TimeSpan time14 = new TimeSpan(14, 0, 0);
-            TimeSpan time15 = new TimeSpan(15, 0, 0);
-            TimeSpan time16 = new TimeSpan(16, 0, 0);
-            TimeSpan time17 = new TimeSpan(17, 0, 0);
-            TimeSpan time18 = new TimeSpan(18, 0, 0);
-            TimeSpan time22 = new TimeSpan(22, 0, 0);
-            TimeSpan time19 = new TimeSpan(19, 0, 0);
-            TimeSpan time20 = new TimeSpan(20, 0, 0);
-            TimeSpan time21 = new TimeSpan(21, 0, 0);
+
+            //   Console.WriteLine(time8);
+
+            for (int i = 1; i < TimerArray.Length; i++)
+            {
+                TimerArray[i] = TimerArray[i - 1].Add(time1);
+                Console.WriteLine(TimerArray[i - 1]);
+            }
             //   Console.WriteLine(time8);
             try
             {
+                for (int i = 0; i < sun.Length; i++)
+                {
+                    sun[i] = false;
+                }
                 foreach (var even in Events)
                 {
 
                     if ((int)even.Date.DayOfWeek == 0 && even.Date.Day.ToString() == sunday)
                     {
                         Console.WriteLine("I made it");
-                        if (even.StartTime == time8)
-                        {
-                            sun8 = true;
-                        }
-                        else if (even.StartTime == time9)
+                        for (int i = 0; i < TimerArray.Length; i++)
                         {
 
-                            sun9 = true;
-                        }
-                        else if (even.StartTime == time10)
-                        {
+                            if (even.StartTime == TimerArray[i])
+                            {
+                                sun[i] = true;
+                                Console.WriteLine(even.StartTime);
+                            }
 
-                            sun10 = true;
-                        }
-                        else if (even.StartTime == time11)
-                        {
-
-                            sun11 = true;
-                        }
-                        else if (even.StartTime == time12)
-                        {
-
-                            sun12 = true;
-                        }
-                        else if (even.StartTime == time13)
-                        {
-
-                            sun13 = true;
-                        }
-                        else if (even.StartTime == time14)
-                        {
-
-                            sun14 = true;
-                        }
-                        else if (even.StartTime == time15)
-                        {
-
-                            sun15 = true;
-                        }
-                        else if (even.StartTime == time16)
-                        {
-
-                            sun16 = true;
-                        }
-                        else if (even.StartTime == time17)
-                        {
-
-                            sun17 = true;
-                        }
-                        else if (even.StartTime == time18)
-                        {
-
-                            sun18 = true;
-                        }
-                        else if (even.StartTime == time19)
-                        {
-
-                            sun19 = true;
-                        }
-                        else if (even.StartTime == time20)
-                        {
-
-                            sun20 = true;
-                        }
-                        else if (even.StartTime == time21)
-                        {
-
-                            sun21 = true;
-                        }
-                        else if (even.StartTime == time22)
-                        {
-
-                            sun22 = true;
                         }
 
 
@@ -996,7 +534,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return mon8;
+                return mon[0];
             }
        
         }
@@ -1004,7 +542,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return mon9;
+                return mon[1];
             }
 
         }
@@ -1012,7 +550,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return mon10;
+                return mon[2];
             }
 
         }
@@ -1020,7 +558,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return mon11;
+                return mon[3];
             }
 
         }
@@ -1028,7 +566,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return mon12;
+                return mon[4];
             }
 
         }
@@ -1036,7 +574,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return mon13;
+                return mon[5];
             }
 
         }
@@ -1044,7 +582,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return mon14;
+                return mon[6];
             }
 
         }
@@ -1052,7 +590,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return mon15;
+                return mon[7];
             }
 
         }
@@ -1060,7 +598,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return mon16;
+                return mon[8];
             }
 
         }
@@ -1068,7 +606,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return mon17;
+                return mon[9];
             }
 
         }
@@ -1076,7 +614,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return mon18;
+                return mon[10];
             }
 
         }
@@ -1084,7 +622,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return tue8;
+                return tue[0];
             }
 
         }
@@ -1092,7 +630,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return tue9;
+                return tue[1];
             }
 
         }
@@ -1100,7 +638,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return tue10;
+                return tue[2];
             }
 
         }
@@ -1108,7 +646,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return tue11;
+                return tue[3];
             }
 
         }
@@ -1116,7 +654,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return tue12;
+                return tue[4];
             }
 
         }
@@ -1124,7 +662,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return tue13;
+                return tue[5];
             }
 
         }
@@ -1132,7 +670,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return tue14;
+                return tue[6];
             }
 
         }
@@ -1140,7 +678,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return tue15;
+                return tue[7];
             }
 
         }
@@ -1148,7 +686,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return tue16;
+                return tue[8];
             }
 
         }
@@ -1156,7 +694,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return tue17;
+                return tue[9];
             }
 
         }
@@ -1164,7 +702,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return tue18;
+                return tue[10];
             }
 
         }
@@ -1172,7 +710,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return wed8;
+                return wed[0];
             }
 
         }
@@ -1180,7 +718,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return wed9;
+                return wed[1];
             }
 
         }
@@ -1188,7 +726,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return wed10;
+                return wed[2];
             }
 
         }
@@ -1196,7 +734,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return wed11;
+                return wed[3];
             }
 
         }
@@ -1204,7 +742,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return wed12;
+                return wed[4];
             }
 
         }
@@ -1212,7 +750,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return wed13;
+                return wed[5];
             }
 
         }
@@ -1220,7 +758,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return wed14;
+                return wed[6];
             }
 
         }
@@ -1228,7 +766,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return wed15;
+                return wed[7];
             }
 
         }
@@ -1236,7 +774,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return wed16;
+                return wed[8];
             }
 
         }
@@ -1244,7 +782,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return wed17;
+                return wed[9];
             }
 
         }
@@ -1252,7 +790,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return wed18;
+                return wed[10];
             }
 
         }
@@ -1260,7 +798,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return thur8;
+                return thur[0];
             }
 
         }
@@ -1268,7 +806,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return thur9;
+                return thur[1];
             }
 
         }
@@ -1276,7 +814,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return thur10;
+                return thur[2];
             }
 
         }
@@ -1284,7 +822,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return thur11;
+                return thur[3];
             }
 
         }
@@ -1292,7 +830,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return thur12;
+                return thur[4];
             }
 
         }
@@ -1300,7 +838,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return thur13;
+                return thur[5];
             }
 
         }
@@ -1308,7 +846,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return thur14;
+                return thur[6];
             }
 
         }
@@ -1316,7 +854,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return thur15;
+                return thur[7];
             }
 
         }
@@ -1324,7 +862,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return thur16;
+                return thur[8];
             }
 
         }
@@ -1332,7 +870,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return thur17;
+                return thur[9];
             }
 
         }
@@ -1340,7 +878,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return thur18;
+                return thur[10];
             }
 
         }
@@ -1348,7 +886,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return fri8;
+                return fri[0];
             }
 
         }
@@ -1356,7 +894,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return fri9;
+                return fri[1];
             }
 
         }
@@ -1364,7 +902,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return fri10;
+                return fri[2];
             }
 
         }
@@ -1372,7 +910,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return fri11;
+                return fri[3];
             }
 
         }
@@ -1380,7 +918,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return fri12;
+                return fri[4];
             }
 
         }
@@ -1388,7 +926,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return fri13;
+                return fri[5];
             }
 
         }
@@ -1396,7 +934,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return fri14;
+                return fri[6];
             }
 
         }
@@ -1404,7 +942,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return fri15;
+                return fri[7];
             }
 
         }
@@ -1412,7 +950,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return fri16;
+                return fri[8];
             }
 
         }
@@ -1420,7 +958,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return fri17;
+                return fri[9];
             }
 
         }
@@ -1428,7 +966,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return fri18;
+                return fri[10];
             }
 
         }
@@ -1436,7 +974,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sat8;
+                return sat[0];
             }
 
         }
@@ -1444,7 +982,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sat9;
+                return sat[1];
             }
 
         }
@@ -1452,7 +990,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sat10;
+                return sat[2];
             }
 
         }
@@ -1460,7 +998,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sat11;
+                return sat[3];
             }
 
         }
@@ -1468,7 +1006,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sat12;
+                return sat[4];
             }
 
         }
@@ -1476,7 +1014,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sat13;
+                return sat[5];
             }
 
         }
@@ -1484,7 +1022,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sat14;
+                return sat[6];
             }
 
         }
@@ -1492,7 +1030,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sat15;
+                return sat[7];
             }
 
         }
@@ -1500,7 +1038,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sat16;
+                return sat[8];
             }
 
         }
@@ -1508,7 +1046,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sat17;
+                return sat[9];
             }
 
         }
@@ -1516,7 +1054,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sat18;
+                return sat[10];
             }
 
         }
@@ -1524,7 +1062,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sun8;
+                return sun[0];
             }
 
         }
@@ -1532,7 +1070,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sun9;
+                return sun[1];
             }
 
         }
@@ -1540,7 +1078,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sun10;
+                return sun[2];
             }
 
         }
@@ -1548,7 +1086,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sun11;
+                return sun[3];
             }
 
         }
@@ -1556,7 +1094,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sun12;
+                return sun[4];
             }
 
         }
@@ -1564,7 +1102,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sun13;
+                return sun[5];
             }
 
         }
@@ -1572,7 +1110,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sun14;
+                return sun[6];
             }
 
         }
@@ -1580,7 +1118,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sun15;
+                return sun[7];
             }
 
         }
@@ -1588,7 +1126,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sun16;
+                return sun[8];
             }
 
         }
@@ -1596,7 +1134,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sun17;
+                return sun[9];
             }
 
         }
@@ -1604,9 +1142,16 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return sun18;
+                return sun[10];
             }
 
+        }
+        public double Tmon8
+        {
+            get
+            {
+                return tmon8;
+            }
         }
     }
 }
