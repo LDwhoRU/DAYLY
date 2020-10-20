@@ -338,7 +338,7 @@
                     <ListView x:Name="myListView" HasUnevenRows="True" Margin="0, 0, 0, 25" HeightRequest="40">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <TextCell Text="{Binding IsOnline}" Detail="{Binding AllDay}"/>
+                                <TextCell Text="{Binding URL}" Detail="{Binding Description}"/>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>

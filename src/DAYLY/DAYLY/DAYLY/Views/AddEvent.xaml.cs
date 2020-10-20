@@ -21,25 +21,32 @@ namespace DAYLY.Views
     {
         public SQLiteConnection conn;
         public TestEvent testmodel;
+        public Event eventmodel;
+        public Note notemodel;
+        public Programme programmemodel;
         public AddEvent()
         {
            
             InitializeComponent();
-
-            StartTimePicker.Time = DateTime.Now.TimeOfDay;
-            EndTimePicker.Time = DateTime.Now.TimeOfDay.Add(new TimeSpan(2, 0, 0));
-            EventDatePicker.Date = DateTime.Now;
+            DateTime currentTime = DateTime.Now;
+            StartTimePicker.Time = currentTime.TimeOfDay;
+            EndTimePicker.Time = currentTime.AddHours(2).TimeOfDay;
+            EventDatePicker.Date = currentTime;
 
             conn = DependencyService.Get<Isqlite>().GetConnection();
             try
             {
-                conn.DropTable<TestEvent>();
+                conn.DropTable<Event>();
+                conn.DropTable<Note>();
+                conn.DropTable<Programme>();
             }
             catch (Exception e)
             {
                 throw e;
             }
-            conn.CreateTable<TestEvent>();
+            conn.CreateTable<Note>();
+            conn.CreateTable<Programme>();
+            conn.CreateTable<Event>();
             BindingContext = new NewEventViewModel();
         }
         async void OnReminderClick(object sender, EventArgs e)
@@ -48,23 +55,63 @@ namespace DAYLY.Views
         }
         private void AddEventBtn_Clicked(object sender, EventArgs e)
         {
-            TestEvent test = new TestEvent();
-            test.Name = Name.Text;
-            test.Date = EventDatePicker.Date;
-            test.StartTime = StartTimePicker.Time;
-            test.EndTime = EndTimePicker.Time;
-            test.AllDay = AllDaySwitch.IsToggled;
-            test.IsOnline = OnlineSwitch.IsToggled;
-            int isSuccess = 0;
+            int isSuccess;
+
+            // Add Test Note
+            Note newNote = new Note
+            {
+                Description = "Testing",
+                URL = "www.url.com"
+            };
+            isSuccess = 0;
             try
             {
-                isSuccess = conn.Insert(test);
+                isSuccess = conn.Insert(newNote);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            var details = (from x in conn.Table<TestEvent>() select x).ToList();
+
+            // Add Programme
+            Programme newProgramme = new Programme
+            {
+                Name = "Cal",
+                HexColour = "FFFFFF"
+            };
+            isSuccess = 0;
+            try
+            {
+                isSuccess = conn.Insert(newProgramme);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            // Add Event
+            Event newEvent = new Event
+            {
+                Name = Name.Text,
+                Type = "Event",
+                Date = EventDatePicker.Date,
+                StartTime = StartTimePicker.Time,
+                EndTime = EndTimePicker.Time,
+                AllDay = AllDaySwitch.IsToggled,
+                IsOnline = OnlineSwitch.IsToggled,
+                NoteId = newNote.Id,
+                ProgrammeId = newProgramme.Id,
+            };
+            isSuccess = 0;
+            try
+            {
+                isSuccess = conn.Insert(newEvent);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            var details = (from x in conn.Table<Note>() select x).ToList();
             myListView.ItemsSource = details;
         }
 
