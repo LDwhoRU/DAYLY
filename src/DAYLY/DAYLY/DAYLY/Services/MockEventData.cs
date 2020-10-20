@@ -13,13 +13,24 @@ namespace DAYLY.Services
 
         public MockEventData()
         {
-            DateTime datetime1 = new DateTime(2020, 10, 17, 8, 30, 0);
-            DateTime datetime2 = new DateTime(2020, 10, 17, 9, 30, 0);
+            DateTime datetime1 = new DateTime(2020, 10, 19, 8, 30, 0);
+            DateTime datetime2 = new DateTime(2020, 10, 21, 9, 30, 0);
+            DateTime datetime3 = new DateTime(2020, 10, 23, 9, 30, 0);
+            TimeSpan span = new TimeSpan(9, 0, 0);
+            TimeSpan span3= new TimeSpan(12, 0, 0);
+            TimeSpan span2 = new TimeSpan(15, 0, 0);
+            TimeSpan span4 = new TimeSpan(11, 0, 0);
+            TimeSpan span5 = new TimeSpan(16, 0, 0);
+
 
             events = new List<Event>()
 
             {
-                new Event { Id = "1", Name = "CAB303", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=null,AllDay=false,StartTime=datetime1,EndTime=datetime2,Location="P5" },
+                new Event { Id = "1", Name = "CAB303", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=null,AllDay=false,StartTime=span, Length=span,Location="P5" },
+                 new Event { Id = "3", Name = "CAB303", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=null,AllDay=false,StartTime=span2, Length=span,Location="P5" },
+                new Event { Id = "2", Name = "CAB303", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=null,AllDay=false,StartTime=span3, Length=span,Location="P5" },
+                 new Event { Id = "4", Name = "CAB303", Type = "tute", Date = datetime2, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=null,AllDay=false,StartTime=span4, Length=span,Location="P5" },
+                  new Event { Id = "5", Name = "CAB303", Type = "tute", Date = datetime3, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=null,AllDay=false,StartTime=span5, Length=span,Location="P5" },
      };
         }
         public async Task<bool> AddItemAsync(Event item)
