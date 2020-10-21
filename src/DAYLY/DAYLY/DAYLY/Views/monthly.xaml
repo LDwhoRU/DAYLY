@@ -2,12 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:controls="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
+              xmlns:viewModels="clr-namespace:DAYLY.ViewModels"
              x:Class="DAYLY.Views.Monthly"
                BackgroundColor="White">
     <Shell.BackButtonBehavior>
         <BackButtonBehavior  IconOverride="transparent.png" 
                              ></BackButtonBehavior>
     </Shell.BackButtonBehavior>
+    <ContentPage.BindingContext>
+        <viewModels:MonthlyViewModel/>
+    </ContentPage.BindingContext>
     <StackLayout Spacing="0">
         <Grid HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="60" Margin="15, 0, 0, 10" ColumnSpacing="5">
             <Grid.RowDefinitions>
@@ -54,7 +58,7 @@
                     FontAttributes="Bold"
                     FontSize="Medium" />
                             <Label
-                    Text="{Binding Description}"
+                    Text="{Binding Type}"
                     FontSize="Small"
                     LineBreakMode="WordWrap" />
                         </StackLayout>
