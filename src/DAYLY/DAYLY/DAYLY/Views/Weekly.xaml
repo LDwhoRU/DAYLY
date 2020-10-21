@@ -131,241 +131,353 @@
                     <Label Text="8 PM" Grid.Row="13"/>
                     <Label Text="9 PM" Grid.Row="14"/>
                     <Label Text="10 PM" Grid.Row="15"/>
-                    <Frame Grid.Column="1" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                        <Label Text="IAB330" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    <!--Using the boolean array of days to set visibility, using the array of day colours/text to set colour/text-->
+                    <Frame Grid.Column="1" IsVisible="{Binding Sun[0]}" BackgroundColor="{Binding SunColours[0]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SunText[0]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="1" Grid.Row="1" IsVisible="{Binding Sun8}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                        <Label Text="IAB330" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    <Frame Grid.Column="1" Grid.Row="1" IsVisible="{Binding Sun[1]}" BackgroundColor="{Binding SunColours[1]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SunText[1]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="1" Grid.Row="2" IsVisible="{Binding Sun9}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                        <Label Text="IAB330" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    <Frame Grid.Column="1" Grid.Row="2" IsVisible="{Binding Sun[2]}" BackgroundColor="{Binding SunColours[2]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SunText[2]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="1" Grid.Row="3" IsVisible="{Binding Sun10}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                        <Label Text="IAB330" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    <Frame Grid.Column="1" Grid.Row="3" IsVisible="{Binding Sun[3]}" BackgroundColor="{Binding SunColours[3]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SunText[3]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="1" Grid.Row="4" IsVisible="{Binding Sun11}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                        <Label Text="IAB330" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    <Frame Grid.Column="1" Grid.Row="4" IsVisible="{Binding Sun[4]}" BackgroundColor="{Binding SunColours[4]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SunText[4]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="1" Grid.Row="5" IsVisible="{Binding Sun12}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                        <Label Text="IAB330" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    <Frame Grid.Column="1" Grid.Row="5" IsVisible="{Binding Sun[5]}" BackgroundColor="{Binding SunColours[5]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SunText[5]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="1" Grid.Row="6" IsVisible="{Binding Sun13}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                        <Label Text="IAB330" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    <Frame Grid.Column="1" Grid.Row="6" IsVisible="{Binding Sun[6]}" BackgroundColor="{Binding SunColours[6]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SunText[6]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="1" Grid.Row="7" IsVisible="{Binding Sun14}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                        <Label Text="IAB330" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    <Frame Grid.Column="1" Grid.Row="7" IsVisible="{Binding Sun[7]}" BackgroundColor="{Binding SunColours[7]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SunText[7]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="1" Grid.Row="8" IsVisible="{Binding Sun15}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                        <Label Text="IAB330" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    <Frame Grid.Column="1" Grid.Row="8" IsVisible="{Binding Sun[8]}" BackgroundColor="{Binding SunColours[8]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SunText[8]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="1" Grid.Row="9" IsVisible="{Binding Sun16}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                        <Label Text="IAB330" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    <Frame Grid.Column="1" Grid.Row="9" IsVisible="{Binding Sun[9]}" BackgroundColor="{Binding SunColours[9]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SunText[9]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="1" Grid.Row="10" IsVisible="{Binding Sun17}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                        <Label Text="IAB330" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    <Frame Grid.Column="1" Grid.Row="10" IsVisible="{Binding Sun[10]}" BackgroundColor="{Binding SunColours[10]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SunText[10]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="1" Grid.Row="11" IsVisible="{Binding Sun18}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                        <Label Text="IAB330" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    <Frame Grid.Column="1" Grid.Row="11" IsVisible="{Binding Sun[11]}" BackgroundColor="{Binding SunColours[11]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SunText[11]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    
-                    
-                    <Frame Grid.Column="2" IsVisible="{Binding Mon8}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="1" Grid.Row="12" IsVisible="{Binding Sun[12]}" BackgroundColor="{Binding SunColours[12]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SunText[12]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="2" Grid.Row="2" IsVisible="{Binding Mon9}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80"  Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="1" Grid.Row="13" IsVisible="{Binding Sun[13]}" BackgroundColor="{Binding SunColours[13]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SunText[13]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="2" Grid.Row="3" IsVisible="{Binding Mon10}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="1" Grid.Row="14" IsVisible="{Binding Sun[14]}" BackgroundColor="{Binding SunColours[14]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SunText[14]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="2" Grid.Row="4" IsVisible="{Binding Mon11}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="2" Grid.Row="5" IsVisible="{Binding Mon12}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="2" Grid.Row="6" IsVisible="{Binding Mon13}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="2" Grid.Row="7" IsVisible="{Binding Mon14}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="2" Grid.Row="8" IsVisible="{Binding Mon15}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="2" Grid.Row="9" IsVisible="{Binding Mon16}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="2" Grid.Row="10" IsVisible="{Binding Mon17}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="2" Grid.Row="11" IsVisible="{Binding Mon18}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="2" Grid.Row="12" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="2" Grid.Row="13" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="2" Grid.Row="14" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="2" Grid.Row="15" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="2" Grid.Row="16" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="1" Grid.Row="15" IsVisible="{Binding Sun[15]}" BackgroundColor="{Binding SunColours[15]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SunText[15]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
 
-                    <Frame Grid.Column="3" IsVisible="{Binding Tue8}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+
+
+                    <Frame Grid.Column="2" IsVisible="{Binding Mon[0]}" BackgroundColor="{Binding MonColours[0]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding MonText[0]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="3" Grid.Row="2" IsVisible="{Binding Tue9}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="2" Grid.Row="1" IsVisible="{Binding Mon[1]}" BackgroundColor="{Binding MonColours[1]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding MonText[1]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="3" Grid.Row="3" IsVisible="{Binding Tue10}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="2" Grid.Row="2" IsVisible="{Binding Mon[2]}" BackgroundColor="{Binding MonColours[2]}" VerticalOptions="Start" HeightRequest="80"  Padding="0" CornerRadius="10">
+                        <Label Text="{Binding MonText[2]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="3" Grid.Row="4" IsVisible="{Binding Tue11}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="2" Grid.Row="3" IsVisible="{Binding Mon[3]}" BackgroundColor="{Binding MonColours[3]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding MonText[3]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="3" Grid.Row="5" IsVisible="{Binding Tue12}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="2" Grid.Row="4" IsVisible="{Binding Mon[4]}" BackgroundColor="{Binding MonColours[4]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding MonText[4]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="3" Grid.Row="6" IsVisible="{Binding Tue13}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="2" Grid.Row="5" IsVisible="{Binding Mon[5]}" BackgroundColor="{Binding MonColours[5]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding MonnText[5]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="3" Grid.Row="7" IsVisible="{Binding Tue14}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="2" Grid.Row="6" IsVisible="{Binding Mon[6]}" BackgroundColor="{Binding MonColours[6]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding MonText[6]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="3" Grid.Row="8" IsVisible="{Binding Tue15}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="2" Grid.Row="7" IsVisible="{Binding Mon[7]}" BackgroundColor="{Binding MonColours[7]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding MonText[7]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="3" Grid.Row="9" IsVisible="{Binding Tue16}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="2" Grid.Row="8" IsVisible="{Binding Mon[8]}" BackgroundColor="{Binding MonColours[8]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding MonText[8]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="3" Grid.Row="10" IsVisible="{Binding Tue17}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="2" Grid.Row="9" IsVisible="{Binding Mon[9]}" BackgroundColor="{Binding MonColours[9]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding MonText[9]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="3" Grid.Row="11" IsVisible="{Binding Tue18}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="2" Grid.Row="10" IsVisible="{Binding Mon[10]}" BackgroundColor="{Binding MonColours[10]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding MonText[10]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="3" Grid.Row="12" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="2" Grid.Row="11" IsVisible="{Binding Mon[11]}" BackgroundColor="{Binding MonColours[11]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding MonText[11]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="3" Grid.Row="13" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="2" Grid.Row="12" IsVisible="{Binding Mon[12]}" BackgroundColor="{Binding MonColours[12]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding MonText[12]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="3" Grid.Row="14" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="2" Grid.Row="13" IsVisible="{Binding Mon[13]}" BackgroundColor="{Binding MonColours[13]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding MonText[13]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="3" Grid.Row="15" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="2" Grid.Row="14" IsVisible="{Binding Mon[14]}" BackgroundColor="{Binding MonColours[14]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding MonText[14]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="3" Grid.Row="16" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="2" Grid.Row="15" IsVisible="{Binding Mon[15]}" BackgroundColor="{Binding MonColours[15]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding MonText[15]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
 
-                    <Frame Grid.Column="4" IsVisible="{Binding Wed8}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="3" IsVisible="{Binding Tue[0]}" BackgroundColor="{Binding TueColours[0]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding MonText[0]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="4" Grid.Row="2" IsVisible="{Binding Wed9}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="3" Grid.Row="1" IsVisible="{Binding Tue[1]}" BackgroundColor="{Binding TueColours[1]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding TueText[1]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="4" Grid.Row="3" IsVisible="{Binding Wed10}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="3" Grid.Row="2" IsVisible="{Binding Tue[2]}" BackgroundColor="{Binding TueColours[2]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding TueText[2]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="4" Grid.Row="4" IsVisible="{Binding Wed11}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="3" Grid.Row="3" IsVisible="{Binding Tue[3]}" BackgroundColor="{Binding TueColours[3]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding TueText[3]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="4" Grid.Row="5" IsVisible="{Binding Wed12}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="3" Grid.Row="4" IsVisible="{Binding Tue[4]}" BackgroundColor="{Binding TueColours[4]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding TueText[4]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="4" Grid.Row="6" IsVisible="{Binding Wed13}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="3" Grid.Row="5" IsVisible="{Binding Tue[5]}" BackgroundColor="{Binding TueColours[5]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding TueText[5]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="4" Grid.Row="7" IsVisible="{Binding Wed14}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="3" Grid.Row="6" IsVisible="{Binding Tue[6]}" BackgroundColor="{Binding TueColours[6]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding TueText[6]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="4" Grid.Row="8" IsVisible="{Binding Wed15}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="3" Grid.Row="7" IsVisible="{Binding Tue[7]}" BackgroundColor="{Binding TueColours[7]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding TueText[7]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="4" Grid.Row="9" IsVisible="{Binding Wed16}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="3" Grid.Row="8" IsVisible="{Binding Tue[8]}" BackgroundColor="{Binding TueColours[8]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding TueText[8]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="4" Grid.Row="10" IsVisible="{Binding Wed17}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="3" Grid.Row="9" IsVisible="{Binding Tue[9]}" BackgroundColor="{Binding TueColours[9]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding TueText[9]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="4" Grid.Row="11" IsVisible="{Binding Wed18}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="3" Grid.Row="10" IsVisible="{Binding Tue[10]}" BackgroundColor="{Binding TueColours[10]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding TueText[10]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="4" Grid.Row="12" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="3" Grid.Row="11" IsVisible="{Binding Tue[11]}" BackgroundColor="{Binding TueColours[11]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding TueText[11]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="4" Grid.Row="13" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="3" Grid.Row="12" IsVisible="{Binding Tue[12]}" BackgroundColor="{Binding TueColours[12]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding TueText[12]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="4" Grid.Row="14" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="3" Grid.Row="13" IsVisible="{Binding Tue[13]}" BackgroundColor="{Binding TueColours[13]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding TueText[13]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="4" Grid.Row="15" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="3" Grid.Row="14" IsVisible="{Binding Tue[14]}" BackgroundColor="{Binding TueColours[14]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding TueText[14]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="4" Grid.Row="16" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
-                    </Frame>
-
-                    <Frame Grid.Column="5" IsVisible="{Binding Thur8}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="5" Grid.Row="2" IsVisible="{Binding Thur9}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="5" Grid.Row="3" IsVisible="{Binding Thur10}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="5" Grid.Row="4" IsVisible="{Binding Thur11}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="5" Grid.Row="5" IsVisible="{Binding Thur12}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="5" Grid.Row="6" IsVisible="{Binding Thur13}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="5" Grid.Row="7" IsVisible="{Binding Thur14}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="5" Grid.Row="8" IsVisible="{Binding Thur15}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="5" Grid.Row="9" IsVisible="{Binding Thur16}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="5" Grid.Row="10" IsVisible="{Binding Thur17}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="5" Grid.Row="11" IsVisible="{Binding Thur18}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="5" Grid.Row="12" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="5" Grid.Row="13" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="5" Grid.Row="14" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="5" Grid.Row="15" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
-                    </Frame>
-                    <Frame Grid.Column="5" Grid.Row="16" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="3" Grid.Row="15" IsVisible="{Binding Tue[15]}" BackgroundColor="{Binding TueColours[15]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding TueText[15]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
 
-                    <Frame Grid.Column="6" IsVisible="{Binding Fri8}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="4" IsVisible="{Binding Wed[0]}" BackgroundColor="{Binding WedColours[0]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding WedText[0]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="6" Grid.Row="2" IsVisible="{Binding Fri9}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="4" Grid.Row="1" IsVisible="{Binding Wed[1]}" BackgroundColor="{Binding WedColours[1]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding WedText[1]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="6" Grid.Row="3" IsVisible="{Binding Fri10}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="4" Grid.Row="2" IsVisible="{Binding Wed[2]}" BackgroundColor="{Binding WedColours[2]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding WedText[2]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="6" Grid.Row="4" IsVisible="{Binding Fri11}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="4" Grid.Row="3" IsVisible="{Binding Wed[3]}" BackgroundColor="{Binding WedColours[3]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding WedText[3]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="6" Grid.Row="5" IsVisible="{Binding Fri12}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="4" Grid.Row="4" IsVisible="{Binding Wed[4]}" BackgroundColor="{Binding WedColours[4]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding WedText[4]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="6" Grid.Row="6" IsVisible="{Binding Fri13}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="4" Grid.Row="5" IsVisible="{Binding Wed[5]}" BackgroundColor="{Binding WedColours[5]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding WedText[5]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="6" Grid.Row="7" IsVisible="{Binding Fri14}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="4" Grid.Row="6" IsVisible="{Binding Wed[6]}" BackgroundColor="{Binding WedColours[6]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding WedText[6]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="6" Grid.Row="8" IsVisible="{Binding Fri15}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="4" Grid.Row="7" IsVisible="{Binding Wed[7]}" BackgroundColor="{Binding WedColours[7]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding WedText[7]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="6" Grid.Row="9" IsVisible="{Binding Fri16}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="4" Grid.Row="8" IsVisible="{Binding Wed[8]}" BackgroundColor="{Binding WedColours[8]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding WedText[8]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="6" Grid.Row="10" IsVisible="{Binding Fri17}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="4" Grid.Row="9" IsVisible="{Binding Wed[9]}" BackgroundColor="{Binding WedColours[9]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding WedText[9]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="6" Grid.Row="11" IsVisible="{Binding Fri18}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="4" Grid.Row="10" IsVisible="{Binding Wed[10]}" BackgroundColor="{Binding WedColours[10]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding WedText[10]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="6" Grid.Row="12" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="4" Grid.Row="11" IsVisible="{Binding Wed[11]}" BackgroundColor="{Binding WedColours[11]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding WedText[11]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="6" Grid.Row="13" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="4" Grid.Row="12" IsVisible="{Binding Wed[12]}" BackgroundColor="{Binding WedColours[12]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding WedText[12]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="6" Grid.Row="14" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="4" Grid.Row="13" IsVisible="{Binding Wed[13]}" BackgroundColor="{Binding WedColours[13]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding WedText[13]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="6" Grid.Row="15" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="4" Grid.Row="14" IsVisible="{Binding Wed[14]}" BackgroundColor="{Binding WedColours[14]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding WedText[14]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="6" Grid.Row="16" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="4" Grid.Row="15" IsVisible="{Binding Wed[15]}" BackgroundColor="{Binding WedColours[15]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding WedText[15]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
 
-                    <Frame Grid.Column="7" IsVisible="{Binding Sat8}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="5" IsVisible="{Binding Thur[0]}" BackgroundColor="{Binding ThurColours[0]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding ThurText[0]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="7" Grid.Row="2" IsVisible="{Binding Sat9}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="5" Grid.Row="1" IsVisible="{Binding Thur[1]}" BackgroundColor="{Binding ThurColours[1]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding ThurText[1]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="7" Grid.Row="3" IsVisible="{Binding Sat10}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="5" Grid.Row="2" IsVisible="{Binding Thur[2]}" BackgroundColor="{Binding ThurColours[2]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding ThurText[2]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="7" Grid.Row="4" IsVisible="{Binding Sat11}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="5" Grid.Row="3" IsVisible="{Binding Thur[3]}" BackgroundColor="{Binding ThurColours[3]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding ThurText[3]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="7" Grid.Row="5" IsVisible="{Binding Sat12}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="5" Grid.Row="4" IsVisible="{Binding Thur[4]}" BackgroundColor="{Binding ThurColours[4]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding ThurText[4]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="7" Grid.Row="6" IsVisible="{Binding Sat13}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="5" Grid.Row="5" IsVisible="{Binding Thur[5]}" BackgroundColor="{Binding ThurColours[5]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding ThurText[5]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="7" Grid.Row="7" IsVisible="{Binding Sat14}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="5" Grid.Row="6" IsVisible="{Binding Thur[6]}" BackgroundColor="{Binding ThurColours[6]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding ThurText[6]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="7" Grid.Row="8" IsVisible="{Binding Sat15}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="5" Grid.Row="7" IsVisible="{Binding Thur[7]}" BackgroundColor="{Binding ThurColours[7]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding ThurText[7]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="7" Grid.Row="9" IsVisible="{Binding Sat16}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="5" Grid.Row="8" IsVisible="{Binding Thur[8]}" BackgroundColor="{Binding ThurColours[8]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding ThurText[8]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="7" Grid.Row="10" IsVisible="{Binding Sat17}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="5" Grid.Row="9" IsVisible="{Binding Thur[9]}" BackgroundColor="{Binding ThurColours[9]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding ThurText[9]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="7" Grid.Row="11" IsVisible="{Binding Sat18}" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="5" Grid.Row="10" IsVisible="{Binding Thur[10]}" BackgroundColor="{Binding ThurColours[10]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding ThurText[10]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="7" Grid.Row="12" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="5" Grid.Row="11" IsVisible="{Binding Thur[11]}" BackgroundColor="{Binding ThurColours[11]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding ThurText[11]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="7" Grid.Row="13" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="5" Grid.Row="12" IsVisible="{Binding Thur[12]}" BackgroundColor="{Binding ThurColours[12]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding ThurText[12]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="7" Grid.Row="14" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="5" Grid.Row="13" IsVisible="{Binding Thur[13]}" BackgroundColor="{Binding ThurColours[13]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding ThurText[13]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="7" Grid.Row="15" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="5" Grid.Row="14" IsVisible="{Binding Thur[14]}" BackgroundColor="{Binding ThurColours[14]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding ThurText[14]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
-                    <Frame Grid.Column="7" Grid.Row="16" IsVisible="false" BackgroundColor="Red" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                    <Frame Grid.Column="5" Grid.Row="15" IsVisible="{Binding Thur[15]}" BackgroundColor="{Binding ThurColours[15]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding ThurText[15]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
                     </Frame>
+
+                    <Frame Grid.Column="6" IsVisible="{Binding Fri[0]}" BackgroundColor="{Binding FriColours[0]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding FriText[0]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="6" Grid.Row="1" IsVisible="{Binding Fri[1]}" BackgroundColor="{Binding FriColours[1]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding FriText[1]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="6" Grid.Row="2" IsVisible="{Binding Fri[2]}" BackgroundColor="{Binding FriColours[2]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding FriText[2]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="6" Grid.Row="3" IsVisible="{Binding Fri[3]}" BackgroundColor="{Binding FriColours[3]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding FriText[3]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="6" Grid.Row="4" IsVisible="{Binding Fri[4]}" BackgroundColor="{Binding FriColours[4]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding FriText[4]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="6" Grid.Row="5" IsVisible="{Binding Fri[5]}" BackgroundColor="{Binding FriColours[5]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding FriText[5]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="6" Grid.Row="6" IsVisible="{Binding Fri[6]}" BackgroundColor="{Binding FriColours[6]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding FriText[6]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="6" Grid.Row="7" IsVisible="{Binding Fri[7]}" BackgroundColor="{Binding FriColours[7]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding FriText[7]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="6" Grid.Row="8" IsVisible="{Binding Fri[8]}" BackgroundColor="{Binding FriColours[8]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding FriText[8]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="6" Grid.Row="9" IsVisible="{Binding Fri[9]}" BackgroundColor="{Binding FriColours[9]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding FriText[9]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="6" Grid.Row="10" IsVisible="{Binding Fri[10]}" BackgroundColor="{Binding FriColours[10]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding FriText[10]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="6" Grid.Row="11" IsVisible="{Binding Fri[11]}" BackgroundColor="{Binding FriColours[11]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding FriText[11]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="6" Grid.Row="12" IsVisible="{Binding Fri[12]}" BackgroundColor="{Binding FriColours[12]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding FriText[12]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="6" Grid.Row="13" IsVisible="{Binding Fri[13]}" BackgroundColor="{Binding FriColours[13]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding FriText[13]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="6" Grid.Row="14" IsVisible="{Binding Fri[14]}" BackgroundColor="{Binding FriColours[14]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding FriText[14]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="6" Grid.Row="15" IsVisible="{Binding Fri[15]}" BackgroundColor="{Binding FriColours[15]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding FriText[15]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+
+
+                    <Frame Grid.Column="7" IsVisible="{Binding Sat[0]}" BackgroundColor="{Binding SatColours[0]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SatText[0]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="7" Grid.Row="1" IsVisible="{Binding Sat[1]}" BackgroundColor="{Binding SatColours[1]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SatText[1]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="7" Grid.Row="2" IsVisible="{Binding Sat[2]}" BackgroundColor="{Binding SatColours[2]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SatText[2]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="7" Grid.Row="3" IsVisible="{Binding Sat1[3]}" BackgroundColor="{Binding SatColours[3]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SatText[3]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="7" Grid.Row="4" IsVisible="{Binding Sat[4]}" BackgroundColor="{Binding SatColours[4]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SatText[4]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="7" Grid.Row="5" IsVisible="{Binding Sat[5]}" BackgroundColor="{Binding SatColours[5]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SatText[5]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="7" Grid.Row="6" IsVisible="{Binding Sat[6]}" BackgroundColor="{Binding SatColours[6]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SatText[6]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="7" Grid.Row="7" IsVisible="{Binding Sat[7]}" BackgroundColor="{Binding SatColours[7]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SatText[7]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="7" Grid.Row="8" IsVisible="{Binding Sat[8]}" BackgroundColor="{Binding SatColours[8]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SatText[8]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="7" Grid.Row="9" IsVisible="{Binding Sat[9]}" BackgroundColor="{Binding SatColours[9]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SatText[9]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="7" Grid.Row="10" IsVisible="{Binding Sat[10]}" BackgroundColor="{Binding SatColours[10]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SatText[10]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="7" Grid.Row="11" IsVisible="{Binding Sat[11]}" BackgroundColor="{Binding SatColours[11]}" VerticalOptions="Start" HeightRequest="80" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SatText[11]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="7" Grid.Row="12" IsVisible="{Binding Sat[12]}" BackgroundColor="{Binding SatColours[12]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SatText[12]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="7" Grid.Row="13" IsVisible="{Binding Sat[13]}" BackgroundColor="{Binding SatColours[13]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SatText[13]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="7" Grid.Row="14" IsVisible="{Binding Sat[14]}" BackgroundColor="{Binding SatColours[14]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SatText[14]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                    <Frame Grid.Column="7" Grid.Row="15" IsVisible="{Binding Sat[15]}" BackgroundColor="{Binding SatColours[15]}" VerticalOptions="Start" HeightRequest="40" Padding="0" CornerRadius="10">
+                        <Label Text="{Binding SatText[15]}" TextColor="Black" Rotation="90" VerticalOptions="Start" HorizontalOptions="Start" Margin="0, 20, 0, 0"/>
+                    </Frame>
+                
 
                    
                 </Grid>

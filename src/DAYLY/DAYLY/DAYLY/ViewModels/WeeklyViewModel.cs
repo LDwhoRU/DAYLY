@@ -14,21 +14,37 @@ namespace DAYLY.ViewModels
 {
     class WeeklyViewModel : BaseViewModel
     {
-        bool[] mon = new bool[15];
-        bool[] tue = new bool[15];
-        bool[] wed = new bool[15];
-        bool[] thur = new bool[15];
-        bool[] fri = new bool[15];
-        bool[] sat = new bool[15];
-        bool[] sun = new bool[15];
+        bool[] mon = new bool[16];//this viewmodel uses mock data from mockeventdata can be changed around for testing
+        bool[] tue = new bool[16];//intialising all the arrays used
+        bool[] wed = new bool[16];
+        bool[] thur = new bool[16];
+        bool[] fri = new bool[16];
+        bool[] sat = new bool[16];
+        bool[] sun = new bool[16];
         string[] week = new string[7];
-        
-        string nmon8, nmon9, nmon10, nmon11, nmon12, nmon13, nmon14, nmon15, nmon16, nmon17, nmon18, nmon19, nmon20, nmon21, nmon22;
+        string[][] elements = new string[7][];
+        string[][] text = new string[7][];
+        string[] montext = new string[16];
+        string[] tuetext = new string[16];
+        string[] wedtext = new string[16];
+        string[] thurtext = new string[16];
+        string[] fritext = new string[16];
+        string[] sattext = new string[16];
+        string[] suntext = new string[16];
+        string[] moncol = new string[16];
+        string[] tuecol = new string[16];
+        string[] wedcol = new string[16];
+        string[] thurcol = new string[16];
+        string[] fricol = new string[16];
+        string[] satcol = new string[16];
+        string[] suncol = new string[16];
+
+
         string today;
-        double tmon8;
+     
          string monday, tuesday, wednesday, thursday,friday,saturday,sunday;
-        TimeSpan[] TimerArray = new TimeSpan[15];
-        TimeSpan time8 = new TimeSpan(8, 0, 0);
+        TimeSpan[] TimerArray = new TimeSpan[16];
+        TimeSpan time8 = new TimeSpan(7, 0, 0);
         TimeSpan time1 = TimeSpan.FromHours(1);
         
         public ObservableCollection<Event> Events { get; }
@@ -39,19 +55,12 @@ namespace DAYLY.ViewModels
             Title = "Weekly";
             DateTime dt = DateTime.Today;
             Events = new ObservableCollection<Event>();
-            Today = dt.DayOfWeek.ToString() + " " + dt.Day.ToString() + "/" + dt.Month.ToString() + "/" + dt.Year.ToString();
-            Task.Run(async () => await ExecuteLoadItemsCommand());
+            Today = dt.DayOfWeek.ToString() + " " + dt.Day.ToString() + "/" + dt.Month.ToString() + "/" + dt.Year.ToString(); //figure out the current day of the week
+            Task.Run(async () => await ExecuteLoadItemsCommand());//load the test data
              GetWeek();
-           //  MonTime();
-          //  TueTime();
-           // WedTime();
-           // ThurTime();
-           // FriTime();
-            //SatTime();
+      
             WeekTime();
-          //  Console.WriteLine(mon12);
-           // Console.WriteLine(monday);
-          //  Console.WriteLine(mon8);
+  
            
         }
         async Task ExecuteLoadItemsCommand()
@@ -61,7 +70,7 @@ namespace DAYLY.ViewModels
             try
             {
                 Events.Clear();
-                var events = await DataStore.GetItemsAsync(true);
+                var events = await DataStore.GetItemsAsync(true); //loading up mock data to be used
                 foreach (var evett in events)
                 {
                     Events.Add(evett);
@@ -86,7 +95,7 @@ namespace DAYLY.ViewModels
             IsBusy = true;
             try
             {
-               var Sun = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Sunday);
+               var Sun = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Sunday); //calculating the first day of the week, sunday then using this to figoure out the rest of the week
                 var Monday = Sun.AddDays(1);
                 var Tues = Monday.AddDays(1);
                 var Wed = Tues.AddDays(1);
@@ -111,20 +120,35 @@ namespace DAYLY.ViewModels
                 IsBusy = false;
             }
         }
+       
         public void WeekTime()
         {
-            bool[][] bweek = new bool[][] {sun,mon,tue,wed,thur,fri,sat };
+            bool[][] bweek = new bool[][] {sun,mon,tue,wed,thur,fri,sat };//mutlidimensional array for making frames visible on view
             IsBusy = true;
-            week[0] = sunday;
+            week[0] = sunday; //adding days of the week to array
             week[1] = monday;
             week[2] = tuesday;
                 week[3] = wednesday;
             week[4] = thursday;
             week[5] = friday;
             week[6] = saturday;
+            elements[0] = suncol; //populating the colour array with indivdual string array for each day of week
+            elements[1] = moncol;
+            elements[2] = tuecol;
+            elements[3] = wedcol;
+            elements[4] = thurcol;
+            elements[5] = fricol;
+            elements[6] = satcol;
+            text[0] = suntext; //same as above but with text
+            text[1] = montext;
+            text[2] = tuetext;
+            text[3] = wedtext;
+            text[4] = thurtext;
+            text[5] = fritext;
+            text[6] = sattext;
             //   Console.WriteLine(time8);
-            
-            for (int i = 1; i < TimerArray.Length; i++)
+
+            for (int i = 1; i < TimerArray.Length; i++) //populate the array with the times of day used
             {
                 TimerArray[i] = TimerArray[i - 1].Add(time1);
                 Console.WriteLine(TimerArray[i - 1]);
@@ -134,29 +158,35 @@ namespace DAYLY.ViewModels
             {
                 int dayy = 0;
                 foreach (var day in week) { 
-                for (int i = 0; i < sun.Length; i++)
+                for (int i = 0; i < sun.Length; i++)//set every thing to false to begin with
                 {
                     bweek[dayy][i] = false;
                 }
                 foreach (var even in Events)
                 {
 
-                    if ((int)even.Date.DayOfWeek == dayy && even.Date.Day.ToString() == day)
+                    if ((int)even.Date.DayOfWeek == dayy && even.Date.Day.ToString() == day)//if the day of the week is equal to the day of the loop
                     {
                         Console.WriteLine("I made it");
                         for (int i = 0; i < TimerArray.Length; i++)
                         {
                                 
-                                if (even.StartTime == TimerArray[i])
+                                if (even.StartTime == TimerArray[i])//if the time of the event is equal to the time off the loop
                             {
-                                bweek[dayy][i] = true;
-                                TimeSpan duration = even.EndTime.Subtract(even.StartTime);
-                                int hours = duration.Hours;
+                                bweek[dayy][i] = true; //set that time to true
+                                     elements[dayy][i] = even.SelectedProgramme.HexColour; //assign that times colour and text
+                                    text[dayy][i] = even.Name;
+                                    //elements[dayy][i] = even.SelectedProgramme.HexColour;
+                                  //  Console.WriteLine(even.SelectedProgramme.HexColour);
+                                    TimeSpan duration = even.EndTime.Subtract(even.StartTime);
+                                int hours = duration.Hours; //calculating the duration
 
                                     int z = 1;
-                                    for (int j = i; z <= hours; j++)
+                                    for (int j = i; z <= hours; j++) //using duration to see how many other times need to be set to true
                                     {
                                         bweek[dayy][j] = true;
+                                        elements[dayy][j] = even.SelectedProgramme.HexColour;
+                                        text[dayy][j] = even.Name;
                                         z++;
                                         Console.WriteLine(j);
                                     }
@@ -183,8 +213,84 @@ namespace DAYLY.ViewModels
                 IsBusy = false;
             }
         }
-      
-  
+        //returning the array of day texts
+        public string[] SunText {
+            get { return text[0]; }
+        }
+        public string[] MonText
+        {
+            get { return text[1]; }
+        }
+        public string[] TueText
+        {
+            get { return text[2]; }
+        }
+        public string[] WedText
+        {
+            get { return text[3]; }
+        }
+        public string[] ThurText
+        {
+            get { return text[4]; }
+        }
+        public string[] FriText
+        {
+            get { return text[5]; }
+        }
+        public string[] SatText
+        {
+            get { return text[6]; }
+        }
+        //returning array of day colours
+        public string[] MonColours {
+            get {
+                return elements[1];
+            }
+        }
+        public string[] SunColours
+        {
+            get
+            {
+                return elements[0];
+            }
+        }
+        public string[] TueColours
+        {
+            get
+            {
+                return elements[2];
+            }
+        }
+        public string[] WedColours
+        {
+            get
+            {
+                return elements[3];
+            }
+        }
+        public string[] ThurColours
+        {
+            get
+            {
+                return elements[4];
+            }
+        }
+        public string[] FriColours
+        {
+            get
+            {
+                return elements[5];
+            }
+        }
+        public string[] SatColours
+        {
+            get
+            {
+                return elements[6];
+            }
+        }
+
+        //returning boolean array of days
         public string Monday
         {
             get
@@ -244,628 +350,68 @@ namespace DAYLY.ViewModels
             set { SetProperty(ref today, value); }
 
         }
-        public bool Mon8
+        public bool[] Mon
         {
             get
             {
-                return mon[0];
+                return mon;
             }
+        }
+      
+        public bool[] Tue
+        {
+            get
+            {
+                return tue;
+            }
+
+        }
+    
+        public bool[] Wed
+        {
+            get
+            {
+                return wed;
+            }
+
+        }
        
-        }
-        public bool Mon9
-        {
-            get
-            {
-                return mon[1];
-            }
-
-        }
-        public bool Mon10
-        {
-            get
-            {
-                return mon[2];
-            }
-
-        }
-        public bool Mon11
-        {
-            get
-            {
-                return mon[3];
-            }
-
-        }
-        public bool Mon12
-        {
-            get
-            {
-                return mon[4];
-            }
-
-        }
-        public bool Mon13
-        {
-            get
-            {
-                return mon[5];
-            }
-
-        }
-        public bool Mon14
-        {
-            get
-            {
-                return mon[6];
-            }
-
-        }
-        public bool Mon15
-        {
-            get
-            {
-                return mon[7];
-            }
-
-        }
-        public bool Mon16
-        {
-            get
-            {
-                return mon[8];
-            }
-
-        }
-        public bool Mon17
-        {
-            get
-            {
-                return mon[9];
-            }
-
-        }
-        public bool Mon18
-        {
-            get
-            {
-                return mon[10];
-            }
-
-        }
-        public bool Tue8
-        {
-            get
-            {
-                return tue[0];
-            }
-
-        }
-        public bool Tue9
-        {
-            get
-            {
-                return tue[1];
-            }
-
-        }
-        public bool Tue10
-        {
-            get
-            {
-                return tue[2];
-            }
-
-        }
-        public bool Tue11
-        {
-            get
-            {
-                return tue[3];
-            }
-
-        }
-        public bool Tue12
-        {
-            get
-            {
-                return tue[4];
-            }
-
-        }
-        public bool Tue13
-        {
-            get
-            {
-                return tue[5];
-            }
-
-        }
-        public bool Tue14
-        {
-            get
-            {
-                return tue[6];
-            }
-
-        }
-        public bool Tue15
-        {
-            get
-            {
-                return tue[7];
-            }
-
-        }
-        public bool Tue16
-        {
-            get
-            {
-                return tue[8];
-            }
-
-        }
-        public bool Tue17
-        {
-            get
-            {
-                return tue[9];
-            }
-
-        }
-        public bool Tue18
-        {
-            get
-            {
-                return tue[10];
-            }
-
-        }
-        public bool Wed8
-        {
-            get
-            {
-                return wed[0];
-            }
-
-        }
-        public bool Wed9
-        {
-            get
-            {
-                return wed[1];
-            }
-
-        }
-        public bool Wed10
-        {
-            get
-            {
-                return wed[2];
-            }
-
-        }
-        public bool Wed11
-        {
-            get
-            {
-                return wed[3];
-            }
-
-        }
-        public bool Wed12
-        {
-            get
-            {
-                return wed[4];
-            }
-
-        }
-        public bool Wed13
-        {
-            get
-            {
-                return wed[5];
-            }
-
-        }
-        public bool Wed14
-        {
-            get
-            {
-                return wed[6];
-            }
-
-        }
-        public bool Wed15
-        {
-            get
-            {
-                return wed[7];
-            }
-
-        }
-        public bool Wed16
-        {
-            get
-            {
-                return wed[8];
-            }
-
-        }
-        public bool Wed17
-        {
-            get
-            {
-                return wed[9];
-            }
-
-        }
-        public bool Wed18
-        {
-            get
-            {
-                return wed[10];
-            }
-
-        }
-        public bool Thur8
-        {
-            get
-            {
-                return thur[0];
-            }
-
-        }
-        public bool Thur9
-        {
-            get
-            {
-                return thur[1];
-            }
-
-        }
-        public bool Thur10
-        {
-            get
-            {
-                return thur[2];
-            }
-
-        }
-        public bool Thur11
-        {
-            get
-            {
-                return thur[3];
-            }
-
-        }
-        public bool Thur12
-        {
-            get
-            {
-                return thur[4];
-            }
-
-        }
-        public bool Thur13
-        {
-            get
-            {
-                return thur[5];
-            }
-
-        }
-        public bool Thur14
-        {
-            get
-            {
-                return thur[6];
-            }
-
-        }
-        public bool Thur15
-        {
-            get
-            {
-                return thur[7];
-            }
-
-        }
-        public bool Thur16
-        {
-            get
-            {
-                return thur[8];
-            }
-
-        }
-        public bool Thur17
-        {
-            get
-            {
-                return thur[9];
-            }
-
-        }
-        public bool Thur18
-        {
-            get
-            {
-                return thur[10];
-            }
-
-        }
-        public bool Fri8
-        {
-            get
-            {
-                return fri[0];
-            }
-
-        }
-        public bool Fri9
-        {
-            get
-            {
-                return fri[1];
-            }
-
-        }
-        public bool Fri10
-        {
-            get
-            {
-                return fri[2];
-            }
-
-        }
-        public bool Fri11
-        {
-            get
-            {
-                return fri[3];
-            }
-
-        }
-        public bool Fri12
-        {
-            get
-            {
-                return fri[4];
-            }
-
-        }
-        public bool Fri13
-        {
-            get
-            {
-                return fri[5];
-            }
-
-        }
-        public bool Fri14
-        {
-            get
-            {
-                return fri[6];
-            }
-
-        }
-        public bool Fri15
-        {
-            get
-            {
-                return fri[7];
-            }
-
-        }
-        public bool Fri16
-        {
-            get
-            {
-                return fri[8];
-            }
-
-        }
-        public bool Fri17
-        {
-            get
-            {
-                return fri[9];
-            }
-
-        }
-        public bool Fri18
-        {
-            get
-            {
-                return fri[10];
-            }
-
-        }
-        public bool Sat8
-        {
-            get
-            {
-                return sat[0];
-            }
-
-        }
-        public bool Sat9
-        {
-            get
-            {
-                return sat[1];
-            }
-
-        }
-        public bool Sat10
-        {
-            get
-            {
-                return sat[2];
-            }
-
-        }
-        public bool Sat11
-        {
-            get
-            {
-                return sat[3];
-            }
-
-        }
-        public bool Sat12
-        {
-            get
-            {
-                return sat[4];
-            }
-
-        }
-        public bool Sat13
-        {
-            get
-            {
-                return sat[5];
-            }
-
-        }
-        public bool Sat14
-        {
-            get
-            {
-                return sat[6];
-            }
-
-        }
-        public bool Sat15
-        {
-            get
-            {
-                return sat[7];
-            }
-
-        }
-        public bool Sat16
-        {
-            get
-            {
-                return sat[8];
-            }
-
-        }
-        public bool Sat17
-        {
-            get
-            {
-                return sat[9];
-            }
-
-        }
-        public bool Sat18
-        {
-            get
-            {
-                return sat[10];
-            }
-
-        }
-        public bool Sun8
-        {
-            get
-            {
-                return sun[0];
-            }
-
-        }
-        public bool Sun9
-        {
-            get
-            {
-                return sun[1];
-            }
-
-        }
-        public bool Sun10
-        {
-            get
-            {
-                return sun[2];
-            }
-
-        }
-        public bool Sun11
-        {
-            get
-            {
-                return sun[3];
-            }
-
-        }
-        public bool Sun12
-        {
-            get
-            {
-                return sun[4];
-            }
-
-        }
-        public bool Sun13
-        {
-            get
-            {
-                return sun[5];
-            }
-
-        }
-        public bool Sun14
-        {
-            get
-            {
-                return sun[6];
-            }
-
-        }
-        public bool Sun15
+        public bool[] Thur
         {
             get
             {
-                return sun[7];
+                return thur;
             }
 
         }
-        public bool Sun16
+       
+        public bool[] Fri
         {
             get
             {
-                return sun[8];
+                return fri;
             }
 
         }
-        public bool Sun17
+     
+        public bool[] Sat
         {
             get
             {
-                return sun[9];
+                return sat;
             }
 
         }
-        public bool Sun18
+      
+        public bool[] Sun
         {
             get
             {
-                return sun[10];
+                return sun;
             }
 
-        }
-        public double Tmon8
-        {
-            get
-            {
-                return tmon8;
-            }
         }
+      
+    
     }
 }
