@@ -25,7 +25,7 @@
 
         <StackLayout Spacing="0">
 
-            <ContentView x:Name="popupLoginView" BackgroundColor="#C0808080" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ContentView x:Name="popupCalendar" BackgroundColor="#C0808080" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
                     <StackLayout Orientation="Vertical" HeightRequest="200" WidthRequest="300" BackgroundColor="White">
                         <Entry x:Name="CalendarName"  Margin="20,20,20,10" Placeholder="Calendar Name"></Entry>
@@ -97,7 +97,7 @@
                                 <ColumnDefinition Width="50"/>
                             </Grid.ColumnDefinitions>
 
-                            <Entry Placeholder="Event Name" x:Name="Name" Margin="10, 0, 10, 0" PlaceholderColor="#334856" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Fill"/>
+                            <Entry Placeholder="Event Name" Text="{Binding EventName}" x:Name="Name" Margin="10, 0, 10, 0" PlaceholderColor="#334856" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Fill"/>
 
                             <Button Text=""
                 Grid.Column="1"
@@ -128,7 +128,7 @@
                                                 <ColumnDefinition Width="2*"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="Date" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Label x:Name="EventDateLabel" Grid.Column="1" Text="19 Aug 2020" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                            <Label x:Name="EventDateLabel" Grid.Column="1" Text="{Binding EventDateText}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                                         </Grid>
                                     </Frame>
                                     <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
@@ -145,7 +145,7 @@
                                                 <ColumnDefinition Width="2*"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="Start" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Label x:Name="StartTimeLabel" Grid.Column="1" Text="9:00AM" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                            <Label x:Name="StartTimeLabel" Grid.Column="1" Text="{Binding StartTimeText}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                                         </Grid>
                                     </Frame>
                                     <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
@@ -162,7 +162,7 @@
                                                 <ColumnDefinition Width="2*"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="End" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Label x:Name="EndTimeLabel" Grid.Column="1" Text="11:00AM" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                            <Label x:Name="EndTimeLabel" Grid.Column="1" Text="{Binding EndTimeText}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                                         </Grid>
                                     </Frame>
                                 </StackLayout>
@@ -267,7 +267,7 @@
                                                 <ColumnDefinition Width="2*"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="Online" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Switch x:Name="OnlineSwitch" Grid.Column="1" Scale="1.7" IsToggled="False" HorizontalOptions="End" VerticalOptions="Center" ThumbColor="#f0f0f0" OnColor="#87BCBF"/>
+                                            <Switch x:Name="OnlineSwitch" IsToggled="{Binding Online}" Grid.Column="1" Scale="1.7" HorizontalOptions="End" VerticalOptions="Center" ThumbColor="#f0f0f0" OnColor="#87BCBF"/>
                                         </Grid>
                                     </Frame>
                                 </StackLayout>
@@ -302,7 +302,7 @@
                                                 <ColumnDefinition Width="2*"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="All-Day" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Switch x:Name="AllDaySwitch" Grid.Column="1" Scale="1.7" IsToggled="False" HorizontalOptions="End" VerticalOptions="Center" ThumbColor="#f0f0f0" OnColor="#87BCBF"/>
+                                            <Switch x:Name="AllDaySwitch" Grid.Column="1" Scale="1.7" IsToggled="{Binding AllDay}" HorizontalOptions="End" VerticalOptions="Center" ThumbColor="#f0f0f0" OnColor="#87BCBF"/>
                                         </Grid>
                                     </Frame>
                                     <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
@@ -342,18 +342,18 @@
                                 </StackLayout>
                             </Frame>
 
-                            <Button Text="Create Event" Margin="0, 0, 0, 25" x:Name="AddEventBtn" Clicked="AddEventBtn_Clicked" HorizontalOptions="Center" WidthRequest="340" BackgroundColor="#D97D54" CornerRadius="30"/>
+                            <Button Text="Create Event" Margin="0, 0, 0, 25" x:Name="AddEventBtn" Command="{Binding SaveEvent}" HorizontalOptions="Center" WidthRequest="340" BackgroundColor="#D97D54" CornerRadius="30"/>
 
-                            <TimePicker x:Name="StartTimePicker" PropertyChanged="StartTimePicker_PropertyChanged" IsVisible="False"/>
+                            <TimePicker x:Name="StartTimePicker" Time="{Binding StartTime}" PropertyChanged="StartTimePicker_PropertyChanged" IsVisible="False"/>
 
-                            <TimePicker x:Name="EndTimePicker" PropertyChanged="EndTimePicker_PropertyChanged" IsVisible="False"/>
+                            <TimePicker x:Name="EndTimePicker" Time="{Binding EndTime}" PropertyChanged="EndTimePicker_PropertyChanged" IsVisible="False"/>
 
-                            <DatePicker x:Name="EventDatePicker" PropertyChanged="EventDatePicker_PropertyChanged" IsVisible="False"/>
+                            <DatePicker x:Name="EventDatePicker" Date="{Binding EventDate}" PropertyChanged="EventDatePicker_PropertyChanged" IsVisible="False"/>
 
-                            <ListView x:Name="myListView" HasUnevenRows="True" Margin="0, 0, 0, 25" HeightRequest="40">
+                            <ListView x:Name="myListView" ItemsSource="{Binding EventListView}" HasUnevenRows="True" Margin="0, 0, 0, 25" HeightRequest="40">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <TextCell Text="{Binding URL}" Detail="{Binding Description}"/>
+                                        <TextCell Text="{Binding AllDay}" Detail="{Binding IsOnline}"/>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
