@@ -12,6 +12,9 @@ namespace DAYLY
         public string DayStartTimeStr { get; set; }
         public string DayStartTimePos { get; set; }
         public string TimeFormat { get; set; }
+        public int DefaultEventDuration { get; set; }
+        public string DefaultEventDurationStr { get; set; }
+        public string DefaultEventDurationPos { get; set; }
 
         public void SetDefaults()
         {
@@ -23,6 +26,24 @@ namespace DAYLY
             DayStartTimePos = "6";
             DayStartTimeStr = "8:00 AM";
             TimeFormat = "12 hour";
+            DefaultEventDurationStr = "120 minutes";
+            DefaultEventDurationPos = "0";
+        }
+
+        public static int stringToInt(string stringToConvert)
+        {
+            int result;
+
+            try
+            {
+                int.TryParse(stringToConvert, out result);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return result;
         }
     }
 }

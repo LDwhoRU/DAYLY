@@ -54,6 +54,7 @@
     <ShellContent Route="Settings_AppTheme" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_AppTheme}" />
     <ShellContent Route="Settings_FirstDayOfWeek" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_FirstDayOfWeek}" />
     <ShellContent Route="Settings_DayStartTime" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_DayStartTime}" />
+    <ShellContent Route="Settings_DefaultEventDuration" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_DefaultEventDuration}" />
 
     <ShellContent Route="Daily" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Daily}"/>
     <ShellContent Route="Monthly" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Monthly}"/>

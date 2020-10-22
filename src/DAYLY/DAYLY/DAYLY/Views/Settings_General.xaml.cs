@@ -31,6 +31,11 @@ namespace DAYLY.Views
             await Navigation.PushAsync(new Settings_DayStartTime());
         }
 
+        async void OnDefaultEventDurationClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Settings_DefaultEventDuration());
+        }
+
         protected override void OnAppearing()
         {
             InitializeComponent();
