@@ -13,7 +13,7 @@ namespace DAYLY
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<MockEventData>();
             MainPage = new AppShell();
         }
 
