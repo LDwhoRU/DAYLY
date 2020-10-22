@@ -6,7 +6,7 @@
              BackgroundColor="{StaticResource AppBackgroundColour}"
              Title="Day start time">
     <ContentPage.BindingContext>
-        <local:Settings_DayStartTimeViewModel/>
+        <local:SettingsViewModel/>
     </ContentPage.BindingContext>
     <StackLayout>
             <Frame Margin="40,50,40,40" CornerRadius="10">

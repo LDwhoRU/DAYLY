@@ -7,14 +7,26 @@ using DAYLY.Views;
 
 namespace DAYLY.ViewModels
 {
-    public class Settings_DayStartTimeViewModel : INotifyPropertyChanged
+    public class SettingsViewModel : INotifyPropertyChanged
     {
-        public Settings_DayStartTimeViewModel()
+        public SettingsViewModel()
         {
+            ChangeFirstDayOfWeekCommand = new Command<string>(changeFirstDayOfWeek);
             ChangeDayStartTime = new Command<string>(changeDayStartTime);
+            ChangeDefaultEventDurationCommand = new Command<string>(changeDefaultEvenDuration);
         }
 
+        public ICommand ChangeFirstDayOfWeekCommand { get; }
         public ICommand ChangeDayStartTime { get; }
+        public ICommand ChangeDefaultEventDurationCommand { get; }
+
+        void changeFirstDayOfWeek(string newDay)
+        {
+            string[] dayStr = newDay.Split(',');
+            Settings_General.settingsDefault.FirstDayOfWeekStr = dayStr[0];
+            Settings_General.settingsDefault.FirstDayOfWeekPos = dayStr[1];
+            OnPropertyChanged(nameof(FirstDayOfWeekPos));
+        }
 
         void changeDayStartTime(string newTime)
         {
@@ -26,7 +38,18 @@ namespace DAYLY.ViewModels
             OnPropertyChanged(nameof(DayStartTimePos));
         }
 
+        void changeDefaultEvenDuration(string newDuration)
+        {
+            string[] posStr = newDuration.Split(',');
+            Settings_General.settingsDefault.DefaultEventDuration = Default.stringToInt(posStr[0]);
+            Settings_General.settingsDefault.DefaultEventDurationPos = posStr[1];
+            Settings_General.settingsDefault.DefaultEventDurationStr = posStr[0] + " minutes";
+            OnPropertyChanged(nameof(DefaultEventDurationPos));
+        }
+
+        public string FirstDayOfWeekPos => $"{Settings_General.settingsDefault.FirstDayOfWeekPos}";
         public string DayStartTimePos => $"{Settings_General.settingsDefault.DayStartTimePos}";
+        public string DefaultEventDurationPos => $"{Settings_General.settingsDefault.DefaultEventDurationPos}";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
