@@ -27,7 +27,7 @@ namespace DAYLY
             DayStartTimeStr = "8:00 AM";
             TimeFormat = "12 hour";
             DefaultEventDurationStr = "120 minutes";
-            DefaultEventDurationPos = "0";
+            DefaultEventDurationPos = "12";
         }
 
         public static int stringToInt(string stringToConvert)
