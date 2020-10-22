@@ -16,6 +16,9 @@
     <Compile Update="Views\AddReminder.xaml.cs">
       <DependentUpon>AddReminder.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Settings_DefaultView.xaml.cs">
+      <DependentUpon>Settings_DefaultView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

@@ -15,6 +15,8 @@ namespace DAYLY
         public int DefaultEventDuration { get; set; }
         public string DefaultEventDurationStr { get; set; }
         public string DefaultEventDurationPos { get; set; }
+        public string DefaultViewStr { get; set; }
+        public string DefaultViewPos { get; set; }
 
         public void SetDefaults()
         {
@@ -28,6 +30,8 @@ namespace DAYLY
             TimeFormat = "12 hour";
             DefaultEventDurationStr = "120 minutes";
             DefaultEventDurationPos = "12";
+            DefaultViewStr = "Day view";
+            DefaultViewPos = "0";
         }
 
         public static int stringToInt(string stringToConvert)

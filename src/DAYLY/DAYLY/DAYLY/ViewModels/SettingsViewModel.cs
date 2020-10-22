@@ -11,16 +11,30 @@ namespace DAYLY.ViewModels
     {
         public SettingsViewModel()
         {
+            ChangeAppThemeCommand = new Command<string>(changeAppTheme);
             ChangeFirstDayOfWeekCommand = new Command<string>(changeFirstDayOfWeek);
             ChangeDayStartTime = new Command<string>(changeDayStartTime);
             ChangeDefaultEventDurationCommand = new Command<string>(changeDefaultEvenDuration);
+            ChangeDefaultViewCommand = new Command<string>(changeDefaultView);
         }
 
+        public ICommand ChangeAppThemeCommand { get; }
         public ICommand ChangeFirstDayOfWeekCommand { get; }
         public ICommand ChangeDayStartTime { get; }
         public ICommand ChangeDefaultEventDurationCommand { get; }
+        public ICommand ChangeDefaultViewCommand { get; }
 
-        void changeFirstDayOfWeek(string newDay)
+
+        private void changeAppTheme(string newTheme)
+        {
+            string[] themeStr = newTheme.Split(',');
+            Settings_General.settingsDefault.AppThemeStr = themeStr[0];
+            Settings_General.settingsDefault.AppThemePos = themeStr[1];
+            OnPropertyChanged(nameof(AppThemePos));
+
+        }
+
+        private void changeFirstDayOfWeek(string newDay)
         {
             string[] dayStr = newDay.Split(',');
             Settings_General.settingsDefault.FirstDayOfWeekStr = dayStr[0];
@@ -28,7 +42,7 @@ namespace DAYLY.ViewModels
             OnPropertyChanged(nameof(FirstDayOfWeekPos));
         }
 
-        void changeDayStartTime(string newTime)
+        private void changeDayStartTime(string newTime)
         {
             string[] timeStr = newTime.Split(',');
 
@@ -38,7 +52,7 @@ namespace DAYLY.ViewModels
             OnPropertyChanged(nameof(DayStartTimePos));
         }
 
-        void changeDefaultEvenDuration(string newDuration)
+        private void changeDefaultEvenDuration(string newDuration)
         {
             string[] posStr = newDuration.Split(',');
             Settings_General.settingsDefault.DefaultEventDuration = Default.stringToInt(posStr[0]);
@@ -47,9 +61,19 @@ namespace DAYLY.ViewModels
             OnPropertyChanged(nameof(DefaultEventDurationPos));
         }
 
+        private void changeDefaultView(string newView)
+        {
+            string[] viewStr = newView.Split(',');
+            Settings_General.settingsDefault.DefaultViewStr = viewStr[0];
+            Settings_General.settingsDefault.DefaultViewPos = viewStr[1];
+            OnPropertyChanged(nameof(DefaultViewPos));
+        }
+
+        public string AppThemePos => $"{Settings_General.settingsDefault.AppThemePos}";
         public string FirstDayOfWeekPos => $"{Settings_General.settingsDefault.FirstDayOfWeekPos}";
         public string DayStartTimePos => $"{Settings_General.settingsDefault.DayStartTimePos}";
         public string DefaultEventDurationPos => $"{Settings_General.settingsDefault.DefaultEventDurationPos}";
+        public string DefaultViewPos => $"{Settings_General.settingsDefault.DefaultViewPos}";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
