@@ -48,13 +48,15 @@ namespace DAYLY.ViewModels
         TimeSpan time1 = TimeSpan.FromHours(1);
         
         public ObservableCollection<Event> Events { get; }
-     
+        public ObservableCollection<Programme> Colours { get; }
+
         public WeeklyViewModel()
         {
             TimerArray[0] = time8;
             Title = "Weekly";
             DateTime dt = DateTime.Today;
             Events = new ObservableCollection<Event>();
+            Colours = new ObservableCollection<Programme>();
             Today = dt.DayOfWeek.ToString() + " " + dt.Day.ToString() + "/" + dt.Month.ToString() + "/" + dt.Year.ToString(); //figure out the current day of the week
             Task.Run(async () => await ExecuteLoadItemsCommand());//load the test data
              GetWeek();
@@ -70,15 +72,13 @@ namespace DAYLY.ViewModels
             try
             {
                 Events.Clear();
+                Colours.Clear();
                 var events = await DataStore.GetItemsAsync(true); //loading up mock data to be used
                 foreach (var evett in events)
                 {
                     Events.Add(evett);
                 }
-                foreach(var test in Events)
-                {
-                   // Console.WriteLine(test.StartTime.TimeOfDay);
-                }
+              // var col=await
             }
             catch (Exception ex)
             {
