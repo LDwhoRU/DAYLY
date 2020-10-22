@@ -11,6 +11,7 @@ using Xamarin.Plugin.Calendar.Models;
 
 namespace DAYLY.ViewModels
 {
+    //this view model also uses testdata can be altered in mockeventdata
     class MonthlyViewModel : BaseViewModel
     {
         private List<Event> zz;
@@ -36,31 +37,31 @@ namespace DAYLY.ViewModels
          
                 try {
            
-                Console.WriteLine(Eventz.ToString());
+               // Console.WriteLine(Eventz.ToString());
                 int index = new int();
-                for (int i = 0; i < Eventz.Count; i++) {
-                    Console.WriteLine("below me");
+                for (int i = 0; i < Eventz.Count; i++) { //loop through how many events there are create a event list each time
+                    Console.WriteLine("below me"); //this list is then added to the event collection which is bound to the calendar
                     zz = new List<Event>();
-                    foreach (var x in notes)
+                    foreach (var not in notes)
                     {
-                        if (x.Id == Eventz[i].NoteId)
+                        if (not.Id == Eventz[i].NoteId)//find the index of the note that corresponds to the event
                         {
-                            index = notes.IndexOf(x);
+                            index = notes.IndexOf(not);
                         }
                     }
-                    var temp = new List<Event>(Eventz);
+                    var temp = new List<Event>(Eventz);//create a temporary list to iterate through so the main list can be modified
                     zz.Add(new Event { Name =temp[i].Name, Type = notes[index].Description });
                     foreach (var eventt in temp) {
                         if (eventt.Date == temp[i].Date&&eventt.Name!=temp[i].Name) {
-                            foreach (var x in notes)
+                            foreach (var x in notes) //multiple events on the same date are found then removed
                             {
-                                if (x.Id == eventt.NoteId)
+                                if (x.Id == eventt.NoteId)//finding the index that belongs to the second note
                                 {
                                     index = notes.IndexOf(x);
                                 }
                             }
                             zz.Add(new Event { Name = eventt.Name, Type = notes[index].Description });
-                            Console.WriteLine(eventt.Name);
+                            //Console.WriteLine(eventt.Name);
                             Eventz.Remove(eventt);
                         }
                         else
