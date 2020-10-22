@@ -41,6 +41,11 @@ namespace DAYLY.Views
             await Navigation.PushAsync(new Settings_DefaultView());
         }
 
+        async void OnShowWeekNumbersClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Settings_ShowWeekNumbers());
+        }
+
         protected override void OnAppearing()
         {
             InitializeComponent();

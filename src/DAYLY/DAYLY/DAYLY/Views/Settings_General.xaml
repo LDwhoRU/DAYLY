@@ -94,7 +94,7 @@
                             <Button Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Clicked="OnDayStartTimeClicked"/>
                             <Button Grid.Row="9" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Clicked="OnDefaultEventDurationClicked"/>
                             <Button Grid.Row="12" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Clicked="OnDefaultViewClicked"/>
-                            <Button Grid.Row="15" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>
+                            <Button Grid.Row="15" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Clicked="OnShowWeekNumbersClicked"/>
                             <Button Grid.Row="18" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>
                             <Button Grid.Row="21" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>
                             <Button Grid.Row="24" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>

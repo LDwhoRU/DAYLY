@@ -16,6 +16,7 @@ namespace DAYLY.ViewModels
             ChangeDayStartTime = new Command<string>(changeDayStartTime);
             ChangeDefaultEventDurationCommand = new Command<string>(changeDefaultEvenDuration);
             ChangeDefaultViewCommand = new Command<string>(changeDefaultView);
+            ChangeShowWeekNumbersCommand = new Command<string>(changeShowWeekNumbers);
         }
 
         public ICommand ChangeAppThemeCommand { get; }
@@ -23,6 +24,7 @@ namespace DAYLY.ViewModels
         public ICommand ChangeDayStartTime { get; }
         public ICommand ChangeDefaultEventDurationCommand { get; }
         public ICommand ChangeDefaultViewCommand { get; }
+        public ICommand ChangeShowWeekNumbersCommand { get; }
 
 
         private void changeAppTheme(string newTheme)
@@ -69,11 +71,20 @@ namespace DAYLY.ViewModels
             OnPropertyChanged(nameof(DefaultViewPos));
         }
 
+        private void changeShowWeekNumbers(string newView)
+        {
+            string[] viewStr = newView.Split(',');
+            Settings_General.settingsDefault.ShowWeekNumbersStr = viewStr[0];
+            Settings_General.settingsDefault.ShowWeekNumbersPos = viewStr[1];
+            OnPropertyChanged(nameof(ShowWeekNumbersPos));
+        }
+
         public string AppThemePos => $"{Settings_General.settingsDefault.AppThemePos}";
         public string FirstDayOfWeekPos => $"{Settings_General.settingsDefault.FirstDayOfWeekPos}";
         public string DayStartTimePos => $"{Settings_General.settingsDefault.DayStartTimePos}";
         public string DefaultEventDurationPos => $"{Settings_General.settingsDefault.DefaultEventDurationPos}";
         public string DefaultViewPos => $"{Settings_General.settingsDefault.DefaultViewPos}";
+        public string ShowWeekNumbersPos => $"{Settings_General.settingsDefault.ShowWeekNumbersPos}";
 
         public event PropertyChangedEventHandler PropertyChanged;
 

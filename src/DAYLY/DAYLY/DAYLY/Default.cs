@@ -17,6 +17,8 @@ namespace DAYLY
         public string DefaultEventDurationPos { get; set; }
         public string DefaultViewStr { get; set; }
         public string DefaultViewPos { get; set; }
+        public string ShowWeekNumbersStr { get; set; }
+        public string ShowWeekNumbersPos { get; set; }
 
         public void SetDefaults()
         {
@@ -32,6 +34,8 @@ namespace DAYLY
             DefaultEventDurationPos = "12";
             DefaultViewStr = "Day view";
             DefaultViewPos = "0";
+            ShowWeekNumbersStr = "Start of semester";
+            ShowWeekNumbersPos = "3";
         }
 
         public static int stringToInt(string stringToConvert)
