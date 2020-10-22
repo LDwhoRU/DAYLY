@@ -17,14 +17,13 @@ namespace DAYLY.ViewModels
 
         public ICommand ChangeDefaultEventDurationCommand { get; }
 
-        void changeDefaultEvenDuration(string newPos)
+        void changeDefaultEvenDuration(string newDuration)
         {
-            string[] posStr = newPos.Split(',');
+            string[] posStr = newDuration.Split(',');
+            Settings_General.settingsDefault.DefaultEventDuration = Default.stringToInt(posStr[0]);
             Settings_General.settingsDefault.DefaultEventDurationPos = posStr[1];
             Settings_General.settingsDefault.DefaultEventDurationStr = posStr[0] + " minutes";
-            Settings_General.settingsDefault.DefaultEventDuration = Default.stringToInt(posStr[0]);
             OnPropertyChanged(nameof(DefaultEventDurationPos));
-            Debug.WriteLine("watch: " + DefaultEventDurationPos);
         }
 
         public string DefaultEventDurationPos => $"{Settings_General.settingsDefault.DefaultEventDurationPos}";
