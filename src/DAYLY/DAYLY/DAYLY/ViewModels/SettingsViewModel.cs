@@ -86,6 +86,7 @@ namespace DAYLY.ViewModels
             string[] timeFStr = newTimeF.Split(',');
             Settings_General.settingsDefault.TimeFormatStr = timeFStr[0] + " hour";
             Settings_General.settingsDefault.TimeFormatPos = timeFStr[1];
+            Settings_General.settingsDefault.DayStartTimeStr = getTimeFormat(Settings_General.settingsDefault.DayStartTime);
             OnPropertyChanged(nameof(TimeFormatPos));
         }
 

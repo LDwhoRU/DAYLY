@@ -28,7 +28,13 @@ namespace DAYLY.Views
 
         async void OnDayStartTimeClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Settings_DayStartTime());
+            if (settingsDefault.TimeFormatStr.Substring(0,2) == "12")
+            {
+                await Navigation.PushAsync(new Settings_DayStartTime());
+            } else
+            {
+                await Navigation.PushAsync(new Settings_DayStartTime24());
+            }
         }
 
         async void OnDefaultEventDurationClicked(object sender, EventArgs e)
