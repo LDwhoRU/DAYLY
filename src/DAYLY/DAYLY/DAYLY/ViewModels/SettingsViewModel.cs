@@ -17,6 +17,7 @@ namespace DAYLY.ViewModels
             ChangeDefaultEventDurationCommand = new Command<string>(changeDefaultEvenDuration);
             ChangeDefaultViewCommand = new Command<string>(changeDefaultView);
             ChangeShowWeekNumbersCommand = new Command<string>(changeShowWeekNumbers);
+            ChangeTimeFormatCommand = new Command<string>(changeTimeFormat);
         }
 
         public ICommand ChangeAppThemeCommand { get; }
@@ -25,6 +26,7 @@ namespace DAYLY.ViewModels
         public ICommand ChangeDefaultEventDurationCommand { get; }
         public ICommand ChangeDefaultViewCommand { get; }
         public ICommand ChangeShowWeekNumbersCommand { get; }
+        public ICommand ChangeTimeFormatCommand { get; }
 
 
         private void changeAppTheme(string newTheme)
@@ -58,8 +60,8 @@ namespace DAYLY.ViewModels
         {
             string[] posStr = newDuration.Split(',');
             Settings_General.settingsDefault.DefaultEventDuration = Default.stringToInt(posStr[0]);
-            Settings_General.settingsDefault.DefaultEventDurationPos = posStr[1];
             Settings_General.settingsDefault.DefaultEventDurationStr = posStr[0] + " minutes";
+            Settings_General.settingsDefault.DefaultEventDurationPos = posStr[1];
             OnPropertyChanged(nameof(DefaultEventDurationPos));
         }
 
@@ -79,12 +81,21 @@ namespace DAYLY.ViewModels
             OnPropertyChanged(nameof(ShowWeekNumbersPos));
         }
 
+        private void changeTimeFormat(string newTimeF)
+        {
+            string[] timeFStr = newTimeF.Split(',');
+            Settings_General.settingsDefault.TimeFormatStr = timeFStr[0] + " hour";
+            Settings_General.settingsDefault.TimeFormatPos = timeFStr[1];
+            OnPropertyChanged(nameof(TimeFormatPos));
+        }
+
         public string AppThemePos => $"{Settings_General.settingsDefault.AppThemePos}";
         public string FirstDayOfWeekPos => $"{Settings_General.settingsDefault.FirstDayOfWeekPos}";
         public string DayStartTimePos => $"{Settings_General.settingsDefault.DayStartTimePos}";
         public string DefaultEventDurationPos => $"{Settings_General.settingsDefault.DefaultEventDurationPos}";
         public string DefaultViewPos => $"{Settings_General.settingsDefault.DefaultViewPos}";
         public string ShowWeekNumbersPos => $"{Settings_General.settingsDefault.ShowWeekNumbersPos}";
+        public string TimeFormatPos => $"{Settings_General.settingsDefault.TimeFormatPos}";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -96,7 +107,7 @@ namespace DAYLY.ViewModels
         public static string getTimeFormat(TimeSpan tsTime)
         {
             string startTime = string.Empty;
-            string tFormat = Settings_General.settingsDefault.TimeFormat;
+            string tFormat = Settings_General.settingsDefault.TimeFormatStr;
 
             if (tFormat.Substring(0, 2) == "12")
             {

@@ -11,7 +11,6 @@ namespace DAYLY
         public TimeSpan DayStartTime { get; set; }
         public string DayStartTimeStr { get; set; }
         public string DayStartTimePos { get; set; }
-        public string TimeFormat { get; set; }
         public int DefaultEventDuration { get; set; }
         public string DefaultEventDurationStr { get; set; }
         public string DefaultEventDurationPos { get; set; }
@@ -19,6 +18,8 @@ namespace DAYLY
         public string DefaultViewPos { get; set; }
         public string ShowWeekNumbersStr { get; set; }
         public string ShowWeekNumbersPos { get; set; }
+        public string TimeFormatStr { get; set; }
+        public string TimeFormatPos { get; set; }
 
         public void SetDefaults()
         {
@@ -28,14 +29,15 @@ namespace DAYLY
             FirstDayOfWeekPos = "3";
             DayStartTime = new TimeSpan(8, 0, 0);
             DayStartTimePos = "6";
-            DayStartTimeStr = "8:00 AM";
-            TimeFormat = "12 hour";
+            DayStartTimeStr = "8:00 AM"; 
             DefaultEventDurationStr = "120 minutes";
             DefaultEventDurationPos = "12";
             DefaultViewStr = "Day view";
             DefaultViewPos = "0";
             ShowWeekNumbersStr = "Start of semester";
             ShowWeekNumbersPos = "3";
+            TimeFormatStr = "12 hour";
+            TimeFormatPos = "0";
         }
 
         public static int stringToInt(string stringToConvert)
