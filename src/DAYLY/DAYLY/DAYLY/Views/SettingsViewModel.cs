@@ -29,6 +29,7 @@ namespace DAYLY.ViewModels
             ChangeTasksReminderCommand = new Command<string>(changeTasksReminder);
             ChangeReminderRingtoneCommand = new Command<string>(changeReminderRingtone);
             ChangeReminderDefaultCommand = new Command<string>(changeReminderDefault);
+            ChangeDefaultBreakDurationCommand = new Command<string>(changeDefaultBreakDuration);
         }
 
         public ICommand ChangeAppThemeCommand { get; }
@@ -45,6 +46,7 @@ namespace DAYLY.ViewModels
         public ICommand ChangeTasksReminderCommand { get; }
         public ICommand ChangeReminderRingtoneCommand { get; }
         public ICommand ChangeReminderDefaultCommand { get; }
+        public ICommand ChangeDefaultBreakDurationCommand { get; }
 
         private void changeAppTheme(string newTheme)
         {
@@ -190,6 +192,14 @@ namespace DAYLY.ViewModels
             }
         }
 
+        private void changeDefaultBreakDuration(string newDuration)
+        {
+            string[] durationStr = newDuration.Split(',');
+            Settings_General.settingsDefault.DefaultBreakDurationStr = durationStr[0] + " minutes";
+            Settings_General.settingsDefault.DefaultBreakDurationPos = durationStr[1];
+            OnPropertyChanged(nameof(DefaultBreakDurationPos));
+        }
+
         public string AppThemePos => $"{Settings_General.settingsDefault.AppThemePos}";
         public string FirstDayOfWeekPos => $"{Settings_General.settingsDefault.FirstDayOfWeekPos}";
         public string DayStartTimePos => $"{Settings_General.settingsDefault.DayStartTimePos}";
@@ -206,6 +216,7 @@ namespace DAYLY.ViewModels
         public string ReminderDefaultMorningPos => $"{Settings_General.settingsDefault.ReminderDefaultMorningPos}";
         public string ReminderDefaultAfternoonPos => $"{Settings_General.settingsDefault.ReminderDefaultAfternoonPos}";
         public string ReminderDefaultEveningPos => $"{Settings_General.settingsDefault.ReminderDefaultEveningPos}";
+        public string DefaultBreakDurationPos => $"{Settings_General.settingsDefault.DefaultBreakDurationPos}";
 
         public event PropertyChangedEventHandler PropertyChanged;
 

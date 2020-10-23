@@ -44,6 +44,8 @@ namespace DAYLY
         public TimeSpan ReminderDefaultEvening { get; set; }
         public string ReminderDefaultEveningStr { get; set; }
         public string ReminderDefaultEveningPos { get; set; }
+        public string DefaultBreakDurationStr { get; set; }
+        public string DefaultBreakDurationPos { get; set; }
 
         public void SetDefaults()
         {
@@ -86,6 +88,8 @@ namespace DAYLY
             ReminderDefaultEvening = new TimeSpan(18, 0, 0);
             ReminderDefaultEveningStr = "6:00 PM";
             ReminderDefaultEveningPos = "0";
+            DefaultBreakDurationStr = "15 minutes";
+            DefaultBreakDurationPos = "0";
         }
 
         public static int stringToInt(string stringToConvert)
