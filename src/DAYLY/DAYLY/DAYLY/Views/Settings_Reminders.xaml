@@ -84,19 +84,19 @@
 
                         <Label Text="Reminder defaults" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Margin="7,0,0,0"/>
                         <Label Text="Morning" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Margin="7,0,0,0"/>
-                        <Label Text="8:00 AM" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Margin="7,0,0,0"/>
+                        <Label Text="{Binding ReminderDefaultMorningStr}" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Margin="7,0,0,0"/>
                         <Label Text="Afternoon" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" Margin="7,0,0,0"/>
-                        <Label Text="2:00 PM" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" Margin="7,0,0,0"/>
+                        <Label Text="{Binding ReminderDefaultAfternoonStr}" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" Margin="7,0,0,0"/>
                         <Label Text="Evening" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="3" Grid.Column="0" VerticalOptions="Center" Margin="7,0,0,0"/>
-                        <Label Text="6:00 PM" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Margin="7,0,0,0"/>
+                        <Label Text="{Binding ReminderDefaultEveningStr}" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Margin="7,0,0,0"/>
 
                         <Image Source="arrow_icon" Grid.Row="1" Grid.Column="2" HeightRequest="16" Margin="0,0,15,0" HorizontalOptions="End"/>
                         <Image Source="arrow_icon" Grid.Row="2" Grid.Column="2" HeightRequest="16" Margin="0,0,15,0" HorizontalOptions="End"/>
                         <Image Source="arrow_icon" Grid.Row="3" Grid.Column="2" HeightRequest="16" Margin="0,0,15,0" HorizontalOptions="End"/>
 
-                        <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Transparent"/>
-                        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Transparent"/>
-                        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Transparent"/>
+                        <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnReminderMorningClicked"/>
+                        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnReminderAfternoonClicked"/>
+                        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Transparent" Clicked="OnReminderEveningClicked"/>
                         
                     </Grid>
 

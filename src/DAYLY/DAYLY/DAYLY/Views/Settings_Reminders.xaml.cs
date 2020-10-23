@@ -47,6 +47,21 @@ namespace DAYLY.Views
             await Navigation.PushAsync(new Settings_ReminderRingtone());
         }
 
+        async void OnReminderMorningClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Settings_ReminderMorning());
+        }
+
+        async void OnReminderAfternoonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Settings_ReminderAfternoon());
+        }
+
+        async void OnReminderEveningClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Settings_ReminderEvening());
+        }
+
         protected override void OnAppearing()
         {
             InitializeComponent();

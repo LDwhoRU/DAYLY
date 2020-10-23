@@ -28,6 +28,7 @@ namespace DAYLY.ViewModels
             ChangeDefaultAlertTimeCommand = new Command<string>(changeDefaultAlertTime);
             ChangeTasksReminderCommand = new Command<string>(changeTasksReminder);
             ChangeReminderRingtoneCommand = new Command<string>(changeReminderRingtone);
+            ChangeReminderDefaultCommand = new Command<string>(changeReminderDefault);
         }
 
         public ICommand ChangeAppThemeCommand { get; }
@@ -43,6 +44,7 @@ namespace DAYLY.ViewModels
         public ICommand ChangeDefaultAlertTimeCommand { get; }
         public ICommand ChangeTasksReminderCommand { get; }
         public ICommand ChangeReminderRingtoneCommand { get; }
+        public ICommand ChangeReminderDefaultCommand { get; }
 
         private void changeAppTheme(string newTheme)
         {
@@ -104,6 +106,9 @@ namespace DAYLY.ViewModels
             Settings_General.settingsDefault.DayStartTimeStr = getTimeFormat(Settings_General.settingsDefault.DayStartTime);
             Settings_General.settingsDefault.DailyReminderTimeStr = getTimeFormat(Settings_General.settingsDefault.DailyReminderTime);
             Settings_General.settingsDefault.TasksReminderStr = getTimeFormat(Settings_General.settingsDefault.TasksReminderTime) + " on the day";
+            Settings_General.settingsDefault.ReminderDefaultMorningStr = getTimeFormat(Settings_General.settingsDefault.ReminderDefaultMorning);
+            Settings_General.settingsDefault.ReminderDefaultAfternoonStr = getTimeFormat(Settings_General.settingsDefault.ReminderDefaultAfternoon);
+            Settings_General.settingsDefault.ReminderDefaultEveningStr = getTimeFormat(Settings_General.settingsDefault.ReminderDefaultEvening);
             OnPropertyChanged(nameof(TimeFormatPos));
         }
 
@@ -158,6 +163,33 @@ namespace DAYLY.ViewModels
             OnPropertyChanged(nameof(ReminderRingtonePos));
         }
 
+        private void changeReminderDefault(string newReminder)
+        {
+            string[] reminderStr = newReminder.Split(',');
+
+            if (reminderStr[0] == "Morning")
+            {
+                Settings_General.settingsDefault.ReminderDefaultMorning = new TimeSpan(Default.stringToInt(reminderStr[1]), 0, 0);
+                Settings_General.settingsDefault.ReminderDefaultMorningStr = getTimeFormat(Settings_General.settingsDefault.ReminderDefaultMorning);
+                Settings_General.settingsDefault.ReminderDefaultMorningPos = reminderStr[2];
+                OnPropertyChanged(nameof(ReminderDefaultMorningPos));
+            }
+            else if (reminderStr[0] == "Afternoon")
+            {
+                Settings_General.settingsDefault.ReminderDefaultAfternoon = new TimeSpan(Default.stringToInt(reminderStr[1]), 0, 0);
+                Settings_General.settingsDefault.ReminderDefaultAfternoonStr = getTimeFormat(Settings_General.settingsDefault.ReminderDefaultAfternoon);
+                Settings_General.settingsDefault.ReminderDefaultAfternoonPos = reminderStr[2];
+                OnPropertyChanged(nameof(ReminderDefaultAfternoonPos));
+            }
+            else if (reminderStr[0] == "Evening")
+            {
+                Settings_General.settingsDefault.ReminderDefaultEvening = new TimeSpan(Default.stringToInt(reminderStr[1]), 0, 0);
+                Settings_General.settingsDefault.ReminderDefaultEveningStr = getTimeFormat(Settings_General.settingsDefault.ReminderDefaultEvening);
+                Settings_General.settingsDefault.ReminderDefaultEveningPos = reminderStr[2];
+                OnPropertyChanged(nameof(ReminderDefaultEveningPos));
+            }
+        }
+
         public string AppThemePos => $"{Settings_General.settingsDefault.AppThemePos}";
         public string FirstDayOfWeekPos => $"{Settings_General.settingsDefault.FirstDayOfWeekPos}";
         public string DayStartTimePos => $"{Settings_General.settingsDefault.DayStartTimePos}";
@@ -171,6 +203,9 @@ namespace DAYLY.ViewModels
         public string DefaultAlertTimePos => $"{Settings_General.settingsDefault.DefaultEventAlertPos}";
         public string TasksReminderPos => $"{Settings_General.settingsDefault.TasksReminderPos}";
         public string ReminderRingtonePos => $"{Settings_General.settingsDefault.ReminderRingtonePos}";
+        public string ReminderDefaultMorningPos => $"{Settings_General.settingsDefault.ReminderDefaultMorningPos}";
+        public string ReminderDefaultAfternoonPos => $"{Settings_General.settingsDefault.ReminderDefaultAfternoonPos}";
+        public string ReminderDefaultEveningPos => $"{Settings_General.settingsDefault.ReminderDefaultEveningPos}";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
