@@ -27,8 +27,7 @@ namespace DAYLY.Views
             InitializeComponent();
 
             // MVVM Implementation
-            //createEventViewModel.StartTime = DateTime.Now.TimeOfDay;
-            createEventViewModel.Initalise();
+            createEventViewModel.Initalise(Navigation);
             BindingContext = createEventViewModel;
 
             colourPicker.Items.Add("Green");
@@ -41,11 +40,6 @@ namespace DAYLY.Views
         async void OnReminderClick(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddReminder());
-        }
-
-        private void StartTimeBtn_Tapped(object sender, EventArgs e)
-        {
-            StartTimePicker.Focus();
         }
 
         private void EndTimeBtn_Tapped(object sender, EventArgs e)
@@ -96,7 +90,5 @@ namespace DAYLY.Views
             CalendarName.Text = "";
             colourPicker.SelectedIndex = -1;
         }
-
-        
     }
 }
