@@ -60,6 +60,7 @@
     <ShellContent Route="Settings_ShowWeekNumbers" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ShowWeekNumbers}" />
     <ShellContent Route="Settings_AppLock" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_AppLock}" />
     <ShellContent Route="Settings_CountdownMode" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_CountdownMode}" />
+    <ShellContent Route="Settings_DailyReminderTime" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_DailyReminderTime}" />
 
     <ShellContent Route="Daily" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Daily}"/>
     <ShellContent Route="Monthly" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Monthly}"/>

@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:DAYLY.ViewModels"
              x:Class="DAYLY.Views.Settings_CountdownMode"
              BackgroundColor="{StaticResource AppBackgroundColour}"
-             Title="App theme">
+             Title="Countdown mode">
     <ContentPage.BindingContext>
         <local:SettingsViewModel/>
     </ContentPage.BindingContext>

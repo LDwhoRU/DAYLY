@@ -20,6 +20,7 @@ namespace DAYLY.ViewModels
             ChangeTimeFormatCommand = new Command<string>(changeTimeFormat);
             ChangeAppLockCommand = new Command<string>(changeAppLock);
             ChangeCountdownModeCommand = new Command<string>(changeCountdownMode);
+            ChangeDailyReminderTimeCommand = new Command<string>(changeDailyReminderTime);
         }
 
         public ICommand ChangeAppThemeCommand { get; }
@@ -31,6 +32,7 @@ namespace DAYLY.ViewModels
         public ICommand ChangeTimeFormatCommand { get; }
         public ICommand ChangeAppLockCommand { get; }
         public ICommand ChangeCountdownModeCommand { get; }
+        public ICommand ChangeDailyReminderTimeCommand { get; }
 
         private void changeAppTheme(string newTheme)
         {
@@ -109,6 +111,16 @@ namespace DAYLY.ViewModels
             OnPropertyChanged(nameof(CountdownModePos));
         }
 
+        private void changeDailyReminderTime(string newTime)
+        {
+            string[] timeStr = newTime.Split(',');
+
+            Settings_General.settingsDefault.DailyReminderTime = new TimeSpan(Default.stringToInt(timeStr[0]), 0, 0);
+            Settings_General.settingsDefault.DailyReminderTimeStr = getTimeFormat(Settings_General.settingsDefault.DailyReminderTime);
+            Settings_General.settingsDefault.DailyReminderTimePos = timeStr[1];
+            OnPropertyChanged(nameof(DailyReminderTimePos));
+        }
+
         public string AppThemePos => $"{Settings_General.settingsDefault.AppThemePos}";
         public string FirstDayOfWeekPos => $"{Settings_General.settingsDefault.FirstDayOfWeekPos}";
         public string DayStartTimePos => $"{Settings_General.settingsDefault.DayStartTimePos}";
@@ -118,6 +130,7 @@ namespace DAYLY.ViewModels
         public string TimeFormatPos => $"{Settings_General.settingsDefault.TimeFormatPos}";
         public string AppLockPos => $"{Settings_General.settingsDefault.AppLockPos}";
         public string CountdownModePos => $"{Settings_General.settingsDefault.CountdownModePos}";
+        public string DailyReminderTimePos => $"{Settings_General.settingsDefault.DailyReminderTimePos}";
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -24,6 +24,9 @@ namespace DAYLY
         public string AppLockPos { get; set; }
         public string CountdownModeStr { get; set; }
         public string CountdownModePos { get; set; }
+        public TimeSpan DailyReminderTime { get; set; }
+        public string DailyReminderTimeStr { get; set; }
+        public string DailyReminderTimePos { get; set; }
 
         public void SetDefaults()
         {
@@ -46,6 +49,9 @@ namespace DAYLY
             AppLockPos = "3";
             CountdownModeStr = "Days remaining";
             CountdownModePos = "0";
+            DailyReminderTime = new TimeSpan(8, 0, 0);
+            DailyReminderTimeStr = "8:00 AM";
+            DailyReminderTimePos = "12";
         }
 
         public static int stringToInt(string stringToConvert)
