@@ -33,13 +33,16 @@ namespace DAYLY.ViewModels
         public Command LoadAlert { get; }
         public Command SaveNote { get; }
         public Command LoadNote { get; }
-        private List<Event> _EventListView;
+        private List<Note> _EventListView;
         private string _EventName;
         private bool _Online;
         private bool _AllDay;
         private string _EventType;
         private string _Repeat;
         private string _Alert;
+        private string _NoteURL;
+        private string _NoteDescription;
+        private int _CurrentNoteID;
         public SQLiteConnection conn;
         private INavigation _NavigationStack;
 
@@ -57,6 +60,42 @@ namespace DAYLY.ViewModels
             }
             return temp;
         }
+        public int CurrentNoteID
+        {
+            get
+            {
+                return _CurrentNoteID;
+            }
+            set
+            {
+                _CurrentNoteID = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentNoteID)));
+            }
+        }
+        public string NoteDescription
+        {
+            get
+            {
+                return _NoteDescription;
+            }
+            set
+            {
+                _NoteDescription = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NoteDescription)));
+            }
+        }
+        public string NoteURL
+        {
+            get
+            {
+                return _NoteURL;
+            }
+            set
+            {
+                _NoteURL = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NoteURL)));
+            }
+        }
         public string Alert
         {
             get
@@ -66,7 +105,6 @@ namespace DAYLY.ViewModels
             set
             {
                 _Alert = value;
-                Console.WriteLine(_Alert);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Alert)));
             }
         }
@@ -205,7 +243,7 @@ namespace DAYLY.ViewModels
             }
         }
 
-        public List<Event> EventListView
+        public List<Note> EventListView
         {
             get
             {
@@ -248,22 +286,6 @@ namespace DAYLY.ViewModels
         private void WriteEvent()
         {
             int isSuccess;
-            // Add Test Note
-            Note newNote = new Note
-            {
-                Description = "Testing",
-                URL = "www.url.com"
-            };
-            isSuccess = 0;
-            try
-            {
-                isSuccess = conn.Insert(newNote);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Inserting Note Failed");
-                throw ex;
-            }
 
             // Add Programme
             Programme newProgramme = new Programme
@@ -281,7 +303,6 @@ namespace DAYLY.ViewModels
                 Console.WriteLine("Inserting Programme Failed");
                 throw ex;
             }
-            Console.WriteLine(_Alert);
             // Add Event
             Event newEvent = new Event
             {
@@ -294,7 +315,7 @@ namespace DAYLY.ViewModels
                 IsOnline = Online,
                 RepeatInterval = Repeat,
                 AlertInterval = Alert,
-                NoteId = newNote.Id,
+                NoteId = CurrentNoteID,
                 ProgrammeId = newProgramme.Id,
             };
             isSuccess = 0;
@@ -313,7 +334,7 @@ namespace DAYLY.ViewModels
         {
             SaveEvent = new Command(() => {
                 WriteEvent();
-                EventListView = (from x in conn.Table<Event>() select x).ToList();
+                EventListView = (from x in conn.Table<Note>() select x).ToList();
             });
 
             SelectType = new Command(async (typeValue) => {
@@ -343,9 +364,32 @@ namespace DAYLY.ViewModels
                 await _NavigationStack.PushAsync(new Alert(this));
             });
 
-            //LoadNote = new Command(async () => {
-            //    await _NavigationStack.PushAsync(new Notes(this));
-            //});
+            SaveNote = new Command(async () => {
+                int isSuccess;
+                // Add Custom Note
+                Note newNote = new Note
+                {
+                    Description = NoteDescription,
+                    URL = NoteURL
+                };
+                isSuccess = 0;
+                try
+                {
+                    isSuccess = conn.Insert(newNote);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Inserting Note Failed");
+                    throw ex;
+                }
+                CurrentNoteID = newNote.Id;
+                await _NavigationStack.PopToRootAsync();
+            });
+
+            LoadNote = new Command(async () =>
+            {
+                await _NavigationStack.PushAsync(new Notes(this));
+            });
         }
 
         public void Initalise(INavigation navigation)

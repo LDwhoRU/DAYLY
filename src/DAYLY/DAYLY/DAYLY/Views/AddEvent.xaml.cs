@@ -42,6 +42,11 @@ namespace DAYLY.Views
             await Navigation.PushAsync(new AddReminder());
         }
 
+        private void StartTimeBtn_Tapped(object sender, EventArgs e)
+        {
+            StartTimePicker.Focus();
+        }
+
         private void EndTimeBtn_Tapped(object sender, EventArgs e)
         {
             EndTimePicker.Focus();

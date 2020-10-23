@@ -332,6 +332,9 @@
                                     </Frame>
                                     <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
                                     <Frame VerticalOptions="Start" HorizontalOptions="Fill" BackgroundColor="White" Padding="0">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding LoadNote}" NumberOfTapsRequired="1"/>
+                                        </Frame.GestureRecognizers>
                                         <Grid Margin="5, 0" Padding="10, 15" RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="1*"/>
@@ -361,7 +364,7 @@
                             <ListView x:Name="myListView" ItemsSource="{Binding EventListView}" HasUnevenRows="True" Margin="0, 0, 0, 25" HeightRequest="40">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <TextCell Text="{Binding Type}" Detail="{Binding AlertInterval}"/>
+                                        <TextCell Text="{Binding URL}" Detail="{Binding Description}"/>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
