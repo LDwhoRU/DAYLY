@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DAYLY.ViewModels"
+             x:Class="DAYLY.Views.Settings_SyncInterval"
+             BackgroundColor="{StaticResource AppBackgroundColour}"
+             Title="App theme">
+    <ContentPage.BindingContext>
+        <local:SettingsViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout>
+            <Frame Margin="40,50,40,40" CornerRadius="10">
+                <Grid Padding="0,-10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="0.001*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="0.001*"/>
+                         <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Every hour" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <BoxView Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
+
+                    <Label Text="Every 12 hours" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <BoxView Grid.Row="5" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
+
+                    <Label Text="Every 24 hours" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="6" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <Image x:Name="TickImage" Source="tick_icon.png" Grid.Row="{Binding SyncIntervalPos}" Grid.Column="1" Grid.RowSpan="2" Margin="15,0,15,0"/>
+
+                    <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeSyncIntervalCommand}" CommandParameter="1,0"/>
+                    <Button Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeSyncIntervalCommand}" CommandParameter="12,3"/>
+                    <Button Grid.Row="6" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeSyncIntervalCommand}" CommandParameter="24,6"/>
+                </Grid>
+            </Frame>
+        </StackLayout>
+</ContentPage>

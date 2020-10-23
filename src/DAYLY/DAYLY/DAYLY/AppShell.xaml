@@ -73,6 +73,7 @@
     <ShellContent Route="Settings_ReminderEvening" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ReminderEvening}" />
     <ShellContent Route="Settings_ReminderEvening24" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ReminderEvening24}" />
     <ShellContent Route="Settings_DefaultBreakDuration" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_DefaultBreakDuration}" />
+    <ShellContent Route="Settings_SyncInterval" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_SyncInterval}" />
 
     <ShellContent Route="Daily" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Daily}"/>
     <ShellContent Route="Monthly" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Monthly}"/>

@@ -46,6 +46,8 @@ namespace DAYLY
         public string ReminderDefaultEveningPos { get; set; }
         public string DefaultBreakDurationStr { get; set; }
         public string DefaultBreakDurationPos { get; set; }
+        public string SyncIntervalStr { get; set; }
+        public string SyncIntervalPos { get; set; }
 
         public void SetDefaults()
         {
@@ -90,6 +92,8 @@ namespace DAYLY
             ReminderDefaultEveningPos = "0";
             DefaultBreakDurationStr = "15 minutes";
             DefaultBreakDurationPos = "0";
+            SyncIntervalStr = "Every hour";
+            SyncIntervalPos = "0";
         }
 
         public static int stringToInt(string stringToConvert)

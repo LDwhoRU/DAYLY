@@ -30,6 +30,7 @@ namespace DAYLY.ViewModels
             ChangeReminderRingtoneCommand = new Command<string>(changeReminderRingtone);
             ChangeReminderDefaultCommand = new Command<string>(changeReminderDefault);
             ChangeDefaultBreakDurationCommand = new Command<string>(changeDefaultBreakDuration);
+            ChangeSyncIntervalCommand = new Command<string>(changeSyncInterval);
         }
 
         public ICommand ChangeAppThemeCommand { get; }
@@ -47,6 +48,7 @@ namespace DAYLY.ViewModels
         public ICommand ChangeReminderRingtoneCommand { get; }
         public ICommand ChangeReminderDefaultCommand { get; }
         public ICommand ChangeDefaultBreakDurationCommand { get; }
+        public ICommand ChangeSyncIntervalCommand { get; }
 
         private void changeAppTheme(string newTheme)
         {
@@ -200,6 +202,14 @@ namespace DAYLY.ViewModels
             OnPropertyChanged(nameof(DefaultBreakDurationPos));
         }
 
+        private void changeSyncInterval(string newInterval)
+        {
+            string[] intervalStr = newInterval.Split(',');
+            Settings_General.settingsDefault.SyncIntervalStr = Default.stringToInt(intervalStr[0]) == 1 ? "Every hour" : "Every " + intervalStr[0] + " hours";
+            Settings_General.settingsDefault.SyncIntervalPos = intervalStr[1];
+            OnPropertyChanged(nameof(SyncIntervalPos));
+        }
+
         public string AppThemePos => $"{Settings_General.settingsDefault.AppThemePos}";
         public string FirstDayOfWeekPos => $"{Settings_General.settingsDefault.FirstDayOfWeekPos}";
         public string DayStartTimePos => $"{Settings_General.settingsDefault.DayStartTimePos}";
@@ -217,6 +227,7 @@ namespace DAYLY.ViewModels
         public string ReminderDefaultAfternoonPos => $"{Settings_General.settingsDefault.ReminderDefaultAfternoonPos}";
         public string ReminderDefaultEveningPos => $"{Settings_General.settingsDefault.ReminderDefaultEveningPos}";
         public string DefaultBreakDurationPos => $"{Settings_General.settingsDefault.DefaultBreakDurationPos}";
+        public string SyncIntervalPos => $"{Settings_General.settingsDefault.SyncIntervalPos}";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
