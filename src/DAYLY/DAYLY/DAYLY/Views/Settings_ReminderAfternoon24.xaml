@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DAYLY.ViewModels"
-             x:Class="DAYLY.Views.Settings_ReminderAfternoon"
+             x:Class="DAYLY.Views.Settings_ReminderAfternoon24"
              BackgroundColor="{StaticResource AppBackgroundColour}"
              Title="Default afternoon reminder">
     <ContentPage.BindingContext>
@@ -29,16 +29,16 @@
                         <ColumnDefinition Width="0.2*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Text="2:00 PM" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <Label Text="14:00" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
                     <BoxView Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
 
-                    <Label Text="3:00 PM" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <Label Text="15:00" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
                     <BoxView Grid.Row="5" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
 
-                    <Label Text="4:00 PM" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="6" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <Label Text="16:00" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="6" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
                     <BoxView Grid.Row="8" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
 
-                    <Label Text="5:00 PM" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="9" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <Label Text="17:00" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="9" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
                     <Image x:Name="TickImage" Source="tick_icon.png" Grid.Row="{Binding ReminderDefaultAfternoonPos}" Grid.Column="1" Grid.RowSpan="2" Margin="15,0,15,0"/>
 
                     <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeReminderDefaultCommand}" CommandParameter="Afternoon,14,0"/>

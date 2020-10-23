@@ -49,17 +49,38 @@ namespace DAYLY.Views
 
         async void OnReminderMorningClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Settings_ReminderMorning());
+            if (Settings_General.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
+            {
+                await Navigation.PushAsync(new Settings_ReminderMorning());
+            }
+            else
+            {
+                await Navigation.PushAsync(new Settings_ReminderMorning24());
+            }  
         }
 
         async void OnReminderAfternoonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Settings_ReminderAfternoon());
+            if (Settings_General.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
+            {
+                await Navigation.PushAsync(new Settings_ReminderAfternoon());
+            }
+            else
+            {
+                await Navigation.PushAsync(new Settings_ReminderAfternoon24());
+            }
         }
 
         async void OnReminderEveningClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Settings_ReminderEvening());
+            if (Settings_General.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
+            {
+                await Navigation.PushAsync(new Settings_ReminderEvening());
+            }
+            else
+            {
+                await Navigation.PushAsync(new Settings_ReminderEvening24());
+            }
         }
 
         protected override void OnAppearing()

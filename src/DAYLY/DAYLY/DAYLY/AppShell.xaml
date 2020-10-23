@@ -67,8 +67,11 @@
     <ShellContent Route="Settings_TasksReminder24" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_TasksReminder24}" />
     <ShellContent Route="Settings_ReminderRingtone" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ReminderRingtone}" />
     <ShellContent Route="Settings_ReminderMorning" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ReminderMorning}" />
+    <ShellContent Route="Settings_ReminderMorning24" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ReminderMorning24}" />
     <ShellContent Route="Settings_ReminderAfternoon" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ReminderAfternoon}" />
+    <ShellContent Route="Settings_ReminderAfternoon24" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ReminderAfternoon24}" />
     <ShellContent Route="Settings_ReminderEvening" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ReminderEvening}" />
+    <ShellContent Route="Settings_ReminderEvening24" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ReminderEvening24}" />
 
     <ShellContent Route="Daily" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Daily}"/>
     <ShellContent Route="Monthly" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Monthly}"/>

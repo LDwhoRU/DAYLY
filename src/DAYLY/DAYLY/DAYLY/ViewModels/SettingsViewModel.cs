@@ -149,7 +149,7 @@ namespace DAYLY.ViewModels
         private void changeTasksReminder(string newTime)
         {
             string[] timeStr = newTime.Split(',');
-            Settings_General.settingsDefault.TasksReminderTime = new TimeSpan(Default.stringToInt(timeStr[0]) + 12, 0, 0);
+            Settings_General.settingsDefault.TasksReminderTime = new TimeSpan(Default.stringToInt(timeStr[0]), 0, 0);
             Settings_General.settingsDefault.TasksReminderStr = getTimeFormat(Settings_General.settingsDefault.TasksReminderTime) + " on the day";
             Settings_General.settingsDefault.TasksReminderPos = timeStr[1];
             OnPropertyChanged(nameof(TasksReminderPos));
