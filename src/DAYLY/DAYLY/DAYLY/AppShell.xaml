@@ -61,6 +61,8 @@
     <ShellContent Route="Settings_AppLock" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_AppLock}" />
     <ShellContent Route="Settings_CountdownMode" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_CountdownMode}" />
     <ShellContent Route="Settings_DailyReminderTime" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_DailyReminderTime}" />
+    <ShellContent Route="Settings_DailyReminderTime24" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_DailyReminderTime24}" />
+    <ShellContent Route="Settings_DefaultEventAlert" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_DefaultEventAlert}" />
 
     <ShellContent Route="Daily" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Daily}"/>
     <ShellContent Route="Monthly" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Monthly}"/>

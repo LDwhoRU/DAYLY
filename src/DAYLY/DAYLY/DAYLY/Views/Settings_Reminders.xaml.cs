@@ -15,12 +15,19 @@ namespace DAYLY.Views
 
         async void OnDailyReminderTimeClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Settings_DailyReminderTime());
+            if (Settings_General.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
+            {
+                await Navigation.PushAsync(new Settings_DailyReminderTime());
+            }
+            else
+            {
+                await Navigation.PushAsync(new Settings_DailyReminderTime24());
+            }
         }
 
-        async void OnEventAlertClicked(object sender, EventArgs e)
+        async void OnDefaultEventAlertClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Settings_DailyReminderTime());
+            await Navigation.PushAsync(new Settings_DefaultEventAlert());
         }
 
         async void OnTasksReminderClicked(object sender, EventArgs e)

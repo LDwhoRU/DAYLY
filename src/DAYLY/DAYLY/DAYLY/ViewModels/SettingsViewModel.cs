@@ -4,11 +4,15 @@ using System.Windows.Input;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using DAYLY.Views;
+using System.Diagnostics;
 
 namespace DAYLY.ViewModels
 {
     public class SettingsViewModel : INotifyPropertyChanged
     {
+        private const int DAY_HOURS = 24;
+        private const int HOUR_MINUTES = 60;
+
         public SettingsViewModel()
         {
             ChangeAppThemeCommand = new Command<string>(changeAppTheme);
@@ -21,6 +25,7 @@ namespace DAYLY.ViewModels
             ChangeAppLockCommand = new Command<string>(changeAppLock);
             ChangeCountdownModeCommand = new Command<string>(changeCountdownMode);
             ChangeDailyReminderTimeCommand = new Command<string>(changeDailyReminderTime);
+            ChangeDefaultAlertTimeCommand = new Command<string>(changeDefaultAlertTime);
         }
 
         public ICommand ChangeAppThemeCommand { get; }
@@ -33,6 +38,7 @@ namespace DAYLY.ViewModels
         public ICommand ChangeAppLockCommand { get; }
         public ICommand ChangeCountdownModeCommand { get; }
         public ICommand ChangeDailyReminderTimeCommand { get; }
+        public ICommand ChangeDefaultAlertTimeCommand { get; }
 
         private void changeAppTheme(string newTheme)
         {
@@ -92,6 +98,7 @@ namespace DAYLY.ViewModels
             Settings_General.settingsDefault.TimeFormatStr = timeFStr[0] + " hour";
             Settings_General.settingsDefault.TimeFormatPos = timeFStr[1];
             Settings_General.settingsDefault.DayStartTimeStr = getTimeFormat(Settings_General.settingsDefault.DayStartTime);
+            Settings_General.settingsDefault.DailyReminderTimeStr = getTimeFormat(Settings_General.settingsDefault.DailyReminderTime);
             OnPropertyChanged(nameof(TimeFormatPos));
         }
 
@@ -114,11 +121,20 @@ namespace DAYLY.ViewModels
         private void changeDailyReminderTime(string newTime)
         {
             string[] timeStr = newTime.Split(',');
-
             Settings_General.settingsDefault.DailyReminderTime = new TimeSpan(Default.stringToInt(timeStr[0]), 0, 0);
             Settings_General.settingsDefault.DailyReminderTimeStr = getTimeFormat(Settings_General.settingsDefault.DailyReminderTime);
             Settings_General.settingsDefault.DailyReminderTimePos = timeStr[1];
             OnPropertyChanged(nameof(DailyReminderTimePos));
+        }
+
+        private void changeDefaultAlertTime(string newTime)
+        {
+            string[] timeStr = newTime.Split(',');
+            Settings_General.settingsDefault.DefaultEventAlertMins = getMinutes(timeStr[0], timeStr[1]);
+            Settings_General.settingsDefault.DefaultEventAlertStr = timeStr[0] + " " + timeStr[1] + " prior";
+            Settings_General.settingsDefault.DefaultEventAlertPos = timeStr[2];
+            OnPropertyChanged(nameof(DefaultAlertTimePos));
+            Debug.WriteLine(Settings_General.settingsDefault.DefaultEventAlertMins);
         }
 
         public string AppThemePos => $"{Settings_General.settingsDefault.AppThemePos}";
@@ -131,6 +147,7 @@ namespace DAYLY.ViewModels
         public string AppLockPos => $"{Settings_General.settingsDefault.AppLockPos}";
         public string CountdownModePos => $"{Settings_General.settingsDefault.CountdownModePos}";
         public string DailyReminderTimePos => $"{Settings_General.settingsDefault.DailyReminderTimePos}";
+        public string DefaultAlertTimePos => $"{Settings_General.settingsDefault.DefaultEventAlertPos}";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -139,7 +156,7 @@ namespace DAYLY.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public static string getTimeFormat(TimeSpan tsTime)
+        private string getTimeFormat(TimeSpan tsTime)
         {
             string startTime = string.Empty;
             string tFormat = Settings_General.settingsDefault.TimeFormatStr;
@@ -167,6 +184,26 @@ namespace DAYLY.ViewModels
             }
 
             return startTime;
+        }
+
+        private int getMinutes(string value, string unit)
+        {
+            int mins = 0;
+
+            if (unit == "minutes")
+            {
+                mins = Default.stringToInt(value);
+            }
+            else if (unit == "hour" || unit == "hours")
+            {
+                mins = Default.stringToInt(value) * HOUR_MINUTES;
+            }
+            else if (unit == "day" || unit == "days")
+            {
+                mins = Default.stringToInt(value) * DAY_HOURS * HOUR_MINUTES;
+            }
+
+            return mins;
         }
     }
 }

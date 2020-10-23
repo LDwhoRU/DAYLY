@@ -27,6 +27,9 @@ namespace DAYLY
         public TimeSpan DailyReminderTime { get; set; }
         public string DailyReminderTimeStr { get; set; }
         public string DailyReminderTimePos { get; set; }
+        public int DefaultEventAlertMins { get; set; }
+        public string DefaultEventAlertStr { get; set; }
+        public string DefaultEventAlertPos { get; set; }
 
         public void SetDefaults()
         {
@@ -51,7 +54,10 @@ namespace DAYLY
             CountdownModePos = "0";
             DailyReminderTime = new TimeSpan(8, 0, 0);
             DailyReminderTimeStr = "8:00 AM";
-            DailyReminderTimePos = "12";
+            DailyReminderTimePos = "6";
+            DefaultEventAlertMins = 15;
+            DefaultEventAlertStr = "15 minutes";
+            DefaultEventAlertPos = "0";
         }
 
         public static int stringToInt(string stringToConvert)
