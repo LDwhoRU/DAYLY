@@ -196,7 +196,7 @@
                                         </StackLayout>
                                     </Frame>
 
-                                    <CollectionView x:Name="CalendarOptions" ItemsSource="{Binding CalendarListView}" HeightRequest="155" VerticalOptions="Start" HorizontalOptions="Start" Margin="20, 0, 0, 0">
+                                    <CollectionView x:Name="CalendarOptions" ItemsSource="{Binding CalendarListView}" HeightRequest="155" WidthRequest="{Binding CalendarListViewWidth}" VerticalOptions="Start" HorizontalOptions="Start" Margin="20, 0, 0, 0">
                                         <CollectionView.ItemsLayout>
                                             <LinearItemsLayout Orientation="Horizontal" />
                                         </CollectionView.ItemsLayout>

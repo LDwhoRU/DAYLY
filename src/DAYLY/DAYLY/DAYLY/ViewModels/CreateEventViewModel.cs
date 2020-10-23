@@ -48,6 +48,7 @@ namespace DAYLY.ViewModels
         private List<Location> _LocationListView;
         private List<Programme> _CalendarListView;
         private int _LocationListViewHeight;
+        private int _CalendarListViewWidth;
         private string _EventName;
         private bool _Online;
         private bool _AllDay;
@@ -137,6 +138,18 @@ namespace DAYLY.ViewModels
             {
                 _CurrentLocationID = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocationID)));
+            }
+        }
+        public int CalendarListViewWidth
+        {
+            get
+            {
+                return _CalendarListViewWidth;
+            }
+            set
+            {
+                _CalendarListViewWidth = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CalendarListViewWidth)));
             }
         }
         public int LocationListViewHeight
@@ -418,6 +431,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _CalendarListView = (from x in conn.Table<Programme>() select x).ToList();
+                CalendarListViewWidth = _CalendarListView.Count * 150;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CalendarListView)));
             }
         }
