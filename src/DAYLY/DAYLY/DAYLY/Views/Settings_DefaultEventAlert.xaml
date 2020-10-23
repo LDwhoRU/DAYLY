@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:DAYLY.ViewModels"
              x:Class="DAYLY.Views.Settings_DefaultEventAlert"
              BackgroundColor="{StaticResource AppBackgroundColour}"
-             Title="Day start time">
+             Title="Default event alert">
     <ContentPage.BindingContext>
         <local:SettingsViewModel/>
     </ContentPage.BindingContext>

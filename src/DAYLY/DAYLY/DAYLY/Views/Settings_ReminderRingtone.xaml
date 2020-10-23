@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:DAYLY.ViewModels"
              x:Class="DAYLY.Views.Settings_ReminderRingtone"
              BackgroundColor="{StaticResource AppBackgroundColour}"
-             Title="Day start time">
+             Title="Reminder ringtone">
     <ContentPage.BindingContext>
         <local:SettingsViewModel/>
     </ContentPage.BindingContext>
