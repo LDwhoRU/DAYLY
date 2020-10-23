@@ -71,29 +71,5 @@ namespace DAYLY.Views
         {
             EventDatePicker.Focus();
         }
-
-        private void ProgrammeNameEntry_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-
-        }
-
-        private void CreateProgrammeBtn_Tapped(object sender, EventArgs e)
-        {
-            popupCalendar.IsVisible = true;
-            bodyContentsView.IsVisible = false;
-        }
-
-        private void AddCalendarBtn_Clicked(object sender, EventArgs e)
-        {
-            eventOperations.SaveCalendar(CalendarName.Text, colourPicker.SelectedItem.ToString());
-            popupCalendar.IsVisible = false;
-            bodyContentsView.IsVisible = true;
-
-            SQLiteConnection conn = DependencyService.Get<Isqlite>().GetConnection();
-            var details = (from x in conn.Table<Programme>() select x).ToList();
-            CalendarOptions.ItemsSource = details;
-            CalendarName.Text = "";
-            colourPicker.SelectedIndex = -1;
-        }
     }
 }

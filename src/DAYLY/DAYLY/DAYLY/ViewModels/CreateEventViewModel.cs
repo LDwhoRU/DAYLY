@@ -37,6 +37,8 @@ namespace DAYLY.ViewModels
         public Command LoadCustomLocation { get; }
         public Command SaveCustomLocation { get; }
         public Command SelectLocation { get; }
+        public Command LoadNewCalendar { get; }
+        public Command SaveNewCalendar { get; }
         private string _LocationAlias;
         private string _LocationAddress;
         private string _LocationSuburb;
@@ -44,6 +46,7 @@ namespace DAYLY.ViewModels
         private string _LocationPostcode;
         private List<Event> _EventListView;
         private List<Location> _LocationListView;
+        private List<Programme> _CalendarListView;
         private int _LocationListViewHeight;
         private string _EventName;
         private bool _Online;
@@ -54,9 +57,88 @@ namespace DAYLY.ViewModels
         private string _NoteURL;
         private string _NoteDescription;
         private int _CurrentNoteID;
+        private int _CurrentLocationID;
+        private int _CurrentCalendarID;
+        private string _CurrentLocationAlias;
         public SQLiteConnection conn;
         private INavigation _NavigationStack;
-
+        private bool _PopupCalendar;
+        private string _NewCalendarName;
+        private string _NewCalendarColour;
+        public string NewCalendarColour
+        {
+            get
+            {
+                return _NewCalendarColour;
+            }
+            set
+            {
+                _NewCalendarColour = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NewCalendarColour)));
+            }
+        }
+        public string NewCalendarName
+        {
+            get
+            {
+                return _NewCalendarName;
+            }
+            set
+            {
+                _NewCalendarName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NewCalendarName)));
+            }
+        }
+        public bool PopupCalendarVisible
+        {
+            get
+            {
+                return _PopupCalendar;
+            }
+            set
+            {
+                _PopupCalendar = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarVisible)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarHidden)));
+            }
+        }
+        public bool PopupCalendarHidden
+        {
+            get
+            {
+                return !_PopupCalendar;
+            }
+            set
+            {
+                _PopupCalendar = !value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarHidden)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarVisible)));
+            }
+        }
+        public string CurrentLocationAlias
+        {
+            get
+            {
+                return _CurrentLocationAlias;
+            }
+            set
+            {
+                _CurrentLocationAlias = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocationAlias)));
+            }
+        }
+        public int CurrentLocationID
+        {
+            get
+            {
+                return _CurrentLocationID;
+            }
+            set
+            {
+                _CurrentLocationID = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocationID)));
+            }
+        }
         public int LocationListViewHeight
         {
             get
@@ -327,6 +409,18 @@ namespace DAYLY.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EndTimeText)));
             }
         }
+        public List<Programme> CalendarListView
+        {
+            get
+            {
+                return _CalendarListView;
+            }
+            set
+            {
+                _CalendarListView = (from x in conn.Table<Programme>() select x).ToList();
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CalendarListView)));
+            }
+        }
         public List<Location> LocationListView
         {
             get
@@ -414,6 +508,7 @@ namespace DAYLY.ViewModels
                 AlertInterval = Alert,
                 NoteId = CurrentNoteID,
                 ProgrammeId = newProgramme.Id,
+                LocationId = CurrentLocationID
             };
             isSuccess = 0;
             try
@@ -493,6 +588,18 @@ namespace DAYLY.ViewModels
                 await _NavigationStack.PushAsync(new LocationSelection(this));
             });
 
+            SelectLocation = new Command(async (locationValue) => {
+                CurrentLocationID = (int)locationValue;
+                foreach (Location location in LocationListView)
+                {
+                    if (location.Id == CurrentLocationID)
+                    {
+                        CurrentLocationAlias = location.Alias;
+                    }
+                }
+                await _NavigationStack.PopAsync();
+            });
+
             SaveCustomLocation = new Command(async () => {
                 int isSuccess;
                 // Add Custom Note
@@ -529,18 +636,66 @@ namespace DAYLY.ViewModels
             {
                 await _NavigationStack.PushAsync(new LocationCustom(this));
             });
+
+            LoadNewCalendar = new Command(() => {
+                PopupCalendarVisible = true;
+            });
+
+            SaveNewCalendar = new Command(() => {
+                int isSuccess;
+                // Add Programme
+                string hexCode;
+                switch (NewCalendarColour)
+                {
+                    case "Green":
+                        hexCode = "#99ff33";
+                        break;
+                    case "Blue":
+                        hexCode = "#0099ff";
+                        break;
+                    case "Red":
+                        hexCode = "#ff5050";
+                        break;
+                    case "Orange":
+                        hexCode = "#ff9966";
+                        break;
+                    case "Yellow":
+                        hexCode = "#ffff99";
+                        break;
+                    case "Purple":
+                        hexCode = "#993399";
+                        break;
+                    default:
+                        hexCode = "#ffffff";
+                        break;
+                }
+                Programme newProgramme = new Programme
+                {
+                    Name = NewCalendarName,
+                    HexColour = hexCode
+                };
+                isSuccess = 0;
+                try
+                {
+                    isSuccess = conn.Insert(newProgramme);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                NewCalendarName = "";
+                NewCalendarColour = "";
+
+                // Save results to query
+                CalendarListView = (from x in conn.Table<Programme>() select x).ToList();
+
+                PopupCalendarVisible = false;
+            });
         }
 
         public void Initalise(INavigation navigation)
         {
             _NavigationStack = navigation;
-
-            EventDate = DateTime.Now;
-            StartTime = DateTime.Now.TimeOfDay;
-            EndTime = StartTime + TimeSpan.FromHours(2);
-            EventType = "Lecture";
-            Repeat = "None";
-            Alert = "15 Minutes";
 
             conn = DependencyService.Get<Isqlite>().GetConnection();
             try
@@ -558,6 +713,16 @@ namespace DAYLY.ViewModels
             conn.CreateTable<Programme>();
             conn.CreateTable<Location>();
             conn.CreateTable<Event>();
+
+            EventDate = DateTime.Now;
+            StartTime = DateTime.Now.TimeOfDay;
+            EndTime = StartTime + TimeSpan.FromHours(2);
+            EventType = "Lecture";
+            Repeat = "None";
+            Alert = "15 Minutes";
+            CurrentLocationAlias = "None";
+            PopupCalendarVisible = false;
+            CalendarListView = (from x in conn.Table<Programme>() select x).ToList();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

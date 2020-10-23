@@ -25,17 +25,17 @@
 
         <StackLayout Spacing="0">
 
-            <ContentView x:Name="popupCalendar" BackgroundColor="#C0808080" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ContentView x:Name="popupCalendar" BackgroundColor="#C0808080" IsVisible="{Binding PopupCalendarVisible}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
                     <StackLayout Orientation="Vertical" HeightRequest="200" WidthRequest="300" BackgroundColor="White">
-                        <Entry x:Name="CalendarName"  Margin="20,20,20,10" Placeholder="Calendar Name"></Entry>
-                        <Picker x:Name="colourPicker" Margin="20,0,20,0" Title="Calendar Colour"/>
-                        <Button x:Name="AddCalendarBtn" Margin="20,0,20,0" Text="Create Calendar" Clicked="AddCalendarBtn_Clicked"></Button>
+                        <Entry x:Name="CalendarName"  Margin="20,20,20,10" Placeholder="Calendar Name" Text="{Binding NewCalendarName}"/>
+                        <Picker x:Name="colourPicker" Margin="20,0,20,0" Title="Calendar Colour" SelectedItem="{Binding NewCalendarColour}"/>
+                        <Button x:Name="AddCalendarBtn" Margin="20,0,20,0" Text="Create Calendar" Command="{Binding SaveNewCalendar}"/>
                     </StackLayout>
                 </StackLayout>
             </ContentView>
 
-            <ContentView x:Name="bodyContentsView" IsVisible="True">
+            <ContentView x:Name="bodyContentsView" IsVisible="{Binding PopupCalendarHidden}">
                 <StackLayout Spacing="0">
                     <Grid RowSpacing="0" ColumnSpacing="0">
                         <Grid.RowDefinitions>
@@ -184,7 +184,7 @@
                                 <StackLayout Orientation="Horizontal" Margin="40, 0, 0, 0" Spacing="0">
                                     <Frame BackgroundColor="#87BCBF" Padding="0" HeightRequest="155" WidthRequest="130" VerticalOptions="Start" HorizontalOptions="Start" CornerRadius="12" HasShadow="True">
                                         <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer x:Name="CreateProgrammeBtn" Tapped="CreateProgrammeBtn_Tapped" NumberOfTapsRequired="1"/>
+                                            <TapGestureRecognizer x:Name="CreateProgrammeBtn" Command="{Binding LoadNewCalendar}" NumberOfTapsRequired="1"/>
                                         </Frame.GestureRecognizers>
                                         <StackLayout Spacing="0">
                                             <Frame Margin="0, 90, 0, 0" Padding="0" HeightRequest="65" WidthRequest="130" HorizontalOptions="End" VerticalOptions="End" CornerRadius="12" BackgroundColor="White">
@@ -196,7 +196,7 @@
                                         </StackLayout>
                                     </Frame>
 
-                                    <CollectionView x:Name="CalendarOptions" HeightRequest="155" VerticalOptions="Start" HorizontalOptions="Start" Margin="20, 0, 0, 0">
+                                    <CollectionView x:Name="CalendarOptions" ItemsSource="{Binding CalendarListView}" HeightRequest="155" VerticalOptions="Start" HorizontalOptions="Start" Margin="20, 0, 0, 0">
                                         <CollectionView.ItemsLayout>
                                             <LinearItemsLayout Orientation="Horizontal" />
                                         </CollectionView.ItemsLayout>
@@ -237,7 +237,7 @@
                                                 <ColumnDefinition Width="24"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="Location" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Label Grid.Column="1" Text="Select" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                            <Label Grid.Column="1" Text="{Binding CurrentLocationAlias}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                                             <Image Grid.Column="2" Grid.RowSpan="2" Source="icn_arrow.png" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="11" HeightRequest="20"/>
                                         </Grid>
                                     </Frame>
@@ -367,7 +367,7 @@
                             <ListView x:Name="myListView" ItemsSource="{Binding EventListView}" HasUnevenRows="True" Margin="0, 0, 0, 25" HeightRequest="40">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <TextCell Text="{Binding URL}" Detail="{Binding Description}"/>
+                                        <TextCell Text="{Binding Name}" Detail="{Binding LocationId}"/>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
