@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DAYLY.ViewModels"
+             x:Class="DAYLY.Views.Settings_ReminderRingtone"
+             BackgroundColor="{StaticResource AppBackgroundColour}"
+             Title="Day start time">
+    <ContentPage.BindingContext>
+        <local:SettingsViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout>
+            <Frame Margin="40,50,40,40" CornerRadius="10">
+                <Grid Padding="0,-10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="0.001*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="0.001*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="0.001*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="0.001*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="0.001*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="0.001*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="DAYLY" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <BoxView Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
+
+                    <Label Text="Aurora" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <BoxView Grid.Row="5" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
+
+                    <Label Text="Zen" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="6" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <BoxView Grid.Row="8" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
+
+                    <Label Text="Serene" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="9" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <BoxView Grid.Row="11" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
+
+                    <Label Text="Surprise" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="12" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <BoxView Grid.Row="14" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
+
+                    <Label Text="Trill" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="15" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <BoxView Grid.Row="17" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
+
+                    <Label Text="Joyful" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="18" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+
+                    <Image x:Name="TickImage" Source="tick_icon.png" Grid.Row="{Binding ReminderRingtonePos}" Grid.Column="1" Grid.RowSpan="2" Margin="15,0,15,0"/>
+
+                    <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeReminderRingtoneCommand}" CommandParameter="DAYLY,0"/>
+                    <Button Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeReminderRingtoneCommand}" CommandParameter="Aurora,3"/>
+                    <Button Grid.Row="6" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeReminderRingtoneCommand}" CommandParameter="Zen,6"/>
+                    <Button Grid.Row="9" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeReminderRingtoneCommand}" CommandParameter="Serene,9"/>
+                    <Button Grid.Row="12" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeReminderRingtoneCommand}" CommandParameter="Surprise,12"/>
+                    <Button Grid.Row="15" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeReminderRingtoneCommand}" CommandParameter="Trill,15"/>
+                    <Button Grid.Row="18" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeReminderRingtoneCommand}" CommandParameter="Joyful,18"/>
+
+                </Grid>
+            </Frame>
+        </StackLayout>
+</ContentPage>

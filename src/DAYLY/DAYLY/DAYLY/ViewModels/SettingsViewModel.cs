@@ -17,7 +17,7 @@ namespace DAYLY.ViewModels
         {
             ChangeAppThemeCommand = new Command<string>(changeAppTheme);
             ChangeFirstDayOfWeekCommand = new Command<string>(changeFirstDayOfWeek);
-            ChangeDayStartTime = new Command<string>(changeDayStartTime);
+            ChangeDayStartTimeCommand = new Command<string>(changeDayStartTime);
             ChangeDefaultEventDurationCommand = new Command<string>(changeDefaultEvenDuration);
             ChangeDefaultViewCommand = new Command<string>(changeDefaultView);
             ChangeShowWeekNumbersCommand = new Command<string>(changeShowWeekNumbers);
@@ -27,11 +27,12 @@ namespace DAYLY.ViewModels
             ChangeDailyReminderTimeCommand = new Command<string>(changeDailyReminderTime);
             ChangeDefaultAlertTimeCommand = new Command<string>(changeDefaultAlertTime);
             ChangeTasksReminderCommand = new Command<string>(changeTasksReminder);
+            ChangeReminderRingtoneCommand = new Command<string>(changeReminderRingtone);
         }
 
         public ICommand ChangeAppThemeCommand { get; }
         public ICommand ChangeFirstDayOfWeekCommand { get; }
-        public ICommand ChangeDayStartTime { get; }
+        public ICommand ChangeDayStartTimeCommand { get; }
         public ICommand ChangeDefaultEventDurationCommand { get; }
         public ICommand ChangeDefaultViewCommand { get; }
         public ICommand ChangeShowWeekNumbersCommand { get; }
@@ -41,6 +42,7 @@ namespace DAYLY.ViewModels
         public ICommand ChangeDailyReminderTimeCommand { get; }
         public ICommand ChangeDefaultAlertTimeCommand { get; }
         public ICommand ChangeTasksReminderCommand { get; }
+        public ICommand ChangeReminderRingtoneCommand { get; }
 
         private void changeAppTheme(string newTheme)
         {
@@ -148,6 +150,14 @@ namespace DAYLY.ViewModels
             OnPropertyChanged(nameof(TasksReminderPos));
         }
 
+        private void changeReminderRingtone(string newTone)
+        {
+            string[] toneStr = newTone.Split(',');
+            Settings_General.settingsDefault.ReminderRingtoneStr = toneStr[0];
+            Settings_General.settingsDefault.ReminderRingtonePos = toneStr[1];
+            OnPropertyChanged(nameof(ReminderRingtonePos));
+        }
+
         public string AppThemePos => $"{Settings_General.settingsDefault.AppThemePos}";
         public string FirstDayOfWeekPos => $"{Settings_General.settingsDefault.FirstDayOfWeekPos}";
         public string DayStartTimePos => $"{Settings_General.settingsDefault.DayStartTimePos}";
@@ -160,6 +170,7 @@ namespace DAYLY.ViewModels
         public string DailyReminderTimePos => $"{Settings_General.settingsDefault.DailyReminderTimePos}";
         public string DefaultAlertTimePos => $"{Settings_General.settingsDefault.DefaultEventAlertPos}";
         public string TasksReminderPos => $"{Settings_General.settingsDefault.TasksReminderPos}";
+        public string ReminderRingtonePos => $"{Settings_General.settingsDefault.ReminderRingtonePos}";
 
         public event PropertyChangedEventHandler PropertyChanged;
 

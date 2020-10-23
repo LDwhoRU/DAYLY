@@ -33,6 +33,8 @@ namespace DAYLY
         public TimeSpan TasksReminderTime { get; set; }
         public string TasksReminderStr { get; set; }
         public string TasksReminderPos { get; set; }
+        public string ReminderRingtoneStr { get; set; }
+        public string ReminderRingtonePos { get; set; }
 
         public void SetDefaults()
         {
@@ -64,6 +66,8 @@ namespace DAYLY
             TasksReminderTime = new TimeSpan(17, 0, 0);
             TasksReminderStr = "5:00 PM on the day";
             TasksReminderPos = "0";
+            ReminderRingtoneStr = "DAYLY";
+            ReminderRingtonePos = "0";
         }
 
         public static int stringToInt(string stringToConvert)

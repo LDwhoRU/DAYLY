@@ -50,7 +50,7 @@
                         <BoxView Grid.Row="11" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
 
                         <Label Text="Reminder ringtone" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="12" Grid.Column="0" Margin="7,0,0,0"/>
-                        <Label Text="DAYLY" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="13" Grid.Column="0" Margin="7,0,0,0"/>
+                        <Label Text="{Binding ReminderRingtoneStr}" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="13" Grid.Column="0" Margin="7,0,0,0"/>
                         <BoxView Grid.Row="14" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
 
                         <Label Text="Vibrate" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="15" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>

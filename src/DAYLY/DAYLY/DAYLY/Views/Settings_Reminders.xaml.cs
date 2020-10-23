@@ -44,7 +44,7 @@ namespace DAYLY.Views
 
         async void OnReminderRingtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Settings_DailyReminderTime());
+            await Navigation.PushAsync(new Settings_ReminderRingtone());
         }
 
         protected override void OnAppearing()
