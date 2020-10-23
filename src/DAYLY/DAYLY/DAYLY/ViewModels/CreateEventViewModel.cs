@@ -47,7 +47,7 @@ namespace DAYLY.ViewModels
         private string _LocationPostcode;
         private List<Event> _EventListView;
         private List<Location> _LocationListView;
-        private List<Programme> _CalendarListView;
+        private List<ProgrammeViewModel> _CalendarListView;
         private int _LocationListViewHeight;
         private int _CalendarListViewWidth;
         private string _EventName;
@@ -435,7 +435,7 @@ namespace DAYLY.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EndTimeText)));
             }
         }
-        public List<Programme> CalendarListView
+        public List<ProgrammeViewModel> CalendarListView
         {
             get
             {
@@ -443,7 +443,22 @@ namespace DAYLY.ViewModels
             }
             set
             {
-                _CalendarListView = (from x in conn.Table<Programme>() select x).ToList();
+                _CalendarListView = new List<ProgrammeViewModel>();
+                List<Programme> tempListView = (from x in conn.Table<Programme>() select x).ToList();
+                string tempBorderColour;
+                foreach (Programme programme in tempListView)
+                {
+                    if (programme.Id == CurrentCalendarID)
+                    {
+                        tempBorderColour = "#0033cc";
+                    }
+                    else
+                    {
+                        tempBorderColour = "#ffffff";
+                    }
+                    ProgrammeViewModel programmeViewModel = new ProgrammeViewModel(programme.Id, programme.Name, programme.HexColour, tempBorderColour);
+                    _CalendarListView.Add(programmeViewModel);
+                }
                 CalendarListViewWidth = _CalendarListView.Count * 150;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CalendarListView)));
             }
@@ -503,25 +518,8 @@ namespace DAYLY.ViewModels
 
         private void WriteEvent()
         {
-            int isSuccess;
-
-            // Add Programme
-            Programme newProgramme = new Programme
-            {
-                Name = "Cal",
-                HexColour = "FFFFFF"
-            };
-            isSuccess = 0;
-            try
-            {
-                isSuccess = conn.Insert(newProgramme);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Inserting Programme Failed");
-                throw ex;
-            }
             // Add Event
+            int isSuccess;
             Event newEvent = new Event
             {
                 Name = EventName,
@@ -534,7 +532,7 @@ namespace DAYLY.ViewModels
                 RepeatInterval = Repeat,
                 AlertInterval = Alert,
                 NoteId = CurrentNoteID,
-                ProgrammeId = newProgramme.Id,
+                ProgrammeId = CurrentCalendarID,
                 LocationId = CurrentLocationID
             };
             isSuccess = 0;
@@ -712,15 +710,18 @@ namespace DAYLY.ViewModels
                 }
                 NewCalendarName = "";
                 NewCalendarColour = "";
+                CurrentCalendarID = 0;
 
                 // Save results to query
-                CalendarListView = (from x in conn.Table<Programme>() select x).ToList();
+                CalendarListView = new List<ProgrammeViewModel>();
 
                 PopupCalendarVisible = false;
             });
 
             SelectCalendar = new Command((calendarValue) => {
-                Console.WriteLine(calendarValue);
+                CurrentCalendarID = 0;
+                CurrentCalendarID = (int)calendarValue;
+                CalendarListView = new List<ProgrammeViewModel>();
             });
         }
 
@@ -753,7 +754,7 @@ namespace DAYLY.ViewModels
             Alert = "15 Minutes";
             CurrentLocationAlias = "None";
             PopupCalendarVisible = false;
-            CalendarListView = (from x in conn.Table<Programme>() select x).ToList();
+            CalendarListView = new List<ProgrammeViewModel>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
