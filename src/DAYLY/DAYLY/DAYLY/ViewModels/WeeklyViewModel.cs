@@ -1,5 +1,6 @@
 ﻿using DAYLY.Models;
 using DAYLY.Services;
+using DAYLY.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,7 +40,7 @@ namespace DAYLY.ViewModels
         Color[] fricol = new Color[16];
         Color[] satcol = new Color[16];
         Color[] suncol = new Color[16];
-
+        public Command EventTapp { get; }
 
         string today;
      
@@ -60,6 +61,7 @@ namespace DAYLY.ViewModels
             Colours = new ObservableCollection<Programme>();
             Today = dt.DayOfWeek.ToString() + " " + dt.Day.ToString() + "/" + dt.Month.ToString() + "/" + dt.Year.ToString(); //figure out the current day of the week
             Task.Run(async () => await ExecuteLoadItemsCommand());//load the test data
+            EventTapp = new Command<Event>(OnItemSelected);
              GetWeek();
       
             WeekTime();
@@ -125,7 +127,16 @@ namespace DAYLY.ViewModels
                 IsBusy = false;
             }
         }
-       
+        async void OnItemSelected(Event eve)
+        {
+            if (eve == null)
+                return;
+
+            // This will push the ItemDetailPage onto the navigation stack
+            Console.WriteLine("you tapped me");
+            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={eve.Id}");
+        }
+
         public void WeekTime()
         {
             bool[][] bweek = new bool[][] {sun,mon,tue,wed,thur,fri,sat };//mutlidimensional array for making frames visible on view

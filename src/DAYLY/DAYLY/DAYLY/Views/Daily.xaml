@@ -2,11 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DAYLY.Views.Daily"
+                    xmlns:viewModels="clr-namespace:DAYLY.ViewModels"
              BackgroundColor="White">
     <Shell.BackButtonBehavior>
         <BackButtonBehavior  IconOverride="transparent.png" 
                              ></BackButtonBehavior>
     </Shell.BackButtonBehavior>
+    <ContentPage.BindingContext>
+        <viewModels:DailyViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
             <!--Timeline Select Bar-->
@@ -44,7 +48,7 @@
 
             
             <!--Current Datetime-->
-            <Label Text="Wednesday, September 3 2020" VerticalOptions="Start" HorizontalOptions="Center" TextColor="#D97D54" Margin="0"/>
+            <Label Text="{Binding Today}" VerticalOptions="Start" HorizontalOptions="Center" TextColor="#D97D54" Margin="0"/>
 
             <!--Section Divider-->
             <BoxView BackgroundColor="#ECEFF0" HorizontalOptions="Fill" HeightRequest="3" Margin="0, 0, 0, 0"/>
@@ -52,6 +56,9 @@
             <ScrollView Margin="15,20,25,20">
                 <Grid RowSpacing="60" >
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
@@ -72,18 +79,22 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Text="10 AM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="0"/>
-                    <Label Text="11 AM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="1"/>
-                    <Label Text="12 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="2"/>
-                    <Label Text="1 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="3"/>
-                    <Label Text="2 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="4"/>
-                    <Label Text="3 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="5"/>
-                    <Label Text="4 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="6"/>
-                    <Label Text="5 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="7"/>
-                    <Label Text="6 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="8"/>
-                    <Label Text="7 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="9"/>
-                    <Label Text="8 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="10"/>
-                    <Label Text="9 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="11"/>
+                    <Label Text="7 AM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="0"/>
+                    <Label Text="8 AM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="1"/>
+                    <Label Text="9 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="2"/>
+                    <Label Text="10 AM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="3"/>
+                    <Label Text="11 AM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="4"/>
+                    <Label Text="12 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="5"/>
+                    <Label Text="1 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="6"/>
+                    <Label Text="2 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="7"/>
+                    <Label Text="3 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="8"/>
+                    <Label Text="4 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="9"/>
+                    <Label Text="5 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="10"/>
+                    <Label Text="6 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="11"/>
+                    <Label Text="7 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="12"/>
+                    <Label Text="8 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="13"/>
+                    <Label Text="9 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="14"/>
+                    <Label Text="10 PM" TextColor="{StaticResource Slate}" FontAttributes="Bold" Grid.Row="15"/>
 
                     <Image Source="circle_darkgreen.png" Grid.Row="0" Grid.Column="1"/>
                     <Image Source="circle_darkgreen.png" Grid.Row="1" Grid.Column="1"/>
@@ -98,7 +109,24 @@
                     <Image Source="circle_darkblue.png" Grid.Row="10" Grid.Column="1"/>
                     <Image Source="circle_darkblue.png" Grid.Row="11" Grid.Column="1"/>
 
-                    <Frame CornerRadius="5" BackgroundColor="#EB2929" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Padding="15">
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[0]}" IsVisible="{Binding Times[0]}"  Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[0]}">
+                        <StackLayout>
+                            <Label Text="{Binding Desc[0]}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="location_pin.png"/>
+                                <Label Text="{Binding Location[0]}" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+                            </Grid>
+
+                            <Label Text="{Binding Nnotes[0]}" TextColor="White" FontSize="14"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[1]}" IsVisible="{Binding Times[1]}" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[1]}">
                         <StackLayout>
                             <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
@@ -109,14 +137,167 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Image Source="location_pin.png"/>
-                                <Label Text="Online Zoom" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+                                <Label Text="{Binding Location[1]}" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
                             </Grid>
 
-                            <Label Text="Developing medium fidelity prototypes. Low fidelity protoype due." TextColor="White" FontSize="14"/>
+                            <Label Text="{Binding Nnotes[1]}" TextColor="White" FontSize="14"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[2]}" IsVisible="{Binding Times[2]}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[2]}">
+                        <StackLayout>
+                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="location_pin.png"/>
+                                <Label Text="{Binding Location[2]}" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+                            </Grid>
+
+                            <Label Text="{Binding Nnotes[2]}" TextColor="White" FontSize="14"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[3]}" IsVisible="{Binding Times[3]}" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[3]}" >
+                        <StackLayout>
+                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="location_pin.png"/>
+                                <Label Text="{Binding Location[3]}" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+                            </Grid>
+
+                            <Label Text="{Binding Nnotes[3]}" TextColor="White" FontSize="14"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[4]}" IsVisible="{Binding Times[4]}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[4]}">
+                        <StackLayout>
+                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="location_pin.png"/>
+                                <Label Text="{Binding Location[4]}" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+                            </Grid>
+
+                            <Label Text="{Binding Nnotes[4]}" TextColor="White" FontSize="14"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[5]}" IsVisible="{Binding Times[5]}" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[5]}" >
+                        <StackLayout>
+                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="location_pin.png"/>
+                                <Label Text="{Binding Location[5]}" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+                            </Grid>
+
+                            <Label Text="{Binding Nnotes[5]}" TextColor="White" FontSize="14"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[6]}" IsVisible="{Binding Times[6]}" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[6]}" >
+                        <StackLayout>
+                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="location_pin.png"/>
+                                <Label Text="{Binding Location[6]}" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+                            </Grid>
+
+                            <Label Text="{Binding Nnotes[6]}" TextColor="White" FontSize="14"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[7]}" IsVisible="{Binding Times[7]}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[7]}">
+                        <StackLayout>
+                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="location_pin.png"/>
+                                <Label Text="{Binding Location[7]}" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+                            </Grid>
+
+                            <Label Text="{Binding Nnotes[7]}" TextColor="White" FontSize="14"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[8]}" IsVisible="{Binding Times[8]}" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[8]}">
+                        <StackLayout>
+                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="location_pin.png"/>
+                                <Label Text="{Binding Location[8]}" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+                            </Grid>
+
+                            <Label Text="{Binding Nnotes[8]}" TextColor="White" FontSize="14"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[9]}" IsVisible="{Binding Times[9]}" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[9]}" Padding="15">
+                        <StackLayout>
+                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="location_pin.png"/>
+                                <Label Text="{Binding Location[9]}" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+                            </Grid>
+
+                            <Label Text="{Binding Nnotes[9]}" TextColor="White" FontSize="14"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[10]}" IsVisible="{Binding Times[10]}" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[10]}" Padding="15">
+                        <StackLayout>
+                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="location_pin.png"/>
+                                <Label Text="{Binding Location[10]}" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+                            </Grid>
+
+                            <Label Text="{Binding Nnotes[10]}" TextColor="White" FontSize="14"/>
                         </StackLayout>
                     </Frame>
 
-                    <Frame CornerRadius="5" BackgroundColor="#2990EB" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" Grid.RowSpan="3" Padding="15">
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[11]}" IsVisible="{Binding Times[11]}" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="1" Grid.RowSpan="{Binding Spans[11]}" Padding="15">
                         <StackLayout>
                             <Label Text="IAB330 Lecture" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
@@ -127,22 +308,17 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Image Source="location_pin.png"/>
-                                <Label Text="GP Z-401" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+                                <Label Text="{Binding Location[11]}" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
 
                             </Grid>
 
-                            <Label Text="Lecture 4" TextColor="White" FontSize="14"/>
+                            <Label Text="{Binding Nnotes[11]}" TextColor="White" FontSize="14"/>
                         </StackLayout>
                     </Frame>
 
-                    <Frame CornerRadius="5" BackgroundColor="#44E300" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1" Grid.RowSpan="2" Padding="15">
-                        <StackLayout>
-                            <Label Text="IAB401 Assignment" FontSize="14" FontAttributes="Bold" TextColor="Black"/>
-                            <Label Text="IAB401 Assignment 1 Due 11:59PM." TextColor="White" FontSize="12"/>
-                        </StackLayout>
-                    </Frame>
 
-                    <Frame CornerRadius="5" BackgroundColor="#CCB926" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Padding="15">
+
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[12]}" IsVisible="{Binding Times[12]}" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[12]}" Padding="15">
                         <StackLayout>
                             <Label Text="IFB295 Lecture" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
@@ -153,15 +329,15 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Image Source="location_pin.png"/>
-                                <Label Text="GP Z-406" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+                                <Label Text="{Binding Location[12]}" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
 
                             </Grid>
 
-                            <Label Text="Lecture 4" TextColor="White" FontSize="14"/>
+                            <Label Text="{Binding Nnotes[12]}" TextColor="White" FontSize="14"/>
                         </StackLayout>
                     </Frame>
 
-                    <Frame CornerRadius="5" BackgroundColor="#CCB926" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Padding="15">
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[13]}" IsVisible="{Binding Times[13]}" Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[13]}" Padding="15">
                         <StackLayout>
                             <Label Text="IFB295 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
@@ -172,15 +348,49 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Image Source="location_pin.png"/>
-                                <Label Text="GP S-520" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+                                <Label Text="{Binding Location[13]}" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
 
                             </Grid>
 
-                            <Label Text="Work on report and DSDM analysis." TextColor="White" FontSize="14"/>
+                            <Label Text="{Binding Nnotes[13]}" TextColor="White" FontSize="14"/>
                         </StackLayout>
                     </Frame>
-                
-            </Grid>
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[14]}" IsVisible="{Binding Times[14]}" Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[14]}" Padding="15">
+                        <StackLayout>
+                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="location_pin.png"/>
+                                <Label Text="{Binding Location[14]}" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+                            </Grid>
+
+                            <Label Text="{Binding Nnotes[14]}" TextColor="White" FontSize="14"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[15]}" IsVisible="{Binding Times[15]}" Grid.Row="15" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[15]}" Padding="15">
+                        <StackLayout>
+                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="location_pin.png"/>
+                                <Label Text="{Binding Location[15]}" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="1"/>
+                            </Grid>
+
+                            <Label Text="{Binding Nnotes[15]}" TextColor="White" FontSize="14"/>
+                        </StackLayout>
+                    </Frame>
+
+                </Grid>
             </ScrollView>
 
         </StackLayout>
