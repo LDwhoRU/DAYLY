@@ -39,6 +39,7 @@ namespace DAYLY.ViewModels
         public Command SelectLocation { get; }
         public Command LoadNewCalendar { get; }
         public Command SaveNewCalendar { get; }
+        public Command SelectCalendar { get; }
         private string _LocationAlias;
         private string _LocationAddress;
         private string _LocationSuburb;
@@ -126,6 +127,18 @@ namespace DAYLY.ViewModels
             {
                 _CurrentLocationAlias = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocationAlias)));
+            }
+        }
+        public int CurrentCalendarID
+        {
+            get
+            {
+                return _CurrentCalendarID;
+            }
+            set
+            {
+                _CurrentCalendarID = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentCalendarID)));
             }
         }
         public int CurrentLocationID
@@ -704,6 +717,10 @@ namespace DAYLY.ViewModels
                 CalendarListView = (from x in conn.Table<Programme>() select x).ToList();
 
                 PopupCalendarVisible = false;
+            });
+
+            SelectCalendar = new Command((calendarValue) => {
+                Console.WriteLine(calendarValue);
             });
         }
 
