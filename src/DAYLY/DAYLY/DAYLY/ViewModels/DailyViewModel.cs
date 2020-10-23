@@ -15,14 +15,14 @@ namespace DAYLY.ViewModels
 {
     class DailyViewModel: BaseViewModel
     {
-        bool[] times = new bool[16];
+        bool[] times = new bool[16];//used to set is visible on elements
         string today;
-        int[] spans = new int[16];
-        Color[] colours = new Color[16];
-        string[] desc = new string[16];
-        string[] locations = new string[16];
-        string[] notes = new string[16];
-        public ObservableCollection<Event> Events { get; }
+        int[] spans = new int[16]; //used to figure out row span depending on time
+        Color[] colours = new Color[16];//used to set colours
+        string[] desc = new string[16];//used to set names
+        string[] locations = new string[16];//set locations
+        string[] notes = new string[16];//et notes
+        public ObservableCollection<Event> Events { get; } //intialising all the global variables
         public ObservableCollection<Note> Notes { get; }
         public ObservableCollection<Programme> Colours { get; }
         TimeSpan time8 = new TimeSpan(7, 0, 0);
@@ -37,7 +37,7 @@ namespace DAYLY.ViewModels
             Title = "testing";
            // Console.WriteLine("yeah we made it");
             Today = dt.DayOfWeek.ToString() + " " + dt.Day.ToString() + "/" + dt.Month.ToString() + "/" + dt.Year.ToString();
-            Task.Run(async () => await ExecuteLoadItemsCommand());
+            Task.Run(async () => await ExecuteLoadItemsCommand()); //loading the mock data
             GetTimes();
       
         }
@@ -101,16 +101,16 @@ namespace DAYLY.ViewModels
             IsBusy = true;
             try
             {
-                for (int i = 0; i < times.Length; i++)//set every thing to false to begin with
+                for (int i = 0; i < times.Length; i++)//set every thing to false to begin with and 
                 {
                     times[i] = false;
-                    spans[i] = 1;
+                    spans[i] = 1;//make all rowspans 1 as null gives an error
                 }
                 foreach (var even in Events)
                 {
-                   // Console.WriteLine("yeah we made it");
-                    if (even.Date.DayOfWeek == DateTime.Today.DayOfWeek) {
-                        for (int i = 0; i < TimerArray.Length; i++) {
+                   
+                    if (even.Date.DayOfWeek == DateTime.Today.DayOfWeek) {//loop through events if the date of the event is today loop through the different time slots if time matches one of the times
+                        for (int i = 0; i < TimerArray.Length; i++) {//set that boolean to true as well as storing the other data
                            // Console.WriteLine("yeah we made it");
                             if (even.StartTime ==TimerArray[i]) {
                                 times[i] = true;
