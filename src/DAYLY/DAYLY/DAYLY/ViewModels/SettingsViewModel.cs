@@ -19,6 +19,7 @@ namespace DAYLY.ViewModels
             ChangeShowWeekNumbersCommand = new Command<string>(changeShowWeekNumbers);
             ChangeTimeFormatCommand = new Command<string>(changeTimeFormat);
             ChangeAppLockCommand = new Command<string>(changeAppLock);
+            ChangeCountdownModeCommand = new Command<string>(changeCountdownMode);
         }
 
         public ICommand ChangeAppThemeCommand { get; }
@@ -29,6 +30,7 @@ namespace DAYLY.ViewModels
         public ICommand ChangeShowWeekNumbersCommand { get; }
         public ICommand ChangeTimeFormatCommand { get; }
         public ICommand ChangeAppLockCommand { get; }
+        public ICommand ChangeCountdownModeCommand { get; }
 
         private void changeAppTheme(string newTheme)
         {
@@ -99,6 +101,14 @@ namespace DAYLY.ViewModels
             OnPropertyChanged(nameof(AppLockPos));
         }
 
+        private void changeCountdownMode(string newMode)
+        {
+            string[] modeStr = newMode.Split(',');
+            Settings_General.settingsDefault.CountdownModeStr = modeStr[0];
+            Settings_General.settingsDefault.CountdownModePos = modeStr[1];
+            OnPropertyChanged(nameof(CountdownModePos));
+        }
+
         public string AppThemePos => $"{Settings_General.settingsDefault.AppThemePos}";
         public string FirstDayOfWeekPos => $"{Settings_General.settingsDefault.FirstDayOfWeekPos}";
         public string DayStartTimePos => $"{Settings_General.settingsDefault.DayStartTimePos}";
@@ -107,6 +117,7 @@ namespace DAYLY.ViewModels
         public string ShowWeekNumbersPos => $"{Settings_General.settingsDefault.ShowWeekNumbersPos}";
         public string TimeFormatPos => $"{Settings_General.settingsDefault.TimeFormatPos}";
         public string AppLockPos => $"{Settings_General.settingsDefault.AppLockPos}";
+        public string CountdownModePos => $"{Settings_General.settingsDefault.CountdownModePos}";
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -72,8 +72,8 @@
                             <Image Source="arrow_icon.png" HeightRequest="16" Margin="15,0,15,0" Grid.Row="4" Grid.Column="2" HorizontalOptions="End"/>
                             <Image Source="arrow_icon.png" HeightRequest="16" Margin="15,0,15,0" Grid.Row="6" Grid.Column="2" HorizontalOptions="End"/>
                             <Image Source="arrow_icon.png" HeightRequest="16" Margin="15,0,15,0" Grid.Row="8" Grid.Column="2" HorizontalOptions="End"/>
-                            <Switch Grid.Row="10" Grid.Column="2" HeightRequest="5" OnColor="#BDE3E5" ThumbColor="{StaticResource Sage}"/>
-                            <Switch Grid.Row="12" Grid.Column="2" HeightRequest="5" OnColor="#BDE3E5" ThumbColor="{StaticResource Sage}"/>
+                            <Switch Grid.Row="10" Grid.Column="2" HeightRequest="5" OnColor="#BDE3E5" ThumbColor="{StaticResource Sage}" IsEnabled="True"/>
+                            <Switch Grid.Row="12" Grid.Column="2" HeightRequest="5" OnColor="#BDE3E5" ThumbColor="{StaticResource Sage}" IsEnabled="True"/>
 
                             <BoxView Grid.Row="1" Grid.ColumnSpan="3" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
                             <BoxView Grid.Row="3" Grid.ColumnSpan="3" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>

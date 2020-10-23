@@ -22,6 +22,8 @@ namespace DAYLY
         public string TimeFormatPos { get; set; }
         public string AppLockStr { get; set; }
         public string AppLockPos { get; set; }
+        public string CountdownModeStr { get; set; }
+        public string CountdownModePos { get; set; }
 
         public void SetDefaults()
         {
@@ -42,6 +44,8 @@ namespace DAYLY
             TimeFormatPos = "0";
             AppLockStr = "PIN";
             AppLockPos = "3";
+            CountdownModeStr = "Days remaining";
+            CountdownModePos = "0";
         }
 
         public static int stringToInt(string stringToConvert)

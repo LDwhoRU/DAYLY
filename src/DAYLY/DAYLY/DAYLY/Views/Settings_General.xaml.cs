@@ -62,6 +62,11 @@ namespace DAYLY.Views
             await Navigation.PushAsync(new Settings_AppLock());
         }
 
+        async void OnCountdownModeClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Settings_CountdownMode());
+        }
+
         protected override void OnAppearing()
         {
             InitializeComponent();

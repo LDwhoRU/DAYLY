@@ -96,7 +96,7 @@
                             <Button Grid.Row="15" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Clicked="OnShowWeekNumbersClicked"/>
                             <Button Grid.Row="18" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Clicked="OnTimeFormatClicked"/>
                             <Button Grid.Row="21" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Clicked="OnAppLockClicked"/>
-                            <Button Grid.Row="24" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>
+                            <Button Grid.Row="24" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Clicked="OnCountdownModeClicked"/>
                         </Grid>
                     </StackLayout>
                 </Frame>
