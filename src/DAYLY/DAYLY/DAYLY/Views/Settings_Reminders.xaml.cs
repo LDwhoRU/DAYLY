@@ -32,7 +32,14 @@ namespace DAYLY.Views
 
         async void OnTasksReminderClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Settings_DailyReminderTime());
+            if (Settings_General.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
+            {
+                await Navigation.PushAsync(new Settings_TasksReminder());
+            }
+            else
+            {
+                await Navigation.PushAsync(new Settings_TasksReminder24());
+            }
         }
 
         async void OnReminderRingtonClicked(object sender, EventArgs e)

@@ -46,7 +46,7 @@
                         <BoxView Grid.Row="8" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
 
                         <Label Text="Remind about incomplete tasks" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="9" Grid.Column="0" Margin="7,0,0,0"/>
-                        <Label Text="5:00 PM the day before" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="10" Grid.Column="0" Margin="7,0,0,0"/>
+                        <Label Text="{Binding TasksReminderStr}" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="10" Grid.Column="0" Margin="7,0,0,0"/>
                         <BoxView Grid.Row="11" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
 
                         <Label Text="Reminder ringtone" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="12" Grid.Column="0" Margin="7,0,0,0"/>

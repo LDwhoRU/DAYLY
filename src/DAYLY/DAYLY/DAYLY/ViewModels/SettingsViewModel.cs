@@ -26,6 +26,7 @@ namespace DAYLY.ViewModels
             ChangeCountdownModeCommand = new Command<string>(changeCountdownMode);
             ChangeDailyReminderTimeCommand = new Command<string>(changeDailyReminderTime);
             ChangeDefaultAlertTimeCommand = new Command<string>(changeDefaultAlertTime);
+            ChangeTasksReminderCommand = new Command<string>(changeTasksReminder);
         }
 
         public ICommand ChangeAppThemeCommand { get; }
@@ -39,6 +40,7 @@ namespace DAYLY.ViewModels
         public ICommand ChangeCountdownModeCommand { get; }
         public ICommand ChangeDailyReminderTimeCommand { get; }
         public ICommand ChangeDefaultAlertTimeCommand { get; }
+        public ICommand ChangeTasksReminderCommand { get; }
 
         private void changeAppTheme(string newTheme)
         {
@@ -99,6 +101,7 @@ namespace DAYLY.ViewModels
             Settings_General.settingsDefault.TimeFormatPos = timeFStr[1];
             Settings_General.settingsDefault.DayStartTimeStr = getTimeFormat(Settings_General.settingsDefault.DayStartTime);
             Settings_General.settingsDefault.DailyReminderTimeStr = getTimeFormat(Settings_General.settingsDefault.DailyReminderTime);
+            Settings_General.settingsDefault.TasksReminderStr = getTimeFormat(Settings_General.settingsDefault.TasksReminderTime) + " on the day";
             OnPropertyChanged(nameof(TimeFormatPos));
         }
 
@@ -134,7 +137,15 @@ namespace DAYLY.ViewModels
             Settings_General.settingsDefault.DefaultEventAlertStr = timeStr[0] + " " + timeStr[1] + " prior";
             Settings_General.settingsDefault.DefaultEventAlertPos = timeStr[2];
             OnPropertyChanged(nameof(DefaultAlertTimePos));
-            Debug.WriteLine(Settings_General.settingsDefault.DefaultEventAlertMins);
+        }
+
+        private void changeTasksReminder(string newTime)
+        {
+            string[] timeStr = newTime.Split(',');
+            Settings_General.settingsDefault.TasksReminderTime = new TimeSpan(Default.stringToInt(timeStr[0]) + 12, 0, 0);
+            Settings_General.settingsDefault.TasksReminderStr = getTimeFormat(Settings_General.settingsDefault.TasksReminderTime) + " on the day";
+            Settings_General.settingsDefault.TasksReminderPos = timeStr[1];
+            OnPropertyChanged(nameof(TasksReminderPos));
         }
 
         public string AppThemePos => $"{Settings_General.settingsDefault.AppThemePos}";
@@ -148,6 +159,7 @@ namespace DAYLY.ViewModels
         public string CountdownModePos => $"{Settings_General.settingsDefault.CountdownModePos}";
         public string DailyReminderTimePos => $"{Settings_General.settingsDefault.DailyReminderTimePos}";
         public string DefaultAlertTimePos => $"{Settings_General.settingsDefault.DefaultEventAlertPos}";
+        public string TasksReminderPos => $"{Settings_General.settingsDefault.TasksReminderPos}";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -158,29 +170,25 @@ namespace DAYLY.ViewModels
 
         private string getTimeFormat(TimeSpan tsTime)
         {
-            string startTime = string.Empty;
+            int twelthHour = 12;
+            string startTime = tsTime.ToString().Substring(0, 5);
             string tFormat = Settings_General.settingsDefault.TimeFormatStr;
 
             if (tFormat.Substring(0, 2) == "12")
             {
-                startTime = tsTime.ToString().Substring(0, 5);
-
-                if (startTime.Substring(0, 1) == "0")
+                if (tsTime.Hours < 12)
                 {
                     startTime = startTime.Substring(1) + " AM";
                 }
-                else if (startTime.Substring(0, 2) == "12")
+                else if (tsTime.Hours == 12)
                 {
                     startTime = startTime.Substring(0, 5) + " PM";
                 }
                 else
                 {
-                    startTime = startTime.Substring(0, 5) + " AM";
+                    TimeSpan temp = new TimeSpan(tsTime.Hours - twelthHour, 0, 0);
+                    startTime = temp.ToString().Substring(1, 4) + " PM";
                 }
-            }
-            else if (tFormat.Substring(0, 2) == "24")
-            {
-                startTime = tsTime.ToString().Substring(0, 5);
             }
 
             return startTime;
