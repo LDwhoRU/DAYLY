@@ -58,6 +58,7 @@
     <ShellContent Route="Settings_DefaultEventDuration" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_DefaultEventDuration}" />
     <ShellContent Route="Settings_DefaultView" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_DefaultView}" />
     <ShellContent Route="Settings_ShowWeekNumbers" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ShowWeekNumbers}" />
+    <ShellContent Route="Settings_AppLock" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_AppLock}" />
 
     <ShellContent Route="Daily" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Daily}"/>
     <ShellContent Route="Monthly" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Monthly}"/>

@@ -20,6 +20,8 @@ namespace DAYLY
         public string ShowWeekNumbersPos { get; set; }
         public string TimeFormatStr { get; set; }
         public string TimeFormatPos { get; set; }
+        public string AppLockStr { get; set; }
+        public string AppLockPos { get; set; }
 
         public void SetDefaults()
         {
@@ -38,6 +40,8 @@ namespace DAYLY
             ShowWeekNumbersPos = "3";
             TimeFormatStr = "12 hour";
             TimeFormatPos = "0";
+            AppLockStr = "PIN";
+            AppLockPos = "3";
         }
 
         public static int stringToInt(string stringToConvert)

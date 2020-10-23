@@ -57,6 +57,11 @@ namespace DAYLY.Views
             await Navigation.PushAsync(new Settings_TimeFormat());
         }
 
+        async void OnAppLockClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Settings_AppLock());
+        }
+
         protected override void OnAppearing()
         {
             InitializeComponent();
