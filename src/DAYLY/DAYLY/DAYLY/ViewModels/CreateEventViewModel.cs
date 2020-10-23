@@ -33,7 +33,18 @@ namespace DAYLY.ViewModels
         public Command LoadAlert { get; }
         public Command SaveNote { get; }
         public Command LoadNote { get; }
-        private List<Note> _EventListView;
+        public Command LoadLocation { get; }
+        public Command LoadCustomLocation { get; }
+        public Command SaveCustomLocation { get; }
+        public Command SelectLocation { get; }
+        private string _LocationAlias;
+        private string _LocationAddress;
+        private string _LocationSuburb;
+        private string _LocationState;
+        private string _LocationPostcode;
+        private List<Event> _EventListView;
+        private List<Location> _LocationListView;
+        private int _LocationListViewHeight;
         private string _EventName;
         private bool _Online;
         private bool _AllDay;
@@ -45,6 +56,80 @@ namespace DAYLY.ViewModels
         private int _CurrentNoteID;
         public SQLiteConnection conn;
         private INavigation _NavigationStack;
+
+        public int LocationListViewHeight
+        {
+            get
+            {
+                return _LocationListViewHeight;
+            }
+            set
+            {
+                _LocationListViewHeight = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationListViewHeight)));
+            }
+        }
+        
+        public string LocationAlias
+        {
+            get
+            {
+                return _LocationAlias;
+            }
+            set
+            {
+                _LocationAlias = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationAlias)));
+            }
+        }
+        public string LocationAddress
+        {
+            get
+            {
+                return _LocationAddress;
+            }
+            set
+            {
+                _LocationAddress = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationAddress)));
+            }
+        }
+        public string LocationSuburb
+        {
+            get
+            {
+                return _LocationSuburb;
+            }
+            set
+            {
+                _LocationSuburb = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationSuburb)));
+            }
+        }
+        public string LocationState
+        {
+            get
+            {
+                return _LocationState;
+            }
+            set
+            {
+                _LocationState = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationState)));
+            }
+        }
+        public string LocationPostcode
+        {
+            get
+            {
+                return _LocationPostcode;
+            }
+            set
+            {
+                _LocationPostcode = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationPostcode)));
+            }
+        }
 
         private string TimeConvert(TimeSpan inputTime)
         {
@@ -242,8 +327,20 @@ namespace DAYLY.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EndTimeText)));
             }
         }
-
-        public List<Note> EventListView
+        public List<Location> LocationListView
+        {
+            get
+            {
+                return _LocationListView;
+            }
+            set
+            {
+                _LocationListView = value;
+                LocationListViewHeight = value.Count * 64;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationListView)));
+            }
+        }
+        public List<Event> EventListView
         {
             get
             {
@@ -334,7 +431,7 @@ namespace DAYLY.ViewModels
         {
             SaveEvent = new Command(() => {
                 WriteEvent();
-                EventListView = (from x in conn.Table<Note>() select x).ToList();
+                EventListView = (from x in conn.Table<Event>() select x).ToList();
             });
 
             SelectType = new Command(async (typeValue) => {
@@ -390,6 +487,48 @@ namespace DAYLY.ViewModels
             {
                 await _NavigationStack.PushAsync(new Notes(this));
             });
+
+            LoadLocation = new Command(async () =>
+            {
+                await _NavigationStack.PushAsync(new LocationSelection(this));
+            });
+
+            SaveCustomLocation = new Command(async () => {
+                int isSuccess;
+                // Add Custom Note
+                Location newLocation = new Location
+                {
+                    Alias = LocationAlias,
+                    StreetAddress = LocationAddress,
+                    Suburb = LocationSuburb,
+                    State = LocationState,
+                    Postcode = int.Parse(LocationPostcode)
+                };
+                isSuccess = 0;
+                try
+                {
+                    isSuccess = conn.Insert(newLocation);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Inserting Location Failed");
+                    throw ex;
+                }
+
+                LocationAlias = "";
+                LocationAddress = "";
+                LocationSuburb = "";
+                LocationState = "";
+                LocationPostcode = "";
+
+                LocationListView = (from x in conn.Table<Location>() select x).ToList();
+                await _NavigationStack.PopAsync();
+            });
+
+            LoadCustomLocation = new Command(async () =>
+            {
+                await _NavigationStack.PushAsync(new LocationCustom(this));
+            });
         }
 
         public void Initalise(INavigation navigation)
@@ -408,6 +547,7 @@ namespace DAYLY.ViewModels
             {
                 conn.DropTable<Event>();
                 conn.DropTable<Note>();
+                conn.DropTable<Location>();
                 conn.DropTable<Programme>();
             }
             catch (Exception e)
@@ -416,6 +556,7 @@ namespace DAYLY.ViewModels
             }
             conn.CreateTable<Note>();
             conn.CreateTable<Programme>();
+            conn.CreateTable<Location>();
             conn.CreateTable<Event>();
         }
 

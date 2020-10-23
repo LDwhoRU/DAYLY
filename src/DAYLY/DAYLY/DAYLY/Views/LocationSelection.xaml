@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DAYLY.Views.Location"
+             x:Class="DAYLY.Views.LocationSelection"
              BackgroundColor="{StaticResource AppBackgroundColour}">
     <ContentPage.Content>
         <StackLayout Spacing="-1">
 
             <Label Text="Location" Padding="17,15"/>
-            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
-                <Label Text="QUT Gardens Point" VerticalOptions="Center" FontSize="16"/>
-            </Frame>
-            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
-                <Label Text="QUT Kelvin Grove" VerticalOptions="Center" FontSize="16"/>
-            </Frame>
-            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
-                <Label Text="Library" VerticalOptions="Center" FontSize="16"/>
-            </Frame>
+            <CollectionView x:Name="LocationSelector" ItemsSource="{Binding LocationListView}" HeightRequest="{Binding LocationListViewHeight}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Margin="0" VerticalScrollBarVisibility="Never">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                            <Label Text="{Binding Alias}" VerticalOptions="Center" FontSize="16"/>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill" Margin="0,20,0,0">
                 <Grid Margin="0,-15,-10,-15">
                     <Grid.RowDefinitions>
@@ -26,7 +26,7 @@
                     </Grid.ColumnDefinitions>
                     <Label Text="Add new address" VerticalOptions="Center" FontSize="16"/>
                     <Image Source="arrow_icon.png" HorizontalOptions="End" Margin="17"/>
-                    <Button BackgroundColor="Transparent"  Clicked="OnAddNewAddressClicked"/>
+                    <Button BackgroundColor="Transparent" Command="{Binding LoadCustomLocation}"/>
                 </Grid>
             </Frame>
 

@@ -223,6 +223,9 @@
                             <Frame BackgroundColor="White" Margin="0, 25, 0, 0" HeightRequest="165" WidthRequest="320" VerticalOptions="Start" Padding="10, 5" HorizontalOptions="Center" CornerRadius="12" HasShadow="True">
                                 <StackLayout Spacing="0">
                                     <Frame VerticalOptions="Start" HorizontalOptions="Fill" BackgroundColor="White" Padding="0">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding LoadLocation}" NumberOfTapsRequired="1"/>
+                                        </Frame.GestureRecognizers>
                                         <Grid Margin="5, 0" Padding="10, 15" RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="1*"/>
