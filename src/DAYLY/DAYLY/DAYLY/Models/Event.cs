@@ -13,7 +13,6 @@ namespace DAYLY.Models
         public bool IsOnline { get; set; }
         public bool AllDay { get; set; }
         public TimeSpan StartTime { get; set; }
-       
         public TimeSpan EndTime { get; set; }
         [Indexed]
         public int LocationId { get; set; }
