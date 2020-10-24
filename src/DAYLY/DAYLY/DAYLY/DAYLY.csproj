@@ -13,6 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="ViewModels\Settings_DailyReminderTime.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Update="Views\AddReminder.xaml.cs">
       <DependentUpon>AddReminder.xaml</DependentUpon>
     </Compile>

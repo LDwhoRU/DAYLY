@@ -13,17 +13,18 @@ namespace DAYLY.Views
             BindingContext = Settings_Main.settingsViewModel;
         }
 
-        //async void OnDailyReminderTimeClicked(object sender, EventArgs e)
-        //{
-        //    if (Settings_Main.settingsViewModel.TimeFormatStr.Substring(0, 2) == "12")
-        //    {
-        //        await Navigation.PushAsync(new Settings_DailyReminderTime());
-        //    }
-        //    else
-        //    {
-        //        await Navigation.PushAsync(new Settings_DailyReminderTime24());
-        //    }
-        //}
+        async void OnDailyReminderTimeClicked(object sender, EventArgs e)
+        {
+            //if (Settings_Main.settingsViewModel.TimeFormatStr.Substring(0, 2) == "12")
+            //{
+            //    await Navigation.PushAsync(new Settings_DailyReminderTime());
+            //}
+            //else
+            //{
+            //    await Navigation.PushAsync(new Settings_DailyReminderTime24());
+            //}
+            await Navigation.PushAsync(new Tests());
+        }
 
         async void OnDefaultEventAlertClicked(object sender, EventArgs e)
         {
