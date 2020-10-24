@@ -52,6 +52,7 @@ namespace DAYLY.ViewModels
         private List<Event> _EventListView;
         private List<Location> _LocationListView;
         private List<ProgrammeViewModel> _CalendarListView;
+        private List<string> _ColourPickerItems;
         private int _LocationListViewHeight;
         private int _CalendarListViewWidth;
         private string _EventName;
@@ -77,6 +78,18 @@ namespace DAYLY.ViewModels
         private Color _LocationPreviewColour;
         private Color _TimeLabelColour;
         private Color _TimePreviewColour;
+        public List<string> ColourPickerItems
+        {
+            get
+            {
+                return _ColourPickerItems;
+            }
+            set
+            {
+                _ColourPickerItems = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ColourPickerItems)));
+            }
+        }
         public string NotePreviewLabel
         {
             get
@@ -993,6 +1006,16 @@ namespace DAYLY.ViewModels
             TimePreviewColour = Color.FromHex("#334856");
 
             PopupCalendarVisible = false;
+
+            ColourPickerItems = new List<string>
+            {
+                "Green",
+                "Blue",
+                "Red",
+                "Orange",
+                "Yellow",
+                "Purple"
+            };
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

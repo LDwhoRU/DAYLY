@@ -20,7 +20,6 @@ namespace DAYLY.Views
     public partial class AddEvent : ContentPage
 
     {
-        public NewEventViewModel eventOperations = new NewEventViewModel();
         public CreateEventViewModel createEventViewModel = new CreateEventViewModel();
         public AddEvent()
         {
@@ -29,13 +28,6 @@ namespace DAYLY.Views
             // MVVM Implementation
             createEventViewModel.Initalise(Navigation, this);
             BindingContext = createEventViewModel;
-
-            colourPicker.Items.Add("Green");
-            colourPicker.Items.Add("Blue");
-            colourPicker.Items.Add("Red");
-            colourPicker.Items.Add("Orange");
-            colourPicker.Items.Add("Yellow");
-            colourPicker.Items.Add("Purple");
         }
 
         // Focus element of pickers set in Views - Cannot be set in viewmodel without passing entire object

@@ -32,7 +32,7 @@
                     </Frame>
                     <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
                         <StackLayout Spacing="0">
-                            <Picker x:Name="colourPicker" Title="Calendar Colour" SelectedItem="{Binding NewCalendarColour}" VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="42"/>
+                            <Picker x:Name="colourPicker" ItemsSource="{Binding ColourPickerItems}" Title="Calendar Colour" SelectedItem="{Binding NewCalendarColour}" VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="42"/>
                             <BoxView Margin="-9" BackgroundColor="White" HeightRequest="2" HorizontalOptions="Fill"/>
                         </StackLayout>
                     </Frame>
