@@ -36,9 +36,9 @@
         <ShellContent Title="Home" Icon="home.png" Route="AboutPage" ContentTemplate="{DataTemplate local:Daily}" />
         <ShellContent Title="Schedule" Icon="calendar.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:Weekly}"/>
         <ShellContent Icon="add.png" Route="AddEvent" ContentTemplate="{DataTemplate local:AddEvent}"/>
-        <ShellContent Route="AddReminder" IsVisible="False" ContentTemplate="{DataTemplate local:AddReminder}"/>
         <ShellContent Title="Profile" Icon="profile.png" Route="Profile" ContentTemplate="{DataTemplate local:Profile}"/>
         <ShellContent Title="Settings" Icon="settings.png" Route="Settings_Main" ContentTemplate="{DataTemplate local:Settings_Main}"/>
+        <ShellContent Route="AddReminder" IsEnabled="False" ContentTemplate="{DataTemplate local:AddReminder}"/>
     </TabBar>
 
     <!--

@@ -641,32 +641,47 @@ namespace DAYLY.ViewModels
 
         private void WriteEvent()
         {
-            // Add Event
-            int isSuccess;
-            Event newEvent = new Event
+            if (string.IsNullOrEmpty(EventName))
             {
-                Name = EventName,
-                Type = EventType,
-                Date = EventDate,
-                StartTime = StartTime,
-                EndTime = EndTime,
-                AllDay = AllDay,
-                IsOnline = Online,
-                RepeatInterval = Repeat,
-                AlertInterval = Alert,
-                NoteId = CurrentNoteID,
-                ProgrammeId = CurrentCalendarID,
-                LocationId = CurrentLocationID
-            };
-            isSuccess = 0;
-            try
-            {
-                isSuccess = conn.Insert(newEvent);
+                ErrorAlert("Event Name field must have value", CurrentPage);
             }
-            catch (Exception ex)
+            else if (CurrentLocationID == 0 && Online == false)
             {
-                Console.WriteLine("Inserting Event Failed");
-                throw ex;
+                ErrorAlert("New Event must have Location", CurrentPage);
+            }
+            else if (CurrentCalendarID == 0)
+            {
+                ErrorAlert("New Event must have Calendar", CurrentPage);
+            }
+            else
+            {
+                // Add Event
+                int isSuccess;
+                Event newEvent = new Event
+                {
+                    Name = EventName,
+                    Type = EventType,
+                    Date = EventDate,
+                    StartTime = StartTime,
+                    EndTime = EndTime,
+                    AllDay = AllDay,
+                    IsOnline = Online,
+                    RepeatInterval = Repeat,
+                    AlertInterval = Alert,
+                    NoteId = CurrentNoteID,
+                    ProgrammeId = CurrentCalendarID,
+                    LocationId = CurrentLocationID
+                };
+                isSuccess = 0;
+                try
+                {
+                    isSuccess = conn.Insert(newEvent);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Inserting Event Failed");
+                    throw ex;
+                }
             }
         }
 
