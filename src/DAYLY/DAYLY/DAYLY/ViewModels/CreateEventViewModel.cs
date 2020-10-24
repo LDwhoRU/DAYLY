@@ -62,6 +62,7 @@ namespace DAYLY.ViewModels
         private string _Alert;
         private string _NoteURL;
         private string _NoteDescription;
+        private string _NotePreviewLabel;
         private int _CurrentNoteID;
         private int _CurrentLocationID;
         private int _CurrentCalendarID;
@@ -76,6 +77,25 @@ namespace DAYLY.ViewModels
         private Color _LocationPreviewColour;
         private Color _TimeLabelColour;
         private Color _TimePreviewColour;
+        public string NotePreviewLabel
+        {
+            get
+            {
+                return _NotePreviewLabel;
+            }
+            set
+            {
+                if (CurrentNoteID == 0)
+                {
+                    _NotePreviewLabel = "Empty";
+                }
+                else
+                {
+                    _NotePreviewLabel = "Custom";
+                }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NotePreviewLabel)));
+            }
+        }
         public INavigation CurrentNavigation
         {
             get
@@ -343,6 +363,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _CurrentNoteID = value;
+                NotePreviewLabel = "Custom";
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentNoteID)));
             }
         }
@@ -938,7 +959,8 @@ namespace DAYLY.ViewModels
             Repeat = "None";
             Alert = "15 Minutes";
             CurrentLocationAlias = "None";
-            
+            NotePreviewLabel = "Empty";
+
             CalendarListView = new List<ProgrammeViewModel>();
 
             LocationLabelColour = Color.FromHex("#1B1C20");

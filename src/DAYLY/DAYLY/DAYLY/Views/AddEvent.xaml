@@ -349,7 +349,7 @@
                                                 <ColumnDefinition Width="24"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="Notes" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Label Grid.Column="1" Text="Empty" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                            <Label Grid.Column="1" Text="{Binding NotePreviewLabel}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                                             <Image Grid.Column="2" Grid.RowSpan="2" Source="icn_arrow.png" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="11" HeightRequest="20"/>
                                         </Grid>
                                     </Frame>
