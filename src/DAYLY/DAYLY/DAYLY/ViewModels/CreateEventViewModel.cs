@@ -902,55 +902,65 @@ namespace DAYLY.ViewModels
             });
 
             SaveNewCalendar = new Command(() => {
-                int isSuccess;
-                // Add Programme
-                string hexCode;
-                switch (NewCalendarColour)
+                if (string.IsNullOrEmpty(NewCalendarName))
                 {
-                    case "Green":
-                        hexCode = "#99ff33";
-                        break;
-                    case "Blue":
-                        hexCode = "#0099ff";
-                        break;
-                    case "Red":
-                        hexCode = "#ff5050";
-                        break;
-                    case "Orange":
-                        hexCode = "#ff9966";
-                        break;
-                    case "Yellow":
-                        hexCode = "#ffff99";
-                        break;
-                    case "Purple":
-                        hexCode = "#993399";
-                        break;
-                    default:
-                        hexCode = "#ffffff";
-                        break;
+                    ErrorAlert("New Calendar must have Name", CurrentPage);
                 }
-                Programme newProgramme = new Programme
+                else if (string.IsNullOrEmpty(NewCalendarColour))
                 {
-                    Name = NewCalendarName,
-                    HexColour = hexCode
-                };
-                isSuccess = 0;
-                try
-                {
-                    isSuccess = conn.Insert(newProgramme);
+                    ErrorAlert("New Calendar must have Colour", CurrentPage);
                 }
-                catch (Exception ex)
+                else
                 {
-                    throw ex;
-                }
-                NewCalendarName = "";
-                NewCalendarColour = "";
-                CurrentCalendarID = 0;
+                    int isSuccess;
+                    // Add Programme
+                    string hexCode;
+                    switch (NewCalendarColour)
+                    {
+                        case "Green":
+                            hexCode = "#99ff33";
+                            break;
+                        case "Blue":
+                            hexCode = "#0099ff";
+                            break;
+                        case "Red":
+                            hexCode = "#ff5050";
+                            break;
+                        case "Orange":
+                            hexCode = "#ff9966";
+                            break;
+                        case "Yellow":
+                            hexCode = "#ffff99";
+                            break;
+                        case "Purple":
+                            hexCode = "#993399";
+                            break;
+                        default:
+                            hexCode = "#ffffff";
+                            break;
+                    }
+                    Programme newProgramme = new Programme
+                    {
+                        Name = NewCalendarName,
+                        HexColour = hexCode
+                    };
+                    isSuccess = 0;
+                    try
+                    {
+                        isSuccess = conn.Insert(newProgramme);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    NewCalendarName = "";
+                    NewCalendarColour = "";
+                    CurrentCalendarID = 0;
 
-                // Save results to query
-                CalendarListView = new List<ProgrammeViewModel>();
-
-                PopupCalendarVisible = false;
+                    // Save results to query
+                    CalendarListView = new List<ProgrammeViewModel>();
+                    PopupCalendarVisible = false;
+                }
             });
 
             SelectCalendar = new Command((calendarValue) => {
