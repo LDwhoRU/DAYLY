@@ -38,29 +38,21 @@ namespace DAYLY.Views
             colourPicker.Items.Add("Purple");
         }
 
+        // Focus element of pickers set in Views - Cannot be set in viewmodel without passing entire object
         private void StartTimeBtn_Tapped(object sender, EventArgs e)
         {
-            StartTimePicker.Focus();
+            if (createEventViewModel.AllDay != true)
+            {
+                StartTimePicker.Focus();
+            }
         }
 
         private void EndTimeBtn_Tapped(object sender, EventArgs e)
         {
-            EndTimePicker.Focus();
-        }
-
-        private void StartTimePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            createEventViewModel.StartTime = StartTimePicker.Time;
-        }
-
-        private void EndTimePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            createEventViewModel.EndTime = EndTimePicker.Time;
-        }
-
-        private void EventDatePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            createEventViewModel.EventDate = EventDatePicker.Date;
+            if (createEventViewModel.AllDay != true)
+            {
+                EndTimePicker.Focus();
+            }
         }
 
         private void EventDateBtn_Tapped(object sender, EventArgs e)

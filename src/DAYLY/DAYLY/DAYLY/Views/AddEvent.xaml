@@ -140,8 +140,8 @@
                                                 <ColumnDefinition Width="2*"/>
                                                 <ColumnDefinition Width="2*"/>
                                             </Grid.ColumnDefinitions>
-                                            <Label Text="Start" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Label x:Name="StartTimeLabel" Grid.Column="1" Text="{Binding StartTimeText}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                            <Label Text="Start" TextColor="{Binding TimeLabelColour}" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                                            <Label x:Name="StartTimeLabel" Grid.Column="1" Text="{Binding StartTimeText}" Opacity="0.5" TextColor="{Binding TimePreviewColour}" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                                         </Grid>
                                     </Frame>
                                     <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
@@ -157,8 +157,8 @@
                                                 <ColumnDefinition Width="2*"/>
                                                 <ColumnDefinition Width="2*"/>
                                             </Grid.ColumnDefinitions>
-                                            <Label Text="End" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Label x:Name="EndTimeLabel" Grid.Column="1" Text="{Binding EndTimeText}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                            <Label Text="End" TextColor="{Binding TimeLabelColour}" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                                            <Label x:Name="EndTimeLabel" Grid.Column="1" Text="{Binding EndTimeText}" Opacity="0.5" TextColor="{Binding TimePreviewColour}" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                                         </Grid>
                                     </Frame>
                                 </StackLayout>
@@ -236,8 +236,8 @@
                                                 <ColumnDefinition Width="2*"/>
                                                 <ColumnDefinition Width="24"/>
                                             </Grid.ColumnDefinitions>
-                                            <Label Text="Location" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Label Grid.Column="1" Text="{Binding CurrentLocationAlias}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                            <Label Text="Location" TextColor="{Binding LocationLabelColour}" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                                            <Label Grid.Column="1" Text="{Binding CurrentLocationAlias}" Opacity="0.5" TextColor="{Binding LocationPreviewColour}" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                                             <Image Grid.Column="2" Grid.RowSpan="2" Source="icn_arrow.png" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="11" HeightRequest="20"/>
                                         </Grid>
                                     </Frame>

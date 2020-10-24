@@ -41,6 +41,9 @@ namespace DAYLY.ViewModels
         public Command SaveNewCalendar { get; }
         public Command SelectCalendar { get; }
         public Command LoadReminder { get; }
+        public Command FocusStartTime { get; }
+        public Command FocusEndTime { get; }
+        public Command FocusEventDate { get; }
         private string _LocationAlias;
         private string _LocationAddress;
         private string _LocationSuburb;
@@ -69,6 +72,58 @@ namespace DAYLY.ViewModels
         private string _NewCalendarName;
         private string _NewCalendarColour;
         private Page _CurrentPage;
+        private Color _LocationLabelColour;
+        private Color _LocationPreviewColour;
+        private Color _TimeLabelColour;
+        private Color _TimePreviewColour;
+        public Color TimeLabelColour
+        {
+            get
+            {
+                return _TimeLabelColour;
+            }
+            set
+            {
+                _TimeLabelColour = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TimeLabelColour)));
+            }
+        }
+        public Color TimePreviewColour
+        {
+            get
+            {
+                return _TimePreviewColour;
+            }
+            set
+            {
+                _TimePreviewColour = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TimePreviewColour)));
+            }
+        }
+        public Color LocationLabelColour
+        {
+            get
+            {
+                return _LocationLabelColour;
+            }
+            set
+            {
+                _LocationLabelColour = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationLabelColour)));
+            }
+        }
+        public Color LocationPreviewColour
+        {
+            get
+            {
+                return _LocationPreviewColour;
+            }
+            set
+            {
+                _LocationPreviewColour = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationPreviewColour)));
+            }
+        }
         public Page CurrentPage
         {
             get
@@ -350,9 +405,13 @@ namespace DAYLY.ViewModels
                 if (value == true)
                 {
                     _Online = value;
+                    LocationLabelColour = Color.FromHex("#c8cad0");
+                    LocationPreviewColour = Color.FromHex("bfcfd9");
                 }
                 else
                 {
+                    LocationLabelColour = Color.FromHex("#1B1C20");
+                    LocationPreviewColour = Color.FromHex("#334856");
                     _Online = false;
                 }
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Online)));
@@ -370,9 +429,13 @@ namespace DAYLY.ViewModels
                 if (value == true)
                 {
                     _AllDay = value;
+                    TimeLabelColour = Color.FromHex("#c8cad0");
+                    TimePreviewColour = Color.FromHex("bfcfd9");
                 }
                 else
                 {
+                    TimeLabelColour = Color.FromHex("#1B1C20");
+                    TimePreviewColour = Color.FromHex("#334856");
                     _AllDay = false;
                 }
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AllDay)));
@@ -654,7 +717,10 @@ namespace DAYLY.ViewModels
 
             LoadLocation = new Command(async () =>
             {
-                await _NavigationStack.PushAsync(new LocationSelection(this));
+                if (Online == false)
+                {
+                    await _NavigationStack.PushAsync(new LocationSelection(this));
+                }
             });
 
             SelectLocation = new Command(async (locationValue) => {
@@ -793,13 +859,27 @@ namespace DAYLY.ViewModels
 
             EventDate = DateTime.Today;
             StartTime = DateTime.Now.TimeOfDay;
-            EndTime = StartTime + TimeSpan.FromHours(2);
+            TimeSpan tempEndTime = StartTime + TimeSpan.FromHours(2);
+            if (tempEndTime.Days > 0)
+            {
+                tempEndTime = tempEndTime.Subtract(new TimeSpan(1, 0, 0, 0));
+            }
+            EndTime = tempEndTime;
+
             EventType = "Lecture";
             Repeat = "None";
             Alert = "15 Minutes";
             CurrentLocationAlias = "None";
-            PopupCalendarVisible = false;
+            
             CalendarListView = new List<ProgrammeViewModel>();
+
+            LocationLabelColour = Color.FromHex("#1B1C20");
+            LocationPreviewColour = Color.FromHex("#334856");
+
+            TimeLabelColour = Color.FromHex("#1B1C20");
+            TimePreviewColour = Color.FromHex("#334856");
+
+            PopupCalendarVisible = false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
