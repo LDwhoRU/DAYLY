@@ -350,7 +350,7 @@ namespace DAYLY.ViewModels
         {
             get
             {
-                return DailyReminderTimePos;
+                return _DailyReminderTimePos;
             }
             set
             {
