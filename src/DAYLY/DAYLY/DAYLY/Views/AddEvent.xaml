@@ -182,7 +182,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Label Text="Calendar" HorizontalOptions="Center" TextColor="#1B1C20" FontSize="Title" FontAttributes="Bold"/>
-                                <Label Grid.Column="1" Margin="0, 10, 0, 0" HorizontalOptions="Center" Text="View Calendars >" TextColor="#1B1C20" FontSize="Caption"/>
+                                <!--<Label Grid.Column="1" Margin="0, 10, 0, 0" HorizontalOptions="Center" Text="View Calendars >" TextColor="#1B1C20" FontSize="Caption"/>-->
                             </Grid>
 
                             <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" Margin="0, 0, 0, 0">

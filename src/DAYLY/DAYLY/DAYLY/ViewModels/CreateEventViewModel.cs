@@ -720,11 +720,13 @@ namespace DAYLY.ViewModels
             SaveEvent = new Command(() => {
                 WriteEvent();
                 EventListView = (from x in conn.Table<Event>() select x).ToList();
-                foreach (Event iterEvent in EventListView)
-                {
-                    Console.WriteLine(iterEvent.Name + iterEvent.Type + iterEvent.Date.ToString() + iterEvent.StartTime.ToString() + iterEvent.EndTime.ToString() + iterEvent.AllDay.ToString()
-                        + iterEvent.IsOnline.ToString() + iterEvent.RepeatInterval + iterEvent.AlertInterval + iterEvent.NoteId.ToString() + iterEvent.ProgrammeId.ToString() + iterEvent.LocationId.ToString());
-                }
+
+                // Uncomment to view SQLite Query
+                //foreach (Event iterEvent in EventListView)
+                //{
+                //    Console.WriteLine(iterEvent.Name + iterEvent.Type + iterEvent.Date.ToString() + iterEvent.StartTime.ToString() + iterEvent.EndTime.ToString() + iterEvent.AllDay.ToString()
+                //        + iterEvent.IsOnline.ToString() + iterEvent.RepeatInterval + iterEvent.AlertInterval + iterEvent.NoteId.ToString() + iterEvent.ProgrammeId.ToString() + iterEvent.LocationId.ToString());
+                //}
             });
 
             SelectType = new Command(async (typeValue) => {
