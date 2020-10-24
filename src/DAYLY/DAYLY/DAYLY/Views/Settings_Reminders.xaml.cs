@@ -10,12 +10,12 @@ namespace DAYLY.Views
         public Settings_Reminders()
         {
             InitializeComponent();
-            BindingContext = Settings_General.settingsDefault;
+            BindingContext = Settings_Main.settingsDefault;
         }
 
         async void OnDailyReminderTimeClicked(object sender, EventArgs e)
         {
-            if (Settings_General.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
+            if (Settings_Main.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
             {
                 await Navigation.PushAsync(new Settings_DailyReminderTime());
             }
@@ -32,7 +32,7 @@ namespace DAYLY.Views
 
         async void OnTasksReminderClicked(object sender, EventArgs e)
         {
-            if (Settings_General.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
+            if (Settings_Main.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
             {
                 await Navigation.PushAsync(new Settings_TasksReminder());
             }
@@ -49,7 +49,7 @@ namespace DAYLY.Views
 
         async void OnReminderMorningClicked(object sender, EventArgs e)
         {
-            if (Settings_General.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
+            if (Settings_Main.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
             {
                 await Navigation.PushAsync(new Settings_ReminderMorning());
             }
@@ -61,7 +61,7 @@ namespace DAYLY.Views
 
         async void OnReminderAfternoonClicked(object sender, EventArgs e)
         {
-            if (Settings_General.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
+            if (Settings_Main.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
             {
                 await Navigation.PushAsync(new Settings_ReminderAfternoon());
             }
@@ -73,7 +73,7 @@ namespace DAYLY.Views
 
         async void OnReminderEveningClicked(object sender, EventArgs e)
         {
-            if (Settings_General.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
+            if (Settings_Main.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
             {
                 await Navigation.PushAsync(new Settings_ReminderEvening());
             }

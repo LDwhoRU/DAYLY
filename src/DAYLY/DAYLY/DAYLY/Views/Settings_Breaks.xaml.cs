@@ -10,7 +10,7 @@ namespace DAYLY.Views
         public Settings_Breaks()
         {
             InitializeComponent();
-            BindingContext = Settings_General.settingsDefault;
+            BindingContext = Settings_Main.settingsDefault;
         }
 
         async void OnDefaultBreakDurationClicked(object sender, EventArgs e)

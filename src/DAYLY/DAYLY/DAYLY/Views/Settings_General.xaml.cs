@@ -8,12 +8,10 @@ namespace DAYLY.Views
 {
     public partial class Settings_General : ContentPage
     {
-        public static Default settingsDefault = new Default();
-        
         public Settings_General()
         {
             InitializeComponent();
-            BindingContext = settingsDefault;
+            BindingContext = Settings_Main.settingsDefault;
         }
 
         async void OnAppThemeClicked(object sender, EventArgs e)
@@ -28,7 +26,7 @@ namespace DAYLY.Views
 
         async void OnDayStartTimeClicked(object sender, EventArgs e)
         {
-            if (settingsDefault.TimeFormatStr.Substring(0,2) == "12")
+            if (Settings_Main.settingsDefault.TimeFormatStr.Substring(0,2) == "12")
             {
                 await Navigation.PushAsync(new Settings_DayStartTime());
             } else

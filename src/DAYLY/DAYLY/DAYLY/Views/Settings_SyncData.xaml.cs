@@ -10,7 +10,7 @@ namespace DAYLY.Views
         public Settings_SyncData()
         {
             InitializeComponent();
-            BindingContext = Settings_General.settingsDefault;
+            BindingContext = Settings_Main.settingsDefault;
         }
 
         async void OnSyncIntervalClicked(object sender, EventArgs e)

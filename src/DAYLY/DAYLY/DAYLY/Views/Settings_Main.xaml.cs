@@ -9,10 +9,12 @@ namespace DAYLY.Views
 {
     public partial class Settings_Main : ContentPage
     {
+        public static Default settingsDefault = new Default();
+
         public Settings_Main()
         {
             InitializeComponent();
-            Settings_General.settingsDefault.SetDefaults();
+            settingsDefault.SetDefaults();
         }
 
         async void OnGeneralSettingClicked(object sender, EventArgs e)
