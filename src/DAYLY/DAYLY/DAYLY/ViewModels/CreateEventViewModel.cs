@@ -40,6 +40,7 @@ namespace DAYLY.ViewModels
         public Command LoadNewCalendar { get; }
         public Command SaveNewCalendar { get; }
         public Command SelectCalendar { get; }
+        public Command LoadReminder { get; }
         private string _LocationAlias;
         private string _LocationAddress;
         private string _LocationSuburb;
@@ -549,6 +550,11 @@ namespace DAYLY.ViewModels
 
         public CreateEventViewModel()
         {
+            LoadReminder = new Command(async () =>
+            {
+                await Shell.Current.GoToAsync("//AddReminder");
+            });
+
             SaveEvent = new Command(() => {
                 WriteEvent();
                 EventListView = (from x in conn.Table<Event>() select x).ToList();
@@ -556,7 +562,7 @@ namespace DAYLY.ViewModels
 
             SelectType = new Command(async (typeValue) => {
                 EventType = (string)typeValue;
-                await _NavigationStack.PopToRootAsync();
+                await _NavigationStack.PopAsync();
             });
 
             LoadType = new Command(async () => {
@@ -565,7 +571,7 @@ namespace DAYLY.ViewModels
 
             SelectRepeat = new Command(async (repeatValue) => {
                 Repeat = (string)repeatValue;
-                await _NavigationStack.PopToRootAsync();
+                await _NavigationStack.PopAsync();
             });
 
             LoadRepeat = new Command(async () => {
@@ -574,7 +580,7 @@ namespace DAYLY.ViewModels
 
             SelectAlert = new Command(async (alertValue) => {
                 Alert = (string)alertValue;
-                await _NavigationStack.PopToRootAsync();
+                await _NavigationStack.PopAsync();
             });
 
             LoadAlert = new Command(async () => {
@@ -600,7 +606,7 @@ namespace DAYLY.ViewModels
                     throw ex;
                 }
                 CurrentNoteID = newNote.Id;
-                await _NavigationStack.PopToRootAsync();
+                await _NavigationStack.PopAsync();
             });
 
             LoadNote = new Command(async () =>
@@ -728,7 +734,6 @@ namespace DAYLY.ViewModels
         public void Initalise(INavigation navigation)
         {
             _NavigationStack = navigation;
-
             conn = DependencyService.Get<Isqlite>().GetConnection();
             try
             {

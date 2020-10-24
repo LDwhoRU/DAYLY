@@ -5,10 +5,6 @@
              x:Class="DAYLY.Views.AddEvent"
              BackgroundColor="#ECEFF0"
                NavigationPage.HasBackButton="False">
-
-    <Shell.BackButtonBehavior>
-        <BackButtonBehavior  IconOverride="transparent.png"></BackButtonBehavior>
-    </Shell.BackButtonBehavior>
     <Shell.TitleView>
         <Grid RowSpacing="0" ColumnSpacing="0">
             <Grid.RowDefinitions>
@@ -63,7 +59,7 @@
                 HorizontalOptions="Fill"
                 BackgroundColor="LightSlateGray"
                 TextColor="DarkSlateGray"
-                       Clicked="OnReminderClick"/>
+                       Command="{Binding LoadReminder}"/>
 
                         <BoxView WidthRequest="3" BackgroundColor="#D97D54" Grid.Row="1"/>
                         <BoxView WidthRequest="3" BackgroundColor="LightSlateGray" Grid.Row="1" Grid.Column="1"/>

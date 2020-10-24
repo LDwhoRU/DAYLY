@@ -3,15 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DAYLY.Views.AddReminder"
              BackgroundColor="#ECEFF0"
-             NavigationPage.HasNavigationBar="False"
-            >
-    <Shell.BackButtonBehavior>
-        <BackButtonBehavior  IconOverride="transparent.png" 
-                             ></BackButtonBehavior>
-    </Shell.BackButtonBehavior>
-
+             NavigationPage.HasBackButton="False">
     <Shell.TitleView>
-        <Image Source="logo_title.png" VerticalOptions="Center" HeightRequest="60" Scale=".8"/>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="1" Source="logo_title.png" VerticalOptions="Center" HeightRequest="60" Scale=".8"/>
+        </Grid>
     </Shell.TitleView>
     <ContentPage.Content>
         
@@ -27,14 +31,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Text="Event"
-                    VerticalOptions="Start"
-                    HorizontalOptions="Fill"
-                    Padding="0"
-                    BackgroundColor="LightSlateGray"
-                    TextColor="#334856"
-                            Clicked="OnEventClick"
-                    />
+                <Button Text="Event" Command="{Binding LoadEvent}" VerticalOptions="Start" HorizontalOptions="Fill" Padding="0" BackgroundColor="LightSlateGray" TextColor="#334856"/>
 
                     <Button Text="Reminder"
                 Grid.Column="1"
@@ -42,8 +39,7 @@
                 Padding="0"
                 HorizontalOptions="Fill"
                 BackgroundColor="White"
-                TextColor="#334856"
-                 />
+                TextColor="#334856"/>
 
                 <BoxView WidthRequest="3" BackgroundColor="LightSlateGray" Grid.Row="1"/>
                 <BoxView WidthRequest="3" BackgroundColor="#D97D54" Grid.Row="1" Grid.Column="1"/>

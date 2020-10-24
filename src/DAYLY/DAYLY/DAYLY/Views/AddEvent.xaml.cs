@@ -37,10 +37,6 @@ namespace DAYLY.Views
             colourPicker.Items.Add("Yellow");
             colourPicker.Items.Add("Purple");
         }
-        async void OnReminderClick(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AddReminder());
-        }
 
         private void StartTimeBtn_Tapped(object sender, EventArgs e)
         {
