@@ -1,11 +1,15 @@
 ﻿using DAYLY.Models;
 using DAYLY.Services;
+using DAYLY.Views;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Security;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,7 +43,8 @@ namespace DAYLY.ViewModels
         string[] fricol = new string[16];
         string[] satcol = new string[16];
         string[] suncol = new string[16];
-     
+     //for some reason viewmodel isnt reinstantied when navigating for create new event after creating some events. So to show new events, after there are existing events, that have been created after pressing schedule you have to
+     //click either monthly or daily then go back to weekly to show new event entries. Not sure how to fix this bug
 
 
         string today;
@@ -48,24 +53,58 @@ namespace DAYLY.ViewModels
         TimeSpan[] TimerArray = new TimeSpan[16];
         TimeSpan time8 = new TimeSpan(7, 0, 0);
         TimeSpan time1 = TimeSpan.FromHours(1);
-        
-        public ObservableCollection<Event> Events { get; }
-        public ObservableCollection<Programme> Colours { get; }
+        private SQLiteConnection conn;
+        private List<Event> eventlist;
+        private List<Programme> colourlist;
+
+        public ObservableCollection<Event> Events { get; set ; }
+        public ObservableCollection<Programme> Colours { get; set; }
         public WeeklyViewModel()
         {
+            conn = DependencyService.Get<Isqlite>().GetConnection();
+            eventlist = conn.Table<Event>().ToList();
+            colourlist = conn.Table<Programme>().ToList();
+            Events = new ObservableCollection<Event>(eventlist);
+            Colours = new ObservableCollection<Programme>(colourlist);
             TimerArray[0] = time8;
             Title = "Weekly";
             DateTime dt = DateTime.Today;
-            Events = new ObservableCollection<Event>();
-            Colours = new ObservableCollection<Programme>();
-            Today = dt.DayOfWeek.ToString() + " " + dt.Day.ToString() + "/" + dt.Month.ToString() + "/" + dt.Year.ToString(); //figure out the current day of the week
-            Task.Run(async () => await ExecuteLoadItemsCommand());//load the test data
-             GetWeek();
-      
-            WeekTime();
-  
            
+
+
+            Today = dt.DayOfWeek.ToString() + " " + dt.Day.ToString() + "/" + dt.Month.ToString() + "/" + dt.Year.ToString(); //figure out the current day of the week
+            GetWeek();
+
+            WeekTime();                                                                                                             //  Task.Run(async () => await ExecuteLoadItemsCommand());//load the test data
+                                                                                                                                    // intialise();
+
+
+
         }
+     
+        public Command MonthlyCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new Monthly());
+                });
+
+            }
+        }
+        public Command DailyCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new Daily());
+                });
+
+            }
+        }
+
         async Task ExecuteLoadItemsCommand()
         {
             IsBusy = true;
@@ -76,7 +115,7 @@ namespace DAYLY.ViewModels
                 var events = await DataStore.GetItemsAsync(true); //loading up mock data to be used
                 foreach (var evett in events)
                 {
-                    Events.Add(evett);
+                //    Events.Add(evett);
                 }
                 MockEventData bb = new MockEventData();
                 var col = await bb.GetColoursAsync(true);
@@ -100,7 +139,8 @@ namespace DAYLY.ViewModels
             IsBusy = true;
             try
             {
-               var Sun = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Sunday); //calculating the first day of the week, sunday then using this to figoure out the rest of the week
+           
+                var Sun = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Sunday); //calculating the first day of the week, sunday then using this to figoure out the rest of the week
                 var Monday = Sun.AddDays(1);
                 var Tues = Monday.AddDays(1);
                 var Wed = Tues.AddDays(1);
@@ -371,6 +411,12 @@ namespace DAYLY.ViewModels
             {
                 return mon;
             }
+         
+            set
+            {
+                SetProperty(ref mon, value);
+                // SunText(value);
+            }
         }
       
         public bool[] Tue
@@ -378,6 +424,11 @@ namespace DAYLY.ViewModels
             get
             {
                 return tue;
+            }
+            set
+            {
+                SetProperty(ref tue, value);
+                // SunText(value);
             }
 
         }
@@ -388,7 +439,11 @@ namespace DAYLY.ViewModels
             {
                 return wed;
             }
-
+            set
+            {
+                SetProperty(ref wed, value);
+                // SunText(value);
+            }
         }
        
         public bool[] Thur
@@ -397,7 +452,11 @@ namespace DAYLY.ViewModels
             {
                 return thur;
             }
-
+            set
+            {
+                SetProperty(ref thur, value);
+                // SunText(value);
+            }
         }
        
         public bool[] Fri
@@ -405,6 +464,11 @@ namespace DAYLY.ViewModels
             get
             {
                 return fri;
+            }
+            set
+            {
+                SetProperty(ref fri, value);
+                // SunText(value);
             }
 
         }
@@ -415,6 +479,11 @@ namespace DAYLY.ViewModels
             {
                 return sat;
             }
+            set
+            {
+                SetProperty(ref sat, value);
+                // SunText(value);
+            }
 
         }
       
@@ -423,6 +492,11 @@ namespace DAYLY.ViewModels
             get
             {
                 return sun;
+            }
+            set
+            {
+                SetProperty(ref sun, value);
+                // SunText(value);
             }
 
         }
