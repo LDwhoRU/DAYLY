@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:VM="clr-namespace:DAYLY.ViewModels"
              x:Class="DAYLY.Views.AddEvent"
-             BackgroundColor="#ECEFF0"
-               NavigationPage.HasBackButton="False">
+             BackgroundColor="#ECEFF0">
     <Shell.TitleView>
         <Grid RowSpacing="0" ColumnSpacing="0">
             <Grid.RowDefinitions>
@@ -23,12 +22,21 @@
         <StackLayout Spacing="0">
 
             <ContentView x:Name="popupCalendar" BackgroundColor="#C0808080" IsVisible="{Binding PopupCalendarVisible}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                    <StackLayout Orientation="Vertical" HeightRequest="200" WidthRequest="300" BackgroundColor="White">
-                        <Entry x:Name="CalendarName"  Margin="20,20,20,10" Placeholder="Calendar Name" Text="{Binding NewCalendarName}"/>
-                        <Picker x:Name="colourPicker" Margin="20,0,20,0" Title="Calendar Colour" SelectedItem="{Binding NewCalendarColour}"/>
-                        <Button x:Name="AddCalendarBtn" Margin="20,0,20,0" Text="Create Calendar" Command="{Binding SaveNewCalendar}"/>
-                    </StackLayout>
+                <StackLayout Spacing="-1" Orientation="Vertical" HeightRequest="200" WidthRequest="300" BackgroundColor="#ECEFF0">
+                    <Label Text="Add Calendar" Padding="17,15"/>
+                    <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
+                        <StackLayout Spacing="0">
+                            <Entry x:Name="CalendarName" Placeholder="Calendar Name" Text="{Binding NewCalendarName}" VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="42"/>
+                            <BoxView Margin="-9" BackgroundColor="White" HeightRequest="2" HorizontalOptions="Fill"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
+                        <StackLayout Spacing="0">
+                            <Picker x:Name="colourPicker" Title="Calendar Colour" SelectedItem="{Binding NewCalendarColour}" VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="42"/>
+                            <BoxView Margin="-9" BackgroundColor="White" HeightRequest="2" HorizontalOptions="Fill"/>
+                        </StackLayout>
+                    </Frame>
+                    <Button Text="Submit" Command="{Binding SaveNewCalendar}" Margin="0, 20" x:Name="AddCalendarBtn" HorizontalOptions="Center" WidthRequest="340" BackgroundColor="#D97D54" CornerRadius="30"/>
                 </StackLayout>
             </ContentView>
 
