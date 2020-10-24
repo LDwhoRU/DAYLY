@@ -12,6 +12,7 @@ namespace DAYLY.Services
         readonly List<Event> events;
         readonly List<Programme> programmes;
         readonly List<Note> Notess;
+        readonly List<Location> locations;
         public MockEventData()
         {
 
@@ -33,6 +34,12 @@ namespace DAYLY.Services
             TimeSpan span4 = new TimeSpan(12, 0, 0);
             TimeSpan span5 = new TimeSpan(16, 0, 0);
             TimeSpan span6 = new TimeSpan(18, 0, 0);
+            locations = new List<Location>
+            {
+                new Location{Id=1, Alias="someones house", Postcode=4120, State="QLD", StreetAddress="39 Gordon St", Suburb="Greenslopes"},
+                  new Location{Id=2, Alias="next door", Postcode=4120, State="QLD", StreetAddress="37 Gordon St", Suburb="Greenslopes"},
+                    new Location{Id=3, Alias="across the road", Postcode=4120, State="QLD", StreetAddress="39 Gordon St", Suburb="Greenslopes"},
+            };
             programmes = new List<Programme> {
             new Programme{Id=1,Name="test",HexColour="#FF0000"},
             new Programme{Id=2,Name="yeet",HexColour="#008000"}
@@ -47,7 +54,7 @@ namespace DAYLY.Services
 
             {
                 new Event { Id = 1, Name = "Monday test", Type = "Lecture", Date = datetime3, RepeatInterval = "1", AlertInterval="1", NoteId=1,ProgrammeId=2,AllDay=false,IsOnline=false,StartTime=span, EndTime=span2,LocationId=1 },
-                 new Event { Id = 3, Name = "2nd monday", Type = "Tutorial", Date = datetime3, RepeatInterval = "1", AlertInterval="1", NoteId=2,ProgrammeId=1,AllDay=false,IsOnline=false,StartTime=span2, EndTime=span6,LocationId=1 },
+                 new Event { Id = 3, Name = "2nd monday", Type = "Tutorial", Date = datetime3, RepeatInterval = "1", AlertInterval="1", NoteId=2,ProgrammeId=1,AllDay=false,IsOnline=false,StartTime=span2, EndTime=span6,LocationId=2 },
                 //new Event { Id = "2", Name = "CAB303", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=pink,AllDay=false,StartTime=span5, EndTime=span6,Location="P5" },
                 //new Event { Id = 4, Name = "wednesday dude", Type = "tute", Date = datetime3, RepeatInterval = 1, AlertInterval=1, NoteId=1,ProgrammeId=2,AllDay=false,StartTime=span4, EndTime=span3,Location="P5" },
                  //new Event { Id = 5, Name = "friyayayayayayay", Type = "tute", Date = datetime3, RepeatInterval = 1, AlertInterval=1, NoteId=1,ProgrammeId=1,AllDay=false,StartTime=span5, EndTime=span6,Location="P5" },
