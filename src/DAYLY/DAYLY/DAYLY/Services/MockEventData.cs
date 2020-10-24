@@ -4,12 +4,15 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+
 using DAYLY.Views;
+
 
 namespace DAYLY.Services
 {
     public class MockEventData : IDataStore<Event>
     {
+
       //  public List<Note> Notess { get; }
 
         readonly List<Event> events;
@@ -41,12 +44,48 @@ namespace DAYLY.Services
             Notess = new List<Note>() {
                new Note{Id=1,URL=null,Description="testing this epic dude stuff my guy"},
                new Note{Id=2,URL=null,Description="testing number 2 shmole"},
+
+        readonly List<Event> events;
+        readonly List<Programme> programmes;
+        readonly List<Note> Notess;
+        readonly List<Location> locations;
+        public MockEventData()
+        {
+
+            // Programme red = new Programme();
+            //   red.HexColour = "green";
+            //rogramme pink = new Programme();
+            // pink.HexColour = "pink";
+
+ 
+            locations = new List<Location>
+            {
+                new Location{Id=1, Alias="someones house", Postcode=4120, State="QLD", StreetAddress="39 Gordon St", Suburb="Greenslopes"},
+                  new Location{Id=2, Alias="next door", Postcode=4120, State="QLD", StreetAddress="37 Gordon St", Suburb="Greenslopes"},
+                    new Location{Id=3, Alias="across the road", Postcode=4120, State="QLD", StreetAddress="39 Gordon St", Suburb="Greenslopes"},
+            };
+            programmes = new List<Programme> {
+            new Programme{Id=1,Name="test",HexColour="#FF0000"},
+            new Programme{Id=2,Name="yeet",HexColour="#008000"}
+            };
+            Notess = new List<Note>() {
+               new Note{Id=1,URL="www.google.com",Description="testing this epic dude stuff my guy"},
+               new Note{Id=2,URL="www.facebook.com",Description="testing number 2 shmole"},
+                new Note{Id=3,URL="www.reddit.com",Description="testing number 3 smole"},
+                 new Note{Id=4,URL="www.myspace.com",Description="testing number 4 mole"},
+                  new Note{Id=5,URL="www.github.com",Description="testing number 5 ole"},
+                   new Note{Id=6,URL="www.op.gg",Description="testing number 6 aaaaa"},
+                    new Note{Id=7,URL="www.website.com",Description="testing number 7 zzzz"},
+                     new Note{Id=8,URL="www.redditmoment.com",Description="another description"},
+                       new Note{Id=9,URL="www.bruhmoment.com",Description="bruh"},
+
            };
 
 
             events = new List<Event>()
 
             {
+
                 new Event { Id = 1, Name = "Monday test", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1,NoteId=2 ,ProgrammeId=1,AllDay=false,StartTime=span, EndTime=span3,Location="P5" },
                  new Event { Id = 3, Name = "2nd monday", Type = "tute", Date = datetime1, RepeatInterval = 2, AlertInterval=1, NoteId=1,ProgrammeId=1,AllDay=false,StartTime=span2, EndTime=span6,Location="P5" },
                 //new Event { Id = "2", Name = "CAB303", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=pink,AllDay=false,StartTime=span5, EndTime=span6,Location="P5" },
@@ -56,6 +95,7 @@ namespace DAYLY.Services
                      new Event { Id = 6, Name = "tuesdeee", Type = "tute", Date = datetime5, RepeatInterval = 1, AlertInterval=1, NoteId=2,ProgrammeId=1,AllDay=false,StartTime=span3, EndTime=span2,Location="P5" },
                       new Event { Id = 6, Name = "thursssbrahhh", Type = "tute", Date = datetime6, RepeatInterval = 1, AlertInterval=1, NoteId=1,ProgrammeId=1,AllDay=false,StartTime=span4, EndTime=span5,Location="P5" },
                        new Event { Id = 6, Name = "satatatatatata", Type = "tute", Date = datetime7, RepeatInterval = 1, AlertInterval=1, NoteId=1,ProgrammeId=1,AllDay=false,StartTime=span4, EndTime=span6,Location="P5" },
+
      };
         }
         public async Task<bool> AddItemAsync(Event item)
@@ -71,7 +111,7 @@ namespace DAYLY.Services
 
         public async Task<Event> GetItemAsync(string id)
         {
-            // return await Task.FromResult(events.FirstOrDefault(s => s.Id == id));
+
             throw new NotImplementedException();
         }
 
@@ -84,9 +124,17 @@ namespace DAYLY.Services
             return await Task.FromResult(Notess);
         }
 
+        public async Task<IEnumerable<Programme>> GetColoursAsync(bool forceRefresh = false)
+        {
+            return await Task.FromResult(programmes);
+        }
+
+
         public Task<bool> UpdateItemAsync(Event item)
         {
             throw new NotImplementedException();
         }
     }
+
 }
+	}

@@ -58,6 +58,7 @@ namespace DAYLY.ViewModels
 
           //  await DataStore.AddItemAsync(newItem);
 
+
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
         }
