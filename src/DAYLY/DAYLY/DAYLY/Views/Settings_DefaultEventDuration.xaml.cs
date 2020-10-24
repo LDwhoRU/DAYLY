@@ -12,6 +12,7 @@ namespace DAYLY.Views
         public Settings_DefaultEventDuration()
         {
             InitializeComponent();
+            BindingContext = Settings_Main.settingsViewModel;
         }
     }
 }

@@ -10,6 +10,7 @@ namespace DAYLY.Views
         public Settings_SyncInterval()
         {
             InitializeComponent();
+            BindingContext = Settings_Main.settingsViewModel;
         }
     }
 }

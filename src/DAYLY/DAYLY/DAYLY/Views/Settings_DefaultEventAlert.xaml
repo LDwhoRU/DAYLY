@@ -1,13 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:DAYLY.ViewModels"
              x:Class="DAYLY.Views.Settings_DefaultEventAlert"
              BackgroundColor="{StaticResource AppBackgroundColour}"
              Title="Default event alert">
-    <ContentPage.BindingContext>
-        <local:SettingsViewModel/>
-    </ContentPage.BindingContext>
     <StackLayout>
             <Frame Margin="40,50,40,40" CornerRadius="10">
                 <Grid Padding="0,-10,0,0">
@@ -58,7 +54,7 @@
 
                     <Label Text="7 days prior" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="18" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
 
-                    <Image x:Name="TickImage" Source="tick_icon.png" Grid.Row="{Binding DefaultAlertTimePos}" Grid.Column="1" Grid.RowSpan="2" Margin="15,0,15,0"/>
+                    <Image x:Name="TickImage" Source="tick_icon.png" Grid.Row="{Binding DefaultEventAlertPos}" Grid.Column="1" Grid.RowSpan="2" Margin="15,0,15,0"/>
 
                     <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeDefaultAlertTimeCommand}" CommandParameter="15,minutes,0"/>
                     <Button Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeDefaultAlertTimeCommand}" CommandParameter="1,hour,3"/>

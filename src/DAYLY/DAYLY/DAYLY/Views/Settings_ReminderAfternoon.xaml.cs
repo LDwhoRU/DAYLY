@@ -10,6 +10,7 @@ namespace DAYLY.Views
         public Settings_ReminderAfternoon()
         {
             InitializeComponent();
+            BindingContext = Settings_Main.settingsViewModel;
         }
     }
 }

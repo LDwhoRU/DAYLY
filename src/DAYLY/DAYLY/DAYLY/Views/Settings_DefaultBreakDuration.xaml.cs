@@ -10,6 +10,7 @@ namespace DAYLY.Views
         public Settings_DefaultBreakDuration()
         {
             InitializeComponent();
+            BindingContext = Settings_Main.settingsViewModel;
         }
     }
 }

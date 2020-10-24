@@ -11,7 +11,7 @@ namespace DAYLY.Views
         public Settings_General()
         {
             InitializeComponent();
-            BindingContext = Settings_Main.settingsDefault;
+            BindingContext = Settings_Main.settingsViewModel;
         }
 
         async void OnAppThemeClicked(object sender, EventArgs e)
@@ -26,7 +26,7 @@ namespace DAYLY.Views
 
         async void OnDayStartTimeClicked(object sender, EventArgs e)
         {
-            if (Settings_Main.settingsDefault.TimeFormatStr.Substring(0,2) == "12")
+            if (Settings_Main.settingsViewModel.TimeFormatStr.Substring(0,2) == "12")
             {
                 await Navigation.PushAsync(new Settings_DayStartTime());
             } else
@@ -63,11 +63,6 @@ namespace DAYLY.Views
         async void OnCountdownModeClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new Settings_CountdownMode());
-        }
-
-        protected override void OnAppearing()
-        {
-            InitializeComponent();
         }
     }
 }

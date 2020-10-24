@@ -63,7 +63,7 @@
                         <Image Source="arrow_icon" Grid.Row="12" Grid.Column="1" Grid.RowSpan="2" HeightRequest="16" Margin="15,0,15,0" HorizontalOptions="End"/>
                         <Switch Grid.Row="15" Grid.Column="1" Grid.RowSpan="2" OnColor="#BDE3E5" ThumbColor="{StaticResource Sage}"/>
 
-                        <Button Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Clicked="OnDailyReminderTimeClicked"/>
+                        <Button Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>
                         <Button Grid.Row="6" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Clicked="OnDefaultEventAlertClicked"/>
                         <Button Grid.Row="9" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Clicked="OnTasksReminderClicked"/>
                         <Button Grid.Row="12" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Clicked="OnReminderRingtonClicked"/>

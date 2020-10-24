@@ -10,6 +10,7 @@ namespace DAYLY.Views
         public Settings_AppLock()
         {
             InitializeComponent();
+            BindingContext = Settings_Main.settingsViewModel;
         }
     }
 }

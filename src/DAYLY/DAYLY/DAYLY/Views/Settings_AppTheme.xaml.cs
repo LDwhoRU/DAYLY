@@ -10,6 +10,7 @@ namespace DAYLY.Views
         public Settings_AppTheme()
         {
             InitializeComponent();
+            BindingContext = Settings_Main.settingsViewModel;
         }
     }
 }

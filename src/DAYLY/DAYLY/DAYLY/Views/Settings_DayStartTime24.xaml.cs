@@ -10,6 +10,7 @@ namespace DAYLY.Views
         public Settings_DayStartTime24()
         {
             InitializeComponent();
+            BindingContext = Settings_Main.settingsViewModel;
         }
     }
 }

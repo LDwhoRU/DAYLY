@@ -10,20 +10,20 @@ namespace DAYLY.Views
         public Settings_Reminders()
         {
             InitializeComponent();
-            BindingContext = Settings_Main.settingsDefault;
+            BindingContext = Settings_Main.settingsViewModel;
         }
 
-        async void OnDailyReminderTimeClicked(object sender, EventArgs e)
-        {
-            if (Settings_Main.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
-            {
-                await Navigation.PushAsync(new Settings_DailyReminderTime());
-            }
-            else
-            {
-                await Navigation.PushAsync(new Settings_DailyReminderTime24());
-            }
-        }
+        //async void OnDailyReminderTimeClicked(object sender, EventArgs e)
+        //{
+        //    if (Settings_Main.settingsViewModel.TimeFormatStr.Substring(0, 2) == "12")
+        //    {
+        //        await Navigation.PushAsync(new Settings_DailyReminderTime());
+        //    }
+        //    else
+        //    {
+        //        await Navigation.PushAsync(new Settings_DailyReminderTime24());
+        //    }
+        //}
 
         async void OnDefaultEventAlertClicked(object sender, EventArgs e)
         {
@@ -32,7 +32,7 @@ namespace DAYLY.Views
 
         async void OnTasksReminderClicked(object sender, EventArgs e)
         {
-            if (Settings_Main.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
+            if (Settings_Main.settingsViewModel.TimeFormatStr.Substring(0, 2) == "12")
             {
                 await Navigation.PushAsync(new Settings_TasksReminder());
             }
@@ -49,7 +49,7 @@ namespace DAYLY.Views
 
         async void OnReminderMorningClicked(object sender, EventArgs e)
         {
-            if (Settings_Main.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
+            if (Settings_Main.settingsViewModel.TimeFormatStr.Substring(0, 2) == "12")
             {
                 await Navigation.PushAsync(new Settings_ReminderMorning());
             }
@@ -61,7 +61,7 @@ namespace DAYLY.Views
 
         async void OnReminderAfternoonClicked(object sender, EventArgs e)
         {
-            if (Settings_Main.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
+            if (Settings_Main.settingsViewModel.TimeFormatStr.Substring(0, 2) == "12")
             {
                 await Navigation.PushAsync(new Settings_ReminderAfternoon());
             }
@@ -73,7 +73,7 @@ namespace DAYLY.Views
 
         async void OnReminderEveningClicked(object sender, EventArgs e)
         {
-            if (Settings_Main.settingsDefault.TimeFormatStr.Substring(0, 2) == "12")
+            if (Settings_Main.settingsViewModel.TimeFormatStr.Substring(0, 2) == "12")
             {
                 await Navigation.PushAsync(new Settings_ReminderEvening());
             }
@@ -81,11 +81,6 @@ namespace DAYLY.Views
             {
                 await Navigation.PushAsync(new Settings_ReminderEvening24());
             }
-        }
-
-        protected override void OnAppearing()
-        {
-            InitializeComponent();
         }
     }
 }

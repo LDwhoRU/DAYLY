@@ -4,17 +4,18 @@ using System.IO;
 using System.Linq;
 using Xamarin.Forms;
 using DAYLY.Views;
+using DAYLY.ViewModels;
 
 namespace DAYLY.Views
 {
     public partial class Settings_Main : ContentPage
     {
-        public static Default settingsDefault = new Default();
+        public static SettingsViewModel settingsViewModel = new SettingsViewModel();
 
         public Settings_Main()
         {
             InitializeComponent();
-            settingsDefault.SetDefaults();
+            settingsViewModel.Initialise(Navigation);
         }
 
         async void OnGeneralSettingClicked(object sender, EventArgs e)

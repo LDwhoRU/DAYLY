@@ -10,17 +10,12 @@ namespace DAYLY.Views
         public Settings_Breaks()
         {
             InitializeComponent();
-            BindingContext = Settings_Main.settingsDefault;
+            BindingContext = Settings_Main.settingsViewModel;
         }
 
         async void OnDefaultBreakDurationClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new Settings_DefaultBreakDuration());
-        }
-
-        protected override void OnAppearing()
-        {
-            InitializeComponent();
         }
     }
 }
