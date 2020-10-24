@@ -18,6 +18,11 @@ namespace DAYLY.ViewModels
         public string _DaysSinceAccountCreated;
         public string _Organisation;
         public string _Course;
+        public string _ProfilePicPath;
+        public string _OrganisationHeader;
+        public string _CourseHeader;
+        public string _LoggedInVisible;
+        public string _LoggedOutVisible;
         string[] oldUserData;
         public ICommand EditProfileCommand { get; }
         public ICommand ConfirmNewProfileDataCommand { get; }
@@ -114,6 +119,71 @@ namespace DAYLY.ViewModels
             }
         }
 
+        public string ProfilePicPath
+        {
+            get
+            {
+                return _ProfilePicPath;
+            }
+            set
+            {
+                _ProfilePicPath = value;
+                OnPropertyChanged(nameof(ProfilePicPath));
+            }
+        }
+
+        public string OrganisationHeader
+        {
+            get
+            {
+                return _OrganisationHeader;
+            }
+            set
+            {
+                _OrganisationHeader = value;
+                OnPropertyChanged(nameof(OrganisationHeader));
+            }
+        }
+
+        public string CourseHeader
+        {
+            get
+            {
+                return _CourseHeader;
+            }
+            set
+            {
+                _CourseHeader = value;
+                OnPropertyChanged(nameof(CourseHeader));
+            }
+        }
+
+        public string LoggedInVisible
+        {
+            get
+            {
+                return _LoggedInVisible;
+            }
+            set
+            {
+                _LoggedInVisible = value;
+                OnPropertyChanged(nameof(LoggedInVisible));
+            }
+        }
+
+        public string LoggedOutVisible
+        {
+            get
+            {
+                return _LoggedOutVisible;
+            }
+            set
+            {
+                _LoggedOutVisible = value;
+                OnPropertyChanged(nameof(LoggedOutVisible));
+            }
+        }
+
         public ProfileViewModel()
         {
             EditProfileCommand = new Command(editProfile);
@@ -165,6 +235,11 @@ namespace DAYLY.ViewModels
             DaysSinceAccountCreated = user.DaysSinceAccountCreated.ToString();
             Organisation = user.Organisation;
             Course = user.Course;
+            ProfilePicPath = "profile_pic.png";
+            OrganisationHeader = "Organisation";
+            CourseHeader = "Course";
+            LoggedInVisible = "True";
+            LoggedOutVisible = "False";
         }
 
         private bool isDataSame(string[] firstArray, string[] secondArray)

@@ -863,6 +863,8 @@ namespace DAYLY.ViewModels
                     LoggedIn = false;
                     LogInOutBtnText = "LOG IN";
                     ProfilePicPath = "user_placeholder.png";
+                    Profile.profileViewModel.LoggedInVisible = "False";
+                    Profile.profileViewModel.LoggedOutVisible = "True";
                 }
             }
         }
@@ -995,6 +997,11 @@ namespace DAYLY.ViewModels
             }
 
             return result;
+        }
+
+        private void clearProfilePage()
+        {
+
         }
     }
 }

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DAYLY.Views.Profile_LoggedOut"
+             BackgroundColor="{StaticResource AppBackgroundColour}">
+    <Shell.TitleView>
+        <Image Source="logo_title.png" VerticalOptions="Center" HeightRequest="60" Scale="0.8"/>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="{Binding LoggedOutVisible}">
+                <Frame WidthRequest="250"
+                        HeightRequest="10"
+                        CornerRadius="30"
+                        BackgroundColor="{StaticResource Drab}"
+                        BorderColor="{StaticResource Drab}"
+                        HorizontalOptions="Center"
+                        HasShadow="True"
+                        Margin="0,15,0,10">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ViewPrivacyCommand}"/>
+                    </Frame.GestureRecognizers>
+                    <Label Text="LOG IN" TextColor="#ffffff" FontSize="16" BackgroundColor="Transparent" Margin="-20" VerticalOptions="Center" HorizontalOptions="Center"/>
+                </Frame>
+                <Frame WidthRequest="250"
+                        HeightRequest="10"
+                        CornerRadius="30"
+                        BackgroundColor="{StaticResource Drab}"
+                        BorderColor="{StaticResource Drab}"
+                        HorizontalOptions="Center"
+                        HasShadow="True"
+                        Margin="0,15,0,20">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ViewPrivacyCommand}"/>
+                    </Frame.GestureRecognizers>
+                    <Label Text="SIGN UP" TextColor="#ffffff" FontSize="16" BackgroundColor="Transparent" Margin="-20" VerticalOptions="Center" HorizontalOptions="Center"/>
+                </Frame>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
