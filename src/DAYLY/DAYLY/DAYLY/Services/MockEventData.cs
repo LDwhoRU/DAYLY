@@ -38,16 +38,16 @@ namespace DAYLY.Services
             new Programme{Id=2,Name="yeet",HexColour="#008000"}
             };
             Notess = new List<Note>() {
-               new Note{Id=1,URL=null,Description="testing this epic dude stuff my guy"},
-               new Note{Id=2,URL=null,Description="testing number 2 shmole"},
+               new Note{Id=1,URL="www.google.com",Description="testing this epic dude stuff my guy"},
+               new Note{Id=2,URL="www.reddit.com",Description="testing number 2 shmole"},
            };
 
 
             events = new List<Event>()
 
             {
-                new Event { Id = 1, Name = "Monday test", Type = "tute", Date = datetime3, RepeatInterval = "1", AlertInterval="1", NoteId=1,ProgrammeId=2,AllDay=false,StartTime=span, EndTime=span2,LocationId=1 },
-                 new Event { Id = 3, Name = "2nd monday", Type = "tute", Date = datetime3, RepeatInterval = "1", AlertInterval="1", NoteId=2,ProgrammeId=1,AllDay=false,StartTime=span2, EndTime=span6,LocationId=1 },
+                new Event { Id = 1, Name = "Monday test", Type = "Lecture", Date = datetime3, RepeatInterval = "1", AlertInterval="1", NoteId=1,ProgrammeId=2,AllDay=false,IsOnline=false,StartTime=span, EndTime=span2,LocationId=1 },
+                 new Event { Id = 3, Name = "2nd monday", Type = "Tutorial", Date = datetime3, RepeatInterval = "1", AlertInterval="1", NoteId=2,ProgrammeId=1,AllDay=false,IsOnline=false,StartTime=span2, EndTime=span6,LocationId=1 },
                 //new Event { Id = "2", Name = "CAB303", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=pink,AllDay=false,StartTime=span5, EndTime=span6,Location="P5" },
                 //new Event { Id = 4, Name = "wednesday dude", Type = "tute", Date = datetime3, RepeatInterval = 1, AlertInterval=1, NoteId=1,ProgrammeId=2,AllDay=false,StartTime=span4, EndTime=span3,Location="P5" },
                  //new Event { Id = 5, Name = "friyayayayayayay", Type = "tute", Date = datetime3, RepeatInterval = 1, AlertInterval=1, NoteId=1,ProgrammeId=1,AllDay=false,StartTime=span5, EndTime=span6,Location="P5" },
