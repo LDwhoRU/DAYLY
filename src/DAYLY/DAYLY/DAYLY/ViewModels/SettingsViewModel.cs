@@ -59,6 +59,9 @@ namespace DAYLY.ViewModels
         public string _DefaultBreakDurationPos;
         public string _SyncIntervalStr;
         public string _SyncIntervalPos;
+        public string _ProfilePicPath;
+        public string _LogInOutBtnText;
+        public bool _LoggedIn;
 
         public string AppThemeStr
         {
@@ -631,6 +634,44 @@ namespace DAYLY.ViewModels
             }
         }
 
+        public string ProfilePicPath
+        {
+            get
+            {
+                return _ProfilePicPath;
+            }
+            set
+            {
+                _ProfilePicPath = value;
+                OnPropertyChanged(nameof(ProfilePicPath));
+            }
+        }
+
+        public bool LoggedIn
+        {
+            get
+            {
+                return _LoggedIn;
+            }
+            set
+            {
+                _LoggedIn = value;
+            }
+        }
+
+        public string LogInOutBtnText
+        {
+            get
+            {
+                return _LogInOutBtnText;
+            }
+            set
+            {
+                _LogInOutBtnText = value;
+                OnPropertyChanged(nameof(LogInOutBtnText));
+            }
+        }
+
         public ICommand ChangeAppThemeCommand { get; }
         public ICommand ChangeFirstDayOfWeekCommand { get; }
         public ICommand ChangeDayStartTimeCommand { get; }
@@ -647,6 +688,7 @@ namespace DAYLY.ViewModels
         public ICommand ChangeReminderDefaultCommand { get; }
         public ICommand ChangeDefaultBreakDurationCommand { get; }
         public ICommand ChangeSyncIntervalCommand { get; }
+        public ICommand LogoutCommand { get; }
 
         public SettingsViewModel()
         {
@@ -666,6 +708,7 @@ namespace DAYLY.ViewModels
             ChangeReminderDefaultCommand = new Command<string>(changeReminderDefault);
             ChangeDefaultBreakDurationCommand = new Command<string>(changeDefaultBreakDuration);
             ChangeSyncIntervalCommand = new Command<string>(changeSyncInterval);
+            LogoutCommand = new Command(logout);
         }
 
         private void changeAppTheme(string newTheme)
@@ -809,6 +852,21 @@ namespace DAYLY.ViewModels
             SyncIntervalPos = intervalStr[1];
         }
 
+        async void logout()
+        {
+            if (LoggedIn)
+            {
+                bool logout = await Application.Current.MainPage.DisplayAlert("Log out", "Are you sure you want to log out?", "Yes", "No");
+
+                if (logout == true)
+                {
+                    LoggedIn = false;
+                    LogInOutBtnText = "LOG IN";
+                    ProfilePicPath = "user_placeholder.png";
+                }
+            }
+        }
+
         public void Initialise(INavigation navigation)
         {
             NavStack = navigation;
@@ -856,6 +914,9 @@ namespace DAYLY.ViewModels
             DefaultBreakDurationPos = "0";
             SyncIntervalStr = "Every hour";
             SyncIntervalPos = "0";
+            ProfilePicPath = "profile_pic.png";
+            LogInOutBtnText = "LOG OUT";
+            LoggedIn = true;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

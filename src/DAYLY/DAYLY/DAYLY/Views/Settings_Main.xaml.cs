@@ -16,6 +16,7 @@ namespace DAYLY.Views
         {
             InitializeComponent();
             settingsViewModel.Initialise(Navigation);
+            BindingContext = settingsViewModel;
         }
 
         async void OnGeneralSettingClicked(object sender, EventArgs e)
