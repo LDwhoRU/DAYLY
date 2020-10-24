@@ -21,7 +21,7 @@ namespace DAYLY.ViewModels
         public ObservableCollection<Note> notes { get; }
         public MonthlyViewModel()
         {
-            Task.Run(async () => await ExecuteLoadItemsCommand());
+            //Task.Run(async () => await ExecuteLoadItemsCommand());
            
             Eventz = new ObservableCollection<Event>();
             //   Console.WriteLine("below");
@@ -101,7 +101,7 @@ namespace DAYLY.ViewModels
                     Eventz.Add(evett);
                 }
                 MockEventData bb = new MockEventData();
-                var not = await bb.GetNotesAsync(true);
+                //var not = await bb.GetNotesAsync(true);
                 foreach(var nott in not)
                 {
                     notes.Add(nott);
