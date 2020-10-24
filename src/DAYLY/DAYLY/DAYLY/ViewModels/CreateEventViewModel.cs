@@ -402,11 +402,7 @@ namespace DAYLY.ViewModels
             {
                 _StartTime = value;
                 StartTimeText = value.ToString();
-
-                if (_StartTime > _EndTime)
-                {
-                    EndTime = _StartTime + TimeSpan.FromHours(2);
-                }
+                EventDateText = EventDate.ToString();
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StartTime)));
             }
         }
@@ -433,6 +429,7 @@ namespace DAYLY.ViewModels
             {
                 _EndTime = value;
                 EndTimeText = value.ToString();
+                EventDateText = EventDate.ToString();
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EndTime)));
             }
         }
@@ -533,7 +530,15 @@ namespace DAYLY.ViewModels
             }
             set
             {
-                _EventDateText = EventDate.Day.ToString() + "/" + EventDate.Month.ToString() + "/" + EventDate.Year.ToString();
+                if (EndTime < StartTime)
+                {
+                    DateTime tempEventDate = EventDate.AddDays(1);
+                    _EventDateText = EventDate.Day.ToString() + "/" + EventDate.Month.ToString() + " - " + tempEventDate.Day.ToString() + "/" + tempEventDate.Month.ToString();
+                }
+                else
+                {
+                    _EventDateText = EventDate.Day.ToString() + "/" + EventDate.Month.ToString() + "/" + EventDate.Year.ToString();
+                }
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventDateText)));
             }
         }
