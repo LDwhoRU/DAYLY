@@ -727,25 +727,34 @@ namespace DAYLY.ViewModels
             });
 
             SaveNote = new Command(async () => {
-                int isSuccess;
-                // Add Custom Note
-                Note newNote = new Note
+                List<Page> currentPages = (List<Page>)CurrentNavigation.NavigationStack;
+
+                if (string.IsNullOrEmpty(NoteDescription) && string.IsNullOrEmpty(NoteURL))
                 {
-                    Description = NoteDescription,
-                    URL = NoteURL
-                };
-                isSuccess = 0;
-                try
-                {
-                    isSuccess = conn.Insert(newNote);
+                    ErrorAlert("At least one field is required", currentPages[currentPages.Count - 1]);
                 }
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine("Inserting Note Failed");
-                    throw ex;
+                    int isSuccess;
+                    // Add Custom Note
+                    Note newNote = new Note
+                    {
+                        Description = NoteDescription,
+                        URL = NoteURL
+                    };
+                    isSuccess = 0;
+                    try
+                    {
+                        isSuccess = conn.Insert(newNote);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Inserting Note Failed");
+                        throw ex;
+                    }
+                    CurrentNoteID = newNote.Id;
+                    await CurrentNavigation.PopAsync();
                 }
-                CurrentNoteID = newNote.Id;
-                await CurrentNavigation.PopAsync();
             });
 
             LoadNote = new Command(async () =>
@@ -775,7 +784,6 @@ namespace DAYLY.ViewModels
 
             SaveCustomLocation = new Command(async () => {
                 List<Page> currentPages = (List<Page>)CurrentNavigation.NavigationStack;
-                //ErrorAlert("Testing error", currentPages[currentPages.Count - 1]);
                 bool validLocation = true;
                 int PostcodeTest = 0;
                 try
