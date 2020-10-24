@@ -46,7 +46,14 @@ namespace DAYLY.Services
             };
             Notess = new List<Note>() {
                new Note{Id=1,URL="www.google.com",Description="testing this epic dude stuff my guy"},
-               new Note{Id=2,URL="www.reddit.com",Description="testing number 2 shmole"},
+               new Note{Id=2,URL="www.facebook.com",Description="testing number 2 shmole"},
+                new Note{Id=3,URL="www.reddit.com",Description="testing number 3 smole"},
+                 new Note{Id=4,URL="www.myspace.com",Description="testing number 4 mole"},
+                  new Note{Id=5,URL="www.github.com",Description="testing number 5 ole"},
+                   new Note{Id=6,URL="www.op.gg",Description="testing number 6 aaaaa"},
+                    new Note{Id=7,URL="www.website.com",Description="testing number 7 zzzz"},
+                     new Note{Id=8,URL="www.redditmoment.com",Description="another description"},
+                       new Note{Id=9,URL="www.bruhmoment.com",Description="bruh"},
            };
 
 
@@ -55,13 +62,13 @@ namespace DAYLY.Services
             {
                 new Event { Id = 1, Name = "Monday test", Type = "Lecture", Date = datetime3, RepeatInterval = "1", AlertInterval="1", NoteId=1,ProgrammeId=2,AllDay=false,IsOnline=false,StartTime=span, EndTime=span2,LocationId=1 },
                  new Event { Id = 3, Name = "2nd monday", Type = "Tutorial", Date = datetime3, RepeatInterval = "1", AlertInterval="1", NoteId=2,ProgrammeId=1,AllDay=false,IsOnline=false,StartTime=span2, EndTime=span6,LocationId=2 },
-                //new Event { Id = "2", Name = "CAB303", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1, NoteEntry=null,SelectedProgramme=pink,AllDay=false,StartTime=span5, EndTime=span6,Location="P5" },
-                //new Event { Id = 4, Name = "wednesday dude", Type = "tute", Date = datetime3, RepeatInterval = 1, AlertInterval=1, NoteId=1,ProgrammeId=2,AllDay=false,StartTime=span4, EndTime=span3,Location="P5" },
-                 //new Event { Id = 5, Name = "friyayayayayayay", Type = "tute", Date = datetime3, RepeatInterval = 1, AlertInterval=1, NoteId=1,ProgrammeId=1,AllDay=false,StartTime=span5, EndTime=span6,Location="P5" },
-                //    new Event { Id = 6, Name = "sunday type beat", Type = "tute", Date = datetime4, RepeatInterval = 1, AlertInterval=1, NoteId=1,ProgrammeId=1,AllDay=false,StartTime=span, EndTime=span2,Location="P5" },
-                 //    new Event { Id = 6, Name = "tuesdeee", Type = "tute", Date = datetime5, RepeatInterval = 1, AlertInterval=1, NoteId=1,ProgrammeId=1,AllDay=false,StartTime=span3, EndTime=span2,Location="P5" },
-                  //    new Event { Id = 6, Name = "thursssbrahhh", Type = "tute", Date = datetime6, RepeatInterval = 1, AlertInterval=1, NoteId=1,ProgrammeId=1,AllDay=false,StartTime=span4, EndTime=span5,Location="P5" },
-                    //   new Event { Id = 6, Name = "satatatatatata", Type = "tute", Date = datetime7, RepeatInterval = 1, AlertInterval=1, NoteId=1,ProgrammeId=1,AllDay=false,StartTime=span4, EndTime=span6,Location="P5" },
+                //new Event { Id = "2", Name = "CAB303", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1, NoteId=3,ProgrammeId=1,AllDay=false,StartTime=span5, EndTime=span6,Location="P5" },
+                //new Event { Id = 4, Name = "wednesday dude", Type = "tute", Date = datetime3, RepeatInterval = 1, AlertInterval=1, NoteId=4,ProgrammeId=2,AllDay=false,StartTime=span4, EndTime=span3,Location="P5" },
+                 //new Event { Id = 5, Name = "friyayayayayayay", Type = "tute", Date = datetime3, RepeatInterval = 1, AlertInterval=1, NoteId=5,ProgrammeId=1,AllDay=false,StartTime=span5, EndTime=span6,Location="P5" },
+                //    new Event { Id = 6, Name = "sunday type beat", Type = "tute", Date = datetime4, RepeatInterval = 1, AlertInterval=1, NoteId=6,ProgrammeId=1,AllDay=false,StartTime=span, EndTime=span2,Location="P5" },
+                 //    new Event { Id = 6, Name = "tuesdeee", Type = "tute", Date = datetime5, RepeatInterval = 1, AlertInterval=1, NoteId=1,ProgrammeId=7,AllDay=false,StartTime=span3, EndTime=span2,Location="P5" },
+                  //    new Event { Id = 6, Name = "thursssbrahhh", Type = "tute", Date = datetime6, RepeatInterval = 1, AlertInterval=1, NoteId=8,ProgrammeId=1,AllDay=false,StartTime=span4, EndTime=span5,Location="P5" },
+                    //   new Event { Id = 6, Name = "satatatatatata", Type = "tute", Date = datetime7, RepeatInterval = 1, AlertInterval=1, NoteId=9,ProgrammeId=1,AllDay=false,StartTime=span4, EndTime=span6,Location="P5" },
      };
         }
         public async Task<bool> AddItemAsync(Event item)
