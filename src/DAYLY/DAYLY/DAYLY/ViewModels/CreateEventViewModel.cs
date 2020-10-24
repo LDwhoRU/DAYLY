@@ -67,7 +67,7 @@ namespace DAYLY.ViewModels
         private int _CurrentCalendarID;
         private string _CurrentLocationAlias;
         public SQLiteConnection conn;
-        private INavigation _NavigationStack;
+        private INavigation _CurrentNavigation;
         private bool _PopupCalendar;
         private string _NewCalendarName;
         private string _NewCalendarColour;
@@ -76,6 +76,18 @@ namespace DAYLY.ViewModels
         private Color _LocationPreviewColour;
         private Color _TimeLabelColour;
         private Color _TimePreviewColour;
+        public INavigation CurrentNavigation
+        {
+            get
+            {
+                return _CurrentNavigation;
+            }
+            set
+            {
+                _CurrentNavigation = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentNavigation)));
+            }
+        }
         public Color TimeLabelColour
         {
             get
@@ -573,7 +585,7 @@ namespace DAYLY.ViewModels
             {
                 if (DateTime.Today > value)
                 {
-                    ErrorAlert("Input Date Value must be after Current Date");
+                    ErrorAlert("Input Date Value must be after Current Date", CurrentPage);
                     _EventDate = DateTime.Today;
                 }
                 else
@@ -637,15 +649,15 @@ namespace DAYLY.ViewModels
             }
         }
 
-        private async void ErrorAlert(string errorField)
+        private async void ErrorAlert(string errorField, Page errorPage)
         {
-            if (CurrentPage!=null)
+            if (errorPage!=null)
             {
-                await CurrentPage.DisplayAlert("Error", errorField, "OK");
+                await errorPage.DisplayAlert("Error", errorField, "OK");
             }
             else
             {
-                CurrentPage = new Page();
+                errorPage = new Page();
             }
         }
 
@@ -659,33 +671,38 @@ namespace DAYLY.ViewModels
             SaveEvent = new Command(() => {
                 WriteEvent();
                 EventListView = (from x in conn.Table<Event>() select x).ToList();
+                foreach (Event iterEvent in EventListView)
+                {
+                    Console.WriteLine(iterEvent.Name + iterEvent.Type + iterEvent.Date.ToString() + iterEvent.StartTime.ToString() + iterEvent.EndTime.ToString() + iterEvent.AllDay.ToString()
+                        + iterEvent.IsOnline.ToString() + iterEvent.RepeatInterval + iterEvent.AlertInterval + iterEvent.NoteId.ToString() + iterEvent.ProgrammeId.ToString() + iterEvent.LocationId.ToString());
+                }
             });
 
             SelectType = new Command(async (typeValue) => {
                 EventType = (string)typeValue;
-                await _NavigationStack.PopAsync();
+                await CurrentNavigation.PopAsync();
             });
 
             LoadType = new Command(async () => {
-                await _NavigationStack.PushAsync(new EventType(this));
+                await CurrentNavigation.PushAsync(new EventType(this));
             });
 
             SelectRepeat = new Command(async (repeatValue) => {
                 Repeat = (string)repeatValue;
-                await _NavigationStack.PopAsync();
+                await CurrentNavigation.PopAsync();
             });
 
             LoadRepeat = new Command(async () => {
-                await _NavigationStack.PushAsync(new Repeat(this));
+                await CurrentNavigation.PushAsync(new Repeat(this));
             });
 
             SelectAlert = new Command(async (alertValue) => {
                 Alert = (string)alertValue;
-                await _NavigationStack.PopAsync();
+                await CurrentNavigation.PopAsync();
             });
 
             LoadAlert = new Command(async () => {
-                await _NavigationStack.PushAsync(new Alert(this));
+                await CurrentNavigation.PushAsync(new Alert(this));
             });
 
             SaveNote = new Command(async () => {
@@ -707,19 +724,19 @@ namespace DAYLY.ViewModels
                     throw ex;
                 }
                 CurrentNoteID = newNote.Id;
-                await _NavigationStack.PopAsync();
+                await CurrentNavigation.PopAsync();
             });
 
             LoadNote = new Command(async () =>
             {
-                await _NavigationStack.PushAsync(new Notes(this));
+                await CurrentNavigation.PushAsync(new Notes(this));
             });
 
             LoadLocation = new Command(async () =>
             {
                 if (Online == false)
                 {
-                    await _NavigationStack.PushAsync(new LocationSelection(this));
+                    await CurrentNavigation.PushAsync(new LocationSelection(this));
                 }
             });
 
@@ -732,44 +749,95 @@ namespace DAYLY.ViewModels
                         CurrentLocationAlias = location.Alias;
                     }
                 }
-                await _NavigationStack.PopAsync();
+                await CurrentNavigation.PopAsync();
             });
 
             SaveCustomLocation = new Command(async () => {
-                int isSuccess;
-                // Add Custom Note
-                Location newLocation = new Location
-                {
-                    Alias = LocationAlias,
-                    StreetAddress = LocationAddress,
-                    Suburb = LocationSuburb,
-                    State = LocationState,
-                    Postcode = int.Parse(LocationPostcode)
-                };
-                isSuccess = 0;
+                List<Page> currentPages = (List<Page>)CurrentNavigation.NavigationStack;
+                //ErrorAlert("Testing error", currentPages[currentPages.Count - 1]);
+                bool validLocation = true;
+                int PostcodeTest = 0;
                 try
                 {
-                    isSuccess = conn.Insert(newLocation);
+                    if (LocationPostcode != null)
+                    {
+                        PostcodeTest = int.Parse(LocationPostcode);
+                    }
+                    else
+                    {
+                        ErrorAlert("Postcode must be numeric value", currentPages[currentPages.Count - 1]);
+                        validLocation = false;
+                    }
                 }
-                catch (Exception ex)
+                catch (FormatException ex)
                 {
-                    Console.WriteLine("Inserting Location Failed");
+                    if (validLocation)
+                    {
+                        ErrorAlert("Postcode must be numeric value", currentPages[currentPages.Count - 1]);
+                        validLocation = false;
+                    }
                     throw ex;
                 }
 
-                LocationAlias = "";
-                LocationAddress = "";
-                LocationSuburb = "";
-                LocationState = "";
-                LocationPostcode = "";
+                if ((PostcodeTest > 9999 || PostcodeTest < 1000) && validLocation)
+                {
+                    ErrorAlert("Postcode must be 4 digit numeric value", currentPages[currentPages.Count - 1]);
+                    validLocation = false;
+                }
 
-                LocationListView = (from x in conn.Table<Location>() select x).ToList();
-                await _NavigationStack.PopAsync();
+                if (LocationAlias == "" || LocationAlias == null)
+                {
+                    ErrorAlert("Location Alias cannot be null", currentPages[currentPages.Count - 1]);
+                }
+                else if (LocationAddress == "" || LocationAddress == null)
+                {
+                    ErrorAlert("Location Address cannot be null", currentPages[currentPages.Count - 1]);
+                }
+                else if (LocationSuburb == "" || LocationSuburb == null)
+                {
+                    ErrorAlert("Location Suburb cannot be null", currentPages[currentPages.Count - 1]);
+                }
+                else if (LocationState == "" || LocationState == null)
+                {
+                    ErrorAlert("Location State cannot be null", currentPages[currentPages.Count - 1]);
+                }
+                else if (LocationAlias != "" && LocationAddress != "" && LocationSuburb != "" && LocationState != "" && validLocation)
+                {
+                    int isSuccess;
+                    // Add Custom Note
+                    Location newLocation = new Location
+                    {
+                        Alias = LocationAlias,
+                        StreetAddress = LocationAddress,
+                        Suburb = LocationSuburb,
+                        State = LocationState,
+                        Postcode = int.Parse(LocationPostcode)
+                    };
+                    isSuccess = 0;
+                    try
+                    {
+                        isSuccess = conn.Insert(newLocation);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Inserting Location Failed");
+                        throw ex;
+                    }
+
+                    LocationAlias = "";
+                    LocationAddress = "";
+                    LocationSuburb = "";
+                    LocationState = "";
+                    LocationPostcode = "";
+
+                    LocationListView = (from x in conn.Table<Location>() select x).ToList();
+                    await CurrentNavigation.PopAsync();
+                }
             });
 
             LoadCustomLocation = new Command(async () =>
             {
-                await _NavigationStack.PushAsync(new LocationCustom(this));
+                await CurrentNavigation.PushAsync(new LocationCustom(this));
             });
 
             LoadNewCalendar = new Command(() => {
@@ -837,7 +905,7 @@ namespace DAYLY.ViewModels
 
         public void Initalise(INavigation navigation, Page page)
         {
-            _NavigationStack = navigation;
+            CurrentNavigation = navigation;
             CurrentPage = page;
 
             conn = DependencyService.Get<Isqlite>().GetConnection();
