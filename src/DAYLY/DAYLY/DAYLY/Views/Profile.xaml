@@ -1,75 +1,79 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DAYLY.ViewModels"
              x:Class="DAYLY.Views.Profile"
              BackgroundColor="{StaticResource AppBackgroundColour}">
     <Shell.TitleView>
         <Image Source="logo_title.png" VerticalOptions="Center" HeightRequest="60" Scale="0.8"/>
     </Shell.TitleView>
-    
-    <ContentPage.Content>
-        <ScrollView>
-            <RelativeLayout>
-            <Image Source="profile_background_image.png" />
-                <StackLayout>
-                    <Frame Margin="0,50,0,10"  BackgroundColor="Transparent">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="35"/>
-                                <RowDefinition Height="35"/>
-                                <RowDefinition Height="35"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="0.01*"/>
-                                <ColumnDefinition Width="0.4*"/>
-                            </Grid.ColumnDefinitions>
+    <ScrollView>
+        <RelativeLayout>
+        <Image Source="profile_background_image.png" />
+            <StackLayout>
+                <Frame Margin="0,50,0,10"  BackgroundColor="Transparent">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="0.01*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                        </Grid.ColumnDefinitions>
 
-                            <Image Source="profile_pic.png" Grid.RowSpan="3" HorizontalOptions="Center" VerticalOptions="Center"/>
-                            <Label Text="John Smith" FontSize="18" TextColor="White" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="End"/>
-                            <Label Text="johnsmith@email.com" FontSize="14" TextColor="White" Grid.Row="4" Grid.RowSpan="2" HorizontalOptions="Center" VerticalOptions="Start"/>
+                        <Image Source="profile_pic.png" Grid.RowSpan="3" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Text="{Binding FullName}" FontSize="18" TextColor="White" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="End"/>
+                        <Label Text="{Binding Email}" FontSize="14" TextColor="White" Grid.Row="4" Grid.RowSpan="2" HorizontalOptions="Center" VerticalOptions="Start"/>
 
-                            <Label Text="24" TextColor="White" FontSize="18" FontAttributes="Bold" Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="End"/>
-                            <Label Text="Tasks" TextColor="White" FontSize="18" Grid.Row="0" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="End"/>
+                        <Label Text="{Binding NumTasks}" TextColor="White" FontSize="18" FontAttributes="Bold" Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="End"/>
+                        <Label Text="Tasks" TextColor="White" FontSize="18" Grid.Row="0" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="End"/>
 
-                            <Label Text="15" TextColor="White" FontSize="18" FontAttributes="Bold" Grid.Row="1" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center"/>
-                            <Label Text="Completed" TextColor="White" FontSize="18" Grid.Row="1" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center"/>
+                        <Label Text="{Binding NumTasksCompleted}" TextColor="White" FontSize="18" FontAttributes="Bold" Grid.Row="1" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center"/>
+                        <Label Text="Completed" TextColor="White" FontSize="18" Grid.Row="1" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center"/>
 
-                            <Label Text="214" TextColor="White" FontSize="18" FontAttributes="Bold" Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start"/>
-                            <Label Text="Days" TextColor="White" FontSize="18" Grid.Row="2" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Start"/>
-                        </Grid>
-                    </Frame>
+                        <Label Text="{Binding DaysSinceAccountCreated}" TextColor="White" FontSize="18" FontAttributes="Bold" Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start"/>
+                        <Label Text="Days" TextColor="White" FontSize="18" Grid.Row="2" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Start"/>
+                    </Grid>
+                </Frame>
 
-                    <Label Text="Organisation" TextColor="{StaticResource Drab}" FontSize="18" FontAttributes="Bold" Margin="50,40,50,0"/>
-                    <Label Text="Queensland University of Technology" TextColor="{StaticResource Drab}" FontSize="16" Margin="50,0,50,0"/>
+                <Label Text="Organisation" TextColor="{StaticResource Drab}" FontSize="18" FontAttributes="Bold" Margin="50,40,50,0"/>
+                <Label Text="{Binding Organisation}" TextColor="{StaticResource Drab}" FontSize="16" Margin="50,0,50,0"/>
 
-                    <Label Text="Course" TextColor="{StaticResource Drab}" FontSize="18" FontAttributes="Bold" Margin="50,20,50,0"/>
-                    <Label Text="Information Technology" TextColor="{StaticResource Drab}" FontSize="16" Margin="50,0,50,150"/>
+                <Label Text="Course" TextColor="{StaticResource Drab}" FontSize="18" FontAttributes="Bold" Margin="50,20,50,0"/>
+                <Label Text="{Binding Course}" TextColor="{StaticResource Drab}" FontSize="16" Margin="50,0,50,150"/>
 
-                    <Frame WidthRequest="250"
-                       HeightRequest="10"
-                       CornerRadius="30"
-                       BackgroundColor="Transparent"
-                       BorderColor="{StaticResource Sage}"
-                       HasShadow="False"
-                       HorizontalOptions="Center">
-                        <Button Text="EDIT PROFILE" TextColor="{StaticResource Drab}" FontSize="16" BackgroundColor="Transparent" Margin="-20"/>
-                    </Frame>
+                <Frame WidthRequest="250"
+                    HeightRequest="10"
+                    CornerRadius="30"
+                    BackgroundColor="Transparent"
+                    BorderColor="{StaticResource Sage}"
+                    HasShadow="False"
+                    HorizontalOptions="Center">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding EditProfileCommand}"/>
+                    </Frame.GestureRecognizers>
+                    <Label Text="EDIT PROFILE" TextColor="{StaticResource Drab}" FontSize="16" BackgroundColor="Transparent" Margin="-20" VerticalOptions="Center" HorizontalOptions="Center"/>
+                </Frame>
 
-                    <Frame WidthRequest="250"
-                           HeightRequest="10"
-                           CornerRadius="30"
-                           BackgroundColor="White"
-                           BorderColor="White"
-                           HorizontalOptions="Center"
-                           HasShadow="True"
-                           Margin="0,15,0,20">
-                        <Button Text="PRIVACY" TextColor="{StaticResource Drab}" FontSize="16" BackgroundColor="Transparent" Margin="-20"/>
-                    </Frame>
-                </StackLayout>
+                <Frame WidthRequest="250"
+                        HeightRequest="10"
+                        CornerRadius="30"
+                        BackgroundColor="White"
+                        BorderColor="White"
+                        HorizontalOptions="Center"
+                        HasShadow="True"
+                        Margin="0,15,0,20">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ViewPrivacyCommand}"/>
+                    </Frame.GestureRecognizers>
+                    <Label Text="PRIVACY" TextColor="{StaticResource Drab}" FontSize="16" BackgroundColor="Transparent" Margin="-20" VerticalOptions="Center" HorizontalOptions="Center"/>
+                </Frame>
+            </StackLayout>
         </RelativeLayout>
         </ScrollView>
-    </ContentPage.Content>
 </ContentPage>

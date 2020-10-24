@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DAYLY.ViewModels"
+             x:Class="DAYLY.Views.Settings_EditProfile"
+             BackgroundColor="{StaticResource AppBackgroundColour}">
+    <ContentPage.BindingContext>
+        <local:ProfileViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout Spacing="-1">
+        <Label Text="Edit profile" TextColor="{StaticResource Drab}" Padding="17,15"/>
+        <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
+            <Entry Placeholder="Full name" Text="{Binding FullName}" TextColor="{StaticResource Onyx}" FontSize="16"/>
+        </Frame>
+        <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
+            <Editor Placeholder="Email" Text="{Binding Email}" TextColor="{StaticResource Onyx}" FontSize="16"/>
+        </Frame>
+        <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
+            <Entry Placeholder="Organisation" Text="{Binding Organisation}" TextColor="{StaticResource Onyx}" FontSize="16"/>
+        </Frame>
+        <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
+            <Entry Placeholder="Course" Text="{Binding Course}" TextColor="{StaticResource Onyx}" FontSize="16"/>
+        </Frame>
+        <Frame WidthRequest="250"
+                HeightRequest="10"
+                CornerRadius="30"
+                BackgroundColor="{StaticResource Drab}"
+                BorderColor="{StaticResource Drab}"
+                HasShadow="True"
+                HorizontalOptions="Center"
+                Margin="0,20">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ConfirmNewProfileDataCommand}" NumberOfTapsRequired="1"/>
+            </Frame.GestureRecognizers>
+            <Label Text="CONFIRM" TextColor="White" FontSize="16" BackgroundColor="Transparent" Margin="-20" VerticalOptions="Center" HorizontalOptions="Center"/>
+        </Frame>
+        <Frame WidthRequest="250"
+                HeightRequest="10"
+                CornerRadius="30"
+                BackgroundColor="#ffffff"
+                BorderColor="#ffffff}"
+                HasShadow="True"
+                HorizontalOptions="Center">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding CancelEditProfileCommand}"/>
+            </Frame.GestureRecognizers>
+            <Label Text="CANCEL" TextColor="{StaticResource Drab}" FontSize="16" BackgroundColor="Transparent" Margin="-20" VerticalOptions="Center" HorizontalOptions="Center"/>
+        </Frame>
+    </StackLayout>
+</ContentPage>
