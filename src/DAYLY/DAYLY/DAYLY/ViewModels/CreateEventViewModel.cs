@@ -68,6 +68,19 @@ namespace DAYLY.ViewModels
         private bool _PopupCalendar;
         private string _NewCalendarName;
         private string _NewCalendarColour;
+        private Page _CurrentPage;
+        public Page CurrentPage
+        {
+            get
+            {
+                return _CurrentPage;
+            }
+            set
+            {
+                _CurrentPage = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentPage)));
+            }
+        }
         public string NewCalendarColour
         {
             get
@@ -498,8 +511,16 @@ namespace DAYLY.ViewModels
             }
             set
             {
-                _EventDate = value;
-                EventDateText = value.ToString();
+                if (DateTime.Today > value)
+                {
+                    ErrorAlert("Input Date Value must be after Current Date");
+                    _EventDate = DateTime.Today;
+                }
+                else
+                {
+                    _EventDate = value;
+                }
+                EventDateText = _EventDate.ToString();
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventDate)));
             }
         }
@@ -545,6 +566,18 @@ namespace DAYLY.ViewModels
             {
                 Console.WriteLine("Inserting Event Failed");
                 throw ex;
+            }
+        }
+
+        private async void ErrorAlert(string errorField)
+        {
+            if (CurrentPage!=null)
+            {
+                await CurrentPage.DisplayAlert("Error", errorField, "OK");
+            }
+            else
+            {
+                CurrentPage = new Page();
             }
         }
 
@@ -731,9 +764,11 @@ namespace DAYLY.ViewModels
             });
         }
 
-        public void Initalise(INavigation navigation)
+        public void Initalise(INavigation navigation, Page page)
         {
             _NavigationStack = navigation;
+            CurrentPage = page;
+
             conn = DependencyService.Get<Isqlite>().GetConnection();
             try
             {
@@ -751,7 +786,7 @@ namespace DAYLY.ViewModels
             conn.CreateTable<Location>();
             conn.CreateTable<Event>();
 
-            EventDate = DateTime.Now;
+            EventDate = DateTime.Today;
             StartTime = DateTime.Now.TimeOfDay;
             EndTime = StartTime + TimeSpan.FromHours(2);
             EventType = "Lecture";

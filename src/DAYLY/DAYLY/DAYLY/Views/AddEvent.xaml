@@ -358,11 +358,11 @@
 
                             <Button Text="Create Event" Margin="0, 0, 0, 25" x:Name="AddEventBtn" Command="{Binding SaveEvent}" HorizontalOptions="Center" WidthRequest="340" BackgroundColor="#D97D54" CornerRadius="30"/>
 
-                            <TimePicker x:Name="StartTimePicker" Time="{Binding StartTime}" PropertyChanged="StartTimePicker_PropertyChanged" IsVisible="False"/>
+                            <TimePicker x:Name="StartTimePicker" Time="{Binding StartTime}" IsVisible="False"/>
 
-                            <TimePicker x:Name="EndTimePicker" Time="{Binding EndTime}" PropertyChanged="EndTimePicker_PropertyChanged" IsVisible="False"/>
+                            <TimePicker x:Name="EndTimePicker" Time="{Binding EndTime}" IsVisible="False"/>
 
-                            <DatePicker x:Name="EventDatePicker" Date="{Binding EventDate}" PropertyChanged="EventDatePicker_PropertyChanged" IsVisible="False"/>
+                            <DatePicker x:Name="EventDatePicker" Date="{Binding EventDate}" IsVisible="False"/>
 
                             <ListView x:Name="myListView" ItemsSource="{Binding EventListView}" HasUnevenRows="True" Margin="0, 0, 0, 25" HeightRequest="40">
                                 <ListView.ItemTemplate>

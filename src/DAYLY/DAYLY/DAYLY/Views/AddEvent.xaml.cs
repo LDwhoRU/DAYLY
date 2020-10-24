@@ -27,7 +27,7 @@ namespace DAYLY.Views
             InitializeComponent();
 
             // MVVM Implementation
-            createEventViewModel.Initalise(Navigation);
+            createEventViewModel.Initalise(Navigation, this);
             BindingContext = createEventViewModel;
 
             colourPicker.Items.Add("Green");
