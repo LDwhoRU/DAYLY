@@ -16,7 +16,7 @@ using System.Diagnostics;
 
 namespace DAYLY.ViewModels
 {
-    public class CreateEventViewModel : INotifyPropertyChanged
+    public class CreateEventViewModel : CreateAffairViewModel, INotifyPropertyChanged
     {
         private TimeSpan _StartTime;
         private string _StartTimeText;
@@ -685,7 +685,6 @@ namespace DAYLY.ViewModels
                     ProgrammeId = CurrentCalendarID,
                     LocationId = CurrentLocationID
                 };
-                isSuccess = 0;
                 try
                 {
                     isSuccess = conn.Insert(newEvent);
