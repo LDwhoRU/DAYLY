@@ -7,19 +7,19 @@
         <StackLayout Spacing="-1">
         <Label Text="Sign up" TextColor="{StaticResource Drab}" Padding="17,15"/>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
-            <Entry Placeholder="Full name" Text="{Binding SignupFullName}" TextColor="{StaticResource Onyx}" FontSize="16"/>
+            <Entry Placeholder="Full name" Text="{Binding SignupFullName}" TextColor="{StaticResource Onyx}" FontSize="16" PlaceholderColor="#B5B5B5"/>
         </Frame>
         <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
-            <Entry Placeholder="Email" Text="{Binding SignupEmail}" TextColor="{StaticResource Onyx}" FontSize="16"/>
+            <Entry Placeholder="Email" Text="{Binding SignupEmail}" TextColor="{StaticResource Onyx}" FontSize="16" PlaceholderColor="#B5B5B5"/>
         </Frame>
         <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
-            <Entry Placeholder="Password" IsPassword="True" Text="{Binding SignupPassword}" TextColor="{StaticResource Onyx}" FontSize="16" />
+            <Entry Placeholder="Password" IsPassword="True" Text="{Binding SignupPassword}" TextColor="{StaticResource Onyx}" FontSize="16" PlaceholderColor="#B5B5B5"/>
         </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
-            <Entry Placeholder="Organisation" Text="{Binding SignupOrganisation}" TextColor="{StaticResource Onyx}" FontSize="16"/>
+            <Entry Placeholder="Organisation" Text="{Binding SignupOrganisation}" TextColor="{StaticResource Onyx}" FontSize="16" PlaceholderColor="#B5B5B5"/>
         </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
-            <Entry Placeholder="Course" Text="{Binding SignupCourse}" TextColor="{StaticResource Onyx}" FontSize="16"/>
+            <Entry Placeholder="Course" Text="{Binding SignupCourse}" TextColor="{StaticResource Onyx}" FontSize="16" PlaceholderColor="#B5B5B5"/>
         </Frame>
             <Frame WidthRequest="250"
                HeightRequest="20"

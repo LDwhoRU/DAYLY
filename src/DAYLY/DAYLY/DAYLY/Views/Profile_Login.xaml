@@ -7,10 +7,10 @@
         <StackLayout Spacing="-1">
         <Label Text="Log in" TextColor="{StaticResource Drab}" Padding="17,15"/>
         <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
-            <Entry Placeholder="Email" Text="{Binding LoginEmail}" TextColor="{StaticResource Onyx}" FontSize="16"/>
+            <Entry Placeholder="Email" Text="{Binding LoginEmail}" TextColor="{StaticResource Onyx}" FontSize="16" PlaceholderColor="#ABABAB"/>
         </Frame>
         <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
-            <Entry Placeholder="Password" IsPassword="True" Text="{Binding LoginPassword}" TextColor="{StaticResource Onyx}" FontSize="16" />
+            <Entry Placeholder="Password" IsPassword="True" Text="{Binding LoginPassword}" TextColor="{StaticResource Onyx}" FontSize="16" PlaceholderColor="#ABABAB"/>
         </Frame>
             <Frame WidthRequest="250"
                HeightRequest="20"

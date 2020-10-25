@@ -8,19 +8,19 @@
         <StackLayout Spacing="-1">
                 <Label Text="Add new address" Padding="17,15"/>
                 <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
-                    <Entry Placeholder="Location name" TextColor="{StaticResource Onyx}" FontSize="16"/>
+                    <Entry Placeholder="Location name" TextColor="{StaticResource Onyx}" FontSize="16" PlaceholderColor="#B5B5B5"/>
                 </Frame>
                 <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="84" HorizontalOptions="Fill">
-                    <Editor Placeholder="Street address" TextColor="{StaticResource Onyx}" FontSize="16"/>
+                    <Editor Placeholder="Street address" TextColor="{StaticResource Onyx}" FontSize="16" PlaceholderColor="#B5B5B5"/>
                 </Frame>
                 <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
                     <Entry Placeholder="Suburb" TextColor="{StaticResource Onyx}" FontSize="16"/>
                 </Frame>
                 <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
-                    <Entry Placeholder="State" TextColor="{StaticResource Onyx}" FontSize="16"/>
+                    <Entry Placeholder="State" TextColor="{StaticResource Onyx}" FontSize="16" PlaceholderColor="#B5B5B5"/>
                 </Frame>
                 <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
-                    <Entry Placeholder="Postcode" TextColor="{StaticResource Onyx}" FontSize="16" Keyboard="Numeric"/>
+                    <Entry Placeholder="Postcode" TextColor="{StaticResource Onyx}" FontSize="16" Keyboard="Numeric" PlaceholderColor="#B5B5B5"/>
                 </Frame>
                 <Frame WidthRequest="250"
                        HeightRequest="10"
