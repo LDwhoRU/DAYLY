@@ -184,7 +184,7 @@ namespace DAYLY.ViewModels
                                 bweek[dayy][i] = true; //set that time to true
                                     foreach(var col in Colours)
                                     {
-                                        if (col.Id == even.ProgrammeId)
+                                        if (col.Id == even.CalendarId)
                                         {
                                             elements[dayy][i] = col.HexColour;
                                         }

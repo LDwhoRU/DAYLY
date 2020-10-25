@@ -11,6 +11,12 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />  
     <PackageReference Include="Xamarin.Plugin.Calendar" Version="1.2.1506" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\ReminderType.xaml.cs">
+      <DependentUpon>ReminderType.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Views\Alert.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -18,7 +24,7 @@
     <EmbeddedResource Update="Views\Notes.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\TypeReminder.xaml">
+    <EmbeddedResource Update="Views\ReminderType.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Repeat.xaml">

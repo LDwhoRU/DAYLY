@@ -16,30 +16,21 @@ using System.Diagnostics;
 
 namespace DAYLY.ViewModels
 {
-    public class CreateEventViewModel : INotifyPropertyChanged
+    public class CreateEventViewModel : CreateAffairViewModel, INotifyPropertyChanged
     {
         private TimeSpan _StartTime;
         private string _StartTimeText;
         private TimeSpan _EndTime;
         private string _EndTimeText;
-        private DateTime _EventDate;
-        private string _EventDateText;
+        
         public Command SaveEvent { get; }
-        public Command LoadType { get; }
-        public Command SelectType { get; }
-        public Command SelectRepeat { get; }
-        public Command LoadRepeat { get; }
-        public Command SelectAlert { get; }
-        public Command LoadAlert { get; }
-        public Command SaveNote { get; }
-        public Command LoadNote { get; }
+        
         public Command LoadLocation { get; }
         public Command LoadCustomLocation { get; }
         public Command SaveCustomLocation { get; }
         public Command SelectLocation { get; }
-        public Command LoadNewCalendar { get; }
-        public Command SaveNewCalendar { get; }
-        public Command SelectCalendar { get; }
+        
+        public Command LoadReminder { get; }
         private string _LocationAlias;
         private string _LocationAddress;
         private string _LocationSuburb;
@@ -47,76 +38,87 @@ namespace DAYLY.ViewModels
         private string _LocationPostcode;
         private List<Event> _EventListView;
         private List<Location> _LocationListView;
-        private List<ProgrammeViewModel> _CalendarListView;
+        private int _CurrentLocationID;
+        private string _CurrentLocationAlias;
         private int _LocationListViewHeight;
-        private int _CalendarListViewWidth;
-        private string _EventName;
         private bool _Online;
         private bool _AllDay;
-        private string _EventType;
-        private string _Repeat;
-        private string _Alert;
-        private string _NoteURL;
-        private string _NoteDescription;
-        private int _CurrentNoteID;
-        private int _CurrentLocationID;
-        private int _CurrentCalendarID;
-        private string _CurrentLocationAlias;
-        public SQLiteConnection conn;
-        private INavigation _NavigationStack;
-        private bool _PopupCalendar;
-        private string _NewCalendarName;
-        private string _NewCalendarColour;
-        public string NewCalendarColour
+        
+        private Color _LocationLabelColour;
+        private Color _LocationPreviewColour;
+        private Color _TimeLabelColour;
+        private Color _TimePreviewColour;
+
+        public override string AffairDateText
         {
             get
             {
-                return _NewCalendarColour;
+                return _AffairDateText;
             }
             set
             {
-                _NewCalendarColour = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NewCalendarColour)));
+                if (EndTime < StartTime)
+                {
+                    DateTime tempAffairDate = AffairDate.AddDays(1);
+                    _AffairDateText = AffairDate.Day.ToString() + "/" + AffairDate.Month.ToString() + " - " + tempAffairDate.Day.ToString() + "/" + tempAffairDate.Month.ToString();
+                }
+                else
+                {
+                    _AffairDateText = AffairDate.Day.ToString() + "/" + AffairDate.Month.ToString() + "/" + AffairDate.Year.ToString();
+                }
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AffairDateText)));
             }
         }
-        public string NewCalendarName
+        public Color TimeLabelColour
         {
             get
             {
-                return _NewCalendarName;
+                return _TimeLabelColour;
             }
             set
             {
-                _NewCalendarName = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NewCalendarName)));
+                _TimeLabelColour = value;
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TimeLabelColour)));
             }
         }
-        public bool PopupCalendarVisible
+        public Color TimePreviewColour
         {
             get
             {
-                return _PopupCalendar;
+                return _TimePreviewColour;
             }
             set
             {
-                _PopupCalendar = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarVisible)));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarHidden)));
+                _TimePreviewColour = value;
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TimePreviewColour)));
             }
         }
-        public bool PopupCalendarHidden
+        public Color LocationLabelColour
         {
             get
             {
-                return !_PopupCalendar;
+                return _LocationLabelColour;
             }
             set
             {
-                _PopupCalendar = !value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarHidden)));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarVisible)));
+                _LocationLabelColour = value;
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationLabelColour)));
             }
         }
+        public Color LocationPreviewColour
+        {
+            get
+            {
+                return _LocationPreviewColour;
+            }
+            set
+            {
+                _LocationPreviewColour = value;
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationPreviewColour)));
+            }
+        }
+        
+        
         public string CurrentLocationAlias
         {
             get
@@ -126,21 +128,10 @@ namespace DAYLY.ViewModels
             set
             {
                 _CurrentLocationAlias = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocationAlias)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocationAlias)));
             }
         }
-        public int CurrentCalendarID
-        {
-            get
-            {
-                return _CurrentCalendarID;
-            }
-            set
-            {
-                _CurrentCalendarID = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentCalendarID)));
-            }
-        }
+        
         public int CurrentLocationID
         {
             get
@@ -150,21 +141,10 @@ namespace DAYLY.ViewModels
             set
             {
                 _CurrentLocationID = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocationID)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocationID)));
             }
         }
-        public int CalendarListViewWidth
-        {
-            get
-            {
-                return _CalendarListViewWidth;
-            }
-            set
-            {
-                _CalendarListViewWidth = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CalendarListViewWidth)));
-            }
-        }
+        
         public int LocationListViewHeight
         {
             get
@@ -174,7 +154,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _LocationListViewHeight = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationListViewHeight)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationListViewHeight)));
             }
         }
         
@@ -187,7 +167,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _LocationAlias = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationAlias)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationAlias)));
             }
         }
         public string LocationAddress
@@ -199,7 +179,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _LocationAddress = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationAddress)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationAddress)));
             }
         }
         public string LocationSuburb
@@ -211,7 +191,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _LocationSuburb = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationSuburb)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationSuburb)));
             }
         }
         public string LocationState
@@ -223,7 +203,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _LocationState = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationState)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationState)));
             }
         }
         public string LocationPostcode
@@ -235,7 +215,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _LocationPostcode = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationPostcode)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationPostcode)));
             }
         }
 
@@ -253,78 +233,6 @@ namespace DAYLY.ViewModels
             }
             return temp;
         }
-        public int CurrentNoteID
-        {
-            get
-            {
-                return _CurrentNoteID;
-            }
-            set
-            {
-                _CurrentNoteID = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentNoteID)));
-            }
-        }
-        public string NoteDescription
-        {
-            get
-            {
-                return _NoteDescription;
-            }
-            set
-            {
-                _NoteDescription = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NoteDescription)));
-            }
-        }
-        public string NoteURL
-        {
-            get
-            {
-                return _NoteURL;
-            }
-            set
-            {
-                _NoteURL = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NoteURL)));
-            }
-        }
-        public string Alert
-        {
-            get
-            {
-                return _Alert;
-            }
-            set
-            {
-                _Alert = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Alert)));
-            }
-        }
-        public string Repeat
-        {
-            get
-            {
-                return _Repeat;
-            }
-            set
-            {
-                _Repeat = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Repeat)));
-            }
-        }
-        public string EventType
-        {
-            get
-            {
-                return _EventType;
-            }
-            set
-            {
-                _EventType = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventType)));
-            }
-        }
         public bool Online
         {
             get
@@ -336,12 +244,16 @@ namespace DAYLY.ViewModels
                 if (value == true)
                 {
                     _Online = value;
+                    LocationLabelColour = Color.FromHex("#c8cad0");
+                    LocationPreviewColour = Color.FromHex("bfcfd9");
                 }
                 else
                 {
+                    LocationLabelColour = Color.FromHex("#1B1C20");
+                    LocationPreviewColour = Color.FromHex("#334856");
                     _Online = false;
                 }
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Online)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Online)));
             }
         }
 
@@ -356,27 +268,20 @@ namespace DAYLY.ViewModels
                 if (value == true)
                 {
                     _AllDay = value;
+                    TimeLabelColour = Color.FromHex("#c8cad0");
+                    TimePreviewColour = Color.FromHex("bfcfd9");
                 }
                 else
                 {
+                    TimeLabelColour = Color.FromHex("#1B1C20");
+                    TimePreviewColour = Color.FromHex("#334856");
                     _AllDay = false;
                 }
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AllDay)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AllDay)));
             }
         }
 
-        public string EventName
-        {
-            get
-            {
-                return _EventName;
-            }
-            set
-            {
-                _EventName = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventName)));
-            }
-        }
+        
 
         public TimeSpan StartTime
         {
@@ -388,12 +293,8 @@ namespace DAYLY.ViewModels
             {
                 _StartTime = value;
                 StartTimeText = value.ToString();
-
-                if (_StartTime > _EndTime)
-                {
-                    EndTime = _StartTime + TimeSpan.FromHours(2);
-                }
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StartTime)));
+                AffairDateText = AffairDate.ToString();
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StartTime)));
             }
         }
         public string StartTimeText
@@ -405,7 +306,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _StartTimeText = TimeConvert(_StartTime);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StartTimeText)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StartTimeText)));
             }
         }
 
@@ -419,7 +320,8 @@ namespace DAYLY.ViewModels
             {
                 _EndTime = value;
                 EndTimeText = value.ToString();
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EndTime)));
+                AffairDateText = AffairDate.ToString();
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EndTime)));
             }
         }
 
@@ -432,37 +334,10 @@ namespace DAYLY.ViewModels
             set
             {
                 _EndTimeText = TimeConvert(_EndTime);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EndTimeText)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EndTimeText)));
             }
         }
-        public List<ProgrammeViewModel> CalendarListView
-        {
-            get
-            {
-                return _CalendarListView;
-            }
-            set
-            {
-                _CalendarListView = new List<ProgrammeViewModel>();
-                List<Programme> tempListView = (from x in conn.Table<Programme>() select x).ToList();
-                string tempBorderColour;
-                foreach (Programme programme in tempListView)
-                {
-                    if (programme.Id == CurrentCalendarID)
-                    {
-                        tempBorderColour = "#0033cc";
-                    }
-                    else
-                    {
-                        tempBorderColour = "#ffffff";
-                    }
-                    ProgrammeViewModel programmeViewModel = new ProgrammeViewModel(programme.Id, programme.Name, programme.HexColour, tempBorderColour);
-                    _CalendarListView.Add(programmeViewModel);
-                }
-                CalendarListViewWidth = _CalendarListView.Count * 150;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CalendarListView)));
-            }
-        }
+        
         public List<Location> LocationListView
         {
             get
@@ -473,7 +348,7 @@ namespace DAYLY.ViewModels
             {
                 _LocationListView = value;
                 LocationListViewHeight = value.Count * 64;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationListView)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationListView)));
             }
         }
         public List<Event> EventListView
@@ -485,132 +360,110 @@ namespace DAYLY.ViewModels
             set
             {
                 _EventListView = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventListView)));
-            }
-        }
-
-        public DateTime EventDate
-        {
-            get
-            {
-                return _EventDate;
-            }
-            set
-            {
-                _EventDate = value;
-                EventDateText = value.ToString();
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventDate)));
-            }
-        }
-
-        public string EventDateText
-        {
-            get
-            {
-                return _EventDateText;
-            }
-            set
-            {
-                _EventDateText = EventDate.Day.ToString() + "/" + EventDate.Month.ToString() + "/" + EventDate.Year.ToString();
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventDateText)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventListView)));
             }
         }
 
         private void WriteEvent()
         {
-            // Add Event
-            int isSuccess;
-            Event newEvent = new Event
+            if (string.IsNullOrEmpty(AffairName))
             {
-                Name = EventName,
-                Type = EventType,
-                Date = EventDate,
-                StartTime = StartTime,
-                EndTime = EndTime,
-                AllDay = AllDay,
-                IsOnline = Online,
-                RepeatInterval = Repeat,
-                AlertInterval = Alert,
-                NoteId = CurrentNoteID,
-                ProgrammeId = CurrentCalendarID,
-                LocationId = CurrentLocationID
-            };
-            isSuccess = 0;
-            try
-            {
-                isSuccess = conn.Insert(newEvent);
+                ErrorAlert("Event Name field must have value", CurrentPage);
             }
-            catch (Exception ex)
+            else if (CurrentLocationID == 0 && Online == false)
             {
-                Console.WriteLine("Inserting Event Failed");
-                throw ex;
+                ErrorAlert("New Event must have Location", CurrentPage);
             }
-        }
-
-        public CreateEventViewModel()
-        {
-            SaveEvent = new Command(() => {
-                WriteEvent();
-                EventListView = (from x in conn.Table<Event>() select x).ToList();
-            });
-
-            SelectType = new Command(async (typeValue) => {
-                EventType = (string)typeValue;
-                await _NavigationStack.PopToRootAsync();
-            });
-
-            LoadType = new Command(async () => {
-                await _NavigationStack.PushAsync(new EventType(this));
-            });
-
-            SelectRepeat = new Command(async (repeatValue) => {
-                Repeat = (string)repeatValue;
-                await _NavigationStack.PopToRootAsync();
-            });
-
-            LoadRepeat = new Command(async () => {
-                await _NavigationStack.PushAsync(new Repeat(this));
-            });
-
-            SelectAlert = new Command(async (alertValue) => {
-                Alert = (string)alertValue;
-                await _NavigationStack.PopToRootAsync();
-            });
-
-            LoadAlert = new Command(async () => {
-                await _NavigationStack.PushAsync(new Alert(this));
-            });
-
-            SaveNote = new Command(async () => {
+            else if (CurrentProgrammeID == 0)
+            {
+                ErrorAlert("New Event must have Calendar", CurrentPage);
+            }
+            else
+            {
+                // Add Event
                 int isSuccess;
-                // Add Custom Note
-                Note newNote = new Note
+                Event newEvent = new Event
                 {
-                    Description = NoteDescription,
-                    URL = NoteURL
+                    Name = AffairName,
+                    Type = AffairSubType,
+                    Date = AffairDate,
+                    StartTime = StartTime,
+                    EndTime = EndTime,
+                    AllDay = AllDay,
+                    IsOnline = Online,
+                    RepeatInterval = Repeat,
+                    AlertInterval = Alert,
+                    NoteId = CurrentNoteID,
+                    CalendarId = CurrentProgrammeID,
+                    LocationId = CurrentLocationID
                 };
-                isSuccess = 0;
                 try
                 {
-                    isSuccess = conn.Insert(newNote);
+                    isSuccess = conn.Insert(newEvent);
+                    ErrorAlert("Event " + AffairName + " added successfully", CurrentPage);
+                    ResetEvent();
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Inserting Note Failed");
                     throw ex;
                 }
-                CurrentNoteID = newNote.Id;
-                await _NavigationStack.PopToRootAsync();
+            }
+        }
+        private void ResetEvent()
+        {
+            ResetAffair();
+
+            AffairType = "Event";
+            AffairSubType = "Lecture";
+            CurrentLocationAlias = "None";
+
+            StartTime = DateTime.Now.TimeOfDay;
+            TimeSpan tempEndTime = StartTime + TimeSpan.FromHours(2);
+            if (tempEndTime.Days > 0)
+            {
+                tempEndTime = tempEndTime.Subtract(new TimeSpan(1, 0, 0, 0));
+            }
+            EndTime = tempEndTime;
+
+            LocationLabelColour = Color.FromHex("#1B1C20");
+            LocationPreviewColour = Color.FromHex("#334856");
+
+            TimeLabelColour = Color.FromHex("#1B1C20");
+            TimePreviewColour = Color.FromHex("#334856");
+            referenceEventViewModel = this;
+        }
+        public CreateEventViewModel(INavigation navigation, Page page)
+        {
+            CurrentNavigation = navigation;
+            CurrentPage = page;
+            ResetEvent();
+
+            LoadReminder = new Command(async () =>
+            {
+                await Shell.Current.GoToAsync("//AddReminder");
             });
 
-            LoadNote = new Command(async () =>
-            {
-                await _NavigationStack.PushAsync(new Notes(this));
+            SaveEvent = new Command(() => {
+                WriteEvent();
+                EventListView = (from x in conn.Table<Event>() select x).ToList();
+                
+
+                // Uncomment to view SQLite Query
+                Console.WriteLine("Saved Events");
+                foreach (Event iterEvent in EventListView)
+                {
+                    Console.WriteLine(iterEvent.Name);
+                    Console.WriteLine(iterEvent.Type + iterEvent.Date.ToString() + iterEvent.StartTime.ToString() + iterEvent.EndTime.ToString() + iterEvent.AllDay.ToString()
+                        + iterEvent.IsOnline.ToString() + iterEvent.RepeatInterval + iterEvent.AlertInterval + iterEvent.NoteId.ToString() + iterEvent.CalendarId.ToString() + iterEvent.LocationId.ToString());
+                }
             });
 
             LoadLocation = new Command(async () =>
             {
-                await _NavigationStack.PushAsync(new LocationSelection(this));
+                if (Online == false)
+                {
+                    await CurrentNavigation.PushAsync(new LocationSelection(this));
+                }
             });
 
             SelectLocation = new Command(async (locationValue) => {
@@ -622,141 +475,94 @@ namespace DAYLY.ViewModels
                         CurrentLocationAlias = location.Alias;
                     }
                 }
-                await _NavigationStack.PopAsync();
+                await CurrentNavigation.PopAsync();
             });
 
             SaveCustomLocation = new Command(async () => {
-                int isSuccess;
-                // Add Custom Note
-                Location newLocation = new Location
-                {
-                    Alias = LocationAlias,
-                    StreetAddress = LocationAddress,
-                    Suburb = LocationSuburb,
-                    State = LocationState,
-                    Postcode = int.Parse(LocationPostcode)
-                };
-                isSuccess = 0;
+                List<Page> currentPages = (List<Page>)CurrentNavigation.NavigationStack;
+                bool validLocation = true;
+                int PostcodeTest = 0;
                 try
                 {
-                    isSuccess = conn.Insert(newLocation);
+                    if (LocationPostcode != null)
+                    {
+                        PostcodeTest = int.Parse(LocationPostcode);
+                    }
+                    else
+                    {
+                        ErrorAlert("Postcode must be numeric value", currentPages[currentPages.Count - 1]);
+                        validLocation = false;
+                    }
                 }
-                catch (Exception ex)
+                catch (FormatException ex)
                 {
-                    Console.WriteLine("Inserting Location Failed");
+                    if (validLocation)
+                    {
+                        ErrorAlert("Postcode must be numeric value", currentPages[currentPages.Count - 1]);
+                        validLocation = false;
+                    }
                     throw ex;
                 }
 
-                LocationAlias = "";
-                LocationAddress = "";
-                LocationSuburb = "";
-                LocationState = "";
-                LocationPostcode = "";
+                if ((PostcodeTest > 9999 || PostcodeTest < 1000) && validLocation)
+                {
+                    ErrorAlert("Postcode must be 4 digit numeric value", currentPages[currentPages.Count - 1]);
+                    validLocation = false;
+                }
 
-                LocationListView = (from x in conn.Table<Location>() select x).ToList();
-                await _NavigationStack.PopAsync();
+                if (LocationAlias == "" || LocationAlias == null)
+                {
+                    ErrorAlert("Location Alias cannot be null", currentPages[currentPages.Count - 1]);
+                }
+                else if (LocationAddress == "" || LocationAddress == null)
+                {
+                    ErrorAlert("Location Address cannot be null", currentPages[currentPages.Count - 1]);
+                }
+                else if (LocationSuburb == "" || LocationSuburb == null)
+                {
+                    ErrorAlert("Location Suburb cannot be null", currentPages[currentPages.Count - 1]);
+                }
+                else if (LocationState == "" || LocationState == null)
+                {
+                    ErrorAlert("Location State cannot be null", currentPages[currentPages.Count - 1]);
+                }
+                else if (LocationAlias != "" && LocationAddress != "" && LocationSuburb != "" && LocationState != "" && validLocation)
+                {
+                    int isSuccess;
+                    // Add Custom Note
+                    Location newLocation = new Location
+                    {
+                        Alias = LocationAlias,
+                        StreetAddress = LocationAddress,
+                        Suburb = LocationSuburb,
+                        State = LocationState,
+                        Postcode = int.Parse(LocationPostcode)
+                    };
+                    isSuccess = 0;
+                    try
+                    {
+                        isSuccess = conn.Insert(newLocation);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+
+                    LocationAlias = "";
+                    LocationAddress = "";
+                    LocationSuburb = "";
+                    LocationState = "";
+                    LocationPostcode = "";
+
+                    LocationListView = (from x in conn.Table<Location>() select x).ToList();
+                    await CurrentNavigation.PopAsync();
+                }
             });
 
             LoadCustomLocation = new Command(async () =>
             {
-                await _NavigationStack.PushAsync(new LocationCustom(this));
-            });
-
-            LoadNewCalendar = new Command(() => {
-                PopupCalendarVisible = true;
-            });
-
-            SaveNewCalendar = new Command(() => {
-                int isSuccess;
-                // Add Programme
-                string hexCode;
-                switch (NewCalendarColour)
-                {
-                    case "Green":
-                        hexCode = "#99ff33";
-                        break;
-                    case "Blue":
-                        hexCode = "#0099ff";
-                        break;
-                    case "Red":
-                        hexCode = "#ff5050";
-                        break;
-                    case "Orange":
-                        hexCode = "#ff9966";
-                        break;
-                    case "Yellow":
-                        hexCode = "#ffff99";
-                        break;
-                    case "Purple":
-                        hexCode = "#993399";
-                        break;
-                    default:
-                        hexCode = "#ffffff";
-                        break;
-                }
-                Programme newProgramme = new Programme
-                {
-                    Name = NewCalendarName,
-                    HexColour = hexCode
-                };
-                isSuccess = 0;
-                try
-                {
-                    isSuccess = conn.Insert(newProgramme);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                NewCalendarName = "";
-                NewCalendarColour = "";
-                CurrentCalendarID = 0;
-
-                // Save results to query
-                CalendarListView = new List<ProgrammeViewModel>();
-
-                PopupCalendarVisible = false;
-            });
-
-            SelectCalendar = new Command((calendarValue) => {
-                CurrentCalendarID = 0;
-                CurrentCalendarID = (int)calendarValue;
-                CalendarListView = new List<ProgrammeViewModel>();
+                await CurrentNavigation.PushAsync(new LocationCustom(this));
             });
         }
-
-        public void Initalise(INavigation navigation)
-        {
-            _NavigationStack = navigation;
-
-            conn = DependencyService.Get<Isqlite>().GetConnection();
-            try
-            {
-                conn.DropTable<Event>();
-                conn.DropTable<Note>();
-                conn.DropTable<Location>();
-                conn.DropTable<Programme>();
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            conn.CreateTable<Note>();
-            conn.CreateTable<Programme>();
-            conn.CreateTable<Location>();
-            conn.CreateTable<Event>();
-
-            EventDate = DateTime.Now;
-            StartTime = DateTime.Now.TimeOfDay;
-            EndTime = StartTime + TimeSpan.FromHours(2);
-            EventType = "Lecture";
-            Repeat = "None";
-            Alert = "15 Minutes";
-            CurrentLocationAlias = "None";
-            PopupCalendarVisible = false;
-            CalendarListView = new List<ProgrammeViewModel>();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
