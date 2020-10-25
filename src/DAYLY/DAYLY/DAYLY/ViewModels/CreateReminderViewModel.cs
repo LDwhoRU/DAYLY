@@ -18,13 +18,74 @@ namespace DAYLY.ViewModels
 {
     public class CreateReminderViewModel : CreateAffairViewModel
     {
-        private INavigation _NavigationStack;
+        private List<Reminder> _ReminderListView;
         public Command LoadEvent { get; }
+        public Command SaveReminder { get; }
+        public List<Reminder> ReminderListView
+        {
+            get
+            {
+                return _ReminderListView;
+            }
+            set
+            {
+                _ReminderListView = value;
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ReminderListView)));
+            }
+        }
+
+        private void WriteReminder()
+        {
+            if (string.IsNullOrEmpty(AffairName))
+            {
+                ErrorAlert("Reminder Name field must have value", CurrentPage);
+            }
+            else if (CurrentProgrammeID == 0)
+            {
+                ErrorAlert("New Reminder must have Calendar", CurrentPage);
+            }
+            else
+            {
+                // Add Event
+                int isSuccess;
+                Reminder newReminder = new Reminder
+                {
+                    Name = AffairName,
+                    Type = AffairSubType,
+                    Date = AffairDate,
+                    RepeatInterval = Repeat,
+                    AlertInterval = Alert,
+                    NoteId = CurrentNoteID,
+                    SubjectId = CurrentProgrammeID,
+                };
+                try
+                {
+                    isSuccess = conn.Insert(newReminder);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Inserting Event Failed");
+                    throw ex;
+                }
+            }
+        }
 
         public CreateReminderViewModel()
         {
             AffairType = "Reminder";
+            AffairSubType = "Assignment";
             referenceReminderViewModel = this;
+
+            SaveReminder = new Command(() => {
+                WriteReminder();
+                ReminderListView = (from x in conn.Table<Reminder>() select x).ToList();
+
+                // Uncomment to view SQLite Query
+                foreach (Reminder iterReminder in ReminderListView)
+                {
+                    Console.WriteLine(iterReminder.Name + iterReminder.Type + iterReminder.Date.ToString() + iterReminder.RepeatInterval + iterReminder.AlertInterval + iterReminder.NoteId.ToString() + iterReminder.SubjectId.ToString());
+                }
+            });
 
             LoadEvent = new Command(async () =>
             {
@@ -34,7 +95,7 @@ namespace DAYLY.ViewModels
 
         public void Initalise(INavigation navigation, Page page)
         {
-            _NavigationStack = navigation;
+            CurrentNavigation = navigation;
             CurrentPage = page;
         }
     }

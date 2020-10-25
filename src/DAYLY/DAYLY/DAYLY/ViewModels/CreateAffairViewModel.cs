@@ -30,11 +30,14 @@ namespace DAYLY.ViewModels
         public Command LoadAlert { get; }
         public Command SaveNote { get; }
         public Command LoadNote { get; }
+        public Command LoadNewProgramme { get; }
+        public Command SaveNewProgramme { get; }
+        public Command SelectProgramme { get; }
 
         protected string _AffairName;
-        protected DateTime _EventDate;
-        protected string _EventDateText;
-        protected string _EventType;
+        protected DateTime _AffairDate;
+        protected string _AffairDateText;
+        protected string _AffairSubType;
 
         protected string _Repeat;
         protected string _Alert;
@@ -44,12 +47,12 @@ namespace DAYLY.ViewModels
         protected int _CurrentNoteID;
         protected string _NotePreviewLabel;
 
-        private int _CurrentCalendarID;
-        private bool _PopupCalendar;
-        private string _NewCalendarName;
-        private string _NewCalendarColour;
-        private int _CalendarListViewWidth;
-        private List<ProgrammeViewModel> _CalendarListView;
+        private int _CurrentProgrammeID;
+        private bool _PopupProgramme;
+        private string _NewProgrammeName;
+        private string _NewProgrammeColour;
+        private int _ProgrammeListViewWidth;
+        private List<ProgrammeViewModel> _ProgrammeListView;
         private List<string> _ColourPickerItems;
 
         protected INavigation _CurrentNavigation;
@@ -81,106 +84,131 @@ namespace DAYLY.ViewModels
                 PropertyChanged = value;
             }
         }
-        public string NewCalendarColour
+        public string NewProgrammeColour
         {
             get
             {
-                return _NewCalendarColour;
+                return _NewProgrammeColour;
             }
             set
             {
-                _NewCalendarColour = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NewCalendarColour)));
+                _NewProgrammeColour = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NewProgrammeColour)));
             }
         }
-        public string NewCalendarName
+        public string NewProgrammeName
         {
             get
             {
-                return _NewCalendarName;
+                return _NewProgrammeName;
             }
             set
             {
-                _NewCalendarName = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NewCalendarName)));
+                _NewProgrammeName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NewProgrammeName)));
             }
         }
-        public bool PopupCalendarVisible
+        public bool PopupProgrammeVisible
         {
             get
             {
-                return _PopupCalendar;
+                return _PopupProgramme;
             }
             set
             {
-                _PopupCalendar = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarVisible)));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarHidden)));
+                _PopupProgramme = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupProgrammeVisible)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupProgrammeHidden)));
             }
         }
-        public bool PopupCalendarHidden
+        public bool PopupProgrammeHidden
         {
             get
             {
-                return !_PopupCalendar;
+                return !_PopupProgramme;
             }
             set
             {
-                _PopupCalendar = !value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarHidden)));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarVisible)));
+                _PopupProgramme = !value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupProgrammeHidden)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupProgrammeVisible)));
             }
         }
-        public int CurrentCalendarID
+        public int CurrentProgrammeID
         {
             get
             {
-                return _CurrentCalendarID;
+                return _CurrentProgrammeID;
             }
             set
             {
-                _CurrentCalendarID = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentCalendarID)));
+                _CurrentProgrammeID = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentProgrammeID)));
             }
         }
-        public int CalendarListViewWidth
+        public int ProgrammeListViewWidth
         {
             get
             {
-                return _CalendarListViewWidth;
+                return _ProgrammeListViewWidth;
             }
             set
             {
-                _CalendarListViewWidth = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CalendarListViewWidth)));
+                _ProgrammeListViewWidth = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ProgrammeListViewWidth)));
             }
         }
-        public List<ProgrammeViewModel> CalendarListView
+        public List<ProgrammeViewModel> ProgrammeListView
         {
             get
             {
-                return _CalendarListView;
+                return _ProgrammeListView;
             }
             set
             {
-                _CalendarListView = new List<ProgrammeViewModel>();
-                List<Programme> tempListView = (from x in conn.Table<Programme>() select x).ToList();
+                _ProgrammeListView = new List<ProgrammeViewModel>();
                 string tempBorderColour;
-                foreach (Programme programme in tempListView)
+
+                if (AffairType == "Event")
                 {
-                    if (programme.Id == CurrentCalendarID)
+                    List<Models.Calendar> tempListView = (from x in conn.Table<Models.Calendar>() select x).ToList();
+
+                    foreach (Models.Calendar calendar in tempListView)
                     {
-                        tempBorderColour = "#0033cc";
+                        if (calendar.Id == CurrentProgrammeID)
+                        {
+                            tempBorderColour = "#0033cc";
+                        }
+                        else
+                        {
+                            tempBorderColour = "#ffffff";
+                        }
+                        ProgrammeViewModel programmeViewModel = new ProgrammeViewModel(calendar.Id, calendar.Name, calendar.HexColour, tempBorderColour);
+                        _ProgrammeListView.Add(programmeViewModel);
                     }
-                    else
-                    {
-                        tempBorderColour = "#ffffff";
-                    }
-                    ProgrammeViewModel programmeViewModel = new ProgrammeViewModel(programme.Id, programme.Name, programme.HexColour, tempBorderColour);
-                    _CalendarListView.Add(programmeViewModel);
                 }
-                CalendarListViewWidth = _CalendarListView.Count * 150;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CalendarListView)));
+                else
+                {
+                    List<Models.Subject> tempListView = (from x in conn.Table<Models.Subject>() select x).ToList();
+
+                    foreach (Models.Subject subject in tempListView)
+                    {
+                        if (subject.Id == CurrentProgrammeID)
+                        {
+                            tempBorderColour = "#0033cc";
+                        }
+                        else
+                        {
+                            tempBorderColour = "#ffffff";
+                        }
+                        ProgrammeViewModel programmeViewModel = new ProgrammeViewModel(subject.Id, subject.Name, subject.HexColour, tempBorderColour);
+                        _ProgrammeListView.Add(programmeViewModel);
+                    }
+                }
+                
+                
+                ProgrammeListViewWidth = _ProgrammeListView.Count * 150;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ProgrammeListView)));
             }
         }
         public string AffairType
@@ -218,16 +246,16 @@ namespace DAYLY.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentPage)));
             }
         }
-        public string EventType
+        public string AffairSubType
         {
             get
             {
-                return _EventType;
+                return _AffairSubType;
             }
             set
             {
-                _EventType = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventType)));
+                _AffairSubType = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AffairSubType)));
             }
         }
         public string AffairName
@@ -242,37 +270,37 @@ namespace DAYLY.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AffairName)));
             }
         }
-        public DateTime EventDate
+        public DateTime AffairDate
         {
             get
             {
-                return _EventDate;
+                return _AffairDate;
             }
             set
             {
                 if (DateTime.Today > value)
                 {
                     ErrorAlert("Input Date Value must be after Current Date", CurrentPage);
-                    _EventDate = DateTime.Today;
+                    _AffairDate = DateTime.Today;
                 }
                 else
                 {
-                    _EventDate = value;
+                    _AffairDate = value;
                 }
-                EventDateText = _EventDate.ToString();
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventDate)));
+                AffairDateText = _AffairDate.ToString();
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AffairDate)));
             }
         }
-        public virtual string EventDateText
+        public virtual string AffairDateText
         {
             get
             {
-                return _EventDateText;
+                return _AffairDateText;
             }
             set
             {
-                _EventDateText = EventDate.Day.ToString() + "/" + EventDate.Month.ToString() + "/" + EventDate.Year.ToString();
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventDateText)));
+                _AffairDateText = AffairDate.Day.ToString() + "/" + AffairDate.Month.ToString() + "/" + AffairDate.Year.ToString();
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AffairDateText)));
             }
         }
         public string Alert
@@ -373,17 +401,37 @@ namespace DAYLY.ViewModels
         public CreateAffairViewModel()
         {
             conn = DependencyService.Get<Isqlite>().GetConnection();
+            try
+            {
+                conn.DropTable<Event>();
+                conn.DropTable<Reminder>();
+                conn.DropTable<Note>();
+                conn.DropTable<Models.Subject>();
+                conn.DropTable<Location>();
+                conn.DropTable<Models.Calendar>();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            conn.CreateTable<Event>();
+            conn.CreateTable<Reminder>();
+            conn.CreateTable<Note>();
+            conn.CreateTable<Models.Subject>();
+            conn.CreateTable<Location>();
+            conn.CreateTable<Models.Calendar>();
+
             // Preview text show up
             Repeat = "None";
             Alert = "15 Minutes";
-            EventType = "Lecture";
+            
             NotePreviewLabel = "Empty";
 
-            PopupCalendarVisible = false;
+            PopupProgrammeVisible = false;
 
-            EventDate = DateTime.Today;
+            AffairDate = DateTime.Today;
 
-            CalendarListView = new List<ProgrammeViewModel>();
+            ProgrammeListView = new List<ProgrammeViewModel>();
             ColourPickerItems = new List<string>
             {
                 "Green",
@@ -395,12 +443,19 @@ namespace DAYLY.ViewModels
             };
 
             SelectType = new Command(async (typeValue) => {
-                EventType = (string)typeValue;
+                AffairSubType = (string)typeValue;
                 await CurrentNavigation.PopAsync();
             });
 
             LoadType = new Command(async () => {
-                await CurrentNavigation.PushAsync(new EventType(referenceEventViewModel));
+                if (AffairType == "Event")
+                {
+                    await CurrentNavigation.PushAsync(new EventType(referenceEventViewModel));
+                }
+                else
+                {
+                    await CurrentNavigation.PushAsync(new ReminderType(referenceReminderViewModel));
+                }
             });
 
             SelectRepeat = new Command(async (repeatValue) => {
@@ -409,7 +464,14 @@ namespace DAYLY.ViewModels
             });
 
             LoadRepeat = new Command(async () => {
-                await CurrentNavigation.PushAsync(new Repeat(referenceEventViewModel));
+                if (AffairType == "Event")
+                {
+                    await CurrentNavigation.PushAsync(new Repeat(referenceEventViewModel));
+                }
+                else
+                {
+                    await CurrentNavigation.PushAsync(new Repeat(referenceReminderViewModel));
+                }
             });
 
             SelectAlert = new Command(async (alertValue) => {
@@ -418,7 +480,14 @@ namespace DAYLY.ViewModels
             });
 
             LoadAlert = new Command(async () => {
-                await CurrentNavigation.PushAsync(new Alert(referenceEventViewModel));
+                if (AffairType == "Event")
+                {
+                    await CurrentNavigation.PushAsync(new Alert(referenceEventViewModel));
+                }
+                else
+                {
+                    await CurrentNavigation.PushAsync(new Alert(referenceReminderViewModel));
+                }
             });
 
             SaveNote = new Command(async () => {
@@ -454,7 +523,113 @@ namespace DAYLY.ViewModels
 
             LoadNote = new Command(async () =>
             {
-                await CurrentNavigation.PushAsync(new Notes(referenceEventViewModel));
+                if (AffairType == "Event")
+                {
+                    await CurrentNavigation.PushAsync(new Notes(referenceEventViewModel));
+                }
+                else
+                {
+                    await CurrentNavigation.PushAsync(new Notes(referenceReminderViewModel));
+                }
+            });
+
+            LoadNewProgramme = new Command(() => {
+                PopupProgrammeVisible = true;
+            });
+
+            SaveNewProgramme = new Command(() => {
+
+                bool validProgramme = true;
+
+                if (string.IsNullOrEmpty(NewProgrammeName))
+                {
+                    ErrorAlert("New Programme must have Name", CurrentPage);
+                    validProgramme = false;
+                }
+                else if (string.IsNullOrEmpty(NewProgrammeColour))
+                {
+                    ErrorAlert("New Programme must have Colour", CurrentPage);
+                    validProgramme = false;
+                }
+
+                if (validProgramme)
+                {
+                    int isSuccess;
+                    // Add Programme
+                    string hexCode;
+                    switch (NewProgrammeColour)
+                    {
+                        case "Green":
+                            hexCode = "#99ff33";
+                            break;
+                        case "Blue":
+                            hexCode = "#0099ff";
+                            break;
+                        case "Red":
+                            hexCode = "#ff5050";
+                            break;
+                        case "Orange":
+                            hexCode = "#ff9966";
+                            break;
+                        case "Yellow":
+                            hexCode = "#ffff99";
+                            break;
+                        case "Purple":
+                            hexCode = "#993399";
+                            break;
+                        default:
+                            hexCode = "#ffffff";
+                            break;
+                    }
+                    if (AffairType == "Event")
+                    {
+                        Models.Calendar newCalendar = new Models.Calendar
+                        {
+                            Name = NewProgrammeName,
+                            HexColour = hexCode
+                        };
+                        isSuccess = 0;
+                        try
+                        {
+                            isSuccess = conn.Insert(newCalendar);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                    }
+                    else
+                    {
+                        Models.Subject newSubject = new Models.Subject
+                        {
+                            Name = NewProgrammeName,
+                            HexColour = hexCode
+                        };
+                        isSuccess = 0;
+                        try
+                        {
+                            isSuccess = conn.Insert(newSubject);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                    }
+                    
+                    NewProgrammeName = "";
+                    NewProgrammeColour = "";
+                    CurrentProgrammeID = 0;
+
+                    // Save results to query
+                    ProgrammeListView = new List<ProgrammeViewModel>();
+                    PopupProgrammeVisible = false;
+                }
+            });
+
+            SelectProgramme = new Command((programmeValue) => {
+                CurrentProgrammeID = 0;
+                CurrentProgrammeID = (int)programmeValue;
+                ProgrammeListView = new List<ProgrammeViewModel>();
             });
         }
 

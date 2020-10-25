@@ -47,9 +47,9 @@ namespace DAYLY.Views
             }
         }
 
-        private void EventDateBtn_Tapped(object sender, EventArgs e)
+        private void AffairDateBtn_Tapped(object sender, EventArgs e)
         {
-            EventDatePicker.Focus();
+            AffairDatePicker.Focus();
         }
     }
 }

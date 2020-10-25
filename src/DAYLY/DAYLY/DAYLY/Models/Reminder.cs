@@ -9,5 +9,7 @@ namespace DAYLY.Models
 {
     public class Reminder : Affair
     {
+        [Indexed]
+        public int SubjectId { get; set; }
     }
 }

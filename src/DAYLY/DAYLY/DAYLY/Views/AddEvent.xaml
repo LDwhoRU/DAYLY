@@ -21,26 +21,26 @@
 
         <StackLayout Spacing="0">
 
-            <ContentView x:Name="popupCalendar" BackgroundColor="#C0808080" IsVisible="{Binding PopupCalendarVisible}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ContentView x:Name="popupProgramme" BackgroundColor="#C0808080" IsVisible="{Binding PopupProgrammeVisible}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <StackLayout Spacing="-1" Orientation="Vertical" HeightRequest="200" WidthRequest="300" BackgroundColor="#ECEFF0">
                     <Label Text="Add Calendar" Padding="17,15"/>
                     <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
                         <StackLayout Spacing="0">
-                            <Entry x:Name="CalendarName" Placeholder="Calendar Name" Text="{Binding NewCalendarName}" VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="42"/>
+                            <Entry x:Name="CalendarName" Placeholder="Calendar Name" Text="{Binding NewProgrammeName}" VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="42"/>
                             <BoxView Margin="-9" BackgroundColor="White" HeightRequest="2" HorizontalOptions="Fill"/>
                         </StackLayout>
                     </Frame>
                     <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
                         <StackLayout Spacing="0">
-                            <Picker x:Name="colourPicker" ItemsSource="{Binding ColourPickerItems}" Title="Calendar Colour" SelectedItem="{Binding NewCalendarColour}" VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="42"/>
+                            <Picker x:Name="colourPicker" ItemsSource="{Binding ColourPickerItems}" Title="Calendar Colour" SelectedItem="{Binding NewProgrammeColour}" VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="42"/>
                             <BoxView Margin="-9" BackgroundColor="White" HeightRequest="2" HorizontalOptions="Fill"/>
                         </StackLayout>
                     </Frame>
-                    <Button Text="Submit" Command="{Binding SaveNewCalendar}" Margin="0, 20" x:Name="AddCalendarBtn" HorizontalOptions="Center" WidthRequest="340" BackgroundColor="#D97D54" CornerRadius="30"/>
+                    <Button Text="Submit" Command="{Binding SaveNewProgramme}" Margin="0, 20" x:Name="AddCalendarBtn" HorizontalOptions="Center" WidthRequest="340" BackgroundColor="#D97D54" CornerRadius="30"/>
                 </StackLayout>
             </ContentView>
 
-            <ContentView x:Name="bodyContentsView" IsVisible="{Binding PopupCalendarHidden}">
+            <ContentView x:Name="bodyContentsView" IsVisible="{Binding PopupProgrammeHidden}">
                 <StackLayout Spacing="0">
                     <Grid RowSpacing="0" ColumnSpacing="0">
                         <Grid.RowDefinitions>
@@ -121,7 +121,7 @@
                                 <StackLayout Spacing="0">
                                     <Frame VerticalOptions="Start" HorizontalOptions="Fill" BackgroundColor="White" Padding="0">
                                         <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer x:Name="EventDateBtn" Tapped="EventDateBtn_Tapped" NumberOfTapsRequired="1"/>
+                                            <TapGestureRecognizer x:Name="AffairDateBtn" Tapped="AffairDateBtn_Tapped" NumberOfTapsRequired="1"/>
                                         </Frame.GestureRecognizers>
                                         <Grid Margin="5, 0" Padding="10, 15" RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start">
                                             <Grid.RowDefinitions>
@@ -132,7 +132,7 @@
                                                 <ColumnDefinition Width="2*"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="Date" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Label x:Name="EventDateLabel" Grid.Column="1" Text="{Binding EventDateText}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                            <Label x:Name="AffairDateLabel" Grid.Column="1" Text="{Binding AffairDateText}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                                         </Grid>
                                     </Frame>
                                     <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
@@ -189,7 +189,7 @@
                                 <StackLayout Orientation="Horizontal" Margin="40, 0, 0, 0" Spacing="0">
                                     <Frame BackgroundColor="#87BCBF" Padding="0" HeightRequest="155" WidthRequest="130" VerticalOptions="Start" HorizontalOptions="Start" CornerRadius="12" HasShadow="True">
                                         <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer x:Name="CreateProgrammeBtn" Command="{Binding LoadNewCalendar}" NumberOfTapsRequired="1"/>
+                                            <TapGestureRecognizer x:Name="CreateProgrammeBtn" Command="{Binding LoadNewProgramme}" NumberOfTapsRequired="1"/>
                                         </Frame.GestureRecognizers>
                                         <StackLayout Spacing="0">
                                             <Frame Margin="0, 90, 0, 0" Padding="0" HeightRequest="65" WidthRequest="130" HorizontalOptions="End" VerticalOptions="End" CornerRadius="12" BackgroundColor="White">
@@ -201,7 +201,7 @@
                                         </StackLayout>
                                     </Frame>
 
-                                    <CollectionView x:Name="CalendarOptions" ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type VM:CreateEventViewModel}}, Path=CalendarListView}" HeightRequest="155" WidthRequest="{Binding Source={RelativeSource AncestorType={x:Type VM:CreateEventViewModel}}, Path=CalendarListViewWidth}" VerticalOptions="Start" HorizontalOptions="Start" Margin="20, 0, 0, 0">
+                                    <CollectionView x:Name="ProgrammeOptions" ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type VM:CreateEventViewModel}}, Path=ProgrammeListView}" HeightRequest="155" WidthRequest="{Binding Source={RelativeSource AncestorType={x:Type VM:CreateEventViewModel}}, Path=ProgrammeListViewWidth}" VerticalOptions="Start" HorizontalOptions="Start" Margin="20, 0, 0, 0">
                                         <CollectionView.ItemsLayout>
                                             <LinearItemsLayout Orientation="Horizontal" />
                                         </CollectionView.ItemsLayout>
@@ -210,7 +210,7 @@
                                                 <ContentView WidthRequest="130" Margin="20, 0, 0, 0">
                                                     <Frame BackgroundColor="{Binding HexColour}" BorderColor="{Binding BorderColour}" Padding="0" HeightRequest="155" WidthRequest="130" VerticalOptions="Start" HorizontalOptions="Start" CornerRadius="12" HasShadow="True">
                                                         <Frame.GestureRecognizers>
-                                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type VM:CreateEventViewModel}}, Path=SelectCalendar}" CommandParameter="{Binding Id}" NumberOfTapsRequired="1"/>
+                                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type VM:CreateEventViewModel}}, Path=SelectProgramme}" CommandParameter="{Binding Id}" NumberOfTapsRequired="1"/>
                                                         </Frame.GestureRecognizers>
                                                         <StackLayout Spacing="0">
                                                             <Frame BorderColor="{Binding BorderColour}" Margin="0, 90, 0, 0" Padding="0" HeightRequest="65" WidthRequest="130" HorizontalOptions="End" VerticalOptions="End" CornerRadius="12" BackgroundColor="White">
@@ -265,7 +265,7 @@
                                                 <ColumnDefinition Width="24"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="Type" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Label Grid.Column="1" Text="{Binding EventType}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                            <Label Grid.Column="1" Text="{Binding AffairSubType}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                                             <Image Grid.Column="2" Grid.RowSpan="2" Source="icn_arrow.png" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="11" HeightRequest="20"/>
                                         </Grid>
                                     </Frame>
@@ -370,7 +370,7 @@
 
                             <TimePicker x:Name="EndTimePicker" Time="{Binding EndTime}" IsVisible="False"/>
 
-                            <DatePicker x:Name="EventDatePicker" Date="{Binding EventDate}" IsVisible="False"/>
+                            <DatePicker x:Name="AffairDatePicker" Date="{Binding AffairDate}" IsVisible="False"/>
 
                         </StackLayout>
 
