@@ -46,5 +46,15 @@
             </Frame.GestureRecognizers>
             <Label Text="CANCEL" TextColor="{StaticResource Drab}" FontSize="16" BackgroundColor="Transparent" Margin="-20" VerticalOptions="Center" HorizontalOptions="Center"/>
         </Frame>
+        <Frame WidthRequest="250"
+               HeightRequest="20"
+               CornerRadius="10"
+               Margin="50, 25"
+               BackgroundColor="Transparent"
+               Padding="10"
+               BorderColor="{Binding MessageBorderColour}"
+               IsVisible="{Binding MessageVisible}">
+            <Label Text="{Binding MessageText}" TextColor="{Binding MessageTextColour}" FontSize="15" HorizontalOptions="Center"/>
+        </Frame>
     </StackLayout>
 </ContentPage>

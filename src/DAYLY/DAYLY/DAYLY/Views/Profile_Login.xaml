@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DAYLY.Views.Profile_Login"
+             BackgroundColor="{StaticResource AppBackgroundColour}">
+    <ContentPage.Content>
+        <StackLayout Spacing="-1">
+        <Label Text="Log in" TextColor="{StaticResource Drab}" Padding="17,15"/>
+        <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
+            <Entry Placeholder="Email" Text="{Binding LoginEmail}" TextColor="{StaticResource Onyx}" FontSize="16"/>
+        </Frame>
+        <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
+            <Entry Placeholder="Password" IsPassword="True" Text="{Binding LoginPassword}" TextColor="{StaticResource Onyx}" FontSize="16" />
+        </Frame>
+        <Frame WidthRequest="250"
+                HeightRequest="10"
+                CornerRadius="30"
+                BackgroundColor="{StaticResource Drab}"
+                BorderColor="{StaticResource Drab}"
+                HasShadow="True"
+                HorizontalOptions="Center"
+                Margin="0,20">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding LoginCommandMain}" NumberOfTapsRequired="1"/>
+            </Frame.GestureRecognizers>
+            <Label Text="LOG IN" TextColor="White" FontSize="16" BackgroundColor="Transparent" Margin="-20" VerticalOptions="Center" HorizontalOptions="Center"/>
+        </Frame>
+        <Frame WidthRequest="250"
+               HeightRequest="20"
+               CornerRadius="10"
+               Margin="50, 5"
+               BackgroundColor="Transparent"
+               Padding="10"
+               BorderColor="{Binding MessageBorderColour}"
+               IsVisible="{Binding MessageVisible}">
+            <Label Text="{Binding MessageText}" TextColor="{Binding MessageTextColour}" FontSize="15" HorizontalOptions="Center"/>
+        </Frame>
+    </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

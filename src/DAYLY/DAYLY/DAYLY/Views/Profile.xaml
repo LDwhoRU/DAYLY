@@ -40,10 +40,10 @@
                     </Grid>
                 </Frame>
 
-                <Label Text="{Binding OrganisationHeader}" TextColor="{StaticResource Drab}" FontSize="18" FontAttributes="Bold" Margin="50,40,50,0"/>
+                <Label Text="Organisation" TextColor="{StaticResource Drab}" FontSize="18" FontAttributes="Bold" Margin="50,40,50,0"/>
                 <Label Text="{Binding Organisation}" TextColor="{StaticResource Drab}" FontSize="16" Margin="50,0,50,0"/>
 
-                <Label Text="{Binding CourseHeader}" TextColor="{StaticResource Drab}" FontSize="18" FontAttributes="Bold" Margin="50,20,50,0"/>
+                <Label Text="Course" TextColor="{StaticResource Drab}" FontSize="18" FontAttributes="Bold" Margin="50,20,50,0"/>
                 <Label Text="{Binding Course}" TextColor="{StaticResource Drab}" FontSize="16" Margin="50,0,50,120"/>
 
                 <Frame WidthRequest="250"
@@ -83,7 +83,7 @@
                         HasShadow="True"
                         Margin="0,15,0,10">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ViewPrivacyCommand}"/>
+                        <TapGestureRecognizer Command="{Binding LoginCommand}"/>
                     </Frame.GestureRecognizers>
                     <Label Text="LOG IN" TextColor="#ffffff" FontSize="16" BackgroundColor="Transparent" Margin="-20" VerticalOptions="Center" HorizontalOptions="Center"/>
                 </Frame>
@@ -96,7 +96,7 @@
                         HasShadow="True"
                         Margin="0,15,0,20">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ViewPrivacyCommand}"/>
+                        <TapGestureRecognizer Command="{Binding SignupCommand}"/>
                     </Frame.GestureRecognizers>
                     <Label Text="SIGN UP" TextColor="#ffffff" FontSize="16" BackgroundColor="Transparent" Margin="-20" VerticalOptions="Center" HorizontalOptions="Center"/>
                 </Frame>
