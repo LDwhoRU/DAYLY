@@ -16,24 +16,24 @@ namespace DAYLY.Services
         public MockEventData()
         {
 
-            // Programme red = new Programme();
-            //   red.HexColour = "green";
-            //rogramme pink = new Programme();
-            // pink.HexColour = "pink";
+
 
             DateTime datetime1 = new DateTime(2020, 10, 19, 8, 30, 0);
             DateTime datetime2 = new DateTime(2020, 10, 21, 9, 30, 0);
-            DateTime datetime3 = new DateTime(2020, 10, 23, 9, 30, 0);
+            DateTime datetime3 = new DateTime(2020, 10, 25, 9, 30, 0);
             DateTime datetime4 = new DateTime(2020, 10, 18, 9, 30, 0);
             DateTime datetime5 = new DateTime(2020, 10, 20, 9, 30, 0);
             DateTime datetime6 = new DateTime(2020, 10, 22, 9, 30, 0);
             DateTime datetime7 = new DateTime(2020, 10, 24, 9, 30, 0);
             TimeSpan span = new TimeSpan(7, 0, 0);
-            TimeSpan span3 = new TimeSpan(14, 0, 0);
+
+            TimeSpan span3= new TimeSpan(14, 0, 0);
+
             TimeSpan span2 = new TimeSpan(15, 0, 0);
             TimeSpan span4 = new TimeSpan(12, 0, 0);
             TimeSpan span5 = new TimeSpan(16, 0, 0);
             TimeSpan span6 = new TimeSpan(18, 0, 0);
+
             locations = new List<Location>
             {
                 new Location{Id=1, Alias="someones house", Postcode=4120, State="QLD", StreetAddress="39 Gordon St", Suburb="Greenslopes"},
@@ -45,6 +45,7 @@ namespace DAYLY.Services
             new Calendar{Id=2,Name="yeet",HexColour="#008000"}
             };
             Notess = new List<Note>() {
+
                new Note{Id=1,URL="www.google.com",Description="testing this epic dude stuff my guy"},
                new Note{Id=2,URL="www.facebook.com",Description="testing number 2 shmole"},
                 new Note{Id=3,URL="www.reddit.com",Description="testing number 3 smole"},
@@ -54,6 +55,7 @@ namespace DAYLY.Services
                     new Note{Id=7,URL="www.website.com",Description="testing number 7 zzzz"},
                      new Note{Id=8,URL="www.redditmoment.com",Description="another description"},
                        new Note{Id=9,URL="www.bruhmoment.com",Description="bruh"},
+
            };
 
 
@@ -69,6 +71,7 @@ namespace DAYLY.Services
                  //    new Event { Id = 6, Name = "tuesdeee", Type = "tute", Date = datetime5, RepeatInterval = 1, AlertInterval=1, NoteId=1,ProgrammeId=7,AllDay=false,StartTime=span3, EndTime=span2,Location="P5" },
                   //    new Event { Id = 6, Name = "thursssbrahhh", Type = "tute", Date = datetime6, RepeatInterval = 1, AlertInterval=1, NoteId=8,ProgrammeId=1,AllDay=false,StartTime=span4, EndTime=span5,Location="P5" },
                     //   new Event { Id = 6, Name = "satatatatatata", Type = "tute", Date = datetime7, RepeatInterval = 1, AlertInterval=1, NoteId=9,ProgrammeId=1,AllDay=false,StartTime=span4, EndTime=span6,Location="P5" },
+
      };
         }
         public async Task<bool> AddItemAsync(Event item)
