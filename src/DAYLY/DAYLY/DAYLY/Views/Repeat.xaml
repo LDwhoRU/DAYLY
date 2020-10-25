@@ -7,22 +7,46 @@
         <StackLayout Spacing="-1">
             <Label Text="Repeat" Padding="17,15"/>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectRepeat}" CommandParameter="None" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
+                <Label Text="None" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectRepeat}" CommandParameter="Daily" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
                 <Label Text="Daily" VerticalOptions="Center" FontSize="16"/>
             </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectRepeat}" CommandParameter="Weekly" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
                 <Label Text="Weekly" VerticalOptions="Center" FontSize="16"/>
             </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectRepeat}" CommandParameter="Fortnightly" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
                 <Label Text="Fortnightly" VerticalOptions="Center" FontSize="16"/>
             </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectRepeat}" CommandParameter="Monthly" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
                 <Label Text="Monthly" VerticalOptions="Center" FontSize="16"/>
             </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectRepeat}" CommandParameter="Quarterly" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
                 <Label Text="Quarterly" VerticalOptions="Center" FontSize="16"/>
             </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
-                <Label Text="Annually" VerticalOptions="Center" FontSize="16"/>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectRepeat}" CommandParameter="Yearly" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
+                <Label Text="Yearly" VerticalOptions="Center" FontSize="16"/>
             </Frame>
         </StackLayout>
     </ContentPage.Content>

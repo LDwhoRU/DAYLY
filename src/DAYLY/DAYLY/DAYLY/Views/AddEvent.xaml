@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:VM="clr-namespace:DAYLY.ViewModels"
              x:Class="DAYLY.Views.AddEvent"
              BackgroundColor="#ECEFF0"
                NavigationPage.HasBackButton="False">
@@ -25,17 +26,17 @@
 
         <StackLayout Spacing="0">
 
-            <ContentView x:Name="popupLoginView" BackgroundColor="#C0808080" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ContentView x:Name="popupCalendar" BackgroundColor="#C0808080" IsVisible="{Binding PopupCalendarVisible}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
                     <StackLayout Orientation="Vertical" HeightRequest="200" WidthRequest="300" BackgroundColor="White">
-                        <Entry x:Name="CalendarName"  Margin="20,20,20,10" Placeholder="Calendar Name"></Entry>
-                        <Picker x:Name="colourPicker" Margin="20,0,20,0" Title="Calendar Colour"/>
-                        <Button x:Name="AddCalendarBtn" Margin="20,0,20,0" Text="Create Calendar" Clicked="AddCalendarBtn_Clicked"></Button>
+                        <Entry x:Name="CalendarName"  Margin="20,20,20,10" Placeholder="Calendar Name" Text="{Binding NewCalendarName}"/>
+                        <Picker x:Name="colourPicker" Margin="20,0,20,0" Title="Calendar Colour" SelectedItem="{Binding NewCalendarColour}"/>
+                        <Button x:Name="AddCalendarBtn" Margin="20,0,20,0" Text="Create Calendar" Command="{Binding SaveNewCalendar}"/>
                     </StackLayout>
                 </StackLayout>
             </ContentView>
 
-            <ContentView x:Name="bodyContentsView" IsVisible="True">
+            <ContentView x:Name="bodyContentsView" IsVisible="{Binding PopupCalendarHidden}">
                 <StackLayout Spacing="0">
                     <Grid RowSpacing="0" ColumnSpacing="0">
                         <Grid.RowDefinitions>
@@ -62,8 +63,7 @@
                 HorizontalOptions="Fill"
                 BackgroundColor="LightSlateGray"
                 TextColor="DarkSlateGray"
-                       Clicked="OnReminderClick"
-                 />
+                       Clicked="OnReminderClick"/>
 
                         <BoxView WidthRequest="3" BackgroundColor="#D97D54" Grid.Row="1"/>
                         <BoxView WidthRequest="3" BackgroundColor="LightSlateGray" Grid.Row="1" Grid.Column="1"/>
@@ -97,7 +97,7 @@
                                 <ColumnDefinition Width="50"/>
                             </Grid.ColumnDefinitions>
 
-                            <Entry Placeholder="Event Name" x:Name="Name" Margin="10, 0, 10, 0" PlaceholderColor="#334856" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Fill"/>
+                            <Entry Placeholder="Event Name" Text="{Binding EventName}" x:Name="Name" Margin="10, 0, 10, 0" PlaceholderColor="#334856" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Fill"/>
 
                             <Button Text=""
                 Grid.Column="1"
@@ -128,7 +128,7 @@
                                                 <ColumnDefinition Width="2*"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="Date" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Label x:Name="EventDateLabel" Grid.Column="1" Text="19 Aug 2020" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                            <Label x:Name="EventDateLabel" Grid.Column="1" Text="{Binding EventDateText}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                                         </Grid>
                                     </Frame>
                                     <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
@@ -145,7 +145,7 @@
                                                 <ColumnDefinition Width="2*"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="Start" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Label x:Name="StartTimeLabel" Grid.Column="1" Text="9:00AM" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                            <Label x:Name="StartTimeLabel" Grid.Column="1" Text="{Binding StartTimeText}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                                         </Grid>
                                     </Frame>
                                     <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
@@ -162,7 +162,7 @@
                                                 <ColumnDefinition Width="2*"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="End" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Label x:Name="EndTimeLabel" Grid.Column="1" Text="11:00AM" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                            <Label x:Name="EndTimeLabel" Grid.Column="1" Text="{Binding EndTimeText}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                                         </Grid>
                                     </Frame>
                                 </StackLayout>
@@ -185,7 +185,7 @@
                                 <StackLayout Orientation="Horizontal" Margin="40, 0, 0, 0" Spacing="0">
                                     <Frame BackgroundColor="#87BCBF" Padding="0" HeightRequest="155" WidthRequest="130" VerticalOptions="Start" HorizontalOptions="Start" CornerRadius="12" HasShadow="True">
                                         <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer x:Name="CreateProgrammeBtn" Tapped="CreateProgrammeBtn_Tapped" NumberOfTapsRequired="1"/>
+                                            <TapGestureRecognizer x:Name="CreateProgrammeBtn" Command="{Binding LoadNewCalendar}" NumberOfTapsRequired="1"/>
                                         </Frame.GestureRecognizers>
                                         <StackLayout Spacing="0">
                                             <Frame Margin="0, 90, 0, 0" Padding="0" HeightRequest="65" WidthRequest="130" HorizontalOptions="End" VerticalOptions="End" CornerRadius="12" BackgroundColor="White">
@@ -197,19 +197,22 @@
                                         </StackLayout>
                                     </Frame>
 
-                                    <CollectionView x:Name="CalendarOptions" HeightRequest="155" VerticalOptions="Start" HorizontalOptions="Start" Margin="20, 0, 0, 0">
+                                    <CollectionView x:Name="CalendarOptions" ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type VM:CreateEventViewModel}}, Path=CalendarListView}" HeightRequest="155" WidthRequest="{Binding Source={RelativeSource AncestorType={x:Type VM:CreateEventViewModel}}, Path=CalendarListViewWidth}" VerticalOptions="Start" HorizontalOptions="Start" Margin="20, 0, 0, 0">
                                         <CollectionView.ItemsLayout>
                                             <LinearItemsLayout Orientation="Horizontal" />
                                         </CollectionView.ItemsLayout>
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
                                                 <ContentView WidthRequest="130" Margin="20, 0, 0, 0">
-                                                    <Frame BackgroundColor="{Binding HexColour}" Padding="0" HeightRequest="155" WidthRequest="130" VerticalOptions="Start" HorizontalOptions="Start" CornerRadius="12" HasShadow="True">
+                                                    <Frame BackgroundColor="{Binding HexColour}" BorderColor="{Binding BorderColour}" Padding="0" HeightRequest="155" WidthRequest="130" VerticalOptions="Start" HorizontalOptions="Start" CornerRadius="12" HasShadow="True">
+                                                        <Frame.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type VM:CreateEventViewModel}}, Path=SelectCalendar}" CommandParameter="{Binding Id}" NumberOfTapsRequired="1"/>
+                                                        </Frame.GestureRecognizers>
                                                         <StackLayout Spacing="0">
-                                                            <Frame Margin="0, 90, 0, 0" Padding="0" HeightRequest="65" WidthRequest="130" HorizontalOptions="End" VerticalOptions="End" CornerRadius="12" BackgroundColor="White">
+                                                            <Frame BorderColor="{Binding BorderColour}" Margin="0, 90, 0, 0" Padding="0" HeightRequest="65" WidthRequest="130" HorizontalOptions="End" VerticalOptions="End" CornerRadius="12" BackgroundColor="White">
                                                                 <Label Text="{Binding Name}" TextColor="#1B1C20" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
                                                             </Frame>
-                                                            <Frame Padding="0" Margin="0, -90, 0, 0" BackgroundColor="White" HeightRequest="40" WidthRequest="40" CornerRadius="20" HorizontalOptions="Center" VerticalOptions="End">
+                                                            <Frame BorderColor="{Binding BorderColour}" Padding="0" Margin="0, -90, 0, 0" BackgroundColor="White" HeightRequest="40" WidthRequest="40" CornerRadius="20" HorizontalOptions="Center" VerticalOptions="End">
                                                                 <Image Source="Create_logo.png" HeightRequest="34" WidthRequest="34" HorizontalOptions="Center" VerticalOptions="Center"/>
                                                             </Frame>
                                                         </StackLayout>
@@ -224,6 +227,9 @@
                             <Frame BackgroundColor="White" Margin="0, 25, 0, 0" HeightRequest="165" WidthRequest="320" VerticalOptions="Start" Padding="10, 5" HorizontalOptions="Center" CornerRadius="12" HasShadow="True">
                                 <StackLayout Spacing="0">
                                     <Frame VerticalOptions="Start" HorizontalOptions="Fill" BackgroundColor="White" Padding="0">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding LoadLocation}" NumberOfTapsRequired="1"/>
+                                        </Frame.GestureRecognizers>
                                         <Grid Margin="5, 0" Padding="10, 15" RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="1*"/>
@@ -235,12 +241,15 @@
                                                 <ColumnDefinition Width="24"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="Location" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Label Grid.Column="1" Text="Select" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                            <Label Grid.Column="1" Text="{Binding CurrentLocationAlias}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                                             <Image Grid.Column="2" Grid.RowSpan="2" Source="icn_arrow.png" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="11" HeightRequest="20"/>
                                         </Grid>
                                     </Frame>
                                     <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
                                     <Frame VerticalOptions="Start" HorizontalOptions="Fill" BackgroundColor="White" Padding="0">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding LoadType}" NumberOfTapsRequired="1"/>
+                                        </Frame.GestureRecognizers>
                                         <Grid Margin="5, 0" Padding="10, 15" RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="1*"/>
@@ -252,7 +261,7 @@
                                                 <ColumnDefinition Width="24"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="Type" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Label Grid.Column="1" Text="Lecture" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                            <Label Grid.Column="1" Text="{Binding EventType}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                                             <Image Grid.Column="2" Grid.RowSpan="2" Source="icn_arrow.png" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="11" HeightRequest="20"/>
                                         </Grid>
                                     </Frame>
@@ -267,7 +276,7 @@
                                                 <ColumnDefinition Width="2*"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="Online" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Switch x:Name="OnlineSwitch" Grid.Column="1" Scale="1.7" IsToggled="False" HorizontalOptions="End" VerticalOptions="Center" ThumbColor="#f0f0f0" OnColor="#87BCBF"/>
+                                            <Switch x:Name="OnlineSwitch" IsToggled="{Binding Online}" Grid.Column="1" Scale="1.7" HorizontalOptions="End" VerticalOptions="Center" ThumbColor="#f0f0f0" OnColor="#87BCBF"/>
                                         </Grid>
                                     </Frame>
                                 </StackLayout>
@@ -276,6 +285,9 @@
                             <Frame BackgroundColor="White" Margin="0, 25" HeightRequest="220" WidthRequest="320" VerticalOptions="Start" Padding="10, 5" HorizontalOptions="Center" CornerRadius="12" HasShadow="True">
                                 <StackLayout Spacing="0">
                                     <Frame VerticalOptions="Start" HorizontalOptions="Fill" BackgroundColor="White" Padding="0">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding LoadRepeat}" NumberOfTapsRequired="1"/>
+                                        </Frame.GestureRecognizers>
                                         <Grid Margin="5, 0" Padding="10, 15" RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="1*"/>
@@ -287,7 +299,7 @@
                                                 <ColumnDefinition Width="24"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="Repeat" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Label Grid.Column="1" Text="Daily (Default)" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                            <Label Grid.Column="1" Text="{Binding Repeat}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                                             <Image Grid.Column="2" Grid.RowSpan="2" Source="icn_arrow.png" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="11" HeightRequest="20"/>
                                         </Grid>
                                     </Frame>
@@ -302,11 +314,14 @@
                                                 <ColumnDefinition Width="2*"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="All-Day" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Switch x:Name="AllDaySwitch" Grid.Column="1" Scale="1.7" IsToggled="False" HorizontalOptions="End" VerticalOptions="Center" ThumbColor="#f0f0f0" OnColor="#87BCBF"/>
+                                            <Switch x:Name="AllDaySwitch" Grid.Column="1" Scale="1.7" IsToggled="{Binding AllDay}" HorizontalOptions="End" VerticalOptions="Center" ThumbColor="#f0f0f0" OnColor="#87BCBF"/>
                                         </Grid>
                                     </Frame>
                                     <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
                                     <Frame VerticalOptions="Start" HorizontalOptions="Fill" BackgroundColor="White" Padding="0">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding LoadAlert}" NumberOfTapsRequired="1"/>
+                                        </Frame.GestureRecognizers>
                                         <Grid Margin="5, 0" Padding="10, 15" RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="1*"/>
@@ -318,12 +333,15 @@
                                                 <ColumnDefinition Width="24"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Text="Alert" TextColor="#1B1C20" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
-                                            <Label Grid.Column="1" Text="15 Minutes Prior" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                                            <Label Grid.Column="1" Text="{Binding Alert}" Opacity="0.5" TextColor="#334856" FontSize="16" HorizontalTextAlignment="End" VerticalOptions="Center"/>
                                             <Image Grid.Column="2" Grid.RowSpan="2" Source="icn_arrow.png" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="11" HeightRequest="20"/>
                                         </Grid>
                                     </Frame>
                                     <BoxView VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="1" BackgroundColor="#ECEFF0"/>
                                     <Frame VerticalOptions="Start" HorizontalOptions="Fill" BackgroundColor="White" Padding="0">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding LoadNote}" NumberOfTapsRequired="1"/>
+                                        </Frame.GestureRecognizers>
                                         <Grid Margin="5, 0" Padding="10, 15" RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="1*"/>
@@ -342,18 +360,18 @@
                                 </StackLayout>
                             </Frame>
 
-                            <Button Text="Create Event" Margin="0, 0, 0, 25" x:Name="AddEventBtn" Clicked="AddEventBtn_Clicked" HorizontalOptions="Center" WidthRequest="340" BackgroundColor="#D97D54" CornerRadius="30"/>
+                            <Button Text="Create Event" Margin="0, 0, 0, 25" x:Name="AddEventBtn" Command="{Binding SaveEvent}" HorizontalOptions="Center" WidthRequest="340" BackgroundColor="#D97D54" CornerRadius="30"/>
 
-                            <TimePicker x:Name="StartTimePicker" PropertyChanged="StartTimePicker_PropertyChanged" IsVisible="False"/>
+                            <TimePicker x:Name="StartTimePicker" Time="{Binding StartTime}" PropertyChanged="StartTimePicker_PropertyChanged" IsVisible="False"/>
 
-                            <TimePicker x:Name="EndTimePicker" PropertyChanged="EndTimePicker_PropertyChanged" IsVisible="False"/>
+                            <TimePicker x:Name="EndTimePicker" Time="{Binding EndTime}" PropertyChanged="EndTimePicker_PropertyChanged" IsVisible="False"/>
 
-                            <DatePicker x:Name="EventDatePicker" PropertyChanged="EventDatePicker_PropertyChanged" IsVisible="False"/>
+                            <DatePicker x:Name="EventDatePicker" Date="{Binding EventDate}" PropertyChanged="EventDatePicker_PropertyChanged" IsVisible="False"/>
 
-                            <ListView x:Name="myListView" HasUnevenRows="True" Margin="0, 0, 0, 25" HeightRequest="40">
+                            <ListView x:Name="myListView" ItemsSource="{Binding EventListView}" HasUnevenRows="True" Margin="0, 0, 0, 25" HeightRequest="40">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <TextCell Text="{Binding URL}" Detail="{Binding Description}"/>
+                                        <TextCell Text="{Binding Name}" Detail="{Binding ProgrammeId}"/>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
