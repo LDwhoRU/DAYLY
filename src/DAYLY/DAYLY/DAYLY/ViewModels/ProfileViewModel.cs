@@ -17,6 +17,25 @@ namespace DAYLY.ViewModels
         const string ERROR_COLOUR_HEX = "#FF0000";
         const string SUCCESS_COLOUR_HEX = "#228B22";
 
+        private string firstMockPrivacyParagraph = "The privacy policy governs your use of the software" +
+            " application DAYLY for mobile devices that was created by C Students. The application" +
+            " is an automated calendar and event organiser for students.";
+
+        private string secondMockPrivacyParagraph = "What information does DAILY obtain and how it is used?";
+
+        private string thirdMockPrivacyParagraph = "User Provided Information";
+
+        private string forthMockPrivacyParagraph = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+            "Cras vel efficitur metus. Praesent molestie sem arcu, non dignissim nunc mollis non. Etiam vehicula " +
+            "quam quis rhoncus ornare. Proin tristique turpis vulputate orci mollis cursus. Cras rhoncus urna ac " +
+            "magna elementum vestibulum. Aliquam interdum eu turpis at volutpat. Vivamus vestibulum in nulla nec " +
+            "blandit. In orci urna, varius at elementum non, placerat sed quam. Morbi elit lectus, iaculis a massa " +
+            "at, interdum suscipit risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere " +
+            "cubilia curae; Donec non ipsum tempus, rutrum erat ac, efficitur ante. Nunc ac velit dolor. Lorem ipsum " +
+            "dolor sit amet, consectetur adipiscing elit. Donec nisi diam, dictum eu varius ullamcorper, feugiat in mi.";
+
+        private string fifthMockPrivacyParagraph = "Information We Collect";
+
         private INavigation NavStack;
         public string _FullName;
         public string _Email;
@@ -41,8 +60,15 @@ namespace DAYLY.ViewModels
         public string _SignupPassword;
         public string _SignupOrganisation;
         public string _SignupCourse;
+        public string FirstMockPrivacyParagraph { get; set; }
+        public string SecondMockPrivacyParagraph { get; set; }
+        public string ThirdMockPrivacyParagraph { get; set; }
+        public string ForthMockPrivacyParagraph { get; set; }
+        public string FifthMockPrivacyParagraph { get; set; }
+        public string SixthMockPrivacyParagraph { get; set; }
         string[] oldUserData;
         public ICommand EditProfileCommand { get; }
+        public ICommand ViewPrivacyCommand { get; }
         public ICommand ConfirmNewProfileDataCommand { get; }
         public ICommand CancelEditProfileCommand { get; }
         public ICommand LoginCommand { get; }
@@ -354,6 +380,7 @@ namespace DAYLY.ViewModels
         public ProfileViewModel()
         {
             EditProfileCommand = new Command(editProfile);
+            ViewPrivacyCommand = new Command(async () => await NavStack.PushAsync(new Profile_Privacy()));
             ConfirmNewProfileDataCommand = new Command(confirmNewProfileData);
             CancelEditProfileCommand = new Command(cancelEditProfile);
             LoginCommand = new Command(async () => await NavStack.PushModalAsync(new Profile_Login()));
@@ -362,6 +389,13 @@ namespace DAYLY.ViewModels
             SignupCommandMain = new Command(signup);
             CancelLoginCommand = new Command(cancelLogin);
             CancelSignupCommand = new Command(cancelSignup);
+
+            FirstMockPrivacyParagraph = firstMockPrivacyParagraph;
+            SecondMockPrivacyParagraph = secondMockPrivacyParagraph;
+            ThirdMockPrivacyParagraph = thirdMockPrivacyParagraph;
+            ForthMockPrivacyParagraph = forthMockPrivacyParagraph;
+            FifthMockPrivacyParagraph = fifthMockPrivacyParagraph;
+            SixthMockPrivacyParagraph = forthMockPrivacyParagraph;
         }
 
         async void editProfile()
