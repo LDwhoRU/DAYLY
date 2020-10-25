@@ -22,17 +22,9 @@ namespace DAYLY.ViewModels
         private string _StartTimeText;
         private TimeSpan _EndTime;
         private string _EndTimeText;
-        private DateTime _EventDate;
-        private string _EventDateText;
+        
         public Command SaveEvent { get; }
-        public Command LoadType { get; }
-        public Command SelectType { get; }
-        public Command SelectRepeat { get; }
-        public Command LoadRepeat { get; }
-        public Command SelectAlert { get; }
-        public Command LoadAlert { get; }
-        public Command SaveNote { get; }
-        public Command LoadNote { get; }
+        
         public Command LoadLocation { get; }
         public Command LoadCustomLocation { get; }
         public Command SaveCustomLocation { get; }
@@ -41,9 +33,6 @@ namespace DAYLY.ViewModels
         public Command SaveNewCalendar { get; }
         public Command SelectCalendar { get; }
         public Command LoadReminder { get; }
-        public Command FocusStartTime { get; }
-        public Command FocusEndTime { get; }
-        public Command FocusEventDate { get; }
         private string _LocationAlias;
         private string _LocationAddress;
         private string _LocationSuburb;
@@ -55,29 +44,44 @@ namespace DAYLY.ViewModels
         private List<string> _ColourPickerItems;
         private int _LocationListViewHeight;
         private int _CalendarListViewWidth;
-        private string _EventName;
+        
         private bool _Online;
         private bool _AllDay;
-        private string _EventType;
-        private string _Repeat;
-        private string _Alert;
-        private string _NoteURL;
-        private string _NoteDescription;
-        private string _NotePreviewLabel;
-        private int _CurrentNoteID;
+        
         private int _CurrentLocationID;
         private int _CurrentCalendarID;
         private string _CurrentLocationAlias;
-        public SQLiteConnection conn;
-        private INavigation _CurrentNavigation;
+        
+        
         private bool _PopupCalendar;
         private string _NewCalendarName;
         private string _NewCalendarColour;
-        private Page _CurrentPage;
+        
         private Color _LocationLabelColour;
         private Color _LocationPreviewColour;
         private Color _TimeLabelColour;
         private Color _TimePreviewColour;
+
+        public override string EventDateText
+        {
+            get
+            {
+                return _EventDateText;
+            }
+            set
+            {
+                if (EndTime < StartTime)
+                {
+                    DateTime tempEventDate = EventDate.AddDays(1);
+                    _EventDateText = EventDate.Day.ToString() + "/" + EventDate.Month.ToString() + " - " + tempEventDate.Day.ToString() + "/" + tempEventDate.Month.ToString();
+                }
+                else
+                {
+                    _EventDateText = EventDate.Day.ToString() + "/" + EventDate.Month.ToString() + "/" + EventDate.Year.ToString();
+                }
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventDateText)));
+            }
+        }
         public List<string> ColourPickerItems
         {
             get
@@ -87,40 +91,11 @@ namespace DAYLY.ViewModels
             set
             {
                 _ColourPickerItems = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ColourPickerItems)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ColourPickerItems)));
             }
         }
-        public string NotePreviewLabel
-        {
-            get
-            {
-                return _NotePreviewLabel;
-            }
-            set
-            {
-                if (CurrentNoteID == 0)
-                {
-                    _NotePreviewLabel = "Empty";
-                }
-                else
-                {
-                    _NotePreviewLabel = "Custom";
-                }
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NotePreviewLabel)));
-            }
-        }
-        public INavigation CurrentNavigation
-        {
-            get
-            {
-                return _CurrentNavigation;
-            }
-            set
-            {
-                _CurrentNavigation = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentNavigation)));
-            }
-        }
+        
+        
         public Color TimeLabelColour
         {
             get
@@ -130,7 +105,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _TimeLabelColour = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TimeLabelColour)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TimeLabelColour)));
             }
         }
         public Color TimePreviewColour
@@ -142,7 +117,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _TimePreviewColour = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TimePreviewColour)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TimePreviewColour)));
             }
         }
         public Color LocationLabelColour
@@ -154,7 +129,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _LocationLabelColour = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationLabelColour)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationLabelColour)));
             }
         }
         public Color LocationPreviewColour
@@ -166,21 +141,10 @@ namespace DAYLY.ViewModels
             set
             {
                 _LocationPreviewColour = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationPreviewColour)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationPreviewColour)));
             }
         }
-        public Page CurrentPage
-        {
-            get
-            {
-                return _CurrentPage;
-            }
-            set
-            {
-                _CurrentPage = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentPage)));
-            }
-        }
+        
         public string NewCalendarColour
         {
             get
@@ -190,7 +154,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _NewCalendarColour = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NewCalendarColour)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NewCalendarColour)));
             }
         }
         public string NewCalendarName
@@ -202,7 +166,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _NewCalendarName = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NewCalendarName)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NewCalendarName)));
             }
         }
         public bool PopupCalendarVisible
@@ -214,8 +178,8 @@ namespace DAYLY.ViewModels
             set
             {
                 _PopupCalendar = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarVisible)));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarHidden)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarVisible)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarHidden)));
             }
         }
         public bool PopupCalendarHidden
@@ -227,8 +191,8 @@ namespace DAYLY.ViewModels
             set
             {
                 _PopupCalendar = !value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarHidden)));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarVisible)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarHidden)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarVisible)));
             }
         }
         public string CurrentLocationAlias
@@ -240,7 +204,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _CurrentLocationAlias = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocationAlias)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocationAlias)));
             }
         }
         public int CurrentCalendarID
@@ -252,7 +216,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _CurrentCalendarID = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentCalendarID)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentCalendarID)));
             }
         }
         public int CurrentLocationID
@@ -264,7 +228,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _CurrentLocationID = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocationID)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocationID)));
             }
         }
         public int CalendarListViewWidth
@@ -276,7 +240,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _CalendarListViewWidth = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CalendarListViewWidth)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CalendarListViewWidth)));
             }
         }
         public int LocationListViewHeight
@@ -288,7 +252,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _LocationListViewHeight = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationListViewHeight)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationListViewHeight)));
             }
         }
         
@@ -301,7 +265,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _LocationAlias = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationAlias)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationAlias)));
             }
         }
         public string LocationAddress
@@ -313,7 +277,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _LocationAddress = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationAddress)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationAddress)));
             }
         }
         public string LocationSuburb
@@ -325,7 +289,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _LocationSuburb = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationSuburb)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationSuburb)));
             }
         }
         public string LocationState
@@ -337,7 +301,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _LocationState = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationState)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationState)));
             }
         }
         public string LocationPostcode
@@ -349,7 +313,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _LocationPostcode = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationPostcode)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationPostcode)));
             }
         }
 
@@ -366,79 +330,6 @@ namespace DAYLY.ViewModels
                 temp = inputTime.ToString(@"hh\:mm") + "AM";
             }
             return temp;
-        }
-        public int CurrentNoteID
-        {
-            get
-            {
-                return _CurrentNoteID;
-            }
-            set
-            {
-                _CurrentNoteID = value;
-                NotePreviewLabel = "Custom";
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentNoteID)));
-            }
-        }
-        public string NoteDescription
-        {
-            get
-            {
-                return _NoteDescription;
-            }
-            set
-            {
-                _NoteDescription = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NoteDescription)));
-            }
-        }
-        public string NoteURL
-        {
-            get
-            {
-                return _NoteURL;
-            }
-            set
-            {
-                _NoteURL = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NoteURL)));
-            }
-        }
-        public string Alert
-        {
-            get
-            {
-                return _Alert;
-            }
-            set
-            {
-                _Alert = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Alert)));
-            }
-        }
-        public string Repeat
-        {
-            get
-            {
-                return _Repeat;
-            }
-            set
-            {
-                _Repeat = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Repeat)));
-            }
-        }
-        public string EventType
-        {
-            get
-            {
-                return _EventType;
-            }
-            set
-            {
-                _EventType = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventType)));
-            }
         }
         public bool Online
         {
@@ -460,7 +351,7 @@ namespace DAYLY.ViewModels
                     LocationPreviewColour = Color.FromHex("#334856");
                     _Online = false;
                 }
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Online)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Online)));
             }
         }
 
@@ -484,22 +375,11 @@ namespace DAYLY.ViewModels
                     TimePreviewColour = Color.FromHex("#334856");
                     _AllDay = false;
                 }
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AllDay)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AllDay)));
             }
         }
 
-        public string EventName
-        {
-            get
-            {
-                return _EventName;
-            }
-            set
-            {
-                _EventName = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventName)));
-            }
-        }
+        
 
         public TimeSpan StartTime
         {
@@ -512,7 +392,7 @@ namespace DAYLY.ViewModels
                 _StartTime = value;
                 StartTimeText = value.ToString();
                 EventDateText = EventDate.ToString();
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StartTime)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StartTime)));
             }
         }
         public string StartTimeText
@@ -524,7 +404,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _StartTimeText = TimeConvert(_StartTime);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StartTimeText)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StartTimeText)));
             }
         }
 
@@ -539,7 +419,7 @@ namespace DAYLY.ViewModels
                 _EndTime = value;
                 EndTimeText = value.ToString();
                 EventDateText = EventDate.ToString();
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EndTime)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EndTime)));
             }
         }
 
@@ -552,7 +432,7 @@ namespace DAYLY.ViewModels
             set
             {
                 _EndTimeText = TimeConvert(_EndTime);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EndTimeText)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EndTimeText)));
             }
         }
         public List<ProgrammeViewModel> CalendarListView
@@ -580,7 +460,7 @@ namespace DAYLY.ViewModels
                     _CalendarListView.Add(programmeViewModel);
                 }
                 CalendarListViewWidth = _CalendarListView.Count * 150;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CalendarListView)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CalendarListView)));
             }
         }
         public List<Location> LocationListView
@@ -593,7 +473,7 @@ namespace DAYLY.ViewModels
             {
                 _LocationListView = value;
                 LocationListViewHeight = value.Count * 64;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationListView)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationListView)));
             }
         }
         public List<Event> EventListView
@@ -605,52 +485,11 @@ namespace DAYLY.ViewModels
             set
             {
                 _EventListView = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventListView)));
+                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventListView)));
             }
         }
 
-        public DateTime EventDate
-        {
-            get
-            {
-                return _EventDate;
-            }
-            set
-            {
-                if (DateTime.Today > value)
-                {
-                    ErrorAlert("Input Date Value must be after Current Date", CurrentPage);
-                    _EventDate = DateTime.Today;
-                }
-                else
-                {
-                    _EventDate = value;
-                }
-                EventDateText = _EventDate.ToString();
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventDate)));
-            }
-        }
-
-        public string EventDateText
-        {
-            get
-            {
-                return _EventDateText;
-            }
-            set
-            {
-                if (EndTime < StartTime)
-                {
-                    DateTime tempEventDate = EventDate.AddDays(1);
-                    _EventDateText = EventDate.Day.ToString() + "/" + EventDate.Month.ToString() + " - " + tempEventDate.Day.ToString() + "/" + tempEventDate.Month.ToString();
-                }
-                else
-                {
-                    _EventDateText = EventDate.Day.ToString() + "/" + EventDate.Month.ToString() + "/" + EventDate.Year.ToString();
-                }
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventDateText)));
-            }
-        }
+        
 
         private void WriteEvent()
         {
@@ -697,20 +536,13 @@ namespace DAYLY.ViewModels
             }
         }
 
-        private async void ErrorAlert(string errorField, Page errorPage)
-        {
-            if (errorPage!=null)
-            {
-                await errorPage.DisplayAlert("Error", errorField, "OK");
-            }
-            else
-            {
-                errorPage = new Page();
-            }
-        }
+        
 
         public CreateEventViewModel()
         {
+            AffairType = "Event";
+            referenceEventViewModel = this;
+
             LoadReminder = new Command(async () =>
             {
                 await Shell.Current.GoToAsync("//AddReminder");
@@ -721,75 +553,14 @@ namespace DAYLY.ViewModels
                 EventListView = (from x in conn.Table<Event>() select x).ToList();
 
                 // Uncomment to view SQLite Query
-                //foreach (Event iterEvent in EventListView)
-                //{
-                //    Console.WriteLine(iterEvent.Name + iterEvent.Type + iterEvent.Date.ToString() + iterEvent.StartTime.ToString() + iterEvent.EndTime.ToString() + iterEvent.AllDay.ToString()
-                //        + iterEvent.IsOnline.ToString() + iterEvent.RepeatInterval + iterEvent.AlertInterval + iterEvent.NoteId.ToString() + iterEvent.ProgrammeId.ToString() + iterEvent.LocationId.ToString());
-                //}
-            });
-
-            SelectType = new Command(async (typeValue) => {
-                EventType = (string)typeValue;
-                await CurrentNavigation.PopAsync();
-            });
-
-            LoadType = new Command(async () => {
-                await CurrentNavigation.PushAsync(new EventType(this));
-            });
-
-            SelectRepeat = new Command(async (repeatValue) => {
-                Repeat = (string)repeatValue;
-                await CurrentNavigation.PopAsync();
-            });
-
-            LoadRepeat = new Command(async () => {
-                await CurrentNavigation.PushAsync(new Repeat(this));
-            });
-
-            SelectAlert = new Command(async (alertValue) => {
-                Alert = (string)alertValue;
-                await CurrentNavigation.PopAsync();
-            });
-
-            LoadAlert = new Command(async () => {
-                await CurrentNavigation.PushAsync(new Alert(this));
-            });
-
-            SaveNote = new Command(async () => {
-                List<Page> currentPages = (List<Page>)CurrentNavigation.NavigationStack;
-
-                if (string.IsNullOrEmpty(NoteDescription) && string.IsNullOrEmpty(NoteURL))
+                foreach (Event iterEvent in EventListView)
                 {
-                    ErrorAlert("At least one field is required", currentPages[currentPages.Count - 1]);
-                }
-                else
-                {
-                    int isSuccess;
-                    // Add Custom Note
-                    Note newNote = new Note
-                    {
-                        Description = NoteDescription,
-                        URL = NoteURL
-                    };
-                    isSuccess = 0;
-                    try
-                    {
-                        isSuccess = conn.Insert(newNote);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Inserting Note Failed");
-                        throw ex;
-                    }
-                    CurrentNoteID = newNote.Id;
-                    await CurrentNavigation.PopAsync();
+                    Console.WriteLine(iterEvent.Name + iterEvent.Type + iterEvent.Date.ToString() + iterEvent.StartTime.ToString() + iterEvent.EndTime.ToString() + iterEvent.AllDay.ToString()
+                        + iterEvent.IsOnline.ToString() + iterEvent.RepeatInterval + iterEvent.AlertInterval + iterEvent.NoteId.ToString() + iterEvent.ProgrammeId.ToString() + iterEvent.LocationId.ToString());
                 }
             });
 
-            LoadNote = new Command(async () =>
-            {
-                await CurrentNavigation.PushAsync(new Notes(this));
-            });
+            
 
             LoadLocation = new Command(async () =>
             {
@@ -976,7 +747,6 @@ namespace DAYLY.ViewModels
             CurrentNavigation = navigation;
             CurrentPage = page;
 
-            conn = DependencyService.Get<Isqlite>().GetConnection();
             try
             {
                 conn.DropTable<Event>();
@@ -1003,10 +773,7 @@ namespace DAYLY.ViewModels
             EndTime = tempEndTime;
 
             EventType = "Lecture";
-            Repeat = "None";
-            Alert = "15 Minutes";
             CurrentLocationAlias = "None";
-            NotePreviewLabel = "Empty";
 
             CalendarListView = new List<ProgrammeViewModel>();
 
@@ -1029,6 +796,6 @@ namespace DAYLY.ViewModels
             };
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
     }
 }
