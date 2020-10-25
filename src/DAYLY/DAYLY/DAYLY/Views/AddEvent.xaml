@@ -101,7 +101,7 @@
                                 <ColumnDefinition Width="50"/>
                             </Grid.ColumnDefinitions>
 
-                            <Entry Placeholder="Event Name" Text="{Binding EventName}" x:Name="Name" Margin="10, 0, 10, 0" PlaceholderColor="#334856" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Fill"/>
+                            <Entry Placeholder="Event Name" Text="{Binding AffairName}" x:Name="Name" Margin="10, 0, 10, 0" PlaceholderColor="#334856" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="Fill"/>
 
                             <Button Text=""
                 Grid.Column="1"

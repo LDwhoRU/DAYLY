@@ -31,7 +31,7 @@ namespace DAYLY.ViewModels
         public Command SaveNote { get; }
         public Command LoadNote { get; }
 
-        protected string _EventName;
+        protected string _AffairName;
         protected DateTime _EventDate;
         protected string _EventDateText;
         protected string _EventType;
@@ -56,6 +56,7 @@ namespace DAYLY.ViewModels
         protected Page _CurrentPage;
         public SQLiteConnection conn;
         public CreateEventViewModel referenceEventViewModel;
+        public CreateReminderViewModel referenceReminderViewModel;
 
         public List<string> ColourPickerItems
         {
@@ -229,16 +230,16 @@ namespace DAYLY.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventType)));
             }
         }
-        public string EventName
+        public string AffairName
         {
             get
             {
-                return _EventName;
+                return _AffairName;
             }
             set
             {
-                _EventName = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventName)));
+                _AffairName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AffairName)));
             }
         }
         public DateTime EventDate

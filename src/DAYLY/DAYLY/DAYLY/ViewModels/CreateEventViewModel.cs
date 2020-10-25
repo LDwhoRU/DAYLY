@@ -40,19 +40,11 @@ namespace DAYLY.ViewModels
         private string _LocationPostcode;
         private List<Event> _EventListView;
         private List<Location> _LocationListView;
-        
-        
+        private int _CurrentLocationID;
+        private string _CurrentLocationAlias;
         private int _LocationListViewHeight;
-        
-        
         private bool _Online;
         private bool _AllDay;
-        
-        private int _CurrentLocationID;
-        
-        private string _CurrentLocationAlias;
-        
-        
         
         private Color _LocationLabelColour;
         private Color _LocationPreviewColour;
@@ -381,7 +373,7 @@ namespace DAYLY.ViewModels
 
         private void WriteEvent()
         {
-            if (string.IsNullOrEmpty(EventName))
+            if (string.IsNullOrEmpty(AffairName))
             {
                 ErrorAlert("Event Name field must have value", CurrentPage);
             }
@@ -399,7 +391,7 @@ namespace DAYLY.ViewModels
                 int isSuccess;
                 Event newEvent = new Event
                 {
-                    Name = EventName,
+                    Name = AffairName,
                     Type = EventType,
                     Date = EventDate,
                     StartTime = StartTime,
@@ -447,8 +439,6 @@ namespace DAYLY.ViewModels
                         + iterEvent.IsOnline.ToString() + iterEvent.RepeatInterval + iterEvent.AlertInterval + iterEvent.NoteId.ToString() + iterEvent.ProgrammeId.ToString() + iterEvent.LocationId.ToString());
                 }
             });
-
-            
 
             LoadLocation = new Command(async () =>
             {

@@ -23,6 +23,9 @@ namespace DAYLY.ViewModels
 
         public CreateReminderViewModel()
         {
+            AffairType = "Reminder";
+            referenceReminderViewModel = this;
+
             LoadEvent = new Command(async () =>
             {
                 await Shell.Current.GoToAsync("//AddEvent");
