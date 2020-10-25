@@ -27,12 +27,12 @@ namespace DAYLY.ViewModels
         public ObservableCollection<Event> Events { get; } //intialising all the global variables
         public ObservableCollection<Note> Notes { get; }
         public ObservableCollection<Location> Locations { get; }
-        public ObservableCollection<Programme> Colours { get; }
+        public ObservableCollection<Calendar> Colours { get; }
         TimeSpan time8 = new TimeSpan(7, 0, 0);
         TimeSpan[] TimerArray = new TimeSpan[16];
         private SQLiteConnection conn;
         private List<Event> eventlist;
-        private List<Programme> colourlist;
+        private List<Calendar> colourlist;
         private List<Note> notelist;
         private List<Location> locationlist;
         TimeSpan time1 = TimeSpan.FromHours(1);
@@ -42,15 +42,15 @@ namespace DAYLY.ViewModels
             conn = DependencyService.Get<Isqlite>().GetConnection();
             conn.CreateTable<Note>();
          
-            conn.CreateTable<Programme>();
+            conn.CreateTable<Calendar>();
             conn.CreateTable<Location>();
             conn.CreateTable<Event>();
             eventlist = conn.Table<Event>().ToList();
-            colourlist = conn.Table<Programme>().ToList();
+            colourlist = conn.Table<Calendar>().ToList();
             notelist = conn.Table<Note>().ToList();
             locationlist = conn.Table<Location>().ToList();
             Events = new ObservableCollection<Event>(eventlist);
-            Colours = new ObservableCollection<Programme>(colourlist);
+            Colours = new ObservableCollection<Calendar>(colourlist);
             Notes = new ObservableCollection<Note>(notelist);
             Locations=new ObservableCollection<Location>(locationlist);
             Title = "testing";
