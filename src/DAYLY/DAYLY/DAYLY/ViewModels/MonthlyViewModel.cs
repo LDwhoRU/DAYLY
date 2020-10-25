@@ -22,7 +22,7 @@ namespace DAYLY.ViewModels
         private List<Event> zz;
         private SQLiteConnection conn;
         private List<Event> eventlist;
-        private List<Programme> colourlist;
+        private List<Calendar> colourlist;
         private List<Note> notelist;
         private List<Location> localist;
 
@@ -34,7 +34,7 @@ namespace DAYLY.ViewModels
         {
             conn = DependencyService.Get<Isqlite>().GetConnection();
             eventlist = conn.Table<Event>().ToList();
-            colourlist = conn.Table<Programme>().ToList();
+            colourlist = conn.Table<Calendar>().ToList();
             notelist = conn.Table<Note>().ToList();
             localist = conn.Table<Location>().ToList();
             //Task.Run(async () => await ExecuteLoadItemsCommand());
