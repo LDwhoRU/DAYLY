@@ -25,21 +25,21 @@
                 </Grid.ColumnDefinitions>
                 <StackLayout Grid.Column="0" Orientation="Horizontal">
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnDailyTapped"></TapGestureRecognizer>
+                        <TapGestureRecognizer Command="{Binding DailyCommand}"></TapGestureRecognizer>
                     </StackLayout.GestureRecognizers>
                     <Image Source="daily_active.png" />
                     <Label Text="DAILY" FontSize="15" TextColor="#D97D54" VerticalOptions="Center"/>
                 </StackLayout>
                 <StackLayout Grid.Column="1" Orientation="Horizontal">
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnWeeklyTapped"></TapGestureRecognizer>
+                        <TapGestureRecognizer Command="{Binding WeeklyCommand}"></TapGestureRecognizer>
                     </StackLayout.GestureRecognizers>
                     <Image Source="weekly_inactive.png" />
                     <Label Text="WEEKLY" FontSize="15" TextColor="#6D8CA0" VerticalOptions="Center"/>
                 </StackLayout>
                 <StackLayout Grid.Column="2" Orientation="Horizontal">
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnMonthlyTapped"></TapGestureRecognizer>
+                        <TapGestureRecognizer Command="{Binding MonthlyCommand}"></TapGestureRecognizer>
                     </StackLayout.GestureRecognizers>
                     <Image Source="monthly_inactive.png" />
                     <Label Text="MONTHLY" Grid.Column="2" FontSize="15" TextColor="#6D8CA0" VerticalOptions="Center"/>
@@ -109,7 +109,7 @@
                     <Image Source="circle_darkblue.png" Grid.Row="10" Grid.Column="1"/>
                     <Image Source="circle_darkblue.png" Grid.Row="11" Grid.Column="1"/>
 
-                    <Frame CornerRadius="5" BackgroundColor="red" IsVisible="{Binding Times[0]}"  Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[0]}">
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[0]}" IsVisible="{Binding Times[0]}"  Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[0]}">
                         <StackLayout>
                             <Label Text="{Binding Desc[0]}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
@@ -126,9 +126,9 @@
                             <Label Text="{Binding Nnotes[0]}" TextColor="White" FontSize="14"/>
                         </StackLayout>
                     </Frame>
-                    <Frame CornerRadius="5" BackgroundColor="red" IsVisible="{Binding Times[1]}" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[1]}">
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[1]}" IsVisible="{Binding Times[1]}" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[1]}">
                         <StackLayout>
-                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Desc[1]}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -143,9 +143,9 @@
                             <Label Text="{Binding Nnotes[1]}" TextColor="White" FontSize="14"/>
                         </StackLayout>
                     </Frame>
-                    <Frame CornerRadius="5" BackgroundColor="red" IsVisible="{Binding Times[2]}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[2]}">
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[2]}" IsVisible="{Binding Times[2]}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[2]}">
                         <StackLayout>
-                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Desc[2]}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -160,9 +160,9 @@
                             <Label Text="{Binding Nnotes[2]}" TextColor="White" FontSize="14"/>
                         </StackLayout>
                     </Frame>
-                    <Frame CornerRadius="5" BackgroundColor="red" IsVisible="{Binding Times[3]}" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[3]}" >
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[3]}" IsVisible="{Binding Times[3]}" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[3]}" >
                         <StackLayout>
-                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Desc[3]}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -177,9 +177,9 @@
                             <Label Text="{Binding Nnotes[3]}" TextColor="White" FontSize="14"/>
                         </StackLayout>
                     </Frame>
-                    <Frame CornerRadius="5" BackgroundColor="red" IsVisible="{Binding Times[4]}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[4]}">
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[4]}" IsVisible="{Binding Times[4]}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[4]}">
                         <StackLayout>
-                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Desc[4]}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -194,9 +194,9 @@
                             <Label Text="{Binding Nnotes[4]}" TextColor="White" FontSize="14"/>
                         </StackLayout>
                     </Frame>
-                    <Frame CornerRadius="5" BackgroundColor="red" IsVisible="{Binding Times[5]}" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[5]}" >
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[5]}" IsVisible="{Binding Times[5]}" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[5]}" >
                         <StackLayout>
-                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Desc[5]}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -211,9 +211,9 @@
                             <Label Text="{Binding Nnotes[5]}" TextColor="White" FontSize="14"/>
                         </StackLayout>
                     </Frame>
-                    <Frame CornerRadius="5" BackgroundColor="red" IsVisible="{Binding Times[6]}" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[6]}" >
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[6]}" IsVisible="{Binding Times[6]}" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[6]}" >
                         <StackLayout>
-                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Desc[6]}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -228,9 +228,9 @@
                             <Label Text="{Binding Nnotes[6]}" TextColor="White" FontSize="14"/>
                         </StackLayout>
                     </Frame>
-                    <Frame CornerRadius="5" BackgroundColor="red" IsVisible="{Binding Times[7]}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[7]}">
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[7]}" IsVisible="{Binding Times[7]}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[7]}">
                         <StackLayout>
-                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Desc[7]}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -245,9 +245,9 @@
                             <Label Text="{Binding Nnotes[7]}" TextColor="White" FontSize="14"/>
                         </StackLayout>
                     </Frame>
-                    <Frame CornerRadius="5" BackgroundColor="red" IsVisible="{Binding Times[8]}" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[8]}">
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[8]}" IsVisible="{Binding Times[8]}" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[8]}">
                         <StackLayout>
-                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Desc[8]}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -262,9 +262,9 @@
                             <Label Text="{Binding Nnotes[8]}" TextColor="White" FontSize="14"/>
                         </StackLayout>
                     </Frame>
-                    <Frame CornerRadius="5" BackgroundColor="red" IsVisible="{Binding Times[9]}" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[9]}" Padding="15">
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[9]}" IsVisible="{Binding Times[9]}" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[9]}" Padding="15">
                         <StackLayout>
-                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Desc[9]}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -279,9 +279,9 @@
                             <Label Text="{Binding Nnotes[9]}" TextColor="White" FontSize="14"/>
                         </StackLayout>
                     </Frame>
-                    <Frame CornerRadius="5" BackgroundColor="red" IsVisible="{Binding Times[10]}" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[10]}" Padding="15">
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[10]}" IsVisible="{Binding Times[10]}" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[10]}" Padding="15">
                         <StackLayout>
-                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Desc[10]}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -297,9 +297,9 @@
                         </StackLayout>
                     </Frame>
 
-                    <Frame CornerRadius="5" BackgroundColor="red" IsVisible="{Binding Times[11]}" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="1" Grid.RowSpan="{Binding Spans[11]}" Padding="15">
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[11]}" IsVisible="{Binding Times[11]}" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="1" Grid.RowSpan="{Binding Spans[11]}" Padding="15">
                         <StackLayout>
-                            <Label Text="IAB330 Lecture" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Desc[11]}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -318,9 +318,9 @@
 
 
 
-                    <Frame CornerRadius="5" BackgroundColor="red" IsVisible="{Binding Times[12]}" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[12]}" Padding="15">
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[12]}" IsVisible="{Binding Times[12]}" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[12]}" Padding="15">
                         <StackLayout>
-                            <Label Text="IFB295 Lecture" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Desc[12]}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -337,9 +337,9 @@
                         </StackLayout>
                     </Frame>
 
-                    <Frame CornerRadius="5" BackgroundColor="red" IsVisible="{Binding Times[13]}" Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[13]}" Padding="15">
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[13]}" IsVisible="{Binding Times[13]}" Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[13]}" Padding="15">
                         <StackLayout>
-                            <Label Text="IFB295 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Desc[13]}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -355,9 +355,9 @@
                             <Label Text="{Binding Nnotes[13]}" TextColor="White" FontSize="14"/>
                         </StackLayout>
                     </Frame>
-                    <Frame CornerRadius="5" BackgroundColor="red" IsVisible="{Binding Times[14]}" Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[14]}" Padding="15">
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[14]}" IsVisible="{Binding Times[14]}" Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[14]}" Padding="15">
                         <StackLayout>
-                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Desc[14]}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -372,9 +372,9 @@
                             <Label Text="{Binding Nnotes[14]}" TextColor="White" FontSize="14"/>
                         </StackLayout>
                     </Frame>
-                    <Frame CornerRadius="5" BackgroundColor="red" IsVisible="{Binding Times[15]}" Grid.Row="15" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[15]}" Padding="15">
+                    <Frame CornerRadius="5" BackgroundColor="{Binding Colorss[15]}" IsVisible="{Binding Times[15]}" Grid.Row="15" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="{Binding Spans[15]}" Padding="15">
                         <StackLayout>
-                            <Label Text="IAB330 Tutorial" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Desc[15]}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>

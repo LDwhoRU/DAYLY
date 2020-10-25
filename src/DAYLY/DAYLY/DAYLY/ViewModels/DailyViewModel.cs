@@ -1,5 +1,6 @@
 ﻿using DAYLY.Models;
 using DAYLY.Services;
+using DAYLY.Views;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,11 @@ namespace DAYLY.ViewModels
         {
             DateTime dt = DateTime.Today;
             conn = DependencyService.Get<Isqlite>().GetConnection();
+            conn.CreateTable<Note>();
+         
+            conn.CreateTable<Programme>();
+            conn.CreateTable<Location>();
+            conn.CreateTable<Event>();
             eventlist = conn.Table<Event>().ToList();
             colourlist = conn.Table<Programme>().ToList();
             notelist = conn.Table<Note>().ToList();
@@ -50,7 +56,11 @@ namespace DAYLY.ViewModels
             Title = "testing";
            // Console.WriteLine("yeah we made it");
             Today = dt.DayOfWeek.ToString() + " " + dt.Day.ToString() + "/" + dt.Month.ToString() + "/" + dt.Year.ToString();
-           // Task.Run(async () => await ExecuteLoadItemsCommand()); //loading the mock data
+          //  if(Events.Count==0 || Colours.Count == 0 || Notes.Count == 0 || Locations.Count == 0)
+           // {
+           //     Task.Run(async () => await ExecuteLoadItemsCommand());
+          //  }
+            //loading the mock data
             GetTimes();
       
         }
@@ -101,6 +111,39 @@ namespace DAYLY.ViewModels
                 IsBusy = false;
             }
         }
+        public Command MonthlyCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new Monthly());
+                });
+
+            }
+        }
+        public Command WeeklyCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new Weekly());
+                });
+
+            }
+        }
+        public Command DailyCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new Daily());
+                });
+
+            }
+        }
         public void GetTimes()
         {
             TimerArray[0] = time8;
@@ -126,16 +169,25 @@ namespace DAYLY.ViewModels
                     if (even.Date.DayOfWeek == DateTime.Today.DayOfWeek) {//loop through events if the date of the event is today loop through the different time slots if time matches one of the times
                         for (int i = 0; i < TimerArray.Length; i++) {//set that boolean to true as well as storing the other data
                            // Console.WriteLine("yeah we made it");
-                            if (even.StartTime ==TimerArray[i]) {
+                            if (even.StartTime.Hours ==TimerArray[i].Hours) {//defaults times to start and end on the hour that  was  entered
                                 times[i] = true;
                                 desc[i] = even.Name;
-                               // locations[i] = even.Location;
+                                foreach(var local in Locations)
+                                {
+                                    if (local.Id == even.LocationId)
+                                    {
+                                        Console.WriteLine("in the if blicky");
+                                        locations[i] = local.Alias;
+                                        Console.WriteLine(local.Alias);
+                                    }
+                                }
+                              
                                 foreach(var no in Notes)
                                 {
                                     Console.WriteLine(no.Description);
                                     if (no.Id == even.NoteId)
                                     {
-                                        Console.WriteLine("in the if blicky");
+                                       
                                         notes[i] = no.Description;
                                     }
                                 }

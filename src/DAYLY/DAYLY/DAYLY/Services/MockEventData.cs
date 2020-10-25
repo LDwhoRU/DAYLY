@@ -21,7 +21,7 @@ namespace DAYLY.Services
 
             DateTime datetime1 = new DateTime(2020, 10, 19, 8, 30, 0);
             DateTime datetime2 = new DateTime(2020, 10, 21, 9, 30, 0);
-            DateTime datetime3 = new DateTime(2020, 10, 23, 9, 30, 0);
+            DateTime datetime3 = new DateTime(2020, 10, 25, 9, 30, 0);
             DateTime datetime4 = new DateTime(2020, 10, 18, 9, 30, 0);
             DateTime datetime5 = new DateTime(2020, 10, 20, 9, 30, 0);
             DateTime datetime6 = new DateTime(2020, 10, 22, 9, 30, 0);
