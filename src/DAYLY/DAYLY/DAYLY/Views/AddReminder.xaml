@@ -180,7 +180,7 @@
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Label Text="Subject" HorizontalOptions="Center" TextColor="#1B1C20" FontSize="Title" FontAttributes="Bold"/>
+                                <Label Text="Subjects" HorizontalOptions="Center" TextColor="#1B1C20" FontSize="Title" FontAttributes="Bold"/>
                             </Grid>
 
                             <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" Margin="0, 0, 0, 0">
