@@ -23,5 +23,10 @@ namespace DAYLY.Views
             InitializeComponent();
             BindingContext = eventModel;
         }
+        public Notes(CreateReminderViewModel reminderModel)
+        {
+            InitializeComponent();
+            BindingContext = reminderModel;
+        }
     }
 }

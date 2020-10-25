@@ -18,7 +18,5 @@ namespace DAYLY.Models
         public string AlertInterval { get; set; }
         [Indexed]
         public int NoteId { get; set; }
-        [Indexed]
-        public int ProgrammeId { get; set; }
     }
 }

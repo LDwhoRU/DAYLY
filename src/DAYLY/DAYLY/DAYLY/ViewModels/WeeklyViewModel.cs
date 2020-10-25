@@ -43,8 +43,8 @@ namespace DAYLY.ViewModels
         string[] fricol = new string[16];
         string[] satcol = new string[16];
         string[] suncol = new string[16];
-        //for some reason viewmodel isnt reinstantied when navigating for create new event after creating some events. So to show new events, after there are existing events, that have been created after pressing schedule you have to
-        //click weekly again
+     //for some reason viewmodel isnt reinstantied when navigating for create new event after creating some events. So to show new events, after there are existing events, that have been created after pressing schedule you have to
+     //click weekly again
 
 
         string today;
@@ -55,21 +55,21 @@ namespace DAYLY.ViewModels
         TimeSpan time1 = TimeSpan.FromHours(1);
         private SQLiteConnection conn;
         private List<Event> eventlist;
-        private List<Programme> colourlist;
+        private List<Calendar> colourlist;
 
-        public ObservableCollection<Event> Events { get; set; }
-        public ObservableCollection<Programme> Colours { get; set; }
+        public ObservableCollection<Event> Events { get; set ; }
+        public ObservableCollection<Calendar> Colours { get; set; }
         public WeeklyViewModel()
         {
             conn = DependencyService.Get<Isqlite>().GetConnection();
             eventlist = conn.Table<Event>().ToList();
-            colourlist = conn.Table<Programme>().ToList();
+            colourlist = conn.Table<Calendar>().ToList();
             Events = new ObservableCollection<Event>(eventlist);
-            Colours = new ObservableCollection<Programme>(colourlist);
+            Colours = new ObservableCollection<Calendar>(colourlist);
             TimerArray[0] = time8;
             Title = "Weekly";
             DateTime dt = DateTime.Today;
-
+           
 
 
             Today = dt.DayOfWeek.ToString() + " " + dt.Day.ToString() + "/" + dt.Month.ToString() + "/" + dt.Year.ToString(); //figure out the current day of the week
@@ -81,7 +81,7 @@ namespace DAYLY.ViewModels
 
 
         }
-
+     
         public Command MonthlyCommand
         {
             get
@@ -127,6 +127,7 @@ namespace DAYLY.ViewModels
                 foreach (var evett in events)
                 {
                     //    Events.Add(evett);
+                //    Events.Add(evett);
                 }
                 MockEventData bb = new MockEventData();
                 var col = await bb.GetColoursAsync(true);
@@ -151,6 +152,7 @@ namespace DAYLY.ViewModels
             try
             {
 
+           
                 var Sun = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Sunday); //calculating the first day of the week, sunday then using this to figoure out the rest of the week
                 var Monday = Sun.AddDays(1);
                 var Tues = Monday.AddDays(1);
@@ -236,7 +238,7 @@ namespace DAYLY.ViewModels
                                     bweek[dayy][i] = true; //set that time to true
                                     foreach (var col in Colours)
                                     {
-                                        if (col.Id == even.ProgrammeId)
+                                        if (col.Id == even.CalendarId)
                                         {
                                             elements[dayy][i] = col.HexColour;
                                         }
@@ -427,6 +429,7 @@ namespace DAYLY.ViewModels
                 return mon;
             }
 
+         
             set
             {
                 SetProperty(ref mon, value);

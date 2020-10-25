@@ -9,11 +9,10 @@ namespace DAYLY.Services
 {
     public class MockEventData : IDataStore<Event>
     {
-        readonly List<Event> events;
-        readonly List<Programme> programmes;
-        readonly List<Note> Notess;
-
-        readonly List<Location> locations;
+        public List<Event> events;
+        public List<Calendar> programmes;
+        public List<Note> Notess;
+        public List<Location> locations;
         public MockEventData()
         {
 
@@ -41,10 +40,9 @@ namespace DAYLY.Services
                   new Location{Id=2, Alias="next door", Postcode=4120, State="QLD", StreetAddress="37 Gordon St", Suburb="Greenslopes"},
                     new Location{Id=3, Alias="across the road", Postcode=4120, State="QLD", StreetAddress="39 Gordon St", Suburb="Greenslopes"},
             };
-
-            programmes = new List<Programme> {
-            new Programme{Id=1,Name="test",HexColour="#FF0000"},
-            new Programme{Id=2,Name="yeet",HexColour="#008000"}
+            programmes = new List<Calendar> {
+            new Calendar{Id=1,Name="test",HexColour="#FF0000"},
+            new Calendar{Id=2,Name="yeet",HexColour="#008000"}
             };
             Notess = new List<Note>() {
 
@@ -64,9 +62,8 @@ namespace DAYLY.Services
             events = new List<Event>()
 
             {
-
-                new Event { Id = 1, Name = "Monday test", Type = "Lecture", Date = datetime3, RepeatInterval = "1", AlertInterval="1", NoteId=1,ProgrammeId=2,AllDay=false,IsOnline=false,StartTime=span, EndTime=span2,LocationId=1 },
-                 new Event { Id = 3, Name = "2nd monday", Type = "Tutorial", Date = datetime3, RepeatInterval = "1", AlertInterval="1", NoteId=2,ProgrammeId=1,AllDay=false,IsOnline=false,StartTime=span2, EndTime=span6,LocationId=2 },
+                new Event { Id = 1, Name = "Monday test", Type = "Lecture", Date = datetime3, RepeatInterval = "1", AlertInterval="1", NoteId=1,CalendarId=2,AllDay=false,IsOnline=false,StartTime=span, EndTime=span2,LocationId=1 },
+                 new Event { Id = 3, Name = "2nd monday", Type = "Tutorial", Date = datetime3, RepeatInterval = "1", AlertInterval="1", NoteId=2,CalendarId=1,AllDay=false,IsOnline=false,StartTime=span2, EndTime=span6,LocationId=2 },
                 //new Event { Id = "2", Name = "CAB303", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1, NoteId=3,ProgrammeId=1,AllDay=false,StartTime=span5, EndTime=span6,Location="P5" },
                 //new Event { Id = 4, Name = "wednesday dude", Type = "tute", Date = datetime3, RepeatInterval = 1, AlertInterval=1, NoteId=4,ProgrammeId=2,AllDay=false,StartTime=span4, EndTime=span3,Location="P5" },
                  //new Event { Id = 5, Name = "friyayayayayayay", Type = "tute", Date = datetime3, RepeatInterval = 1, AlertInterval=1, NoteId=5,ProgrammeId=1,AllDay=false,StartTime=span5, EndTime=span6,Location="P5" },
@@ -101,9 +98,10 @@ namespace DAYLY.Services
         {
             return await Task.FromResult(Notess);
         }
-        public async Task<IEnumerable<Programme>> GetColoursAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Calendar>> GetColoursAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(programmes);
+            //throw new NotImplementedException();
+             return await Task.FromResult(programmes);
         }
 
         public Task<bool> UpdateItemAsync(Event item)

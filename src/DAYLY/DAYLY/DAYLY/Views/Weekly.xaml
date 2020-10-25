@@ -27,18 +27,21 @@
                 </Grid.ColumnDefinitions>
                 <StackLayout Grid.Column="0" Orientation="Horizontal">
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnDailyTapped"></TapGestureRecognizer>
+                        <TapGestureRecognizer Command="{Binding DailyCommand}"></TapGestureRecognizer>
                     </StackLayout.GestureRecognizers>
                     <Image Source="daily_inactive.png" />
                     <Label Text="DAILY" FontSize="15" TextColor="#6D8CA0" VerticalOptions="Center"/>
                 </StackLayout>
                 <StackLayout Grid.Column="1" Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding WeeklyCommand}"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
                     <Image Source="weekly_active.png" />
                     <Label Text="WEEKLY" FontSize="15" TextColor="#D97D54" VerticalOptions="Center"/>
                 </StackLayout>
                 <StackLayout Grid.Column="2" Orientation="Horizontal">
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnMonthlyTapped"></TapGestureRecognizer>
+                        <TapGestureRecognizer Command="{Binding MonthlyCommand}"></TapGestureRecognizer>
                     </StackLayout.GestureRecognizers>
                     <Image Source="monthly_inactive.png" />
                     <Label Text="MONTHLY" Grid.Column="2" FontSize="15" TextColor="#6D8CA0" VerticalOptions="Center"/>
