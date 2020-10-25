@@ -394,7 +394,7 @@ namespace DAYLY.ViewModels
                     if (existingUser.Count() == 0) // if new email is not in the database
                     {
                         conn.Query<UserProfile>("UPDATE UserProfile SET FullName=?, Email=?, Organisation=?, Course=? WHERE Email=?",
-                                            FullName, Email, Organisation, Course, Email);
+                                            FullName, Email, Organisation, Course, oldUserData[1]);
                         showMessage("True", "Successfully updated your profile!", SUCCESS_COLOUR_HEX, SUCCESS_COLOUR_HEX);
                         await Task.Delay(1000);
                         await NavStack.PopModalAsync();
