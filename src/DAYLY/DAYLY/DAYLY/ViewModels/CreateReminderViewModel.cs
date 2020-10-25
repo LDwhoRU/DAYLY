@@ -61,7 +61,7 @@ namespace DAYLY.ViewModels
                 try
                 {
                     isSuccess = conn.Insert(newReminder);
-                    ErrorAlert("Reminder " + AffairName + " added successfully", CurrentPage);
+                    SuccessAlert("Reminder " + AffairName + " added successfully", CurrentPage);
                     ResetReminder();
                 }
                 catch (Exception ex)

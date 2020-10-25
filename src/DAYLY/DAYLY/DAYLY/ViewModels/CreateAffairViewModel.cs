@@ -384,7 +384,17 @@ namespace DAYLY.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Repeat)));
             }
         }
-
+        protected async void SuccessAlert(string successField, Page successPage)
+        {
+            if (successPage != null)
+            {
+                await successPage.DisplayAlert("Success", successField, "OK");
+            }
+            else
+            {
+                successPage = new Page();
+            }
+        }
         protected async void ErrorAlert(string errorField, Page errorPage)
         {
             if (errorPage != null)
