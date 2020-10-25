@@ -2,12 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:controls="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
+              xmlns:viewModels="clr-namespace:DAYLY.ViewModels"
              x:Class="DAYLY.Views.Monthly"
                BackgroundColor="White">
     <Shell.BackButtonBehavior>
         <BackButtonBehavior  IconOverride="transparent.png" 
                              ></BackButtonBehavior>
     </Shell.BackButtonBehavior>
+    <ContentPage.BindingContext>
+        <viewModels:MonthlyViewModel/>
+    </ContentPage.BindingContext>
     <StackLayout Spacing="0">
         <Grid HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="60" Margin="15, 0, 0, 10" ColumnSpacing="5">
             <Grid.RowDefinitions>
@@ -20,19 +24,22 @@
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="0">
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnDailyTapped"></TapGestureRecognizer>
+                    <TapGestureRecognizer Command="{Binding DailyCommand}"></TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
                 <Image Source="daily_inactive.png" />
                 <Label Text="DAILY" FontSize="15" TextColor="#6D8CA0" VerticalOptions="Center"/>
             </StackLayout>
             <StackLayout Grid.Column="1" Orientation="Horizontal">
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnWeeklyTapped"></TapGestureRecognizer>
+                    <TapGestureRecognizer Command="{Binding WeeklyCommand}"></TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
                 <Image Source="weekly_inactive.png" />
                 <Label Text="WEEKLY" FontSize="15" TextColor="#6D8CA0" VerticalOptions="Center"/>
             </StackLayout>
             <StackLayout Grid.Column="2" Orientation="Horizontal">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding MonthlyCommand}"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
                 <Image Source="monthly_active.png" />
                 <Label Text="MONTHLY" Grid.Column="2" FontSize="15" TextColor="#D97D54" VerticalOptions="Center"/>
             </StackLayout>
@@ -54,10 +61,16 @@
                     FontAttributes="Bold"
                     FontSize="Medium" />
                             <Label
-                    Text="{Binding Description}"
+                    Text="{Binding Type}"
                     FontSize="Small"
                     LineBreakMode="WordWrap" />
-                        </StackLayout>
+                        <Label Text="{Binding StartTime}"
+                               FontSize="Small"
+                    LineBreakMode="WordWrap" />
+                        <Label Text="{Binding AlertInterval} "
+                               FontSize="Small"
+                    LineBreakMode="WordWrap" />
+                    </StackLayout>
                     </DataTemplate>
                 </controls:Calendar.EventTemplate>
             </controls:Calendar>
