@@ -49,6 +49,8 @@ namespace DAYLY.ViewModels
                 //Text = item.Text;
                 //Description = item.Description;
 
+ //Text = item.Text;
+               // Description = item.Description;
             }
             catch (Exception)
             {

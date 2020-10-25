@@ -20,56 +20,36 @@ namespace DAYLY.Views
     public partial class AddEvent : ContentPage
 
     {
-        public NewEventViewModel eventOperations = new NewEventViewModel();
-        public CreateEventViewModel createEventViewModel = new CreateEventViewModel();
+        public CreateEventViewModel createEventViewModel;
         public AddEvent()
         {
             InitializeComponent();
 
             // MVVM Implementation
-            createEventViewModel.Initalise(Navigation);
+            createEventViewModel = new CreateEventViewModel(Navigation, this);
             BindingContext = createEventViewModel;
-
-            colourPicker.Items.Add("Green");
-            colourPicker.Items.Add("Blue");
-            colourPicker.Items.Add("Red");
-            colourPicker.Items.Add("Orange");
-            colourPicker.Items.Add("Yellow");
-            colourPicker.Items.Add("Purple");
-        }
-        async void OnReminderClick(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AddReminder());
         }
 
+        // Focus element of pickers set in Views - Cannot be set in viewmodel without passing entire object
         private void StartTimeBtn_Tapped(object sender, EventArgs e)
         {
-            StartTimePicker.Focus();
+            if (createEventViewModel.AllDay != true)
+            {
+                StartTimePicker.Focus();
+            }
         }
 
         private void EndTimeBtn_Tapped(object sender, EventArgs e)
         {
-            EndTimePicker.Focus();
+            if (createEventViewModel.AllDay != true)
+            {
+                EndTimePicker.Focus();
+            }
         }
 
-        private void StartTimePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void AffairDateBtn_Tapped(object sender, EventArgs e)
         {
-            createEventViewModel.StartTime = StartTimePicker.Time;
-        }
-
-        private void EndTimePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            createEventViewModel.EndTime = EndTimePicker.Time;
-        }
-
-        private void EventDatePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            createEventViewModel.EventDate = EventDatePicker.Date;
-        }
-
-        private void EventDateBtn_Tapped(object sender, EventArgs e)
-        {
-            EventDatePicker.Focus();
+            AffairDatePicker.Focus();
         }
     }
 }

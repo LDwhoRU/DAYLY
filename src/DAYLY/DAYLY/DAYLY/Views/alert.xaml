@@ -3,15 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DAYLY.Views.Alert"
              BackgroundColor="#ECEFF0">
+    <Shell.TitleView>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="1" Source="logo_title.png" VerticalOptions="Center" HeightRequest="60" Scale=".8"/>
+        </Grid>
+    </Shell.TitleView>
     <ContentPage.Content>
         <StackLayout Spacing="-1">
             <Label Text="Alert" Padding="17,15"/>
-            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding SelectAlert}" CommandParameter="5 Minutes" NumberOfTapsRequired="1"/>
-                </Frame.GestureRecognizers>
-                <Label Text="5 Minutes" VerticalOptions="Center" FontSize="16"/>
-            </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding SelectAlert}" CommandParameter="15 Minutes" NumberOfTapsRequired="1"/>
@@ -38,7 +45,7 @@
             </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding SelectAlert}" CommandParameter="3 Hour" NumberOfTapsRequired="1"/>
+                    <TapGestureRecognizer Command="{Binding SelectAlert}" CommandParameter="3 Hours" NumberOfTapsRequired="1"/>
                 </Frame.GestureRecognizers>
                 <Label Text="3 Hours" VerticalOptions="Center" FontSize="16"/>
             </Frame>
@@ -53,18 +60,6 @@
                     <TapGestureRecognizer Command="{Binding SelectAlert}" CommandParameter="1 Day" NumberOfTapsRequired="1"/>
                 </Frame.GestureRecognizers>
                 <Label Text="1 Day" VerticalOptions="Center" FontSize="16"/>
-            </Frame>
-            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding SelectAlert}" CommandParameter="3 Days" NumberOfTapsRequired="1"/>
-                </Frame.GestureRecognizers>
-                <Label Text="3 Days" VerticalOptions="Center" FontSize="16"/>
-            </Frame>
-            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding SelectAlert}" CommandParameter="1 Week" NumberOfTapsRequired="1"/>
-                </Frame.GestureRecognizers>
-                <Label Text="1 Week" VerticalOptions="Center" FontSize="16"/>
             </Frame>
         </StackLayout>
     </ContentPage.Content>

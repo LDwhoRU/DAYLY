@@ -2,8 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DAYLY.Views.LocationCustom"
-             BackgroundColor="{StaticResource AppBackgroundColour}"
-             Title="Add new address">
+             BackgroundColor="{StaticResource AppBackgroundColour}">
+    <Shell.TitleView>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="1" Source="logo_title.png" VerticalOptions="Center" HeightRequest="60" Scale=".8"/>
+        </Grid>
+    </Shell.TitleView>
     <ContentPage.Content>
         <StackLayout Spacing="-1">
             <Label Text="Add Address" Padding="17,15"/>

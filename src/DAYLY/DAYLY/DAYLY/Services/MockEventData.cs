@@ -9,42 +9,43 @@ namespace DAYLY.Services
 {
     public class MockEventData : IDataStore<Event>
     {
-        readonly List<Event> events;
-        readonly List<Programme> programmes;
-        readonly List<Note> Notess;
-        readonly List<Location> locations;
+        public List<Event> events;
+        public List<Calendar> programmes;
+        public List<Note> Notess;
+        public List<Location> locations;
         public MockEventData()
         {
 
-            // Programme red = new Programme();
-            //   red.HexColour = "green";
-            //rogramme pink = new Programme();
-            // pink.HexColour = "pink";
+
 
             DateTime datetime1 = new DateTime(2020, 10, 19, 8, 30, 0);
             DateTime datetime2 = new DateTime(2020, 10, 21, 9, 30, 0);
-            DateTime datetime3 = new DateTime(2020, 10, 23, 9, 30, 0);
+            DateTime datetime3 = new DateTime(2020, 10, 25, 9, 30, 0);
             DateTime datetime4 = new DateTime(2020, 10, 18, 9, 30, 0);
             DateTime datetime5 = new DateTime(2020, 10, 20, 9, 30, 0);
             DateTime datetime6 = new DateTime(2020, 10, 22, 9, 30, 0);
             DateTime datetime7 = new DateTime(2020, 10, 24, 9, 30, 0);
             TimeSpan span = new TimeSpan(7, 0, 0);
-            TimeSpan span3 = new TimeSpan(14, 0, 0);
+
+            TimeSpan span3= new TimeSpan(14, 0, 0);
+
             TimeSpan span2 = new TimeSpan(15, 0, 0);
             TimeSpan span4 = new TimeSpan(12, 0, 0);
             TimeSpan span5 = new TimeSpan(16, 0, 0);
             TimeSpan span6 = new TimeSpan(18, 0, 0);
+
             locations = new List<Location>
             {
                 new Location{Id=1, Alias="someones house", Postcode=4120, State="QLD", StreetAddress="39 Gordon St", Suburb="Greenslopes"},
                   new Location{Id=2, Alias="next door", Postcode=4120, State="QLD", StreetAddress="37 Gordon St", Suburb="Greenslopes"},
                     new Location{Id=3, Alias="across the road", Postcode=4120, State="QLD", StreetAddress="39 Gordon St", Suburb="Greenslopes"},
             };
-            programmes = new List<Programme> {
-            new Programme{Id=1,Name="test",HexColour="#FF0000"},
-            new Programme{Id=2,Name="yeet",HexColour="#008000"}
+            programmes = new List<Calendar> {
+            new Calendar{Id=1,Name="test",HexColour="#FF0000"},
+            new Calendar{Id=2,Name="yeet",HexColour="#008000"}
             };
             Notess = new List<Note>() {
+
                new Note{Id=1,URL="www.google.com",Description="testing this epic dude stuff my guy"},
                new Note{Id=2,URL="www.facebook.com",Description="testing number 2 shmole"},
                 new Note{Id=3,URL="www.reddit.com",Description="testing number 3 smole"},
@@ -54,14 +55,15 @@ namespace DAYLY.Services
                     new Note{Id=7,URL="www.website.com",Description="testing number 7 zzzz"},
                      new Note{Id=8,URL="www.redditmoment.com",Description="another description"},
                        new Note{Id=9,URL="www.bruhmoment.com",Description="bruh"},
+
            };
 
 
             events = new List<Event>()
 
             {
-                new Event { Id = 1, Name = "Monday test", Type = "Lecture", Date = datetime3, RepeatInterval = "1", AlertInterval="1", NoteId=1,ProgrammeId=2,AllDay=false,IsOnline=false,StartTime=span, EndTime=span2,LocationId=1 },
-                 new Event { Id = 3, Name = "2nd monday", Type = "Tutorial", Date = datetime3, RepeatInterval = "1", AlertInterval="1", NoteId=2,ProgrammeId=1,AllDay=false,IsOnline=false,StartTime=span2, EndTime=span6,LocationId=2 },
+                new Event { Id = 1, Name = "Monday test", Type = "Lecture", Date = datetime3, RepeatInterval = "1", AlertInterval="1", NoteId=1,CalendarId=2,AllDay=false,IsOnline=false,StartTime=span, EndTime=span2,LocationId=1 },
+                 new Event { Id = 3, Name = "2nd monday", Type = "Tutorial", Date = datetime3, RepeatInterval = "1", AlertInterval="1", NoteId=2,CalendarId=1,AllDay=false,IsOnline=false,StartTime=span2, EndTime=span6,LocationId=2 },
                 //new Event { Id = "2", Name = "CAB303", Type = "tute", Date = datetime1, RepeatInterval = 1, AlertInterval=1, NoteId=3,ProgrammeId=1,AllDay=false,StartTime=span5, EndTime=span6,Location="P5" },
                 //new Event { Id = 4, Name = "wednesday dude", Type = "tute", Date = datetime3, RepeatInterval = 1, AlertInterval=1, NoteId=4,ProgrammeId=2,AllDay=false,StartTime=span4, EndTime=span3,Location="P5" },
                  //new Event { Id = 5, Name = "friyayayayayayay", Type = "tute", Date = datetime3, RepeatInterval = 1, AlertInterval=1, NoteId=5,ProgrammeId=1,AllDay=false,StartTime=span5, EndTime=span6,Location="P5" },
@@ -69,6 +71,7 @@ namespace DAYLY.Services
                  //    new Event { Id = 6, Name = "tuesdeee", Type = "tute", Date = datetime5, RepeatInterval = 1, AlertInterval=1, NoteId=1,ProgrammeId=7,AllDay=false,StartTime=span3, EndTime=span2,Location="P5" },
                   //    new Event { Id = 6, Name = "thursssbrahhh", Type = "tute", Date = datetime6, RepeatInterval = 1, AlertInterval=1, NoteId=8,ProgrammeId=1,AllDay=false,StartTime=span4, EndTime=span5,Location="P5" },
                     //   new Event { Id = 6, Name = "satatatatatata", Type = "tute", Date = datetime7, RepeatInterval = 1, AlertInterval=1, NoteId=9,ProgrammeId=1,AllDay=false,StartTime=span4, EndTime=span6,Location="P5" },
+
      };
         }
         public async Task<bool> AddItemAsync(Event item)
@@ -95,9 +98,10 @@ namespace DAYLY.Services
         {
             return await Task.FromResult(Notess);
         }
-        public async Task<IEnumerable<Programme>> GetColoursAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Calendar>> GetColoursAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(programmes);
+            //throw new NotImplementedException();
+             return await Task.FromResult(programmes);
         }
 
         public Task<bool> UpdateItemAsync(Event item)

@@ -16,5 +16,7 @@ namespace DAYLY.Models
         public TimeSpan EndTime { get; set; }
         [Indexed]
         public int LocationId { get; set; }
+        [Indexed]
+        public int CalendarId { get; set; }
     }
 }
