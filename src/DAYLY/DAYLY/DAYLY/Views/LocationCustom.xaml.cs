@@ -1,20 +1,15 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using DAYLY.Models;
-using DAYLY.ViewModels;
-using DAYLY;
-using SQLite;
-using System.Globalization;
-using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+
+using Xamarin.Forms;
 
 namespace DAYLY.Views
 {
     public partial class LocationCustom : ContentPage
     {
-        public LocationCustom(CreateEventViewModel eventModel)
+        public LocationCustom()
         {
             InitializeComponent();
-            BindingContext = eventModel;
         }
     }
 }

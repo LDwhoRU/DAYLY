@@ -14,8 +14,8 @@ namespace DAYLY.Models
         public string Name { get; set; }
         public string Type { get; set; }
         public DateTime Date { get; set; }
-        public string RepeatInterval { get; set; }
-        public string AlertInterval { get; set; }
+        public int RepeatInterval { get; set; }
+        public int AlertInterval { get; set; }
         [Indexed]
         public int NoteId { get; set; }
         [Indexed]

@@ -8,17 +8,19 @@
             <Label Text="Notes" Padding="17,15"/>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="42" HorizontalOptions="Fill">
                 <StackLayout Spacing="0">
-                    <Entry Placeholder="URL" Text="{Binding NoteURL}" VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="42"/>
+                    <Entry Placeholder="URL" VerticalOptions="Start" HorizontalOptions="Fill" HeightRequest="42"/>
                     <BoxView Margin="-9" BackgroundColor="White" HeightRequest="2" HorizontalOptions="Fill"/>
                 </StackLayout>
             </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="192" HorizontalOptions="Fill">
                 <StackLayout Spacing="0">
-                    <Editor Placeholder="More Info..." Text="{Binding NoteDescription}" HeightRequest="192" VerticalOptions="Start"/>
+                    <Editor Placeholder="More Info..." HeightRequest="192" VerticalOptions="Start"/>
                     <BoxView Margin="-9" BackgroundColor="White" HeightRequest="5" HorizontalOptions="Fill"/>
                 </StackLayout>
             </Frame>
-            <Button Text="Submit" Command="{Binding SaveNote}" Margin="0, 20" x:Name="SaveNoteBtn" HorizontalOptions="Center" WidthRequest="340" BackgroundColor="#D97D54" CornerRadius="30"/>
+            <Frame BackgroundColor="White" Margin="0, 20" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Label Text="Attachment" VerticalOptions="Center" FontSize="16"/>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

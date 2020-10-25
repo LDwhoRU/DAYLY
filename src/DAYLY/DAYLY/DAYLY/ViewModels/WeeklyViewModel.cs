@@ -1,7 +1,10 @@
 ﻿using DAYLY.Models;
 using DAYLY.Services;
 using DAYLY.Views;
+<<<<<<< HEAD
 using SQLite;
+=======
+>>>>>>> parent of b18ee0f... Merge branch 'master' into vieweventviewmodel
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -36,6 +39,7 @@ namespace DAYLY.ViewModels
         string[] fritext = new string[16];
         string[] sattext = new string[16];
         string[] suntext = new string[16];
+<<<<<<< HEAD
         string[] moncol = new string[16];
         string[] tuecol = new string[16];
         string[] wedcol = new string[16];
@@ -46,6 +50,16 @@ namespace DAYLY.ViewModels
         //for some reason viewmodel isnt reinstantied when navigating for create new event after creating some events. So to show new events, after there are existing events, that have been created after pressing schedule you have to
         //click weekly again
 
+=======
+        Color[] moncol = new Color[16];
+        Color[] tuecol = new Color[16];
+        Color[] wedcol = new Color[16];
+        Color[] thurcol = new Color[16];
+        Color[] fricol = new Color[16];
+        Color[] satcol = new Color[16];
+        Color[] suncol = new Color[16];
+        public Command EventTapp { get; }
+>>>>>>> parent of b18ee0f... Merge branch 'master' into vieweventviewmodel
 
         string today;
 
@@ -130,8 +144,12 @@ namespace DAYLY.ViewModels
                 }
                 MockEventData bb = new MockEventData();
                 var col = await bb.GetColoursAsync(true);
+<<<<<<< HEAD
                 foreach (var colo in col)
                 {
+=======
+                foreach (var colo in col) {
+>>>>>>> parent of b18ee0f... Merge branch 'master' into vieweventviewmodel
                     Colours.Add(colo);
                 }
             }
@@ -202,7 +220,10 @@ namespace DAYLY.ViewModels
             text[4] = thurtext;
             text[5] = fritext;
             text[6] = sattext;
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of b18ee0f... Merge branch 'master' into vieweventviewmodel
             //   Console.WriteLine(time8);
 
             for (int i = 1; i < TimerArray.Length; i++) //populate the array with the times of day used
@@ -216,11 +237,18 @@ namespace DAYLY.ViewModels
                 int dayy = 0;
                 foreach (var day in week)
                 {
+<<<<<<< HEAD
                     for (int i = 0; i < sun.Length; i++)//set every thing to false to begin with
                     {
                         bweek[dayy][i] = false;
                         elements[dayy][i] = "#FFFFFF";
                     }
+=======
+                    bweek[dayy][i] = false;
+                }
+                foreach (var even in Events)
+                {
+>>>>>>> parent of b18ee0f... Merge branch 'master' into vieweventviewmodel
 
                     foreach (var even in Events)
                     {
@@ -230,6 +258,7 @@ namespace DAYLY.ViewModels
                             Console.WriteLine("I made it");
                             for (int i = 0; i < TimerArray.Length; i++)
                             {
+<<<<<<< HEAD
 
                                 if (even.StartTime == TimerArray[i])//if the time of the event is equal to the time off the loop
                                 {
@@ -242,6 +271,16 @@ namespace DAYLY.ViewModels
                                         }
                                     }
                                     //elements[dayy][i] = even.SelectedProgramme.HexColour; //assign that times colour and text
+=======
+                                bweek[dayy][i] = true; //set that time to true
+                                    foreach (var colour in Colours) {
+                                        Console.WriteLine(colour.HexColour);
+                                        if (colour.Id == even.ProgrammeId) {
+                                            elements[dayy][i] = Color.FromHex(colour.HexColour);
+                                        }
+                                    }
+                                      //assign that times colour and text
+>>>>>>> parent of b18ee0f... Merge branch 'master' into vieweventviewmodel
                                     text[dayy][i] = even.Name;
                                     //elements[dayy][i] = even.SelectedProgramme.HexColour;
                                     //  Console.WriteLine(even.SelectedProgramme.HexColour);
@@ -252,7 +291,17 @@ namespace DAYLY.ViewModels
                                     for (int j = i; z <= hours; j++) //using duration to see how many other times need to be set to true
                                     {
                                         bweek[dayy][j] = true;
+<<<<<<< HEAD
                                         elements[dayy][j] = elements[dayy][i];
+=======
+                                        foreach (var colou in Colours) {
+                                            if (colou.Id == even.ProgrammeId)
+                                            {
+                                                elements[dayy][j] =Color.FromHex( colou.HexColour);
+                                            }
+                                        }
+                                       
+>>>>>>> parent of b18ee0f... Merge branch 'master' into vieweventviewmodel
                                         text[dayy][j] = even.Name;
                                         z++;
                                         Console.WriteLine(j);
