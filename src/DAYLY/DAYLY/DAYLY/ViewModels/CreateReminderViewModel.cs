@@ -62,6 +62,7 @@ namespace DAYLY.ViewModels
                 {
                     isSuccess = conn.Insert(newReminder);
                     ErrorAlert("Reminder " + AffairName + " added successfully", CurrentPage);
+                    ResetReminder();
                 }
                 catch (Exception ex)
                 {
@@ -86,7 +87,7 @@ namespace DAYLY.ViewModels
             SaveReminder = new Command(() => {
                 WriteReminder();
                 ReminderListView = (from x in conn.Table<Reminder>() select x).ToList();
-                ResetReminder();
+                
 
                 // Uncomment to view SQLite Query
                 Console.WriteLine("Saved Reminders");

@@ -69,9 +69,6 @@ namespace DAYLY.ViewModels
                 BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AffairDateText)));
             }
         }
-        
-        
-        
         public Color TimeLabelColour
         {
             get
@@ -404,6 +401,7 @@ namespace DAYLY.ViewModels
                 {
                     isSuccess = conn.Insert(newEvent);
                     ErrorAlert("Event " + AffairName + " added successfully", CurrentPage);
+                    ResetEvent();
                 }
                 catch (Exception ex)
                 {
@@ -448,7 +446,7 @@ namespace DAYLY.ViewModels
             SaveEvent = new Command(() => {
                 WriteEvent();
                 EventListView = (from x in conn.Table<Event>() select x).ToList();
-                ResetEvent();
+                
 
                 // Uncomment to view SQLite Query
                 Console.WriteLine("Saved Events");
