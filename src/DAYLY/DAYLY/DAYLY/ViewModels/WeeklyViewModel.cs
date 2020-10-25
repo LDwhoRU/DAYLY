@@ -19,7 +19,7 @@ namespace DAYLY.ViewModels
 {
     class WeeklyViewModel : BaseViewModel
     {
-        bool[] mon = new bool[16];//this viewmodel uses mock data from mockeventdata can be changed around for testing
+        bool[] mon = new bool[16];//only displays times from 7am-10pm
         bool[] tue = new bool[16];//intialising all the arrays used
         bool[] wed = new bool[16];
         bool[] thur = new bool[16];

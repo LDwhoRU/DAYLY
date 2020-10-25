@@ -15,7 +15,8 @@ using Color = Xamarin.Forms.Color;
 
 namespace DAYLY.ViewModels
 {
-    class DailyViewModel: BaseViewModel
+    //only displays times from 7am-10pm
+    class DailyViewModel : BaseViewModel
     {
         bool[] times = new bool[16];//used to set is visible on elements
         string today;
