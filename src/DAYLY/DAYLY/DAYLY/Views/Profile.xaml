@@ -20,12 +20,12 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="0.01*"/>
-                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="1"/>
+                            <ColumnDefinition Width="35"/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="{Binding ProfilePicPath}" Grid.RowSpan="3" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Image Source="{Binding ProfilePicPath}" Grid.RowSpan="3" HorizontalOptions="Center" VerticalOptions="Start"/>
                         <Label Text="{Binding FullName}" FontSize="18" TextColor="White" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="End"/>
                         <Label Text="{Binding Email}" FontSize="14" TextColor="White" Grid.Row="4" Grid.RowSpan="2" HorizontalOptions="Center" VerticalOptions="Start"/>
 
