@@ -29,9 +29,10 @@ namespace DAYLY.ViewModels
             });
         }
 
-        public void Initalise(INavigation navigation)
+        public void Initalise(INavigation navigation, Page page)
         {
             _NavigationStack = navigation;
+            CurrentPage = page;
         }
     }
 }

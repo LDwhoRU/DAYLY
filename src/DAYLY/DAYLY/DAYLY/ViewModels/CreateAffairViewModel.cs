@@ -44,11 +44,31 @@ namespace DAYLY.ViewModels
         protected int _CurrentNoteID;
         protected string _NotePreviewLabel;
 
+        private int _CurrentCalendarID;
+        private bool _PopupCalendar;
+        private string _NewCalendarName;
+        private string _NewCalendarColour;
+        private int _CalendarListViewWidth;
+        private List<ProgrammeViewModel> _CalendarListView;
+        private List<string> _ColourPickerItems;
+
         protected INavigation _CurrentNavigation;
         protected Page _CurrentPage;
         public SQLiteConnection conn;
         public CreateEventViewModel referenceEventViewModel;
 
+        public List<string> ColourPickerItems
+        {
+            get
+            {
+                return _ColourPickerItems;
+            }
+            set
+            {
+                _ColourPickerItems = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ColourPickerItems)));
+            }
+        }
         protected PropertyChangedEventHandler BasePropertyChanged
         {
             get
@@ -58,6 +78,108 @@ namespace DAYLY.ViewModels
             set
             {
                 PropertyChanged = value;
+            }
+        }
+        public string NewCalendarColour
+        {
+            get
+            {
+                return _NewCalendarColour;
+            }
+            set
+            {
+                _NewCalendarColour = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NewCalendarColour)));
+            }
+        }
+        public string NewCalendarName
+        {
+            get
+            {
+                return _NewCalendarName;
+            }
+            set
+            {
+                _NewCalendarName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NewCalendarName)));
+            }
+        }
+        public bool PopupCalendarVisible
+        {
+            get
+            {
+                return _PopupCalendar;
+            }
+            set
+            {
+                _PopupCalendar = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarVisible)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarHidden)));
+            }
+        }
+        public bool PopupCalendarHidden
+        {
+            get
+            {
+                return !_PopupCalendar;
+            }
+            set
+            {
+                _PopupCalendar = !value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarHidden)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarVisible)));
+            }
+        }
+        public int CurrentCalendarID
+        {
+            get
+            {
+                return _CurrentCalendarID;
+            }
+            set
+            {
+                _CurrentCalendarID = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentCalendarID)));
+            }
+        }
+        public int CalendarListViewWidth
+        {
+            get
+            {
+                return _CalendarListViewWidth;
+            }
+            set
+            {
+                _CalendarListViewWidth = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CalendarListViewWidth)));
+            }
+        }
+        public List<ProgrammeViewModel> CalendarListView
+        {
+            get
+            {
+                return _CalendarListView;
+            }
+            set
+            {
+                _CalendarListView = new List<ProgrammeViewModel>();
+                List<Programme> tempListView = (from x in conn.Table<Programme>() select x).ToList();
+                string tempBorderColour;
+                foreach (Programme programme in tempListView)
+                {
+                    if (programme.Id == CurrentCalendarID)
+                    {
+                        tempBorderColour = "#0033cc";
+                    }
+                    else
+                    {
+                        tempBorderColour = "#ffffff";
+                    }
+                    ProgrammeViewModel programmeViewModel = new ProgrammeViewModel(programme.Id, programme.Name, programme.HexColour, tempBorderColour);
+                    _CalendarListView.Add(programmeViewModel);
+                }
+                CalendarListViewWidth = _CalendarListView.Count * 150;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CalendarListView)));
             }
         }
         public string AffairType
@@ -253,7 +375,23 @@ namespace DAYLY.ViewModels
             // Preview text show up
             Repeat = "None";
             Alert = "15 Minutes";
+            EventType = "Lecture";
             NotePreviewLabel = "Empty";
+
+            PopupCalendarVisible = false;
+
+            EventDate = DateTime.Today;
+
+            CalendarListView = new List<ProgrammeViewModel>();
+            ColourPickerItems = new List<string>
+            {
+                "Green",
+                "Blue",
+                "Red",
+                "Orange",
+                "Yellow",
+                "Purple"
+            };
 
             SelectType = new Command(async (typeValue) => {
                 EventType = (string)typeValue;

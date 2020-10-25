@@ -25,12 +25,13 @@ namespace DAYLY.Views
             InitializeComponent();
 
             // MVVM Implementation
-            createReminderViewModel.Initalise(Navigation);
+            createReminderViewModel.Initalise(Navigation, this);
             BindingContext = createReminderViewModel;
         }
-        async void OnEventClick(object sender, EventArgs e)
+
+        private void EventDateBtn_Tapped(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddEvent());
+            EventDatePicker.Focus();
         }
     }
 }

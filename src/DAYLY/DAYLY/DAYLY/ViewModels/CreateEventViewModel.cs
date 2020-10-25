@@ -40,22 +40,19 @@ namespace DAYLY.ViewModels
         private string _LocationPostcode;
         private List<Event> _EventListView;
         private List<Location> _LocationListView;
-        private List<ProgrammeViewModel> _CalendarListView;
-        private List<string> _ColourPickerItems;
+        
+        
         private int _LocationListViewHeight;
-        private int _CalendarListViewWidth;
+        
         
         private bool _Online;
         private bool _AllDay;
         
         private int _CurrentLocationID;
-        private int _CurrentCalendarID;
+        
         private string _CurrentLocationAlias;
         
         
-        private bool _PopupCalendar;
-        private string _NewCalendarName;
-        private string _NewCalendarColour;
         
         private Color _LocationLabelColour;
         private Color _LocationPreviewColour;
@@ -82,18 +79,7 @@ namespace DAYLY.ViewModels
                 BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EventDateText)));
             }
         }
-        public List<string> ColourPickerItems
-        {
-            get
-            {
-                return _ColourPickerItems;
-            }
-            set
-            {
-                _ColourPickerItems = value;
-                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ColourPickerItems)));
-            }
-        }
+        
         
         
         public Color TimeLabelColour
@@ -145,56 +131,7 @@ namespace DAYLY.ViewModels
             }
         }
         
-        public string NewCalendarColour
-        {
-            get
-            {
-                return _NewCalendarColour;
-            }
-            set
-            {
-                _NewCalendarColour = value;
-                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NewCalendarColour)));
-            }
-        }
-        public string NewCalendarName
-        {
-            get
-            {
-                return _NewCalendarName;
-            }
-            set
-            {
-                _NewCalendarName = value;
-                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NewCalendarName)));
-            }
-        }
-        public bool PopupCalendarVisible
-        {
-            get
-            {
-                return _PopupCalendar;
-            }
-            set
-            {
-                _PopupCalendar = value;
-                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarVisible)));
-                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarHidden)));
-            }
-        }
-        public bool PopupCalendarHidden
-        {
-            get
-            {
-                return !_PopupCalendar;
-            }
-            set
-            {
-                _PopupCalendar = !value;
-                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarHidden)));
-                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PopupCalendarVisible)));
-            }
-        }
+        
         public string CurrentLocationAlias
         {
             get
@@ -207,18 +144,7 @@ namespace DAYLY.ViewModels
                 BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocationAlias)));
             }
         }
-        public int CurrentCalendarID
-        {
-            get
-            {
-                return _CurrentCalendarID;
-            }
-            set
-            {
-                _CurrentCalendarID = value;
-                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentCalendarID)));
-            }
-        }
+        
         public int CurrentLocationID
         {
             get
@@ -231,18 +157,7 @@ namespace DAYLY.ViewModels
                 BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocationID)));
             }
         }
-        public int CalendarListViewWidth
-        {
-            get
-            {
-                return _CalendarListViewWidth;
-            }
-            set
-            {
-                _CalendarListViewWidth = value;
-                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CalendarListViewWidth)));
-            }
-        }
+        
         public int LocationListViewHeight
         {
             get
@@ -435,34 +350,7 @@ namespace DAYLY.ViewModels
                 BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EndTimeText)));
             }
         }
-        public List<ProgrammeViewModel> CalendarListView
-        {
-            get
-            {
-                return _CalendarListView;
-            }
-            set
-            {
-                _CalendarListView = new List<ProgrammeViewModel>();
-                List<Programme> tempListView = (from x in conn.Table<Programme>() select x).ToList();
-                string tempBorderColour;
-                foreach (Programme programme in tempListView)
-                {
-                    if (programme.Id == CurrentCalendarID)
-                    {
-                        tempBorderColour = "#0033cc";
-                    }
-                    else
-                    {
-                        tempBorderColour = "#ffffff";
-                    }
-                    ProgrammeViewModel programmeViewModel = new ProgrammeViewModel(programme.Id, programme.Name, programme.HexColour, tempBorderColour);
-                    _CalendarListView.Add(programmeViewModel);
-                }
-                CalendarListViewWidth = _CalendarListView.Count * 150;
-                BasePropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CalendarListView)));
-            }
-        }
+        
         public List<Location> LocationListView
         {
             get
@@ -763,7 +651,7 @@ namespace DAYLY.ViewModels
             conn.CreateTable<Location>();
             conn.CreateTable<Event>();
 
-            EventDate = DateTime.Today;
+            
             StartTime = DateTime.Now.TimeOfDay;
             TimeSpan tempEndTime = StartTime + TimeSpan.FromHours(2);
             if (tempEndTime.Days > 0)
@@ -772,10 +660,7 @@ namespace DAYLY.ViewModels
             }
             EndTime = tempEndTime;
 
-            EventType = "Lecture";
             CurrentLocationAlias = "None";
-
-            CalendarListView = new List<ProgrammeViewModel>();
 
             LocationLabelColour = Color.FromHex("#1B1C20");
             LocationPreviewColour = Color.FromHex("#334856");
@@ -783,17 +668,7 @@ namespace DAYLY.ViewModels
             TimeLabelColour = Color.FromHex("#1B1C20");
             TimePreviewColour = Color.FromHex("#334856");
 
-            PopupCalendarVisible = false;
-
-            ColourPickerItems = new List<string>
-            {
-                "Green",
-                "Blue",
-                "Red",
-                "Orange",
-                "Yellow",
-                "Purple"
-            };
+            
         }
 
         //public event PropertyChangedEventHandler PropertyChanged;
