@@ -1,14 +1,15 @@
 ﻿using DAYLY.Models;
 using DAYLY.Services;
-
 using DAYLY.Views;
-
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Security;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace DAYLY.ViewModels
         bool[] sat = new bool[16];
         bool[] sun = new bool[16];
         string[] week = new string[7];
-        Color[][] elements = new Color[7][];
+        string[][] elements = new string[7][];
         string[][] text = new string[7][];
         string[] montext = new string[16];
         string[] tuetext = new string[16];
@@ -35,7 +36,6 @@ namespace DAYLY.ViewModels
         string[] fritext = new string[16];
         string[] sattext = new string[16];
         string[] suntext = new string[16];
-
         string[] moncol = new string[16];
         string[] tuecol = new string[16];
         string[] wedcol = new string[16];
@@ -43,36 +43,79 @@ namespace DAYLY.ViewModels
         string[] fricol = new string[16];
         string[] satcol = new string[16];
         string[] suncol = new string[16];
-     
-
+        //for some reason viewmodel isnt reinstantied when navigating for create new event after creating some events. So to show new events, after there are existing events, that have been created after pressing schedule you have to
+        //click weekly again
 
 
         string today;
-     
-         string monday, tuesday, wednesday, thursday,friday,saturday,sunday;
+
+        string monday, tuesday, wednesday, thursday, friday, saturday, sunday;
         TimeSpan[] TimerArray = new TimeSpan[16];
         TimeSpan time8 = new TimeSpan(7, 0, 0);
         TimeSpan time1 = TimeSpan.FromHours(1);
-        
-        public ObservableCollection<Event> Events { get; }
-        public ObservableCollection<Programme> Colours { get; }
+        private SQLiteConnection conn;
+        private List<Event> eventlist;
+        private List<Programme> colourlist;
 
+        public ObservableCollection<Event> Events { get; set; }
+        public ObservableCollection<Programme> Colours { get; set; }
         public WeeklyViewModel()
         {
+            conn = DependencyService.Get<Isqlite>().GetConnection();
+            eventlist = conn.Table<Event>().ToList();
+            colourlist = conn.Table<Programme>().ToList();
+            Events = new ObservableCollection<Event>(eventlist);
+            Colours = new ObservableCollection<Programme>(colourlist);
             TimerArray[0] = time8;
             Title = "Weekly";
             DateTime dt = DateTime.Today;
-            Events = new ObservableCollection<Event>();
-            Colours = new ObservableCollection<Programme>();
+
+
+
             Today = dt.DayOfWeek.ToString() + " " + dt.Day.ToString() + "/" + dt.Month.ToString() + "/" + dt.Year.ToString(); //figure out the current day of the week
-            Task.Run(async () => await ExecuteLoadItemsCommand());//load the test data
-          
-             GetWeek();
-      
-            WeekTime();
-  
-           
+            GetWeek();
+
+            WeekTime();                                                                                                             //  Task.Run(async () => await ExecuteLoadItemsCommand());//load the test data
+                                                                                                                                    // intialise();
+
+
+
         }
+
+        public Command MonthlyCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new Monthly());
+                });
+
+            }
+        }
+        public Command WeeklyCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new Weekly());
+                });
+
+            }
+        }
+        public Command DailyCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new Daily());
+                });
+
+            }
+        }
+
         async Task ExecuteLoadItemsCommand()
         {
             IsBusy = true;
@@ -80,19 +123,15 @@ namespace DAYLY.ViewModels
             try
             {
                 Events.Clear();
-                Colours.Clear();
                 var events = await DataStore.GetItemsAsync(true); //loading up mock data to be used
                 foreach (var evett in events)
                 {
-                    Events.Add(evett);
+                    //    Events.Add(evett);
                 }
                 MockEventData bb = new MockEventData();
                 var col = await bb.GetColoursAsync(true);
-
-
                 foreach (var colo in col)
                 {
-
                     Colours.Add(colo);
                 }
             }
@@ -106,19 +145,20 @@ namespace DAYLY.ViewModels
             }
         }
 
-          public void GetWeek()
+        public void GetWeek()
         {
             IsBusy = true;
             try
             {
-               var Sun = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Sunday); //calculating the first day of the week, sunday then using this to figoure out the rest of the week
+
+                var Sun = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Sunday); //calculating the first day of the week, sunday then using this to figoure out the rest of the week
                 var Monday = Sun.AddDays(1);
                 var Tues = Monday.AddDays(1);
                 var Wed = Tues.AddDays(1);
                 var Thurs = Wed.AddDays(1);
                 var Fri = Thurs.AddDays(1);
                 var Sat = Fri.AddDays(1);
-                
+
                 monday = Monday.Day.ToString();
                 tuesday = Tues.Day.ToString();
                 wednesday = Wed.Day.ToString();
@@ -136,24 +176,15 @@ namespace DAYLY.ViewModels
                 IsBusy = false;
             }
         }
-        async void OnItemSelected(Event eve)
-        {
-            if (eve == null)
-                return;
-
-            // This will push the ItemDetailPage onto the navigation stack
-            Console.WriteLine("you tapped me");
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={eve.Id}");
-        }
 
         public void WeekTime()
         {
-            bool[][] bweek = new bool[][] {sun,mon,tue,wed,thur,fri,sat };//mutlidimensional array for making frames visible on view
+            bool[][] bweek = new bool[][] { sun, mon, tue, wed, thur, fri, sat };//mutlidimensional array for making frames visible on view
             IsBusy = true;
             week[0] = sunday; //adding days of the week to array
             week[1] = monday;
             week[2] = tuesday;
-                week[3] = wednesday;
+            week[3] = wednesday;
             week[4] = thursday;
             week[5] = friday;
             week[6] = saturday;
@@ -171,82 +202,74 @@ namespace DAYLY.ViewModels
             text[4] = thurtext;
             text[5] = fritext;
             text[6] = sattext;
-         
+
             //   Console.WriteLine(time8);
 
             for (int i = 1; i < TimerArray.Length; i++) //populate the array with the times of day used
             {
                 TimerArray[i] = TimerArray[i - 1].Add(time1);
-                Console.WriteLine(TimerArray[i - 1]);//for some reason doesnt work without this
+                Console.WriteLine(TimerArray[i - 1]);
             }
-          
+
             try
             {
                 int dayy = 0;
-                foreach (var day in week) { 
-                for (int i = 0; i < sun.Length; i++)//set every thing to false to begin with
+                foreach (var day in week)
                 {
-                    bweek[dayy][i] = false;
-                        elements[dayy][i] = "#FFFFFF";
-                }
-               
-                foreach (var even in Events)
-                {
-
-                    if ((int)even.Date.DayOfWeek == dayy && even.Date.Day.ToString() == day)//if the day of the week is equal to the day of the loop
+                    for (int i = 0; i < sun.Length; i++)//set every thing to false to begin with
                     {
-                      //  Console.WriteLine("I made it");
-                        for (int i = 0; i < TimerArray.Length; i++)
+                        bweek[dayy][i] = false;
+                        elements[dayy][i] = "#FFFFFF";
+                    }
+
+                    foreach (var even in Events)
+                    {
+
+                        if ((int)even.Date.DayOfWeek == dayy && even.Date.Day.ToString() == day)//if the day of the week is equal to the day of the loop
                         {
-                                
-                                if (even.StartTime == TimerArray[i])//if the time of the event is equal to the time off the loop
+                            Console.WriteLine("I made it");
+                            for (int i = 0; i < TimerArray.Length; i++)
                             {
-                                bweek[dayy][i] = true; //set that time to true
 
-                             
-                                      //assign that times colour and text
-
-                                    foreach(var col in Colours)
+                                if (even.StartTime == TimerArray[i])//if the time of the event is equal to the time off the loop
+                                {
+                                    bweek[dayy][i] = true; //set that time to true
+                                    foreach (var col in Colours)
                                     {
                                         if (col.Id == even.ProgrammeId)
                                         {
                                             elements[dayy][i] = col.HexColour;
                                         }
                                     }
-                                     //elements[dayy][i] = even.SelectedProgramme.HexColour; //assign that times colour and text
-
+                                    //elements[dayy][i] = even.SelectedProgramme.HexColour; //assign that times colour and text
                                     text[dayy][i] = even.Name;
                                     //elements[dayy][i] = even.SelectedProgramme.HexColour;
-                                  //  Console.WriteLine(even.SelectedProgramme.HexColour);
+                                    //  Console.WriteLine(even.SelectedProgramme.HexColour);
                                     TimeSpan duration = even.EndTime.Subtract(even.StartTime);
-                                int hours = duration.Hours; //calculating the duration
+                                    int hours = duration.Hours; //calculating the duration
 
                                     int z = 1;
                                     for (int j = i; z <= hours; j++) //using duration to see how many other times need to be set to true
                                     {
                                         bweek[dayy][j] = true;
-
-                                    
-
                                         elements[dayy][j] = elements[dayy][i];
-
                                         text[dayy][j] = even.Name;
                                         z++;
-                                      //  Console.WriteLine(j);
+                                        Console.WriteLine(j);
                                     }
                                     // Console.WriteLine(hours);
                                 }
 
+                            }
+
+
                         }
 
 
+
                     }
-
-
-
-                }
                     dayy++;
-            }
+                }
             }
             catch (Exception ex)
             {
@@ -258,7 +281,8 @@ namespace DAYLY.ViewModels
             }
         }
         //returning the array of day texts
-        public string[] SunText {
+        public string[] SunText
+        {
             get { return text[0]; }
         }
         public string[] MonText
@@ -286,47 +310,49 @@ namespace DAYLY.ViewModels
             get { return text[6]; }
         }
         //returning array of day colours
-        public Color[] MonColours {
-            get {
+        public string[] MonColours
+        {
+            get
+            {
                 return elements[1];
             }
         }
-        public Color[] SunColours
+        public string[] SunColours
         {
             get
             {
                 return elements[0];
             }
         }
-        public Color[] TueColours
+        public string[] TueColours
         {
             get
             {
                 return elements[2];
             }
         }
-        public Color[] WedColours
+        public string[] WedColours
         {
             get
             {
                 return elements[3];
             }
         }
-        public Color[] ThurColours
+        public string[] ThurColours
         {
             get
             {
                 return elements[4];
             }
         }
-        public Color[] FriColours
+        public string[] FriColours
         {
             get
             {
                 return elements[5];
             }
         }
-        public Color[] SatColours
+        public string[] SatColours
         {
             get
             {
@@ -386,7 +412,7 @@ namespace DAYLY.ViewModels
         }
         public string Today
         {
-         
+
             get
             {
                 return today;
@@ -400,62 +426,96 @@ namespace DAYLY.ViewModels
             {
                 return mon;
             }
+
+            set
+            {
+                SetProperty(ref mon, value);
+                // SunText(value);
+            }
         }
-      
+
         public bool[] Tue
         {
             get
             {
                 return tue;
             }
+            set
+            {
+                SetProperty(ref tue, value);
+                // SunText(value);
+            }
 
         }
-    
+
         public bool[] Wed
         {
             get
             {
                 return wed;
             }
-
+            set
+            {
+                SetProperty(ref wed, value);
+                // SunText(value);
+            }
         }
-       
+
         public bool[] Thur
         {
             get
             {
                 return thur;
             }
-
+            set
+            {
+                SetProperty(ref thur, value);
+                // SunText(value);
+            }
         }
-       
+
         public bool[] Fri
         {
             get
             {
                 return fri;
             }
+            set
+            {
+                SetProperty(ref fri, value);
+                // SunText(value);
+            }
 
         }
-     
+
         public bool[] Sat
         {
             get
             {
                 return sat;
             }
+            set
+            {
+                SetProperty(ref sat, value);
+                // SunText(value);
+            }
 
         }
-      
+
         public bool[] Sun
         {
             get
             {
                 return sun;
             }
+            set
+            {
+                SetProperty(ref sun, value);
+                // SunText(value);
+            }
 
         }
-      
-    
+
+
     }
 }

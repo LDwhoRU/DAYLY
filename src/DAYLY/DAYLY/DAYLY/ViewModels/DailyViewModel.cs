@@ -1,5 +1,6 @@
 ﻿using DAYLY.Models;
 using DAYLY.Services;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,26 +19,38 @@ namespace DAYLY.ViewModels
         bool[] times = new bool[16];//used to set is visible on elements
         string today;
         int[] spans = new int[16]; //used to figure out row span depending on time
-        Color[] colours = new Color[16];//used to set colours
+        string[] colours = new string[16];//used to set colours
         string[] desc = new string[16];//used to set names
         string[] locations = new string[16];//set locations
         string[] notes = new string[16];//et notes
         public ObservableCollection<Event> Events { get; } //intialising all the global variables
         public ObservableCollection<Note> Notes { get; }
+        public ObservableCollection<Location> Locations { get; }
         public ObservableCollection<Programme> Colours { get; }
         TimeSpan time8 = new TimeSpan(7, 0, 0);
         TimeSpan[] TimerArray = new TimeSpan[16];
+        private SQLiteConnection conn;
+        private List<Event> eventlist;
+        private List<Programme> colourlist;
+        private List<Note> notelist;
+        private List<Location> locationlist;
         TimeSpan time1 = TimeSpan.FromHours(1);
         public DailyViewModel()
         {
             DateTime dt = DateTime.Today;
-            Events = new ObservableCollection<Event>();
-            Colours = new ObservableCollection<Programme>();
-            Notes = new ObservableCollection<Note>();
+            conn = DependencyService.Get<Isqlite>().GetConnection();
+            eventlist = conn.Table<Event>().ToList();
+            colourlist = conn.Table<Programme>().ToList();
+            notelist = conn.Table<Note>().ToList();
+            locationlist = conn.Table<Location>().ToList();
+            Events = new ObservableCollection<Event>(eventlist);
+            Colours = new ObservableCollection<Programme>(colourlist);
+            Notes = new ObservableCollection<Note>(notelist);
+            Locations=new ObservableCollection<Location>(locationlist);
             Title = "testing";
            // Console.WriteLine("yeah we made it");
             Today = dt.DayOfWeek.ToString() + " " + dt.Day.ToString() + "/" + dt.Month.ToString() + "/" + dt.Year.ToString();
-            Task.Run(async () => await ExecuteLoadItemsCommand()); //loading the mock data
+           // Task.Run(async () => await ExecuteLoadItemsCommand()); //loading the mock data
             GetTimes();
       
         }
@@ -105,6 +118,7 @@ namespace DAYLY.ViewModels
                 {
                     times[i] = false;
                     spans[i] = 1;//make all rowspans 1 as null gives an error
+                    colours[i] = "#FFFFFF";
                 }
                 foreach (var even in Events)
                 {
@@ -115,7 +129,7 @@ namespace DAYLY.ViewModels
                             if (even.StartTime ==TimerArray[i]) {
                                 times[i] = true;
                                 desc[i] = even.Name;
-                                locations[i] = even.Location;
+                               // locations[i] = even.Location;
                                 foreach(var no in Notes)
                                 {
                                     Console.WriteLine(no.Description);
@@ -136,7 +150,7 @@ namespace DAYLY.ViewModels
                                     Console.WriteLine(colour.HexColour);
                                     if (colour.Id == even.ProgrammeId)
                                     {
-                                        colours[i] = Xamarin.Forms.Color.FromHex(colour.HexColour);
+                                        colours[i] =colour.HexColour;
                                     }
                                 }
                             }
@@ -157,7 +171,7 @@ namespace DAYLY.ViewModels
                 IsBusy = false;
             }
         }
-        public Color[] Colorss {
+        public string[] Colorss {
             get { return colours; }
         }
         public string[] Nnotes
@@ -177,7 +191,7 @@ namespace DAYLY.ViewModels
             
           get{ return times; }
         }
-        public Color[] Colourz {
+        public string[] Colourz {
 
             get { return colours; }
         }
