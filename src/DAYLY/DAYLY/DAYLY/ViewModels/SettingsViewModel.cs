@@ -688,7 +688,7 @@ namespace DAYLY.ViewModels
         public ICommand ChangeReminderDefaultCommand { get; }
         public ICommand ChangeDefaultBreakDurationCommand { get; }
         public ICommand ChangeSyncIntervalCommand { get; }
-        public ICommand LogoutCommand { get; }
+        public ICommand LogInOutCommand { get; }
 
         public SettingsViewModel()
         {
@@ -708,7 +708,7 @@ namespace DAYLY.ViewModels
             ChangeReminderDefaultCommand = new Command<string>(changeReminderDefault);
             ChangeDefaultBreakDurationCommand = new Command<string>(changeDefaultBreakDuration);
             ChangeSyncIntervalCommand = new Command<string>(changeSyncInterval);
-            LogoutCommand = new Command(logout);
+            LogInOutCommand = new Command(logInOut);
         }
 
         private void changeAppTheme(string newTheme)
@@ -852,7 +852,7 @@ namespace DAYLY.ViewModels
             SyncIntervalPos = intervalStr[1];
         }
 
-        async void logout()
+        async void logInOut()
         {
             if (LoggedIn)
             {
@@ -866,6 +866,10 @@ namespace DAYLY.ViewModels
                     Profile.profileViewModel.LoggedInVisible = "False";
                     Profile.profileViewModel.LoggedOutVisible = "True";
                 }
+            }
+            else
+            {
+                await NavStack.PushModalAsync(new Profile_Login());
             }
         }
 

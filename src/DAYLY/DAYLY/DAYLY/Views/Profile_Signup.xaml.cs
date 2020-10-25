@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using DAYLY.Views;
 
 using Xamarin.Forms;
 
 namespace DAYLY.Views
 {
-    public partial class Profile_Login : ContentPage
+    public partial class Profile_Signup : ContentPage
     {
-        public Profile_Login()
+        public Profile_Signup()
         {
             InitializeComponent();
             BindingContext = Profile.profileViewModel;

@@ -14,6 +14,9 @@ namespace DAYLY.ViewModels
 {
     public class ProfileViewModel : INotifyPropertyChanged
     {
+        const string ERROR_COLOUR_HEX = "#FF0000";
+        const string SUCCESS_COLOUR_HEX = "#228B22";
+
         private INavigation NavStack;
         public string _FullName;
         public string _Email;
@@ -33,6 +36,11 @@ namespace DAYLY.ViewModels
         public string _MessageText;
         public string _MessageTextColour;
         public string _MessageBorderColour;
+        public string _SignupFullName;
+        public string _SignupEmail;
+        public string _SignupPassword;
+        public string _SignupOrganisation;
+        public string _SignupCourse;
         string[] oldUserData;
         public ICommand EditProfileCommand { get; }
         public ICommand ConfirmNewProfileDataCommand { get; }
@@ -40,6 +48,9 @@ namespace DAYLY.ViewModels
         public ICommand LoginCommand { get; }
         public ICommand LoginCommandMain { get; }
         public ICommand SignupCommand { get; }
+        public ICommand SignupCommandMain { get; }
+        public ICommand CancelLoginCommand { get; }
+        public ICommand CancelSignupCommand { get; }
 
         public string FullName
         {
@@ -275,6 +286,71 @@ namespace DAYLY.ViewModels
             }
         }
 
+        public string SignupFullName
+        {
+            get
+            {
+                return _SignupFullName;
+            }
+            set
+            {
+                _SignupFullName = value;
+                OnPropertyChanged(nameof(SignupFullName));
+            }
+        }
+
+        public string SignupEmail
+        {
+            get
+            {
+                return _SignupEmail;
+            }
+            set
+            {
+                _SignupEmail = value;
+                OnPropertyChanged(nameof(SignupEmail));
+            }
+        }
+
+        public string SignupPassword
+        {
+            get
+            {
+                return _SignupPassword;
+            }
+            set
+            {
+                _SignupPassword = value;
+                OnPropertyChanged(nameof(SignupPassword));
+            }
+        }
+
+        public string SignupOrganisation
+        {
+            get
+            {
+                return _SignupOrganisation;
+            }
+            set
+            {
+                _SignupOrganisation = value;
+                OnPropertyChanged(nameof(SignupOrganisation));
+            }
+        }
+
+        public string SignupCourse
+        {
+            get
+            {
+                return _SignupCourse;
+            }
+            set
+            {
+                _SignupCourse = value;
+                OnPropertyChanged(nameof(SignupCourse));
+            }
+        }
+
         public ProfileViewModel()
         {
             EditProfileCommand = new Command(editProfile);
@@ -282,6 +358,10 @@ namespace DAYLY.ViewModels
             CancelEditProfileCommand = new Command(cancelEditProfile);
             LoginCommand = new Command(async () => await NavStack.PushModalAsync(new Profile_Login()));
             LoginCommandMain = new Command(login);
+            SignupCommand = new Command(async () => await NavStack.PushModalAsync(new Profile_Signup()));
+            SignupCommandMain = new Command(signup);
+            CancelLoginCommand = new Command(cancelLogin);
+            CancelSignupCommand = new Command(cancelSignup);
         }
 
         async void editProfile()
@@ -315,21 +395,21 @@ namespace DAYLY.ViewModels
                     {
                         conn.Query<UserProfile>("UPDATE UserProfile SET FullName=?, Email=?, Organisation=?, Course=? WHERE Email=?",
                                             FullName, Email, Organisation, Course, Email);
-                        showMessage("True", "Successfully updated your profile!", "#228B22", "#228B22");
+                        showMessage("True", "Successfully updated your profile!", SUCCESS_COLOUR_HEX, SUCCESS_COLOUR_HEX);
                         await Task.Delay(1000);
                         await NavStack.PopModalAsync();
                         MessageVisible = "False";
                     }
                     else // if new email already in database
                     {
-                        showMessage("True", "This email belongs to another user.", "#FF0000", "#FF0000");
+                        showMessage("True", "This email belongs to another user.", ERROR_COLOUR_HEX, ERROR_COLOUR_HEX);
                     }
                 }
                 else // if email is the same but other fields are different
                 {
                     conn.Query<UserProfile>("UPDATE UserProfile SET FullName=?, Organisation=?, Course=? WHERE Email=?",
                                             FullName, Organisation, Course, Email);
-                    showMessage("True" ,"Successfully updated your profile!", "#228B22", "#228B22");
+                    showMessage("True" ,"Successfully updated your profile!", SUCCESS_COLOUR_HEX, SUCCESS_COLOUR_HEX);
                     await Task.Delay(1000);
                     await NavStack.PopModalAsync();
                     MessageVisible = "False";
@@ -347,40 +427,127 @@ namespace DAYLY.ViewModels
         {
             SQLiteConnection conn = DependencyService.Get<Isqlite>().GetConnection();
 
-            List<UserProfile> existingUser = conn.Query<UserProfile>("SELECT * FROM UserProfile WHERE Email=?", LoginEmail);
+            string[] loginData = new string[] { LoginEmail, LoginPassword };
 
-            if (existingUser.Count() == 1)
+            if (!checkForEmptyStrings(loginData)) // if no values are empty/not filled in
             {
-                if (existingUser[0].Password == LoginPassword)
+                List<UserProfile> existingUser = conn.Query<UserProfile>("SELECT * FROM UserProfile WHERE Email=?", LoginEmail);
+
+                if (existingUser.Count() == 1) // if user exists in database
                 {
-                    FullName = existingUser[0].FullName;
-                    Email = existingUser[0].Email;
-                    NumTasks = existingUser[0].TasksRemaining.ToString();
-                    NumTasksCompleted = existingUser[0].TasksCompleted.ToString();
-                    DaysSinceAccountCreated = existingUser[0].DaysSinceAccountCreated.ToString();
-                    Organisation = existingUser[0].Organisation;
-                    Course = existingUser[0].Course;
-                    ProfilePicPath = "profile_pic.png";
-                    LoggedInVisible = "True";
-                    LoggedOutVisible = "False";
-                    showMessage("True", "Success!", "#228B22", "#228B22");
-                    Settings_Main.settingsViewModel.ProfilePicPath = "profile_pic.png";
-                    Settings_Main.settingsViewModel.LogInOutBtnText = "LOG OUT";
-                    await Task.Delay(1000);
-                    await NavStack.PopModalAsync();
-                    MessageVisible = "False";
+                    if (existingUser[0].Password == LoginPassword)
+                    {
+                        FullName = existingUser[0].FullName;
+                        Email = existingUser[0].Email;
+                        NumTasks = existingUser[0].TasksRemaining.ToString();
+                        NumTasksCompleted = existingUser[0].TasksCompleted.ToString();
+                        DaysSinceAccountCreated = existingUser[0].DaysSinceAccountCreated.ToString();
+                        Organisation = existingUser[0].Organisation;
+                        Course = existingUser[0].Course;
+                        ProfilePicPath = "profile_pic.png";
+                        LoggedInVisible = "True";
+                        LoggedOutVisible = "False";
+                        showMessage("True", "Success!", SUCCESS_COLOUR_HEX, SUCCESS_COLOUR_HEX);
+                        Settings_Main.settingsViewModel.LoggedIn = true;
+                        Settings_Main.settingsViewModel.ProfilePicPath = "profile_pic.png";
+                        Settings_Main.settingsViewModel.LogInOutBtnText = "LOG OUT";
+                        await Task.Delay(1000);
+                        await NavStack.PopModalAsync();
+                        MessageVisible = "False";
+                    }
+                    else
+                    {
+                        showMessage("True", "The password you entered is incorrect.", ERROR_COLOUR_HEX, ERROR_COLOUR_HEX);
+                    }
                 }
                 else
                 {
-                    showMessage("True", "The password you entered is incorrect.", "#FF0000", "#FF0000");
+                    showMessage("True", "The email you entered is incorrect.", ERROR_COLOUR_HEX, ERROR_COLOUR_HEX);
                 }
             }
             else
             {
-                showMessage("True", "The email you entered is incorrect.", "#FF0000", "#FF0000");
+                showMessage("True", "Please fill in all fields.", ERROR_COLOUR_HEX, ERROR_COLOUR_HEX);
             }
 
             conn.Close();
+        }
+
+        async void signup()
+        {
+            SQLiteConnection conn = DependencyService.Get<Isqlite>().GetConnection();
+
+            string[] signupData = new string[] { SignupFullName, SignupEmail, SignupPassword, SignupOrganisation, SignupCourse };
+
+            if (!checkForEmptyStrings(signupData))
+            {
+                List<UserProfile> existingUser = conn.Query<UserProfile>("SELECT * FROM UserProfile WHERE Email=?", SignupEmail);
+
+                if (existingUser.Count() == 0) // if user dont exist in database
+                {
+                    if (signupData[1].Contains("@")) // if email format is valid
+                    {
+                        UserProfile newUser = new UserProfile()
+                        {
+                            FullName = SignupFullName,
+                            Email = SignupEmail,
+                            Password = SignupPassword,
+                            TasksRemaining = 0,
+                            TasksCompleted = 0,
+                            DaysSinceAccountCreated = 0,
+                            Organisation = SignupOrganisation,
+                            Course = SignupCourse
+                        };
+
+                        try
+                        {
+                            conn.Insert(newUser);
+                        }
+                        catch (Exception e)
+                        {
+                            throw e;
+                        }
+
+                        LoginEmail = SignupEmail;
+                        LoginPassword = SignupPassword;
+                        showMessage("True", "Signed up sucessfully!", SUCCESS_COLOUR_HEX, SUCCESS_COLOUR_HEX);
+                        await Task.Delay(1000);
+                        await NavStack.PopModalAsync();
+                        showMessage("True", "Login with your new account!", SUCCESS_COLOUR_HEX, SUCCESS_COLOUR_HEX);
+                        await NavStack.PushModalAsync(new Profile_Login());
+                        clearSignupData();
+
+                    }
+                    else
+                    {
+                        showMessage("True", "Invalid email.", ERROR_COLOUR_HEX, ERROR_COLOUR_HEX);
+                    }
+                }
+                else
+                {
+                    showMessage("True", "This email belongs to another user.", ERROR_COLOUR_HEX, ERROR_COLOUR_HEX);
+                }
+            }
+            else
+            {
+                showMessage("True", "Please fill in all fields.", ERROR_COLOUR_HEX, ERROR_COLOUR_HEX);
+            }
+
+            conn.Close();
+        }
+
+        async void cancelLogin()
+        {
+            await NavStack.PopModalAsync();
+            clearLoginData();
+            MessageVisible = "False";
+        }
+
+        async void cancelSignup()
+        {
+            await NavStack.PopModalAsync();
+            clearSignupData();
+            MessageVisible = "False";
         }
             
         public event PropertyChangedEventHandler PropertyChanged;
@@ -417,12 +584,40 @@ namespace DAYLY.ViewModels
             return true;
         }
 
+        private bool checkForEmptyStrings(string[] stringArray)
+        {
+            foreach (string s in stringArray)
+            {
+                if (string.IsNullOrEmpty(s))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void showMessage(string visible, string text, string textColour, string borderColour)
         {
             MessageVisible = "True";
             MessageText = text;
             MessageTextColour = textColour;
             MessageBorderColour = borderColour;
+        }
+
+        private void clearLoginData()
+        {
+            LoginEmail = "";
+            LoginPassword = "";
+        }
+
+        private void clearSignupData()
+        {
+            SignupFullName = "";
+            SignupEmail = "";
+            SignupPassword = "";
+            SignupOrganisation = "";
+            SignupCourse = "";
         }
     }
 }
