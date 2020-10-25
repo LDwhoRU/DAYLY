@@ -12,13 +12,11 @@ using SQLite;
 using System.Globalization;
 using System.Diagnostics;
 
-
 namespace DAYLY.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Notes : ContentPage
+    public partial class LocationSelection : ContentPage
     {
-        public Notes(CreateEventViewModel eventModel)
+        public LocationSelection(CreateEventViewModel eventModel)
         {
             InitializeComponent();
             BindingContext = eventModel;

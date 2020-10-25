@@ -7,18 +7,33 @@
         <StackLayout Spacing="-1">
             <Label Text="Type" Padding="17,15"/>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectType}" CommandParameter="Lecture" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
                 <Label Text="Lecture" VerticalOptions="Center" FontSize="16"/>
             </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectType}" CommandParameter="Tutorial" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
                 <Label Text="Tutorial" VerticalOptions="Center" FontSize="16"/>
             </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectType}" CommandParameter="Appointment" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
                 <Label Text="Appointment" VerticalOptions="Center" FontSize="16"/>
             </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectType}" CommandParameter="Meeting" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
                 <Label Text="Meeting" VerticalOptions="Center" FontSize="16"/>
             </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectType}" CommandParameter="Other" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
                 <Label Text="Other" VerticalOptions="Center" FontSize="16"/>
             </Frame>
         </StackLayout>

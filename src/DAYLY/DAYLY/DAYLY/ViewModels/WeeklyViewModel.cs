@@ -1,6 +1,8 @@
 ﻿using DAYLY.Models;
 using DAYLY.Services;
+
 using DAYLY.Views;
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,14 +35,17 @@ namespace DAYLY.ViewModels
         string[] fritext = new string[16];
         string[] sattext = new string[16];
         string[] suntext = new string[16];
-        Color[] moncol = new Color[16];
-        Color[] tuecol = new Color[16];
-        Color[] wedcol = new Color[16];
-        Color[] thurcol = new Color[16];
-        Color[] fricol = new Color[16];
-        Color[] satcol = new Color[16];
-        Color[] suncol = new Color[16];
-        public Command EventTapp { get; }
+
+        string[] moncol = new string[16];
+        string[] tuecol = new string[16];
+        string[] wedcol = new string[16];
+        string[] thurcol = new string[16];
+        string[] fricol = new string[16];
+        string[] satcol = new string[16];
+        string[] suncol = new string[16];
+     
+
+
 
         string today;
      
@@ -83,7 +88,11 @@ namespace DAYLY.ViewModels
                 }
                 MockEventData bb = new MockEventData();
                 var col = await bb.GetColoursAsync(true);
-                foreach (var colo in col) {
+
+
+                foreach (var colo in col)
+                {
+
                     Colours.Add(colo);
                 }
             }
@@ -162,6 +171,7 @@ namespace DAYLY.ViewModels
             text[4] = thurtext;
             text[5] = fritext;
             text[6] = sattext;
+         
             //   Console.WriteLine(time8);
 
             for (int i = 1; i < TimerArray.Length; i++) //populate the array with the times of day used
@@ -177,7 +187,9 @@ namespace DAYLY.ViewModels
                 for (int i = 0; i < sun.Length; i++)//set every thing to false to begin with
                 {
                     bweek[dayy][i] = false;
+                        elements[dayy][i] = "#FFFFFF";
                 }
+               
                 foreach (var even in Events)
                 {
 
@@ -190,13 +202,19 @@ namespace DAYLY.ViewModels
                                 if (even.StartTime == TimerArray[i])//if the time of the event is equal to the time off the loop
                             {
                                 bweek[dayy][i] = true; //set that time to true
-                                    foreach (var colour in Colours) {
-                                        Console.WriteLine(colour.HexColour);
-                                        if (colour.Id == even.ProgrammeId) {
-                                            elements[dayy][i] = Color.FromHex(colour.HexColour);
+
+                             
+                                      //assign that times colour and text
+
+                                    foreach(var col in Colours)
+                                    {
+                                        if (col.Id == even.ProgrammeId)
+                                        {
+                                            elements[dayy][i] = col.HexColour;
                                         }
                                     }
-                                      //assign that times colour and text
+                                     //elements[dayy][i] = even.SelectedProgramme.HexColour; //assign that times colour and text
+
                                     text[dayy][i] = even.Name;
                                     //elements[dayy][i] = even.SelectedProgramme.HexColour;
                                   //  Console.WriteLine(even.SelectedProgramme.HexColour);
@@ -207,13 +225,11 @@ namespace DAYLY.ViewModels
                                     for (int j = i; z <= hours; j++) //using duration to see how many other times need to be set to true
                                     {
                                         bweek[dayy][j] = true;
-                                        foreach (var colou in Colours) {
-                                            if (colou.Id == even.ProgrammeId)
-                                            {
-                                                elements[dayy][j] =Color.FromHex( colou.HexColour);
-                                            }
-                                        }
-                                       
+
+                                    
+
+                                        elements[dayy][j] = elements[dayy][i];
+
                                         text[dayy][j] = even.Name;
                                         z++;
                                       //  Console.WriteLine(j);
