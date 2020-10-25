@@ -230,7 +230,7 @@ namespace DAYLY.ViewModels
                         for (int i = 0; i < TimerArray.Length; i++)
                         {
                                 
-                                if (even.StartTime == TimerArray[i])//if the time of the event is equal to the time off the loop
+                                if (even.StartTime.Hours == TimerArray[i].Hours)//if the time of the event is equal to the time off the loop rounds down to nearest whole hour
                             {
                                 bweek[dayy][i] = true; //set that time to true
                                     foreach(var col in Colours)
