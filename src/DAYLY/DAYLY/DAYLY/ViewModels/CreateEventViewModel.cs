@@ -222,10 +222,19 @@ namespace DAYLY.ViewModels
         private string TimeConvert(TimeSpan inputTime)
         {
             string temp;
+            TimeSpan TempTime;
             if (inputTime.Hours >= 12)
             {
-                TimeSpan twelveHours = new TimeSpan(12, 0, 0);
-                temp = inputTime.Subtract(twelveHours).ToString(@"hh\:mm") + "PM";
+                if (inputTime.Hours > 12)
+                {
+                    TimeSpan twelveHours = new TimeSpan(12, 0, 0);
+                    TempTime = inputTime.Subtract(twelveHours);
+                }
+                else
+                {
+                    TempTime = inputTime;
+                }
+                temp = TempTime.ToString(@"hh\:mm") + "PM";
             }
             else
             {
