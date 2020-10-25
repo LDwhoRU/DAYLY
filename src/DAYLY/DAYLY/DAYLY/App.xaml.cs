@@ -36,7 +36,7 @@ namespace DAYLY
             conn.CreateTable<Location>();
             conn.CreateTable<Models.Calendar>();
 
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<MockEventData>();
             MainPage = new AppShell();
         }
 
