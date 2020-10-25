@@ -9,10 +9,10 @@ namespace DAYLY.Services
 {
     public class MockEventData : IDataStore<Event>
     {
-        readonly List<Event> events;
-        readonly List<Programme> programmes;
-        readonly List<Note> Notess;
-        readonly List<Location> locations;
+        public List<Event> events;
+        public List<Calendar> programmes;
+        public List<Note> Notess;
+        public List<Location> locations;
         public MockEventData()
         {
 
@@ -40,9 +40,9 @@ namespace DAYLY.Services
                   new Location{Id=2, Alias="next door", Postcode=4120, State="QLD", StreetAddress="37 Gordon St", Suburb="Greenslopes"},
                     new Location{Id=3, Alias="across the road", Postcode=4120, State="QLD", StreetAddress="39 Gordon St", Suburb="Greenslopes"},
             };
-            programmes = new List<Programme> {
-            new Programme{Id=1,Name="test",HexColour="#FF0000"},
-            new Programme{Id=2,Name="yeet",HexColour="#008000"}
+            programmes = new List<Calendar> {
+            new Calendar{Id=1,Name="test",HexColour="#FF0000"},
+            new Calendar{Id=2,Name="yeet",HexColour="#008000"}
             };
             Notess = new List<Note>() {
                new Note{Id=1,URL="www.google.com",Description="testing this epic dude stuff my guy"},
@@ -95,9 +95,10 @@ namespace DAYLY.Services
         {
             return await Task.FromResult(Notess);
         }
-        public async Task<IEnumerable<Programme>> GetColoursAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Calendar>> GetColoursAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(programmes);
+            //throw new NotImplementedException();
+             return await Task.FromResult(programmes);
         }
 
         public Task<bool> UpdateItemAsync(Event item)

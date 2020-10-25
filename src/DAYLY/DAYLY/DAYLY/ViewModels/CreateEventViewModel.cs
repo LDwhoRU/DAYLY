@@ -400,7 +400,7 @@ namespace DAYLY.ViewModels
                 try
                 {
                     isSuccess = conn.Insert(newEvent);
-                    ErrorAlert("Event " + AffairName + " added successfully", CurrentPage);
+                    SuccessAlert("Event " + AffairName + " added successfully", CurrentPage);
                     ResetEvent();
                 }
                 catch (Exception ex)
