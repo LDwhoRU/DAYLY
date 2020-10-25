@@ -66,7 +66,7 @@ namespace DAYLY.ViewModels
             Colours = new ObservableCollection<Programme>();
             Today = dt.DayOfWeek.ToString() + " " + dt.Day.ToString() + "/" + dt.Month.ToString() + "/" + dt.Year.ToString(); //figure out the current day of the week
             Task.Run(async () => await ExecuteLoadItemsCommand());//load the test data
-            EventTapp = new Command<Event>(OnItemSelected);
+          
              GetWeek();
       
             WeekTime();
