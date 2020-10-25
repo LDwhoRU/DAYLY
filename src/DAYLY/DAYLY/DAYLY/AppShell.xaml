@@ -34,11 +34,17 @@
     <!--All routes set to items page until the views are created-->
     <TabBar>
         <ShellContent Title="Home" Icon="home.png" Route="AboutPage" ContentTemplate="{DataTemplate local:Daily}" />
-        <ShellContent Title="Schedule" Icon="calendar.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:Daily}"/>
-
+        <ShellContent Title="Schedule" Icon="calendar.png" Route="ItemsPage" ContentTemplate="{DataTemplate local:Weekly}"/>
         <ShellContent Icon="add.png" Route="AddEvent" ContentTemplate="{DataTemplate local:AddEvent}"/>
         <ShellContent Title="Profile" Icon="profile.png" Route="Profile" ContentTemplate="{DataTemplate local:Profile}"/>
         <ShellContent Title="Settings" Icon="settings.png" Route="Settings_Main" ContentTemplate="{DataTemplate local:Settings_Main}"/>
+    </TabBar>
+    <TabBar>
+        <ShellContent Title="Home" Icon="home.png" Route="AboutPageSecond" ContentTemplate="{DataTemplate local:Daily}" />
+        <ShellContent Title="Schedule" Icon="calendar.png" Route="ItemsPageSecond" ContentTemplate="{DataTemplate local:Weekly}"/>
+        <ShellContent Icon="add.png" Route="AddReminder" ContentTemplate="{DataTemplate local:AddReminder}"/>
+        <ShellContent Title="Profile" Icon="profile.png" Route="ProfileSecond" ContentTemplate="{DataTemplate local:Profile}"/>
+        <ShellContent Title="Settings" Icon="settings.png" Route="Settings_MainSecond" ContentTemplate="{DataTemplate local:Settings_Main}"/>
     </TabBar>
 
     <!--
@@ -56,6 +62,4 @@
     <ShellContent Route="Daily" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Daily}"/>
     <ShellContent Route="Monthly" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Monthly}"/>
     <ShellContent Route="Weekly" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Weekly}"/>
-    <ShellContent Route="AddReminder" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:AddReminder}"></ShellContent>
-    <ShellContent Route="AddEvent" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:AddEvent}"/>
 </Shell>
