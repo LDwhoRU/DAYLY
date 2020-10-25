@@ -4,7 +4,11 @@ using System.IO;
 using System.Linq;
 using Xamarin.Forms;
 using DAYLY.Views;
+using DAYLY.Services;
+using DAYLY.Models;
 using DAYLY.ViewModels;
+using SQLite;
+using System.Diagnostics;
 
 namespace DAYLY.Views
 {
@@ -44,6 +48,4 @@ namespace DAYLY.Views
             await Navigation.PushAsync(new Settings_SyncData());
         }
     }
-
-    
 }

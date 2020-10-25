@@ -12,7 +12,7 @@ namespace DAYLY
         public App()
         {
             InitializeComponent();
-
+            checkAppInstallState();
             DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
@@ -27,6 +27,18 @@ namespace DAYLY
 
         protected override void OnResume()
         {
+        }
+
+        protected void checkAppInstallState()
+        {
+            if (Application.Current.Properties.ContainsKey("FirstUse"))
+            {
+                MockUserProfiles mockUsersDatabase = new MockUserProfiles();
+            }
+            else
+            {
+                Application.Current.Properties["FirstUse"] = false;
+            }
         }
     }
 }

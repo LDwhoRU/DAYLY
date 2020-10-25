@@ -916,9 +916,9 @@ namespace DAYLY.ViewModels
             DefaultBreakDurationPos = "0";
             SyncIntervalStr = "Every hour";
             SyncIntervalPos = "0";
-            ProfilePicPath = "profile_pic.png";
-            LogInOutBtnText = "LOG OUT";
-            LoggedIn = true;
+            ProfilePicPath = "user_placeholder.png";
+            LogInOutBtnText = "LOG IN";
+            LoggedIn = false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

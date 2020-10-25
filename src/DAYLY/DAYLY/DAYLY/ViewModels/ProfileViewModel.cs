@@ -238,8 +238,8 @@ namespace DAYLY.ViewModels
             ProfilePicPath = "profile_pic.png";
             OrganisationHeader = "Organisation";
             CourseHeader = "Course";
-            LoggedInVisible = "True";
-            LoggedOutVisible = "False";
+            LoggedInVisible = "False";
+            LoggedOutVisible = "True";
         }
 
         private bool isDataSame(string[] firstArray, string[] secondArray)
