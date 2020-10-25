@@ -4,14 +4,23 @@ using System.IO;
 using System.Linq;
 using Xamarin.Forms;
 using DAYLY.Views;
+using DAYLY.Services;
+using DAYLY.Models;
+using DAYLY.ViewModels;
+using SQLite;
+using System.Diagnostics;
 
 namespace DAYLY.Views
 {
     public partial class Settings_Main : ContentPage
     {
+        public static SettingsViewModel settingsViewModel = new SettingsViewModel();
+
         public Settings_Main()
         {
             InitializeComponent();
+            settingsViewModel.Initialise(Navigation);
+            BindingContext = settingsViewModel;
         }
 
         async void OnGeneralSettingClicked(object sender, EventArgs e)

@@ -58,6 +58,29 @@
     <ShellContent Route="Settings_Automation" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_Automation}" />
     <ShellContent Route="Settings_Breaks" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_Breaks}" />
     <ShellContent Route="Settings_SyncData" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_SyncData}" />
+    <ShellContent Route="Settings_AppTheme" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_AppTheme}" />
+    <ShellContent Route="Settings_FirstDayOfWeek" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_FirstDayOfWeek}" />
+    <ShellContent Route="Settings_DayStartTime" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_DayStartTime}" />
+    <ShellContent Route="Settings_DayStartTime24" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_DayStartTime24}" />
+    <ShellContent Route="Settings_DefaultEventDuration" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_DefaultEventDuration}" />
+    <ShellContent Route="Settings_DefaultView" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_DefaultView}" />
+    <ShellContent Route="Settings_ShowWeekNumbers" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ShowWeekNumbers}" />
+    <ShellContent Route="Settings_AppLock" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_AppLock}" />
+    <ShellContent Route="Settings_CountdownMode" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_CountdownMode}" />
+    <ShellContent Route="Settings_DailyReminderTime" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_DailyReminderTime}" />
+    <ShellContent Route="Settings_DailyReminderTime24" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_DailyReminderTime24}" />
+    <ShellContent Route="Settings_DefaultEventAlert" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_DefaultEventAlert}" />
+    <ShellContent Route="Settings_TasksReminder" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_TasksReminder}" />
+    <ShellContent Route="Settings_TasksReminder24" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_TasksReminder24}" />
+    <ShellContent Route="Settings_ReminderRingtone" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ReminderRingtone}" />
+    <ShellContent Route="Settings_ReminderMorning" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ReminderMorning}" />
+    <ShellContent Route="Settings_ReminderMorning24" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ReminderMorning24}" />
+    <ShellContent Route="Settings_ReminderAfternoon" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ReminderAfternoon}" />
+    <ShellContent Route="Settings_ReminderAfternoon24" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ReminderAfternoon24}" />
+    <ShellContent Route="Settings_ReminderEvening" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ReminderEvening}" />
+    <ShellContent Route="Settings_ReminderEvening24" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_ReminderEvening24}" />
+    <ShellContent Route="Settings_DefaultBreakDuration" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_DefaultBreakDuration}" />
+    <ShellContent Route="Settings_SyncInterval" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Settings_SyncInterval}" />
 
     <ShellContent Route="Daily" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Daily}"/>
     <ShellContent Route="Monthly" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:Monthly}"/>

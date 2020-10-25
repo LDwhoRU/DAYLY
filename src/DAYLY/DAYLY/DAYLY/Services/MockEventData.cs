@@ -27,7 +27,7 @@ namespace DAYLY.Services
             DateTime datetime7 = new DateTime(2020, 10, 24, 9, 30, 0);
             TimeSpan span = new TimeSpan(7, 0, 0);
 
-            TimeSpan span3= new TimeSpan(14, 0, 0);
+            TimeSpan span3 = new TimeSpan(14, 0, 0);
 
             TimeSpan span2 = new TimeSpan(15, 0, 0);
             TimeSpan span4 = new TimeSpan(12, 0, 0);
@@ -101,7 +101,7 @@ namespace DAYLY.Services
         public async Task<IEnumerable<Calendar>> GetColoursAsync(bool forceRefresh = false)
         {
             //throw new NotImplementedException();
-             return await Task.FromResult(programmes);
+            return await Task.FromResult(programmes);
         }
 
         public Task<bool> UpdateItemAsync(Event item)

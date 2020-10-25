@@ -25,10 +25,10 @@
                     <Switch Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" OnColor="#BDE3E5" ThumbColor="{StaticResource Sage}"/>
 
                     <Label Text="Default break duration" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="3" Grid.Column="0" Margin="7,0,0,0"/>
-                    <Label Text="15 minutes" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="4" Grid.Column="0" Margin="7,0,0,0"/>
+                    <Label Text="{Binding DefaultBreakDurationStr}" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource Slate}" Grid.Row="4" Grid.Column="0" Margin="7,0,0,0"/>
                     <Image Source="arrow_icon" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Margin="14"/>
 
-                    <Button Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>
+                    <Button Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Clicked="OnDefaultBreakDurationClicked"/>
                 </Grid>
             </Frame>
 

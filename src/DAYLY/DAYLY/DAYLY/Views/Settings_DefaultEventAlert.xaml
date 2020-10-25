@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DAYLY.Views.Settings_DefaultEventAlert"
+             BackgroundColor="{StaticResource AppBackgroundColour}"
+             Title="Default event alert">
+    <StackLayout>
+            <Frame Margin="40,50,40,40" CornerRadius="10">
+                <Grid Padding="0,-10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="0.001*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="0.001*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="0.001*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="0.001*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="0.001*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="0.001*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="15 minutes prior" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <BoxView Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
+
+                    <Label Text="1 hour prior" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <BoxView Grid.Row="5" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
+
+                    <Label Text="3 hours prior" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="6" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <BoxView Grid.Row="8" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
+
+                    <Label Text="12 hours prior" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="9" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <BoxView Grid.Row="11" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
+
+                    <Label Text="1 day prior" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="12" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <BoxView Grid.Row="14" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
+
+                    <Label Text="3 days prior" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="15" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+                    <BoxView Grid.Row="17" Grid.ColumnSpan="2" BackgroundColor="#C8D1D3" HeightRequest="0.001"/>
+
+                    <Label Text="7 days prior" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="18" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Margin="7,0,0,0"/>
+
+                    <Image x:Name="TickImage" Source="tick_icon.png" Grid.Row="{Binding DefaultEventAlertPos}" Grid.Column="1" Grid.RowSpan="2" Margin="15,0,15,0"/>
+
+                    <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeDefaultAlertTimeCommand}" CommandParameter="15,minutes,0"/>
+                    <Button Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeDefaultAlertTimeCommand}" CommandParameter="1,hour,3"/>
+                    <Button Grid.Row="6" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeDefaultAlertTimeCommand}" CommandParameter="3,hours,6"/>
+                    <Button Grid.Row="9" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeDefaultAlertTimeCommand}" CommandParameter="12,hours,9"/>
+                    <Button Grid.Row="12" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeDefaultAlertTimeCommand}" CommandParameter="1,day,12"/>
+                    <Button Grid.Row="15" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeDefaultAlertTimeCommand}" CommandParameter="3,days,15"/>
+                    <Button Grid.Row="18" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Command="{Binding ChangeDefaultAlertTimeCommand}" CommandParameter="7,days,18"/>
+
+                </Grid>
+            </Frame>
+        </StackLayout>
+</ContentPage>

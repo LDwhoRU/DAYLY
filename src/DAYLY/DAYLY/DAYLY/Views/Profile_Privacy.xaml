@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DAYLY.Views.Profile_Privacy"
+             BackgroundColor="#FFFFFF"
+             Title="Privacy Policy">
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="10">
+            <Label Text="{Binding FirstMockPrivacyParagraph}" FontSize="16"/>
+            <Label Text="{Binding SecondMockPrivacyParagraph}" FontSize="22" FontAttributes="Bold"/>
+            <Label Text="{Binding ThirdMockPrivacyParagraph}" FontSize="18" FontAttributes="Bold"/>
+            <Label Text="{Binding ForthMockPrivacyParagraph}" FontSize="16"/>
+            <Label Text="{Binding FifthMockPrivacyParagraph}" FontSize="18" FontAttributes="Bold"/>
+            <Label Text="{Binding SixthMockPrivacyParagraph}" FontSize="16"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

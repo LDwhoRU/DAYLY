@@ -18,7 +18,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Text="Auto event shifting" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Margin="7,0,0,0"/>
-                    <Switch Grid.Row="0" Grid.Column="1" OnColor="#BDE3E5" ThumbColor="{StaticResource Sage}"/>
+                    <Switch Grid.Row="0" Grid.Column="1" OnColor="#BDE3E5" ThumbColor="{StaticResource Sage}" IsToggled="True"/>
                 </Grid>
             </Frame>
 
@@ -38,7 +38,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Text="Missed classes rescheduling" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Margin="7,0,0,0"/>
-                    <Switch Grid.Row="0" Grid.Column="1" OnColor="#BDE3E5" ThumbColor="{StaticResource Sage}"/>
+                    <Switch Grid.Row="0" Grid.Column="1" OnColor="#BDE3E5" ThumbColor="{StaticResource Sage}" IsToggled="True"/>
                 </Grid>
             </Frame>
 
@@ -58,7 +58,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Text="Prioritise closer due dates" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Drab}" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Margin="7,0,0,0"/>
-                    <Switch Grid.Row="0" Grid.Column="1" OnColor="#BDE3E5" ThumbColor="{StaticResource Sage}"/>
+                    <Switch Grid.Row="0" Grid.Column="1" OnColor="#BDE3E5" ThumbColor="{StaticResource Sage}" IsToggled="True"/>
                 </Grid>
             </Frame>
 
