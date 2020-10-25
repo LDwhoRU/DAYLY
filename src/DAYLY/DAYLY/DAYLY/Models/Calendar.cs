@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DAYLY.Models
 {
-    class Calendar : Programme
+   public class Calendar : Programme
     {
     }
 }

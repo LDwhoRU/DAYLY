@@ -55,17 +55,17 @@ namespace DAYLY.ViewModels
         TimeSpan time1 = TimeSpan.FromHours(1);
         private SQLiteConnection conn;
         private List<Event> eventlist;
-        private List<Programme> colourlist;
+        private List<Calendar> colourlist;
 
         public ObservableCollection<Event> Events { get; set ; }
-        public ObservableCollection<Programme> Colours { get; set; }
+        public ObservableCollection<Calendar> Colours { get; set; }
         public WeeklyViewModel()
         {
             conn = DependencyService.Get<Isqlite>().GetConnection();
             eventlist = conn.Table<Event>().ToList();
-            colourlist = conn.Table<Programme>().ToList();
+            colourlist = conn.Table<Calendar>().ToList();
             Events = new ObservableCollection<Event>(eventlist);
-            Colours = new ObservableCollection<Programme>(colourlist);
+            Colours = new ObservableCollection<Calendar>(colourlist);
             TimerArray[0] = time8;
             Title = "Weekly";
             DateTime dt = DateTime.Today;
