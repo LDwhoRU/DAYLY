@@ -44,9 +44,13 @@ namespace DAYLY.ViewModels
             try
             {
                 var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id;
-                Text = item.Text;
-                Description = item.Description;
+
+               // Id = item.Id;
+                //Text = item.Text;
+                //Description = item.Description;
+
+ //Text = item.Text;
+               // Description = item.Description;
             }
             catch (Exception)
             {

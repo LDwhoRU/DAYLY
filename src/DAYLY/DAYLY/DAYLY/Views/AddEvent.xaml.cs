@@ -12,6 +12,7 @@ using DAYLY.ViewModels;
 using DAYLY;
 using SQLite;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace DAYLY.Views
 {
@@ -19,95 +20,36 @@ namespace DAYLY.Views
     public partial class AddEvent : ContentPage
 
     {
-        public SQLiteConnection conn;
-        public TestEvent testmodel;
+        public CreateEventViewModel createEventViewModel;
         public AddEvent()
         {
-           
             InitializeComponent();
 
-            StartTimePicker.Time = DateTime.Now.TimeOfDay;
-            EndTimePicker.Time = DateTime.Now.TimeOfDay.Add(new TimeSpan(2, 0, 0));
-            EventDatePicker.Date = DateTime.Now;
-
-            conn = DependencyService.Get<Isqlite>().GetConnection();
-            try
-            {
-                conn.DropTable<TestEvent>();
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            conn.CreateTable<TestEvent>();
-            BindingContext = new NewEventViewModel();
-        }
-        async void OnReminderClick(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AddReminder());
-        }
-        private void AddEventBtn_Clicked(object sender, EventArgs e)
-        {
-            TestEvent test = new TestEvent();
-            test.Name = Name.Text;
-            test.Date = EventDatePicker.Date;
-            int isSuccess = 0;
-            try
-            {
-                isSuccess = conn.Insert(test);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            var details = (from x in conn.Table<TestEvent>() select x).ToList();
-            myListView.ItemsSource = details;
+            // MVVM Implementation
+            createEventViewModel = new CreateEventViewModel(Navigation, this);
+            BindingContext = createEventViewModel;
         }
 
+        // Focus element of pickers set in Views - Cannot be set in viewmodel without passing entire object
         private void StartTimeBtn_Tapped(object sender, EventArgs e)
         {
-            StartTimePicker.Focus();
-        }
-
-        private void StartTimePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            TimeSpan startTime = StartTimePicker.Time;
-            String timeSuffix = "AM";
-            if (startTime.Hours > 12)
+            if (createEventViewModel.AllDay != true)
             {
-                TimeSpan twelveHour = new TimeSpan(12, 0, 0);
-                startTime = startTime.Subtract(twelveHour);
-                timeSuffix = "PM";
+                StartTimePicker.Focus();
             }
-            StartTimeLabel.Text = startTime.ToString().Substring(0, 5) + timeSuffix;
         }
 
         private void EndTimeBtn_Tapped(object sender, EventArgs e)
         {
-            EndTimePicker.Focus();
-        }
-
-        private void EndTimePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            TimeSpan endTime = EndTimePicker.Time;
-            String timeSuffix = "AM";
-            if (endTime.Hours > 12)
+            if (createEventViewModel.AllDay != true)
             {
-                TimeSpan twelveHour = new TimeSpan(12, 0, 0);
-                endTime = endTime.Subtract(twelveHour);
-                timeSuffix = "PM";
+                EndTimePicker.Focus();
             }
-            EndTimeLabel.Text = endTime.ToString().Substring(0, 5) + timeSuffix;
         }
 
-        private void EventDatePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void AffairDateBtn_Tapped(object sender, EventArgs e)
         {
-            EventDateLabel.Text = EventDatePicker.Date.Day.ToString() + "/" + EventDatePicker.Date.Month.ToString() + "/" + EventDatePicker.Date.Year.ToString();
-        }
-
-        private void EventDateBtn_Tapped(object sender, EventArgs e)
-        {
-            EventDatePicker.Focus();
+            AffairDatePicker.Focus();
         }
     }
 }

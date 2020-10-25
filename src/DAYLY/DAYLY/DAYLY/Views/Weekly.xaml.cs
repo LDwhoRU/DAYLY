@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAYLY.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,14 @@ namespace DAYLY.Views
         {
             InitializeComponent();
         }
-        async void OnDailyTapped(object sender, EventArgs e)
+        protected override void OnAppearing()
         {
-            await Navigation.PushAsync(new Daily());
-        }
-        async void OnMonthlyTapped(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Monthly());
+           // base.OnAppearing();
+          //  var vm = this.BindingContext as WeeklyViewModel;
+       //     vm.intialise();
+//
+             //   vm.GetWeek();
+          //  vm.WeekTime();
         }
     }
 }

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:VM="clr-namespace:DAYLY.ViewModels"
+             x:Class="DAYLY.Views.LocationSelection"
+             BackgroundColor="{StaticResource AppBackgroundColour}">
+    <Shell.TitleView>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="1" Source="logo_title.png" VerticalOptions="Center" HeightRequest="60" Scale=".8"/>
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Spacing="-1">
+
+            <Label Text="Location" Padding="17,15"/>
+            <CollectionView x:Name="LocationSelector" ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type VM:CreateEventViewModel}}, Path=LocationListView}" HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type VM:CreateEventViewModel}}, Path=LocationListViewHeight}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Margin="0" VerticalScrollBarVisibility="Never">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type VM:CreateEventViewModel}}, Path=SelectLocation}" CommandParameter="{Binding Id}" NumberOfTapsRequired="1"/>
+                            </Frame.GestureRecognizers>
+                            <Label Text="{Binding Alias}" VerticalOptions="Center" FontSize="16"/>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill" Margin="0,20,0,0">
+                <Grid Margin="0,-15,-10,-15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Add new address" VerticalOptions="Center" FontSize="16"/>
+                    <Image Source="arrow_icon.png" HorizontalOptions="End" Margin="17"/>
+                    <Button BackgroundColor="Transparent" Command="{Binding LoadCustomLocation}"/>
+                </Grid>
+            </Frame>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

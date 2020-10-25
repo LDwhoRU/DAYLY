@@ -14,18 +14,12 @@ using System.Diagnostics;
 
 namespace DAYLY.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Alert : ContentPage
+    public partial class LocationSelection : ContentPage
     {
-        public Alert(CreateEventViewModel eventModel)
+        public LocationSelection(CreateEventViewModel eventModel)
         {
             InitializeComponent();
             BindingContext = eventModel;
-        }
-        public Alert(CreateReminderViewModel reminderModel)
-        {
-            InitializeComponent();
-            BindingContext = reminderModel;
         }
     }
 }

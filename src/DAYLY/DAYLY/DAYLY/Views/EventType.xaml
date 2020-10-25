@@ -3,22 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DAYLY.Views.EventType"
              BackgroundColor="#ECEFF0">
+    <Shell.TitleView>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="1" Source="logo_title.png" VerticalOptions="Center" HeightRequest="60" Scale=".8"/>
+        </Grid>
+    </Shell.TitleView>
     <ContentPage.Content>
         <StackLayout Spacing="-1">
             <Label Text="Type" Padding="17,15"/>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectType}" CommandParameter="Lecture" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
                 <Label Text="Lecture" VerticalOptions="Center" FontSize="16"/>
             </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectType}" CommandParameter="Tutorial" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
                 <Label Text="Tutorial" VerticalOptions="Center" FontSize="16"/>
             </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectType}" CommandParameter="Appointment" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
                 <Label Text="Appointment" VerticalOptions="Center" FontSize="16"/>
             </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectType}" CommandParameter="Meeting" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
                 <Label Text="Meeting" VerticalOptions="Center" FontSize="16"/>
             </Frame>
             <Frame BackgroundColor="White" BorderColor="#C8D1D3" HeightRequest="24" HorizontalOptions="Fill">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectType}" CommandParameter="Other" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
                 <Label Text="Other" VerticalOptions="Center" FontSize="16"/>
             </Frame>
         </StackLayout>

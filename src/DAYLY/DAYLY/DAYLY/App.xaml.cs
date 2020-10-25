@@ -42,7 +42,6 @@ namespace DAYLY
 
         protected override void OnStart()
         {
-
         }
 
         protected override void OnSleep()
