@@ -200,7 +200,7 @@ namespace DAYLY.ViewModels
                                 foreach (var colour in Colours)
                                 {
                                     Console.WriteLine(colour.HexColour);
-                                    if (colour.Id == even.ProgrammeId)
+                                    if (colour.Id == even.CalendarId)
                                     {
                                         colours[i] =colour.HexColour;
                                     }
