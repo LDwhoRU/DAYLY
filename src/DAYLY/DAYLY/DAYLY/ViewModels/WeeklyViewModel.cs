@@ -44,7 +44,7 @@ namespace DAYLY.ViewModels
         string[] satcol = new string[16];
         string[] suncol = new string[16];
      //for some reason viewmodel isnt reinstantied when navigating for create new event after creating some events. So to show new events, after there are existing events, that have been created after pressing schedule you have to
-     //click either monthly or daily then go back to weekly to show new event entries. Not sure how to fix this bug
+     //click weekly again
 
 
         string today;
@@ -89,6 +89,17 @@ namespace DAYLY.ViewModels
                 return new Command(async () =>
                 {
                     await Application.Current.MainPage.Navigation.PushAsync(new Monthly());
+                });
+
+            }
+        }
+        public Command WeeklyCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new Weekly());
                 });
 
             }

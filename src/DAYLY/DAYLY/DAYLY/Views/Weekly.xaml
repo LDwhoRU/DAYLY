@@ -33,7 +33,9 @@
                     <Label Text="DAILY" FontSize="15" TextColor="#6D8CA0" VerticalOptions="Center"/>
                 </StackLayout>
                 <StackLayout Grid.Column="1" Orientation="Horizontal">
-                   
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding WeeklyCommand}"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
                     <Image Source="weekly_active.png" />
                     <Label Text="WEEKLY" FontSize="15" TextColor="#D97D54" VerticalOptions="Center"/>
                 </StackLayout>
