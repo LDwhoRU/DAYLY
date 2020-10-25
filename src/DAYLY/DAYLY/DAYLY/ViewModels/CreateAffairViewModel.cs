@@ -513,7 +513,6 @@ namespace DAYLY.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Inserting Note Failed");
                         throw ex;
                     }
                     CurrentNoteID = newNote.Id;

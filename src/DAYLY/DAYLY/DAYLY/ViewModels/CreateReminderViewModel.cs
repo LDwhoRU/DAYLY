@@ -64,7 +64,6 @@ namespace DAYLY.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Inserting Event Failed");
                     throw ex;
                 }
             }
@@ -81,9 +80,11 @@ namespace DAYLY.ViewModels
                 ReminderListView = (from x in conn.Table<Reminder>() select x).ToList();
 
                 // Uncomment to view SQLite Query
+                Console.WriteLine("Saved Reminders");
                 foreach (Reminder iterReminder in ReminderListView)
                 {
-                    Console.WriteLine(iterReminder.Name + iterReminder.Type + iterReminder.Date.ToString() + iterReminder.RepeatInterval + iterReminder.AlertInterval + iterReminder.NoteId.ToString() + iterReminder.SubjectId.ToString());
+                    Console.WriteLine(iterReminder.Name);
+                    Console.WriteLine(iterReminder.Type + iterReminder.Date.ToString() + iterReminder.RepeatInterval + iterReminder.AlertInterval + iterReminder.NoteId.ToString() + iterReminder.SubjectId.ToString());
                 }
             });
 

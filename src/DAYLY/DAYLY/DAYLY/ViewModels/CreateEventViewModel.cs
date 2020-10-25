@@ -406,7 +406,6 @@ namespace DAYLY.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Inserting Event Failed");
                     throw ex;
                 }
             }
@@ -428,9 +427,11 @@ namespace DAYLY.ViewModels
                 EventListView = (from x in conn.Table<Event>() select x).ToList();
 
                 // Uncomment to view SQLite Query
+                Console.WriteLine("Saved Events");
                 foreach (Event iterEvent in EventListView)
                 {
-                    Console.WriteLine(iterEvent.Name + iterEvent.Type + iterEvent.Date.ToString() + iterEvent.StartTime.ToString() + iterEvent.EndTime.ToString() + iterEvent.AllDay.ToString()
+                    Console.WriteLine(iterEvent.Name);
+                    Console.WriteLine(iterEvent.Type + iterEvent.Date.ToString() + iterEvent.StartTime.ToString() + iterEvent.EndTime.ToString() + iterEvent.AllDay.ToString()
                         + iterEvent.IsOnline.ToString() + iterEvent.RepeatInterval + iterEvent.AlertInterval + iterEvent.NoteId.ToString() + iterEvent.CalendarId.ToString() + iterEvent.LocationId.ToString());
                 }
             });
@@ -522,7 +523,6 @@ namespace DAYLY.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Inserting Location Failed");
                         throw ex;
                     }
 
