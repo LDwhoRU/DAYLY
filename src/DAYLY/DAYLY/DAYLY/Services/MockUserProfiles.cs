@@ -4,6 +4,7 @@ using DAYLY.Models;
 using Xamarin.Forms;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace DAYLY.Services
 {
@@ -19,9 +20,12 @@ namespace DAYLY.Services
 
             conn.CreateTable<UserProfile>();
 
-            foreach (UserProfile user in userProfiles)
+            if (conn.Table<UserProfile>().Count() == 0)
             {
-                conn.Insert(user);
+                foreach (UserProfile user in userProfiles)
+                {
+                    conn.Insert(user);
+                }
             }
 
             conn.Close();

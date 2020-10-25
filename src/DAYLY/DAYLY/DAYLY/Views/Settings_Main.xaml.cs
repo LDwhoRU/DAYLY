@@ -48,4 +48,6 @@ namespace DAYLY.Views
             await Navigation.PushAsync(new Settings_SyncData());
         }
     }
+
+    
 }
