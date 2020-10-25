@@ -403,6 +403,7 @@ namespace DAYLY.ViewModels
                 try
                 {
                     isSuccess = conn.Insert(newEvent);
+                    ErrorAlert("Event " + AffairName + " added successfully", CurrentPage);
                 }
                 catch (Exception ex)
                 {
@@ -410,12 +411,34 @@ namespace DAYLY.ViewModels
                 }
             }
         }
-
-        public CreateEventViewModel()
+        private void ResetEvent()
         {
+            ResetAffair();
+
             AffairType = "Event";
             AffairSubType = "Lecture";
+            CurrentLocationAlias = "None";
+
+            StartTime = DateTime.Now.TimeOfDay;
+            TimeSpan tempEndTime = StartTime + TimeSpan.FromHours(2);
+            if (tempEndTime.Days > 0)
+            {
+                tempEndTime = tempEndTime.Subtract(new TimeSpan(1, 0, 0, 0));
+            }
+            EndTime = tempEndTime;
+
+            LocationLabelColour = Color.FromHex("#1B1C20");
+            LocationPreviewColour = Color.FromHex("#334856");
+
+            TimeLabelColour = Color.FromHex("#1B1C20");
+            TimePreviewColour = Color.FromHex("#334856");
             referenceEventViewModel = this;
+        }
+        public CreateEventViewModel(INavigation navigation, Page page)
+        {
+            CurrentNavigation = navigation;
+            CurrentPage = page;
+            ResetEvent();
 
             LoadReminder = new Command(async () =>
             {
@@ -425,6 +448,7 @@ namespace DAYLY.ViewModels
             SaveEvent = new Command(() => {
                 WriteEvent();
                 EventListView = (from x in conn.Table<Event>() select x).ToList();
+                ResetEvent();
 
                 // Uncomment to view SQLite Query
                 Console.WriteLine("Saved Events");
@@ -541,28 +565,6 @@ namespace DAYLY.ViewModels
             {
                 await CurrentNavigation.PushAsync(new LocationCustom(this));
             });
-        }
-
-        public void Initalise(INavigation navigation, Page page)
-        {
-            CurrentNavigation = navigation;
-            CurrentPage = page;
-            
-            StartTime = DateTime.Now.TimeOfDay;
-            TimeSpan tempEndTime = StartTime + TimeSpan.FromHours(2);
-            if (tempEndTime.Days > 0)
-            {
-                tempEndTime = tempEndTime.Subtract(new TimeSpan(1, 0, 0, 0));
-            }
-            EndTime = tempEndTime;
-
-            CurrentLocationAlias = "None";
-
-            LocationLabelColour = Color.FromHex("#1B1C20");
-            LocationPreviewColour = Color.FromHex("#334856");
-
-            TimeLabelColour = Color.FromHex("#1B1C20");
-            TimePreviewColour = Color.FromHex("#334856");
         }
     }
 }

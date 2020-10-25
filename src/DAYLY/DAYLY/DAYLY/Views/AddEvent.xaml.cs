@@ -20,13 +20,13 @@ namespace DAYLY.Views
     public partial class AddEvent : ContentPage
 
     {
-        public CreateEventViewModel createEventViewModel = new CreateEventViewModel();
+        public CreateEventViewModel createEventViewModel;
         public AddEvent()
         {
             InitializeComponent();
 
             // MVVM Implementation
-            createEventViewModel.Initalise(Navigation, this);
+            createEventViewModel = new CreateEventViewModel(Navigation, this);
             BindingContext = createEventViewModel;
         }
 

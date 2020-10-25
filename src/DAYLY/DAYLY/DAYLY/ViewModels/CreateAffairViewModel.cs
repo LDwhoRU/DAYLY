@@ -21,7 +21,6 @@ namespace DAYLY.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected string _AffairType;
-
         public Command LoadType { get; }
         public Command SelectType { get; }
         public Command SelectRepeat { get; }
@@ -47,13 +46,13 @@ namespace DAYLY.ViewModels
         protected int _CurrentNoteID;
         protected string _NotePreviewLabel;
 
-        private int _CurrentProgrammeID;
-        private bool _PopupProgramme;
-        private string _NewProgrammeName;
-        private string _NewProgrammeColour;
-        private int _ProgrammeListViewWidth;
-        private List<ProgrammeViewModel> _ProgrammeListView;
-        private List<string> _ColourPickerItems;
+        protected int _CurrentProgrammeID;
+        protected bool _PopupProgramme;
+        protected string _NewProgrammeName;
+        protected string _NewProgrammeColour;
+        protected int _ProgrammeListViewWidth;
+        protected List<ProgrammeViewModel> _ProgrammeListView;
+        protected List<string> _ColourPickerItems;
 
         protected INavigation _CurrentNavigation;
         protected Page _CurrentPage;
@@ -397,7 +396,34 @@ namespace DAYLY.ViewModels
                 errorPage = new Page();
             }
         }
+        protected void ResetAffair()
+        {
+            Repeat = "None";
+            Alert = "15 Minutes";
+            NotePreviewLabel = "Empty";
 
+            AffairName = "";
+            NoteURL = "";
+            NoteDescription = "";
+
+            PopupProgrammeVisible = false;
+
+            CurrentNoteID = 0;
+            CurrentProgrammeID = 0;
+
+            AffairDate = DateTime.Today;
+
+            ProgrammeListView = new List<ProgrammeViewModel>();
+            ColourPickerItems = new List<string>
+            {
+                "Green",
+                "Blue",
+                "Red",
+                "Orange",
+                "Yellow",
+                "Purple"
+            };
+        }
         public CreateAffairViewModel()
         {
             conn = DependencyService.Get<Isqlite>().GetConnection();
@@ -420,27 +446,6 @@ namespace DAYLY.ViewModels
             conn.CreateTable<Models.Subject>();
             conn.CreateTable<Location>();
             conn.CreateTable<Models.Calendar>();
-
-            // Preview text show up
-            Repeat = "None";
-            Alert = "15 Minutes";
-            
-            NotePreviewLabel = "Empty";
-
-            PopupProgrammeVisible = false;
-
-            AffairDate = DateTime.Today;
-
-            ProgrammeListView = new List<ProgrammeViewModel>();
-            ColourPickerItems = new List<string>
-            {
-                "Green",
-                "Blue",
-                "Red",
-                "Orange",
-                "Yellow",
-                "Purple"
-            };
 
             SelectType = new Command(async (typeValue) => {
                 AffairSubType = (string)typeValue;

@@ -19,13 +19,13 @@ namespace DAYLY.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddReminder : ContentPage
     {
-        public CreateReminderViewModel createReminderViewModel = new CreateReminderViewModel();
+        public CreateReminderViewModel createReminderViewModel;
         public AddReminder()
         {
             InitializeComponent();
 
             // MVVM Implementation
-            createReminderViewModel.Initalise(Navigation, this);
+            createReminderViewModel = new CreateReminderViewModel(Navigation, this);
             BindingContext = createReminderViewModel;
         }
 

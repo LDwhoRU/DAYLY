@@ -61,6 +61,7 @@ namespace DAYLY.ViewModels
                 try
                 {
                     isSuccess = conn.Insert(newReminder);
+                    ErrorAlert("Reminder " + AffairName + " added successfully", CurrentPage);
                 }
                 catch (Exception ex)
                 {
@@ -68,16 +69,24 @@ namespace DAYLY.ViewModels
                 }
             }
         }
-
-        public CreateReminderViewModel()
+        private void ResetReminder()
         {
+            ResetAffair();
+
             AffairType = "Reminder";
             AffairSubType = "Assignment";
             referenceReminderViewModel = this;
+        }
+        public CreateReminderViewModel(INavigation navigation, Page page)
+        {
+            CurrentNavigation = navigation;
+            CurrentPage = page;
+            ResetReminder();
 
             SaveReminder = new Command(() => {
                 WriteReminder();
                 ReminderListView = (from x in conn.Table<Reminder>() select x).ToList();
+                ResetReminder();
 
                 // Uncomment to view SQLite Query
                 Console.WriteLine("Saved Reminders");
@@ -92,12 +101,6 @@ namespace DAYLY.ViewModels
             {
                 await Shell.Current.GoToAsync("//AddEvent");
             });
-        }
-
-        public void Initalise(INavigation navigation, Page page)
-        {
-            CurrentNavigation = navigation;
-            CurrentPage = page;
         }
     }
 }
