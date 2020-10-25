@@ -10,6 +10,7 @@ namespace DAYLY
 {
     public partial class App : Application
     {
+        MockUserProfiles mockUserProfiles = new MockUserProfiles();
         public App()
         {
             InitializeComponent();
