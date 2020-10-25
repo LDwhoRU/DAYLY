@@ -448,11 +448,11 @@ namespace DAYLY.ViewModels
                         LoggedInVisible = "True";
                         LoggedOutVisible = "False";
                         showMessage("True", "Success!", SUCCESS_COLOUR_HEX, SUCCESS_COLOUR_HEX);
+                        await Task.Delay(1000);
+                        await NavStack.PopModalAsync();
                         Settings_Main.settingsViewModel.LoggedIn = true;
                         Settings_Main.settingsViewModel.ProfilePicPath = "profile_pic.png";
                         Settings_Main.settingsViewModel.LogInOutBtnText = "LOG OUT";
-                        await Task.Delay(1000);
-                        await NavStack.PopModalAsync();
                         MessageVisible = "False";
                     }
                     else
